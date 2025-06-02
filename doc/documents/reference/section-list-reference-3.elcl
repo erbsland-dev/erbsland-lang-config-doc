@@ -1,0 +1,13 @@
+*[server]
+name: "host01"
+port: 9000
+
+[.filter]
+reject: "udp"
+
+*[server]
+name: "host02"
+port: 8000
+
+[.filter]
+reject: "tcp"

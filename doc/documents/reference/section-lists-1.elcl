@@ -1,0 +1,11 @@
+*[main.server]
+name: "host01"
+port: 8080
+
+*[main.server]
+name: "host02"
+port: 9000
+
+*[main.server]
+name: "host03"
+port: 9080
