@@ -1,0 +1,2 @@
+[main.server.binding.port]
+filter: "any"

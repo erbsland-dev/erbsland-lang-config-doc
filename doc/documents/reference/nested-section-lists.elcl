@@ -1,0 +1,20 @@
+---*[place]*---
+name: "example01"
+
+---*[place]*---
+name: "example02"
+
+*[place.tree]
+fruit: "apple"
+
+*[place.tree]
+fruit: "pear"
+
+---*[place]*---
+name: "example03"
+
+*[place.tree]
+fruit: "cherry"
+
+*[place.tree]
+fruit: "apricot"

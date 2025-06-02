@@ -1,0 +1,14 @@
+[book."UNIX and Linux System Administration Handbook"]
+ISBN: "978-0134277554"
+pages: 1232
+edition: "5th (2017)"
+
+[book."The Practice of System and Network Administration"]
+ISBN: "978-0321492661"
+pages: 1056
+edition: "2nd (2007)"
+
+[book."Essential System Administration"]
+ISBN: "978-0596003432"
+pages: 1176
+edition: "3rd (2002)"

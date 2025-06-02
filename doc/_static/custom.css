@@ -1,0 +1,204 @@
+/*
+ * Copyright (c) 2024. Erbsland DEV. https://erbsland.dev
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+.cp-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.cp-overlay .cp-char {
+    font-size: 200px;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, "Courier New", Courier, monospace;
+    font-weight: 800;
+    color: #505090;
+    padding: 10px;
+    text-align: center;
+}
+
+.cp-overlay .cp-label {
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.cp-table {
+    min-width: 400px;
+}
+
+.cp-table td {
+    padding: 0.2em 0.5em;
+}
+
+.cp-overlay .content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 90%;
+    text-align: left;
+}
+
+.cp-overlay .close-button {
+    display: block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.cp-role {
+    box-sizing: border-box;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, "Courier New", Courier, monospace;
+    font-weight: 800;
+    color: #505090;
+    cursor: pointer;
+}
+
+.text-code {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, "Courier New", Courier, monospace;
+    font-weight: 800;
+    color: #505090;
+    white-space: nowrap;
+}
+
+.wy-table-responsive table.wrap-lines td, .wy-table-responsive table td {
+    white-space: normal !important;
+}
+
+/* Special color for the BNF syntax */
+
+.rst-content div.highlight-bnf {
+    border: 1px solid #3488db;
+}
+
+/* Styles for custom Admonition boxes. */
+
+.design-rationale.admonition {
+    background-color: rgb(243, 231, 250);
+}
+
+.design-rationale.admonition .admonition-title {
+    background-color: rgb(152, 106, 222);
+}
+
+.design-rationale.admonition .admonition-title::before {
+    content: "\f040";
+}
+
+.micro-parser-specs.admonition {
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+}
+
+.micro-parser-specs.admonition .admonition-title {
+    color: #444;
+    background-color: #e8e8e8;
+}
+
+.micro-parser-specs.admonition .admonition-title::before {
+    content: "\f2db";
+}
+
+/* Styles for the path visualization */
+
+div.value-tree span.name {
+    color: #115193;
+}
+div.value-tree.highlight-path span.line:not(.highlight) span.name {
+    color: #ccc;
+}
+
+div.value-tree span.line.section span.name {
+    color: #147114;
+    font-weight: bold;
+}
+div.value-tree.highlight-path span.line.section:not(.highlight) span.name {
+    color: #ccc;
+}
+
+div.value-tree span.content {
+    font-family: Lato, proxima-nova, Helvetica Neue, Arial, sans-serif;
+    font-style: italic;
+}
+div.value-tree span.content_type, div.value-tree span.content_bracket {
+    color: #8010ac;
+}
+div.value-tree span.content_text {
+    color: #b747e1;
+}
+div.value-tree span.content_bracket {
+    font-weight: bold;
+}
+div.value-tree.highlight-path span.line:not(.highlight) span.content_type,
+div.value-tree.highlight-path span.line:not(.highlight) span.content_bracket,
+div.value-tree.highlight-path span.line:not(.highlight) span.content_text {
+    color: #ccc;
+}
+div.value-tree span.arrow, div.value-tree span.connector {
+    color: #aaa;
+}
+div.value-tree.highlight-path span.connector.path {
+    color: #da0000;
+}
+div.value-tree span.connector:not(.path) {
+    color: #ccc;
+}
+
+/* Mark good and bad examples */
+
+.rst-content div.good-example.highlight-erbsland-conf .highlight,
+.rst-content div.good-example.highlight-text .highlight {
+    border: 1px solid #57c884 !important;
+}
+
+.rst-content div.bad-example.highlight-erbsland-conf .highlight,
+.rst-content div.bad-example.highlight-text .highlight {
+    border: 1px dashed #ca8888 !important;
+    cursor: not-allowed;
+    background: repeating-linear-gradient(
+            135deg,
+            transparent,
+            transparent 36px,
+            rgba(255, 0, 0, 0.05) 37px,
+            rgba(255, 0, 0, 0.05) 40px
+    );
+}
+
+/* Fix margin on line-blocks inside tables. */
+
+.rst-content td div.line-block,
+.rst-content td ul {
+    margin-bottom: 0;
+}
+
+
+.banner {
+    width: 100%;
+    background-color: #cd5a13;
+    color: white;
+    padding: 0.5em 3em;
+    margin: 0 0 0 10em;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    border-bottom: 5px solid #e4d3aa;
+}
+
+@media screen and (max-width: 768px) {
+    .banner {
+        margin: 0;
+    }
+}
+

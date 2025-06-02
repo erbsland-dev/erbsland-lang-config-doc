@@ -1,0 +1,18 @@
+[main]
+user: "example"
+
+[server]
+threads: 4
+startup delay: 20 s
+
+*[server.connection]
+port: 8080
+interface: "web"
+
+*[server.connection]
+port: 9000
+interface: "api"
+
+[server.backend.filter]
+reject: "bad"
+accept: "good"

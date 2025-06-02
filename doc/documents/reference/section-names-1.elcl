@@ -1,0 +1,10 @@
+[main]                 # Absolute section
+[main.sub]             # Absolute section
+[main.sub.sub_a]       # Absolute section
+[.sub1]                # Relative section -> refers to "main.sub.sub_a.sub1"
+[.sub2]                # Relative section -> refers to "main.sub.sub_a.sub2"
+[.sub1.sub]            # Relative section -> refers to "main.sub.sub_a.sub1.sub"
+[main.sub.sub_b]       # Absolute section
+[.sub1]                # Relative section -> refers to "main.sub.sub_b.sub1"
+[.sub2]                # Relative section -> refers to "main.sub.sub_b.sub2"
+[.sub1.sub]            # Relative section -> refers to "main.sub.sub_b.sub1.sub"
