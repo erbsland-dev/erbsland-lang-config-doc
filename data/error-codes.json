@@ -1,0 +1,80 @@
+[
+    {
+        "code": 1,
+        "name": "IO",
+        "message": "Input/output error",
+        "description": "There was a problem while reading data from an IO stream."
+    },
+    {
+        "code": 2,
+        "name": "Encoding",
+        "message": "Invalid encoding",
+        "description": "There was a problem with the UTF-8 encoding of the document."
+    },
+    {
+        "code": 3,
+        "name": "UnexpectedEnd",
+        "message": "Unexpected end of document",
+        "description": "The document ended at an unexpected point."
+    },
+    {
+        "code": 4,
+        "name": "Character",
+        "message": "Character not allowed",
+        "description": "The document contains a control character that is not allowed."
+    },
+    {
+        "code": 5,
+        "name": "Syntax",
+        "message": "Syntax error",
+        "description": "The document contains a syntax error."
+    },
+    {
+        "code": 6,
+        "name": "LimitExceeded",
+        "message": "Limit exceeded error",
+        "description": "The size of a name, text, or buffer exceeds the allowed limit."
+    },
+    {
+        "code": 7,
+        "name": "NameConflict",
+        "message": "Name conflict",
+        "description": "The name has already been defined earlier in the document."
+    },
+    {
+        "code": 8,
+        "name": "Indentation",
+        "message": "Unexpected indentation",
+        "description": "The indentation of a continued line does not match the previous line."
+    },
+    {
+        "code": 9,
+        "name": "Unsupported",
+        "message": "Unsupported version of feature",
+        "description": "The requested feature version is not supported by this parser."
+    },
+    {
+        "code": 10,
+        "name": "Signature",
+        "message": "The signature was rejected.",
+        "description": "A document was rejected because of its signature."
+    },
+    {
+        "code": 11,
+        "name": "Access",
+        "message": "Access denied",
+        "description": "A document was rejected, because of an access check."
+    },
+    {
+        "code": 12,
+        "name": "Validation",
+        "message": "Validation failed",
+        "description": "The document validation failed."
+    },
+    {
+        "code": 99,
+        "name": "Internal",
+        "message": "Internal error",
+        "description": "The parser encountered an internal error."
+    }
+]

@@ -1,0 +1,99 @@
+[
+    {
+        "id": "core",
+        "name": "Core Language",
+        "description": "All core language features."
+    },
+    {
+        "id": "minimum",
+        "name": "Minimum Features",
+        "description": "All minimum features."
+    },
+    {
+        "id": "standard",
+        "name": "Standard Features",
+        "description": "All minimum and standard features."
+    },
+    {
+        "id": "advanced",
+        "name": "Advanced Features",
+        "description": "All minimum, standard and advanced features."
+    },
+    {
+        "id": "all",
+        "name": "All Features",
+        "description": "All features of the language version."
+    },
+
+    {
+        "id": "float",
+        "name": "Floating Point Numbers",
+        "description": "Support for floating point numbers."
+    },
+    {
+        "id": "byte-count",
+        "name": "Byte Counts",
+        "description": "Support for byte count suffixes in decimal integers."
+    },
+    {
+        "id": "multi-line",
+        "name": "Multi-line Values",
+        "description": "Support for multi-line values."
+    },
+    {
+        "id": "section-list",
+        "name": "Section Lists",
+        "description": "Support for section lists."
+    },
+    {
+        "id": "value-list",
+        "name": "Value Lists",
+        "description": "Support for value lists."
+    },
+    {
+        "id": "text-names",
+        "name": "Text Names",
+        "description": "Support for text names."
+    },
+    {
+        "id": "date-time",
+        "name": "Date-Time Values",
+        "description": "Support for date, time, and date-time values."
+    },
+    {
+        "id": "code",
+        "name": "Code Values",
+        "description": "Support for code text values."
+    },
+    {
+        "id": "byte-data",
+        "name": "Byte-Data Values",
+        "description": "Support for hexadecimal-formatted byte-data."
+    },
+    {
+        "id": "include",
+        "name": "Include Commands",
+        "description": "Support for the include meta command."
+    },
+    {
+        "id": "regex",
+        "name": "Regular Expression Values",
+        "description": "Support for regular expressions."
+    },
+    {
+        "id": "time-delta",
+        "name": "Time-Delta Values",
+        "description": "Support for time-delta values."
+    },
+
+    {
+        "id": "validation",
+        "name": "Validation Support",
+        "description": "Support for validation rules."
+    },
+    {
+        "id": "signature",
+        "name": "Signature Support",
+        "description": "Support for document signatures."
+    }
+]

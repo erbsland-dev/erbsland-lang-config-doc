@@ -95,6 +95,12 @@ The following rules for :term:`text names<text name>` apply not only to :term:`s
         *[text."one"]  # ERROR! Section lists must not have text names.
         *[text."one"]
 
+#.  **Maximum Length:**
+    A *text name* must not exceed 4000 **bytes** in length, which corresponds to the maximum line length permitted in the configuration document (without the enclosing double quotes).
+
+    .. note::
+
+        Because escape sequences are always fully resolved before a *text name* is stored, it is not possible for a *text name* to exceed this limit during parsing. Parser implementors can therefore choose to enforce this limit only at the API level, depending on their specific application needs.
 
 .. _ref-text-name-normalization:
 .. index::
@@ -104,19 +110,28 @@ The following rules for :term:`text names<text name>` apply not only to :term:`s
 Text Name Normalization
 -----------------------
 
-Normalization of *text names* is performed according to the following rule:
+Normalization of *text names* is performed according to these rules:
 
-#.  **Resolve Escape Sequences:** All escape sequences must be fully resolved into their corresponding Unicode characters.
-
-    .. code-block:: text
-
-        "\u{25b6}\u{fe0e}"                 => "▶︎"
-
-#.  **Preserve Double Quotes:** The double quotes around *text names* are considered part of the name itself, which distinguishes a text name from a regular name.
+#.  **Resolve Escape Sequences:**
+    All escape sequences in *text names* must be fully resolved into their corresponding Unicode characters.
 
     .. code-block:: text
 
-        "He said \"hello!\""               => "he said "hello!""
+        "\u{25b6}\u{fe0e}"  =>  "▶︎"
+
+#.  **Preserve Double Quotes:**
+    Double quotes surrounding *text names* are considered an integral part of the name. This distinction ensures that a *text name* cannot be confused with a regular name, even if they share the same character sequence.
+
+    .. code-block:: text
+
+        "He said \"hello!\""  =>  "he said "hello!""
+
+    .. important::
+
+        While double quotes are part of the *text name* for comparison purposes, a parser implementation does not necessarily have to store them. Instead, these quotes establish that a *text name* is always distinct from a regular name.
+
+        For example, the regular name ``example`` will never match the *text name* ``"example"``, because the double quotes are considered part of the *text name*.
+        Parser implementations can choose to store an accompanying type identifier—*regular name* or *text name*—alongside the normalized text, ensuring correct comparisons.
 
 
 .. _ref-text-name-comparison:
@@ -127,24 +142,23 @@ Normalization of *text names* is performed according to the following rule:
 Text Name Comparison
 --------------------
 
-#.  **Code-Point Comparison for Text Names:** Text names are compared based on their Unicode code points, after normalization (see :ref:`ref-text-name-normalization` for details). The comparison is done directly on the *code points* of the text name.
+#.  **Code-Point Comparison for Text Names:**
+    Text names are compared by evaluating their Unicode code points directly, after all escape sequences have been resolved. For more details on normalization, refer to :ref:`ref-text-name-normalization`.
 
     .. code-block:: text
 
-        "\u{25b6}\u{fe0e}"                 == "▶︎"
+        "\u{25b6}\u{fe0e}"  ==  "▶︎"
 
     .. important::
 
-        **A parser is not required to perform Unicode normalization for text name comparison.**
+        **Parsers are not required to perform Unicode normalization during text name comparison.** Text names can be processed directly as UTF-8 encoded byte sequences. It is the responsibility of the application layer to handle any additional normalization or verification as needed for the specific use case.
 
-        Text names may be processed as UTF-8 encoded byte-data. Applications are responsible for normalization or any additional checks required by their use case.
-
-#.  **Regular Names and Text Names Are Never Equal:** A regular name must never be considered equal to a text name, even if their content appears identical. This is because the double quotes in text names are part of the name.
+#.  **Regular Names and Text Names Are Never Equal:**
+    Regular names and text names are inherently distinct. Even if their content is identical, they must never be considered equal because the double quotes are part of the *text name*.
 
     .. code-block:: text
 
         "text" != text
-
 
 Features
 --------
@@ -176,3 +190,5 @@ Errors
         -   Raised if text names and regular names are mixed.
     *   -   :text-code:`NameConflict`
         -   Raised if an already used text name is reused.
+    *   -   :text-code:`LimitExceeded`
+        -   Raised if a text name exceeds the 4000-byte limit.
