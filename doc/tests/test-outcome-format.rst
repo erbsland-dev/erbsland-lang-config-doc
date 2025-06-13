@@ -204,7 +204,7 @@ The content of each type is standardized as shown in the table below.
         -   Byte-data represented in lowercase hexadecimal, without separators.
     *   -   :text-code:`TimeDelta`
         -   ``5,second``
-        -   An integer, as specified for integer values, followed by a comma and the unit in lowercase singular form.
+        -   An integer, as specified for integer values, followed by a comma and the unit in lowercase singular form. For parsers that combine a list of time-delta values into a single value, this behavior **must be avoided** by the test adapter.
     *   -   :text-code:`RegEx`
         -   ``"^reg$"``
         -   Formatted with the same rules as text.

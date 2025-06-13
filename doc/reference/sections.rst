@@ -132,11 +132,74 @@ Rules for Section Lists
 Implementation
 --------------
 
-#. A regular section, even if empty, creates a value of the type ``SectionWithNames``.
-#. A section list creates a value of the type ``SectionList``, where each entry is a ``SectionWithNames``.
-#. If a section list with the given name already exists, a new ``SectionWithNames`` entry is added to that list.
-#. For all intermediate sections, a new value of the type ``IntermediateSection`` is created.
-#. If a value or section with a text name is added to an empty ``SectionWithNames``, it is converted into a ``SectionWithTexts``.
+#.  A regular section defined in a configuration document, even if empty, creates a value of the type ``SectionWithNames``.
+
+    .. literalinclude:: /documents/reference/two-empty-sections.elcl
+        :language: erbsland-conf
+
+    .. configuration-tree:: /documents/reference/two-empty-sections.elcl
+
+#.  A section list creates a value of the type ``SectionList``, where each new entry is a ``SectionWithNames``.
+
+    .. literalinclude:: /documents/reference/one-section-list-element.elcl
+        :language: erbsland-conf
+
+    .. configuration-tree:: /documents/reference/one-section-list-element.elcl
+
+#.  If a section list with the given name already exists, a new ``SectionWithNames`` entry is added to that list.
+
+    .. literalinclude:: /documents/reference/two-section-list-elements.elcl
+        :language: erbsland-conf
+
+    .. configuration-tree:: /documents/reference/two-section-list-elements.elcl
+
+#.  For all missing intermediate elements in the name path, when defining a ``SectionWithNames`` or ``SectionList``, a new value of the type ``IntermediateSection`` is created.
+
+    .. literalinclude:: /documents/reference/two-intermediate-sections.elcl
+        :language: erbsland-conf
+
+    .. configuration-tree:: /documents/reference/two-intermediate-sections.elcl
+
+#.  If a section is defined, that exists as ``IntermediateSection``, it is converted into a ``SectionWithNames``.
+
+    .. literalinclude:: /documents/reference/two-intermediate-sections2.elcl
+        :language: erbsland-conf
+        :emphasize-lines: 2
+
+    .. configuration-tree:: /documents/reference/two-intermediate-sections2.elcl
+        :highlight-path: one.two
+
+#.  If a value or section with a text name is added to an empty ``SectionWithNames``, it is converted into a ``SectionWithTexts``.
+
+    Initial definition:
+
+    .. literalinclude:: /documents/reference/regular-to-text-section1.elcl
+        :language: erbsland-conf
+
+    .. configuration-tree:: /documents/reference/regular-to-text-section1.elcl
+
+    After adding a value with a text-name:
+
+    .. literalinclude:: /documents/reference/regular-to-text-section2.elcl
+        :language: erbsland-conf
+
+    .. configuration-tree:: /documents/reference/regular-to-text-section2.elcl
+
+#.  If a sub section with a text name is added to an empty ``IntermediateSection``, it is converted into a ``SectionWithTexts``.
+
+    Initial definition:
+
+    .. literalinclude:: /documents/reference/regular-to-text-section1.elcl
+        :language: erbsland-conf
+
+    .. configuration-tree:: /documents/reference/regular-to-text-section1.elcl
+
+    After adding a sub section with a text-name:
+
+    .. literalinclude:: /documents/reference/regular-to-text-section3.elcl
+        :language: erbsland-conf
+
+    .. configuration-tree:: /documents/reference/regular-to-text-section3.elcl
 
 
 Features

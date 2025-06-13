@@ -44,5 +44,6 @@ This chapter provides a detailed reference for the *Erbsland Configuration Langu
     include-meta-command
     signature-meta-value
     limits
+    value-type-names
     error-code
     feature-identifier

@@ -58,11 +58,17 @@ class ValueType(enum.StrEnum):
     VALUE_LIST = "ValueList"
     SECTION_LIST = "SectionList"
     INTERMEDIATE_SECTION = "IntermediateSection"  # = Section that was created to bridge a name path.
-    SECTION_WITH_NAMES = "SectionWithNames"  # = Section with names as keys, or the document root
+    SECTION_WITH_NAMES = "SectionWithNames"  # = Section with names as keys
     SECTION_WITH_TEXTS = "SectionWithTexts"  # = Section with text as keys
+    DOCUMENT = "Document"  # = The document root.
 
     def is_map(self) -> bool:
-        return self in [self.INTERMEDIATE_SECTION, self.SECTION_WITH_NAMES, self.SECTION_WITH_TEXTS]
+        return self in [
+            self.INTERMEDIATE_SECTION,
+            self.SECTION_WITH_NAMES,
+            self.SECTION_WITH_TEXTS,
+            self.DOCUMENT,
+        ]
 
 
 class OpenState(enum.StrEnum):
@@ -164,7 +170,12 @@ class Value:
         match value_type:
             case ValueType.VALUE_LIST | ValueType.SECTION_LIST:
                 self._children = []
-            case ValueType.SECTION_WITH_NAMES | ValueType.SECTION_WITH_TEXTS | ValueType.INTERMEDIATE_SECTION:
+            case (
+                ValueType.SECTION_WITH_NAMES
+                | ValueType.SECTION_WITH_TEXTS
+                | ValueType.INTERMEDIATE_SECTION
+                | ValueType.DOCUMENT
+            ):
                 self._children = {}
             case _:
                 self._children = None
@@ -188,7 +199,12 @@ class Value:
                 text = ", ".join(str(v) for v in self._children)
             case ValueType.INTERMEDIATE_SECTION:
                 text = ""
-            case ValueType.SECTION_WITH_NAMES | ValueType.SECTION_WITH_TEXTS | ValueType.SECTION_LIST:
+            case (
+                ValueType.SECTION_WITH_NAMES
+                | ValueType.DOCUMENT
+                | ValueType.SECTION_WITH_TEXTS
+                | ValueType.SECTION_LIST
+            ):
                 text = f"size={len(self._children)}"
             case ValueType.UNDEF:
                 text = ""
@@ -289,6 +305,7 @@ class Value:
             ValueType.SECTION_WITH_NAMES,
             ValueType.SECTION_WITH_TEXTS,
             ValueType.INTERMEDIATE_SECTION,
+            ValueType.DOCUMENT,
         ]
 
     def is_section(self) -> bool:
@@ -298,6 +315,7 @@ class Value:
             ValueType.SECTION_WITH_TEXTS,
             ValueType.INTERMEDIATE_SECTION,
             ValueType.SECTION_LIST,
+            ValueType.DOCUMENT,
         ]
 
     def has_sections(self) -> bool:
@@ -348,7 +366,11 @@ class Value:
         """
         if self._children is None:
             return None
-        if self._type in [ValueType.SECTION_WITH_NAMES, ValueType.INTERMEDIATE_SECTION]:
+        if self._type in [
+            ValueType.SECTION_WITH_NAMES,
+            ValueType.INTERMEDIATE_SECTION,
+            ValueType.DOCUMENT,
+        ]:
             return self._children.get(normalize_name(name), None)
         if self._type == ValueType.SECTION_WITH_TEXTS:
             return self._children.get(name, None)
@@ -487,6 +509,7 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
             for pos, token_type, token_text in self.get_tokens_unprocessed(text):
                 if token_type is Error:
                     raise DocumentError(pos, token_text, "Failed to parse document.")
+            self.last_root.type = ValueType.DOCUMENT
             return self.last_root
         except InternalError as error:
             raise DocumentError(0, "", str(error))
@@ -637,7 +660,13 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
                 raise InternalError("Section lists must not use text names.")
             self._create_new_section_list(ctx, name_path, name)
 
-    def _create_new_section_map(self, ctx: EclContext, name_path: list[str], name: str, is_text_name: bool = False):
+    def _create_new_section_map(
+        self,
+        ctx: EclContext,
+        name_path: list[str],
+        name: str,
+        is_text_name: bool = False,
+    ):
         """Handle the case of a new section map."""
         if len(name_path) > 1:
             parent_map = ctx.root.create_missing_maps(name_path[:-1])
@@ -679,7 +708,7 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
             yield from self.yield_groups(
                 match,
                 [
-                    Error if ctx.section_error_message else (String.Single if is_text else Name.Tag),
+                    (Error if ctx.section_error_message else (String.Single if is_text else Name.Tag)),
                     Whitespace,
                     Operator,
                     Operator,
@@ -1069,11 +1098,23 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
             ctx.value.data = ctx.value_text
             if len(match.groups()) == 3:
                 yield from self.yield_groups(
-                    match, [Whitespace, Whitespace, self._get_token_for_state(ctx.open_states[-1])]
+                    match,
+                    [
+                        Whitespace,
+                        Whitespace,
+                        self._get_token_for_state(ctx.open_states[-1]),
+                    ],
                 )
             else:
                 yield from self.yield_groups(
-                    match, [Whitespace, Comment, Whitespace, Whitespace, self._get_token_for_state(ctx.open_states[-1])]
+                    match,
+                    [
+                        Whitespace,
+                        Comment,
+                        Whitespace,
+                        Whitespace,
+                        self._get_token_for_state(ctx.open_states[-1]),
+                    ],
                 )
             ctx.pos = match.end()
         except InternalError as error:
@@ -1287,7 +1328,11 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
         ],
         "value_after_name": [
             # Empty Line (optional comment)
-            (RE_END_OF_LINE, bygroups(Whitespace, Comment, Whitespace), ("#pop", "value_on_next_line")),
+            (
+                RE_END_OF_LINE,
+                bygroups(Whitespace, Comment, Whitespace),
+                ("#pop", "value_on_next_line"),
+            ),
             # Ignore optional spacing and expect a value.
             (r"[ \t]*", Whitespace, ("#pop", "comma_list", "single_value")),
         ],
@@ -1299,11 +1344,19 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
             # Line List
             (r"(?=[ \t]+\*)", Whitespace, ("#pop", "line_list")),
             # Indent => Value on the next line.
-            (r"[ \t]+(?!\*)", process_value_on_next_line, ("#pop", "comma_list", "single_value")),
+            (
+                r"[ \t]+(?!\*)",
+                process_value_on_next_line,
+                ("#pop", "comma_list", "single_value"),
+            ),
         ],
         "line_list": [
             # Continued List
-            (r"([ \t]+)(\*)([ \t]*)", bygroups(Whitespace, Operator, Whitespace), ("comma_list", "single_value")),
+            (
+                r"([ \t]+)(\*)([ \t]*)",
+                bygroups(Whitespace, Operator, Whitespace),
+                ("comma_list", "single_value"),
+            ),
             # If there is anything else, back to root.
             (r"(?=.)", Whitespace, "#pop"),
         ],
@@ -1332,7 +1385,11 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
             ),
         ],
         "single_value": [
-            (r",", handle_error, "#pop"),  # Early catch common errors with starting comma or consecutive ones.
+            (
+                r",",
+                handle_error,
+                "#pop",
+            ),  # Early catch common errors with starting comma or consecutive ones.
             include("boolean"),
             include("date_time"),
             include("float"),
@@ -1350,7 +1407,11 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
             include("byte_data_start"),
         ],
         "boolean": [
-            (r"(?i)(true|false|yes|no|enabled|disabled|on|off)", process_bool_value, "#pop"),
+            (
+                r"(?i)(true|false|yes|no|enabled|disabled|on|off)",
+                process_bool_value,
+                "#pop",
+            ),
         ],
         "integer": [
             (
@@ -1490,7 +1551,11 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
         ],
         "text_multi_line_after_start": [
             # Handle the special case of an empty line.
-            (RE_END_OF_LINE + r"(?=[ \t]*\n|\r\n)", process_multi_line_line_break, "#pop"),
+            (
+                RE_END_OF_LINE + r"(?=[ \t]*\n|\r\n)",
+                process_multi_line_line_break,
+                "#pop",
+            ),
             # Handle the special case of an early end.
             (RE_END_OF_LINE + r'([ \t]+)(""")', process_multi_line_end, "#pop"),
             # Everything else must be content.
@@ -1502,7 +1567,10 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
         ],
         "text_multi_line": [
             # End of text.
-            (r'(\n|\r\n)([ \t]+)(""")', process_multi_line_end),  # function will decide if this pops the stack.
+            (
+                r'(\n|\r\n)([ \t]+)(""")',
+                process_multi_line_end,
+            ),  # function will decide if this pops the stack.
             include("multi_line_line_break"),
             include("text_escape"),
             include("text_placeholder"),
@@ -1520,7 +1588,10 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
             (r"(?ix) \$ \{ [-=.: _a-z0-9]*", handle_error),
         ],
         "text_escape": [
-            (r'(?ix) \\ ( [\\"$nrt] | u (?: [a-f0-9]{4} | \{ [a-f0-9]{1,8} \} ) )', process_text_escape),
+            (
+                r'(?ix) \\ ( [\\"$nrt] | u (?: [a-f0-9]{4} | \{ [a-f0-9]{1,8} \} ) )',
+                process_text_escape,
+            ),
         ],
         "code_start": [
             (r"`", process_code_start, ("#pop", "code")),
@@ -1539,7 +1610,11 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
         ],
         "code_multi_line_after_start": [
             # Handle the special case of an empty line.
-            (RE_END_OF_LINE + r"(?=[ \t]*\n|\r\n)", process_multi_line_line_break, "#pop"),
+            (
+                RE_END_OF_LINE + r"(?=[ \t]*\n|\r\n)",
+                process_multi_line_line_break,
+                "#pop",
+            ),
             # Handle the special case of an early end.
             (RE_END_OF_LINE + r"([ \t]+)(```)", process_multi_line_end, "#pop"),
             # Everything else must be content.
@@ -1547,7 +1622,10 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
         ],
         "code_multi_line": [
             # End of code.
-            (r"(\n|\r\n)([ \t]+)(```)", process_multi_line_end),  # function will decide if this pops the stack.
+            (
+                r"(\n|\r\n)([ \t]+)(```)",
+                process_multi_line_end,
+            ),  # function will decide if this pops the stack.
             include("multi_line_line_break"),
             (r"[^\x00-\x08\x0A-\x1F\x7F-\x9F]+", process_text_char),
         ],
@@ -1570,7 +1648,11 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
         ],
         "regex_multi_line_after_start": [
             # Handle the special case of an empty line.
-            (RE_END_OF_LINE + r"(?=[ \t]*\n|\r\n)", process_multi_line_line_break, "#pop"),
+            (
+                RE_END_OF_LINE + r"(?=[ \t]*\n|\r\n)",
+                process_multi_line_line_break,
+                "#pop",
+            ),
             # Handle the special case of an early end.
             (RE_END_OF_LINE + r"([ \t]+)(///)", process_multi_line_end, "#pop"),
             # Everything else must be content.
@@ -1578,7 +1660,10 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
         ],
         "regex_multi_line": [
             # End of regex.
-            (r"(\n|\r\n)([ \t]+)(///)", process_multi_line_end),  # function will decide if this pops the stack.
+            (
+                r"(\n|\r\n)([ \t]+)(///)",
+                process_multi_line_end,
+            ),  # function will decide if this pops the stack.
             (r"/+", String.Regex),
             include("multi_line_line_break"),
             include("regex_escape"),
@@ -1615,7 +1700,10 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
             (r"[\x28\x29\x5B\x5D\x7B-\x7D]", Punctuation),
         ],
         "regex_anything": [
-            (r"[^\x00-\x08\x0A-\x1F\x7F-\x9F\\/\x28\x29\x2d\x5B\x5D\x7B-\x7D.^$*+?#]+", String.Regexp),
+            (
+                r"[^\x00-\x08\x0A-\x1F\x7F-\x9F\\/\x28\x29\x2d\x5B\x5D\x7B-\x7D.^$*+?#]+",
+                String.Regexp,
+            ),
         ],
         "byte_data_start": [
             (r"(<)(hex:)?", process_byte_data_start, ("#pop", "byte_data")),
@@ -1636,7 +1724,11 @@ class ErbslandConfigurationLanguage(ExtendedRegexLexer):
         ],
         "byte_data_after_start": [
             # Handle the special case of an empty line.
-            (RE_END_OF_LINE + r"(?=[ \t]*\n|\r\n)", process_byte_data_line_break, "#pop"),
+            (
+                RE_END_OF_LINE + r"(?=[ \t]*\n|\r\n)",
+                process_byte_data_line_break,
+                "#pop",
+            ),
             # Handle the special case of an early end.
             (RE_END_OF_LINE + r"([ \t]+)(>>>)", process_byte_data_end, "#pop:2"),
             # Everything else must be content.

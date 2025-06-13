@@ -120,8 +120,9 @@ class ConfigurationTreeDirective(SphinxDirective):
             connector = "├── "
 
         # Build the current node's line
-        name = "● " if value.is_root() else ""
-        name += html.escape(value.get_name_visualization())
+        prefix = "● " if value.is_root() else ""
+        name_visualization = prefix + value.get_name_visualization()
+        name = html.escape(name_visualization)
         line_class = " highlight" if is_highlight else ""
         if value.is_section():
             line_class += " section"
@@ -139,7 +140,7 @@ class ConfigurationTreeDirective(SphinxDirective):
         if not is_hide_content:
             spaces = len(indent) + 28
             line += f'<span class="indent">'
-            line += " " * (spaces - len(indent + connector + name))
+            line += " " * (spaces - len(indent + connector + name_visualization))
             line += "</span>"
             line += f'<span class="arrow"><==</span> '
             line += f'<span class="content">'
@@ -209,7 +210,7 @@ def test_visualize_value_tree():
     re_remove_tags = re.compile(r"<.*?>")
 
     directive = ConfigurationTreeDirective("", [], {}, "", 0, 0, "", None, TestStateMachine())
-    path = Path(__file__).parent.parent / "documents" / "reference" / "name-paths.elcl"
+    path = Path(__file__).parent.parent / "documents" / "reference" / "regular-to-text-section2.elcl"
     html = directive.create_html_for_file(path, highlight_path=["", "server", "connection", "port"])
     html = re_remove_tags.sub("", html)
     print(html)
