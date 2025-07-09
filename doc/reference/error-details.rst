@@ -1,5 +1,5 @@
 ..
-    Copyright (c) 2025 Erbsland DEV. https://erbsland.dev
+    Copyright (c) 2025 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
     SPDX-License-Identifier: Apache-2.0
 
 .. _ref-error-details:

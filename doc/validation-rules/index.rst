@@ -1,3 +1,7 @@
+..
+    Copyright (c) 2025 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
+    SPDX-License-Identifier: Apache-2.0
+
 .. _ref-validation-rules:
 .. index::
     single: Validation Rules

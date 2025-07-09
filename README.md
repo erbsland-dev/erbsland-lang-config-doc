@@ -4,7 +4,11 @@ The Erbsland Configuration Language (*ELCL*) is a human-centric configuration fo
 
 ## Current Status
 
-*ELCL* is currently in pre-release status. The language specification is complete, reference implementations will be available soon. Minor changes may be made before the first stable release.
+**ELCL version 1.0 has been officially released.** The language specification is complete, and reference implementations are currently in development and will be available soon.
+
+What’s still pending:
+- There are currently no defined guidelines for verification rules or for implementing a parser API. These sections will be published once the reference implementations are finalized.
+- Also, there are currently no contribution guidelines for the language specification. 
 
 ## Where to Start?
 
@@ -26,9 +30,7 @@ The Erbsland Configuration Language (*ELCL*) is a human-centric configuration fo
 
 ## License
 
-Here’s how you can use and share the ELCL specification and reference implementations:
-
-Copyright 2025 Erbsland DEV. https://erbsland.dev
+Copyright (c) 2025 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

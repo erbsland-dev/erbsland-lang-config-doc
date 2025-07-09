@@ -1,4 +1,4 @@
-#  Copyright (c) 2024. Erbsland DEV. https://erbsland.dev
+#  Copyright (c) 2024-2025 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
 #  SPDX-License-Identifier: Apache-2.0
 import unicodedata
 
@@ -21,12 +21,12 @@ CONTROL_NAMES = {
     "\x07": ["BELL"],
     "\x08": ["BACKSPACE"],
     "\x09": ["CHARACTER TABULATION", "horizontal tabulation (HT)", "tab"],
-    "\x0A": ["LINE FEED (LF)", "new line (NL)", "end of line (EOL)"],
-    "\x0B": ["LINE TABULATION", "vertical tabulation (VT)"],
-    "\x0C": ["FORM FEED (FF)"],
-    "\x0D": ["CARRIAGE RETURN (CR)"],
-    "\x1B": ["ESCAPE"],
-    "\x7F": ["DELETE"],
+    "\x0a": ["LINE FEED (LF)", "new line (NL)", "end of line (EOL)"],
+    "\x0b": ["LINE TABULATION", "vertical tabulation (VT)"],
+    "\x0c": ["FORM FEED (FF)"],
+    "\x0d": ["CARRIAGE RETURN (CR)"],
+    "\x1b": ["ESCAPE"],
+    "\x7f": ["DELETE"],
 }
 
 
