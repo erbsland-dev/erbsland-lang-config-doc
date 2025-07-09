@@ -331,7 +331,7 @@ Errors
             |   Raised if the include value syntax is invalid.
             |   Raised if an inclusion loop is detected.
     *   -   :text-code:`LimitExceeded`
-        -   Raised if more than three nesting levels are detected.
+        -   Raised if more than five nesting levels are detected.
     *   -   :text-code:`Unsupported`
         -   Raised if the parser does not support the ``@include`` command.
 

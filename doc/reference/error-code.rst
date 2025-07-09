@@ -43,7 +43,7 @@ Rules for Error Reporting
 #. A parser **must** use the name of the error category, adapting it as needed for the target language.
 #. A parser **must** provide a method to convert the error category to a case-insensitive string matching the error name.
 #. If a parser assigns an integer code to an error category, it **must** use the predefined code from the "code" field.
-#. A parser **must** report the line number where the error occurred.
+#. A parser **must** report the line number if the error is related to a specific line in the document.
 #. A parser **should** report the column number of the error when possible.
 #. A parser **should** include additional context or details about the error whenever feasible.
 #. A parser **can** define extra subcategories for each error to offer more specific details.
@@ -60,9 +60,10 @@ Rules for Error Reporting
     single: NameConflict
     single: Indentation
     single: Unsupported
+    single: Signature
     single: Access
     single: Validation
-    single: Signature
+    single: Internal
     single: Error; IO
     single: Error; Encoding
     single: Error; UnexpectedEnd
@@ -72,9 +73,10 @@ Rules for Error Reporting
     single: Error; NameConflict
     single: Error; Indentation
     single: Error; Unsupported
+    single: Error; Signature
     single: Error; Access
     single: Error; Validation
-    single: Error; Signature
+    single: Error; Internal
 
 List of Error Codes
 --------------------
@@ -137,7 +139,6 @@ List of Error Codes
 
 .. index::
     single: Data; Error Codes
-
 
 Available Data
 --------------

@@ -126,6 +126,15 @@ Rules
 
         @version: "9.7"  # ERROR! Unsupported version.
 
+#.  **Define it once only:** The ``@version`` meta value *must* be defined at most once in a configuration document. Defining it more than once is considered a syntax error.
+
+    .. code-block:: erbsland-conf
+        :class: bad-example
+        :force:
+
+        @version: "1.0"
+        @version: "1.0"  # ERROR! Duplicate @version definition.
+
 
 .. index::
     single: @features
@@ -157,6 +166,15 @@ Rules
         :class: bad-example
 
         @features: "example"  # ERROR! Unsupported, because unknown feature.
+
+#.  **Define only once:** The ``@features`` meta value *must* be defined at most once in a configuration document. Defining it more than once is considered a syntax error.
+
+    .. code-block:: erbsland-conf
+        :class: bad-example
+        :force:
+
+        @features: "value-list multi-line code"
+        @features: "float"   # ERROR! Duplicate @features definition.
 
 
 Features
@@ -192,6 +210,7 @@ Errors
     *   -   :text-code:`Syntax`
         -   |   If a meta value or command is at the wrong place.
             |   If a meta value has the wrong type of value.
+            |   If ``@version`` or ``@features`` is defined more than once.
     *   -   :text-code:`Unsupported`
         -   Raised if the parser does not support a meta value or command.
 

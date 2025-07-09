@@ -55,7 +55,9 @@ An :term:`ELCL` parser must reject any illegal UTF-8 sequences and terminate wit
         -   The :term:`Unicode` standard limits the highest valid code point to :text-code:`U+10FFFF`. Any UTF-8 sequence that generates a code point above this range, such as :text-code:`U+110000` and higher, must be rejected.
     *   -   | :text-code:`C0 80`
             | :text-code:`C1 80`
-        -   While UTF-8 multi-byte sequences can encode 7-bit values, only the shortest possible encoding is allowed. Therefore, sequences beginning with :text-code:`C0` or :text-code:`C1` are illegal and must be rejected.
+            | :text-code:`E0 9F BF`
+            | :text-code:`F0 8F BF BF`
+        -   UTF-8 multi-byte sequences can encode the same value in multiple ways, but only the shortest possible encoding is allowed. Therefore, sequences that encode a value in a longer sequence than technical necessary are illegal and must be rejected.
     *   -   | :text-code:`C2` + 7-bit
             | :text-code:`EO 80` + 7-bit
             | :text-code:`FO 80 80` + 7-bit
@@ -102,6 +104,9 @@ A safe and complete UTF-8 decoding process, including the rejection of all illeg
         unicodeValue <<= 6;
         unicodeValue |= (c & 0b00111111u);
     }
+    if ((cSize == 3 && unicodeValue < 0x800) || cSize == 4 && unicodeValue < 0x10000) {
+        throw EncodingError(); // Over-long UTF-8 sequence.
+    }
     const auto result = Char(unicodeValue);
     // Validate against invalid Unicode ranges (surrogates, code points > 0x10FFFF)
     if (!result.isValidUnicode()) throw EncodingError();
@@ -136,6 +141,8 @@ A safe and complete UTF-8 decoding process, including the rejection of all illeg
             if (c & 0b11000000) != 0b10000000:
                 raise EncodingError("Invalid continuation byte")
             unicode_value = (unicode_value << 6) | (c & 0b00111111)
+        if c_size == 3 and unicode_value < 0x800 or c_size == 4 and unicode_value < 0x10000:
+            raise EncodingError("Over-long UTF-8 sequence")
         if not is_valid_unicode(unicode_value):
             raise EncodingError("Invalid Unicode code point")
         return chr(unicode_value)

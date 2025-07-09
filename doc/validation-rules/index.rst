@@ -1,3 +1,4 @@
+.. _ref-validation-rules:
 .. index::
     single: Validation Rules
 

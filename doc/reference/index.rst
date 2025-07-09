@@ -46,4 +46,5 @@ This chapter provides a detailed reference for the *Erbsland Configuration Langu
     limits
     value-type-names
     error-code
+    error-details
     feature-identifier
