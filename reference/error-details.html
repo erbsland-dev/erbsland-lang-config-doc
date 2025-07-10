@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Error Category Details &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Feature Identifiers" href="feature-identifier.html" />
+    <link rel="prev" title="Error Categories and Codes" href="error-code.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Language Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Documentation Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="characters.html">Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-break.html">Line Break</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html">Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="names.html">Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-name.html">Text Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-path/index.html">Name Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-conflict.html">Name Conflicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="section-names.html">Section Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections.html">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="named-values.html">Named Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-line-value-list.html">Single-Line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-value-list.html">Multi-line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-value.html">Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integer-value.html">Integer Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean-value.html">Boolean Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating-point-value.html">Floating-Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-text-value.html">Multi-line Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date-time-value.html">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-text-value.html">Code Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byte-data-value.html">Byte-Data Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regular-expression-value.html">Regular Expression Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-delta-value.html">Time-Delta Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-value.html">Meta Values and Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="include-meta-command.html">Meta Command “Include”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signature-meta-value.html">Meta Command “Signature”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value-type-names.html">Names for Value Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-code.html">Error Categories and Codes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Error Category Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#relaxed-handling-of-specialized-syntax-errors">Relaxed Handling of Specialized Syntax Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-io">Error <code class="docutils literal notranslate"><span class="pre">IO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-encoding">Error <code class="docutils literal notranslate"><span class="pre">Encoding</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-unexpectedend">Error <code class="docutils literal notranslate"><span class="pre">UnexpectedEnd</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-character">Error <code class="docutils literal notranslate"><span class="pre">Character</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-syntax">Error <code class="docutils literal notranslate"><span class="pre">Syntax</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-limitexceeded">Error <code class="docutils literal notranslate"><span class="pre">LimitExceeded</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-nameconflict">Error <code class="docutils literal notranslate"><span class="pre">NameConflict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-indentation">Error <code class="docutils literal notranslate"><span class="pre">Indentation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-unsupported">Error <code class="docutils literal notranslate"><span class="pre">Unsupported</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-access">Error <code class="docutils literal notranslate"><span class="pre">Access</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-validation">Error <code class="docutils literal notranslate"><span class="pre">Validation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-signature">Error <code class="docutils literal notranslate"><span class="pre">Signature</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-internal">Error <code class="docutils literal notranslate"><span class="pre">Internal</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="feature-identifier.html">Feature Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Language Reference</a></li>
+      <li class="breadcrumb-item active">Error Category Details</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/error-details.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="error-category-details">
+<span id="index-0"></span><span id="ref-error-details"></span><h1>Error Category Details<a class="headerlink" href="#error-category-details" title="Link to this heading"></a></h1>
+<p>This section provides a deeper look into the predefined error categories of the <em>Erbsland Configuration Language</em> (<a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>). Each category groups together similar types of parsing issues, making it easier to understand, classify, and respond to errors in a structured and meaningful way.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/error-categories.svg"><img alt="../_images/error-categories.svg" src="../_images/error-categories.svg" style="width: 100%;" />
+</a>
+</figure>
+<section id="relaxed-handling-of-specialized-syntax-errors">
+<h2>Relaxed Handling of Specialized Syntax Errors<a class="headerlink" href="#relaxed-handling-of-specialized-syntax-errors" title="Link to this heading"></a></h2>
+<p>Some error types in the <em>Erbsland Configuration Language</em> (ELCL) are easy to classify—for example, issues related to <code class="docutils literal notranslate"><span class="pre">IO</span></code>, <code class="docutils literal notranslate"><span class="pre">Encoding</span></code>, or <code class="docutils literal notranslate"><span class="pre">NameConflict</span></code> are clearly defined and straightforward to detect. However, other categories such as <code class="docutils literal notranslate"><span class="pre">Character</span></code>, <code class="docutils literal notranslate"><span class="pre">UnexpectedEnd</span></code>, <code class="docutils literal notranslate"><span class="pre">Indentation</span></code>, <code class="docutils literal notranslate"><span class="pre">LimitExceeded</span></code>, and <code class="docutils literal notranslate"><span class="pre">Unsupported</span></code> are significantly harder to implement with precise reporting. These are specialized subtypes of general <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> errors.</p>
+<p>To simplify implementation, any parser that conforms to the ELCL specification is allowed to report such cases using the generic <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> error code, even if a more specific category would technically be more accurate.</p>
+<p>This means that while specialized categories are available for better diagnostics, parser implementations are not required to distinguish them. This show allow smaller implementations—especially useful for micro-parsers or resource-constrained environments.</p>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Distinct Error Categories</p></th>
+<th class="head"><p>Specialized Syntax Categories</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line"><span class="text-code">IO</span></div>
+<div class="line"><span class="text-code">Encoding</span></div>
+<div class="line"><span class="text-code">NameConflict</span></div>
+<div class="line"><span class="text-code">Signature</span></div>
+<div class="line"><span class="text-code">Access</span></div>
+<div class="line"><span class="text-code">Validation</span></div>
+<div class="line"><span class="text-code">Internal</span></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line"><span class="text-code">Syntax</span></div>
+<div class="line">▲</div>
+<div class="line"><span class="text-code">UnexpectedEnd</span></div>
+<div class="line"><span class="text-code">Character</span></div>
+<div class="line"><span class="text-code">LimitExceeded</span></div>
+<div class="line"><span class="text-code">Indentation</span></div>
+<div class="line"><span class="text-code">Unsupported</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The ▲ symbol indicates that all specialized syntax categories conceptually derive from <code class="docutils literal notranslate"><span class="pre">Syntax</span></code>. Parsers may always choose to report these cases using the more general <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> code without violating the specification.</p>
+</div>
+</section>
+<section id="error-io">
+<span id="index-1"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">IO</span></code><a class="headerlink" href="#error-io" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">IO</span></code> category covers all errors related to input/output operations, typically originating from the underlying operating system or file system.</p>
+<p>These errors are considered external to the document’s syntax and structure and should be reported as early as possible. Since they are not tied to a specific part of the parsed content, it’s more important to return them immediately rather than attempt precise location tracking.</p>
+<p>The error message should include:</p>
+<ul class="simple">
+<li><p>A short identifier to indicate the affected source (e.g., filename or stream name).</p></li>
+<li><p>The exact error returned by the OS or runtime.</p></li>
+</ul>
+</section>
+<section id="error-encoding">
+<span id="index-2"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">Encoding</span></code><a class="headerlink" href="#error-encoding" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Encoding</span></code> category is used exclusively for UTF-8 decoding errors. It only applies to:</p>
+<ul class="simple">
+<li><p>Invalid UTF-8 byte sequences.</p></li>
+<li><p>Valid UTF-8 sequences that represent disallowed Unicode code points (such as surrogate pairs or out-of-range characters).</p></li>
+</ul>
+<p>It does <strong>not</strong> apply to legal characters that are disallowed by ELCL’s rules—that is covered by the <code class="docutils literal notranslate"><span class="pre">Character</span></code> category.</p>
+<p>Refer to <a class="reference internal" href="characters.html#ref-character"><span class="std std-ref">Characters</span></a> for full details on encoding rules and a list of illegal UTF-8 sequences that must be rejected.</p>
+<p>When reporting an encoding error:</p>
+<ul class="simple">
+<li><p>Always treat it as a <strong>high-priority</strong> issue.</p></li>
+<li><p>Do not mask it with later-stage <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> errors.</p></li>
+<li><p>Ensure that valid text preceding the error is still processed correctly.</p></li>
+</ul>
+</section>
+<section id="error-unexpectedend">
+<span id="index-3"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">UnexpectedEnd</span></code><a class="headerlink" href="#error-unexpectedend" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">UnexpectedEnd</span></code> category is a specialized subtype of the general <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> error. It is reserved for cases where the <strong>document ends prematurely</strong>, leaving a construct incomplete. This error can only occur at the very end of the document. If an invalid or partial construct appears earlier in the file, it must be reported as a <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> error instead.</p>
+<p>Typical examples of <code class="docutils literal notranslate"><span class="pre">UnexpectedEnd</span></code> include:</p>
+<ul class="simple">
+<li><p>An unterminated text block.</p></li>
+<li><p>A value name followed by a separator but no value.</p></li>
+<li><p>A carriage return at the end of the document with no following line-feed.</p></li>
+</ul>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>The purpose of the <code class="docutils literal notranslate"><span class="pre">UnexpectedEnd</span></code> category is to help applications detect situations where the document may not have been fully read—for example, when data is received from an unreliable source such as a network stream or incomplete file transfer. A parser returning this error allows the application to retry or request retransmission.</p>
+<p>While the line-based structure of ELCL makes it difficult to perfectly distinguish between syntax errors and premature ends, this category serves as a useful signal in practical scenarios. It can reveal edge cases that general <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> errors would otherwise obscure.</p>
+</div>
+</section>
+<section id="error-character">
+<span id="index-4"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">Character</span></code><a class="headerlink" href="#error-character" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Character</span></code> error category is a specialized subtype of the general <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> error. It is triggered when a character is <strong>valid UTF-8</strong>, but explicitly disallowed by the <em>ELCL</em> specification.</p>
+<p>This error is not an encoding issue—UTF-8 decoding has already succeeded. Instead, <code class="docutils literal notranslate"><span class="pre">Character</span></code> errors arise when a disallowed Unicode code point appears in the document. Common examples include:</p>
+<ul class="simple">
+<li><p>Control characters such as <code class="docutils literal notranslate"><span class="pre">U+0000</span></code>.</p></li>
+<li><p>Other restricted Unicode ranges as defined in <a class="reference internal" href="characters.html#ref-character"><span class="std std-ref">Characters</span></a>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This category does <strong>not</strong> apply to valid characters that are disallowed only in certain syntactic contexts. For example, if a <code class="docutils literal notranslate"><span class="pre">+</span></code> character appears in a regular name (which is structurally invalid), the error should be reported as <code class="docutils literal notranslate"><span class="pre">Syntax</span></code>, not <code class="docutils literal notranslate"><span class="pre">Character</span></code>.</p>
+</div>
+<p>For a complete list of prohibited characters and ranges, see <a class="reference internal" href="characters.html#ref-character"><span class="std std-ref">Characters</span></a>.</p>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Character</span></code> category serves a similar purpose to <code class="docutils literal notranslate"><span class="pre">Encoding</span></code>: it helps detect malformed or corrupted documents early in the parsing process. While technically well-formed in terms of encoding, documents containing forbidden characters are considered invalid by ELCL rules.</p>
+<p>By distinguishing encoding-level issues from specification-level character constraints, parser implementations can produce clearer diagnostics. This separation also enables applications to handle user errors differently from technical decoding failures.</p>
+</div>
+</section>
+<section id="error-syntax">
+<span id="index-5"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">Syntax</span></code><a class="headerlink" href="#error-syntax" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> category is the default for any violation of the <em>ELCL</em> grammar or structure, when no more specific category applies.</p>
+<p>It serves as a general-purpose error type for malformed constructs, missing separators, misaligned indentation, unmatched quotes, and similar issues.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> if:</p>
+<ul class="simple">
+<li><p>The document fails to follow the expected grammar.</p></li>
+<li><p>No other category—such as <code class="docutils literal notranslate"><span class="pre">UnexpectedEnd</span></code>, <code class="docutils literal notranslate"><span class="pre">Character</span></code>, <code class="docutils literal notranslate"><span class="pre">LimitExceeded</span></code> or <code class="docutils literal notranslate"><span class="pre">Indentation</span></code>—clearly matches the problem.</p></li>
+</ul>
+<p>This category ensures that all structurally invalid configurations are properly reported, even if they don’t fit neatly into other predefined categories.</p>
+</section>
+<section id="error-limitexceeded">
+<span id="index-6"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">LimitExceeded</span></code><a class="headerlink" href="#error-limitexceeded" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">LimitExceeded</span></code> error category is a specialized subtype of the general <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> error. It is used when a configuration document exceeds a defined numeric or structural boundary, such as size or depth limits.</p>
+<p>Typical causes for this error include:</p>
+<ul class="simple">
+<li><p>A line exceeds the maximum allowed length of 4000 bytes.</p></li>
+<li><p>A regular name exceeds the maximum length of 100 characters.</p></li>
+<li><p>A name path contains more than 10 elements.</p></li>
+<li><p>A text, code block, regular expression, or binary data value exceeds the parser’s configured size limit.</p></li>
+<li><p>A byte-data format identifier exceeds the allowed length.</p></li>
+<li><p>The nesting depth of included documents exceeds five levels.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While these limits are enforced by all full-featured parsers, micro-parsers may impose stricter constraints. Refer to the relevant chapters for the exact limits applied by your target parser.</p>
+</div>
+</section>
+<section id="error-nameconflict">
+<span id="index-7"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">NameConflict</span></code><a class="headerlink" href="#error-nameconflict" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">NameConflict</span></code> error category is used when a name is reused or conflicts with a previously defined value or section.</p>
+<p>In <em>ELCL</em>, each name must be unique within its scope. This includes:</p>
+<ul class="simple">
+<li><p>Defining the same section or value name more than once.</p></li>
+<li><p>Defining a section and a value with the same name path.</p></li>
+<li><p>Mixing regular names and text names within the same section.</p></li>
+</ul>
+<p>All possible causes and edge cases for name conflicts are described in detail in <a class="reference internal" href="name-conflict.html#ref-name-conflict"><span class="std std-ref">Name Conflicts</span></a>.</p>
+</section>
+<section id="error-indentation">
+<span id="index-8"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">Indentation</span></code><a class="headerlink" href="#error-indentation" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Indentation</span></code> error category is a specialized subtype of the general <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> error. It is raised when spacing or indentation does not match the expected pattern.</p>
+<p>This applies specifically to:</p>
+<ul class="simple">
+<li><p>Multiline values with inconsistent indentation.</p></li>
+<li><p>List entries or text blocks that are not properly indented.</p></li>
+<li><p>Any content that violates the required spacing before continuation lines.</p></li>
+</ul>
+<p>This category does <strong>not</strong> apply if a value list or block ends unexpectedly or is malformed—such cases fall under <code class="docutils literal notranslate"><span class="pre">Syntax</span></code>.</p>
+<p>For a complete overview of indentation rules, see <a class="reference internal" href="spacing.html#ref-spacing"><span class="std std-ref">Spacing</span></a>.</p>
+</section>
+<section id="error-unsupported">
+<span id="index-9"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">Unsupported</span></code><a class="headerlink" href="#error-unsupported" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Unsupported</span></code> error category is a specialized subtype of the general <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> error. It indicates that the document uses a feature not supported by the parser.</p>
+<p>There are three primary cases where this error can occur:</p>
+<ul class="simple">
+<li><p>The document declares a <code class="docutils literal notranslate"><span class="pre">&#64;version</span></code> meta value, with a language version that is not supported by the parser.</p></li>
+<li><p>The document declares its required features using the <code class="docutils literal notranslate"><span class="pre">&#64;features</span></code> meta value, and one or more are not supported.</p></li>
+<li><p>The parser encounters a construct or value type it does not support, even if the <code class="docutils literal notranslate"><span class="pre">&#64;features</span></code> meta value is not present.</p></li>
+</ul>
+<p>In parsers that do not implement feature tracking, unsupported features may also be reported as <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> errors instead. However, when feature-awareness is enabled, <code class="docutils literal notranslate"><span class="pre">Unsupported</span></code> should be used to clearly distinguish between unsupported constructs and general syntax errors.</p>
+<p>See also: <a class="reference internal" href="feature-identifier.html#ref-feature-identifier"><span class="std std-ref">Feature Identifiers</span></a></p>
+</section>
+<section id="error-access">
+<span id="index-10"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">Access</span></code><a class="headerlink" href="#error-access" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Access</span></code> error category is used when access to a document source is explicitly denied by user code or a custom access policy.</p>
+<p>This commonly applies to documents referenced via the <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> meta command. For example, a callback may be used to restrict access to certain files, directories, or external sources.</p>
+<p>See <a class="reference internal" href="include-meta-command.html#ref-include"><span class="std std-ref">Meta Command “Include”</span></a> for details on how the <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> mechanism works and how access control can be implemented.</p>
+</section>
+<section id="error-validation">
+<span id="index-11"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">Validation</span></code><a class="headerlink" href="#error-validation" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Validation</span></code> error category is used when a document fails to meet semantic validation rules—beyond syntax and structure.</p>
+<p>This includes:</p>
+<ul class="simple">
+<li><p>Invalid values according to schema rules.</p></li>
+<li><p>Missing required keys or sections.</p></li>
+<li><p>Constraint violations such as disallowed combinations.</p></li>
+</ul>
+<p>Refer to <a class="reference internal" href="../validation-rules/index.html#ref-validation-rules"><span class="std std-ref">Validation Rules</span></a> for an overview of how validation rules can be defined and evaluated.</p>
+</section>
+<section id="error-signature">
+<span id="index-12"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">Signature</span></code><a class="headerlink" href="#error-signature" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Signature</span></code> error category is used when a document contains a digital signature that is either invalid or cannot be verified.</p>
+<p>This error may be triggered in the following situations:</p>
+<ul class="simple">
+<li><p>The signature does not match the document contents.</p></li>
+<li><p>The verification key or algorithm is unsupported or missing.</p></li>
+<li><p>The signature format is malformed.</p></li>
+</ul>
+<p>See <a class="reference internal" href="signature-meta-value.html#ref-signature-meta-value"><span class="std std-ref">Meta Command “Signature”</span></a> for implementation guidelines on how digital signatures can be added to documents and verified during parsing.</p>
+</section>
+<section id="error-internal">
+<span id="index-13"></span><h2>Error <code class="docutils literal notranslate"><span class="pre">Internal</span></code><a class="headerlink" href="#error-internal" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Internal</span></code> error category is reserved for fatal errors that originate within the parser itself—typically due to unexpected conditions, logic bugs, or implementation faults.</p>
+<p>Such errors indicate that the parser has entered an invalid or unrecoverable state. While rare, they serve as a safeguard for parser integrations, allowing the host application to detect and handle critical failures gracefully.</p>
+<p>This error should be reserved for true internal inconsistencies or unexpected exceptions—not for user mistakes or invalid input.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use of the <code class="docutils literal notranslate"><span class="pre">Internal</span></code> error category is <strong>optional</strong>. If the implementation language provides a more appropriate mechanism—such as exceptions or assertions—for reporting unexpected internal conditions, that approach may be preferred. The <code class="docutils literal notranslate"><span class="pre">Internal</span></code> error is available when no better alternative exists or as a deliberate design choice within the parser interface.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="error-code.html" class="btn btn-neutral float-left" title="Error Categories and Codes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="feature-identifier.html" class="btn btn-neutral float-right" title="Feature Identifiers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

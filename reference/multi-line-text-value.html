@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-line Text Values &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Date, Time, and Date-Time Values" href="date-time-value.html" />
+    <link rel="prev" title="Floating-Point Value" href="floating-point-value.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Language Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Documentation Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="characters.html">Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-break.html">Line Break</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html">Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="names.html">Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-name.html">Text Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-path/index.html">Name Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-conflict.html">Name Conflicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="section-names.html">Section Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections.html">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="named-values.html">Named Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-line-value-list.html">Single-Line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-value-list.html">Multi-line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-value.html">Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integer-value.html">Integer Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean-value.html">Boolean Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating-point-value.html">Floating-Point Value</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Multi-line Text Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-multi-line-text">Rules for Multi-line Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="date-time-value.html">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-text-value.html">Code Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byte-data-value.html">Byte-Data Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regular-expression-value.html">Regular Expression Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-delta-value.html">Time-Delta Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-value.html">Meta Values and Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="include-meta-command.html">Meta Command “Include”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signature-meta-value.html">Meta Command “Signature”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value-type-names.html">Names for Value Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-code.html">Error Categories and Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-details.html">Error Category Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature-identifier.html">Feature Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Language Reference</a></li>
+      <li class="breadcrumb-item active">Multi-line Text Values</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/multi-line-text-value.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multi-line-text-values">
+<span id="index-0"></span><span id="ref-multi-line-text-value"></span><h1>Multi-line Text Values<a class="headerlink" href="#multi-line-text-values" title="Link to this heading"></a></h1>
+<p>Multi-line text allows text values to span multiple lines, providing a convenient way to handle large blocks of text.</p>
+<div class="highlight-bnf notranslate"><div class="highlight"><pre><span></span>multi_line_text      <span class="o">::=</span> ml_text_start ml_text_line* ml_text_end
+
+ml_text_start       <span class="o">::=</span> &#39;&quot;&quot;&quot;&#39; end_of_line
+ml_text_end         <span class="o">::=</span> indentation_pattern &#39;&quot;&quot;&quot;&#39;
+ml_text_line        <span class="o">::=</span> ( indentation_pattern TEXT+ )? end_of_line
+</pre></div>
+</div>
+<p>Below is an example of valid multi-line text values:</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text 1</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">“Hello!” exclaimed the multi-line text,</span>
+<span class="w">    </span><span class="s2">As it flowed across the lines;</span>
+<span class="w">    </span><span class="s2">It pondered what might happen next,</span>
+<span class="w">    </span><span class="s2">And hoped to fit within the rhymes.</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="nv">text 2</span><span class="o">:</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">    Bracket stands alone</span>
+<span class="w">    </span><span class="s2">        Indentation now looks fine</span>
+<span class="w">    </span><span class="s2">            Code is clean again</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<section id="rules-for-multi-line-text">
+<span id="index-1"></span><h2>Rules for Multi-line Text<a class="headerlink" href="#rules-for-multi-line-text" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Beginning the Text:</strong> Multi-line text begins with a sequence of three double-quote characters (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>). It <em>can</em> be followed by spaces or comments but <em>must</em> be followed by a line break.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text 1</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">&quot;Kommer du?&quot;</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="nv">text 2</span><span class="o">:</span><span class="w">         </span><span class="c"># Spurte hun håpefullt</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span><span class="w">         </span><span class="c"># Ventende ved døren</span>
+<span class="w">    </span><span class="s2">&quot;Ja, jeg skal bare hente jakken min.&quot;</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Content and Indentation:</strong> The content of the multi-line text starts after the line break following the opening quotes. Each line <em>must</em> be indented by at least one space or tab character. Refer to <a class="reference internal" href="spacing.html#ref-spacing"><span class="std std-ref">Spacing</span></a> for details on indentation.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">Les vérités invisibles sont les plus profondes.</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Consistent Indentation:</strong> Each line of the multi-line text must follow the exact sequence of spaces and tabs used at the beginning of the text. This ensures consistent indentation. See <a class="reference internal" href="spacing.html#ref-spacing"><span class="std std-ref">Spacing</span></a> for more information.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">La niebla cubre</span>
+<span class="w">    </span><span class="s2">Los caminos sin huellas</span>
+<span class="w">    </span><span class="s2">Misterio oculto</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Ending the Text:</strong> Multi-line text ends on a new line with the repeated indentation sequence, followed immediately by a sequence of three double-quote characters (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>).</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">Programmer&#39;s note: &quot;Remember to close your loops!&quot;&quot;&quot;  ← this isn&#39;t the end</span>
+<span class="w">    </span><span class="s2">    &quot;&quot;&quot;And don&#39;t forget semicolons;&quot; she added.       ← still going</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span><span class="w"> </span><span class="c"># ← This is where the text ends.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Allowed Characters:</strong> Any Unicode character can be used in multi-line text, except backslashes (which introduce <em>escape sequences</em>) and <a class="reference internal" href="../glossary.html#term-Control-Characters"><span class="xref std std-term">control characters</span></a>, with the exception of the tab character, which is allowed.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">彼は興奮した様子で言った：&quot;ダブルクオート文字はここで使える！&quot;</span>
+<span class="w">    </span><span class="s2">どうやら彼は、それが日本語のテキストには不適切な文字だと知らなかったようだ…</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike single-line text values, double quotes are allowed within multi-line text without escaping.</p>
+</div>
+</li>
+<li><p><strong>Escape Sequences:</strong> All escape sequences valid for single-line text are also valid in multi-line text. For detailed information about escape sequences, see <a class="reference internal" href="text.html#ref-text-escape-sequence"><span class="std std-ref">Escape Sequence Rules</span></a>.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="se">\u{1f604}\n\u2191</span><span class="s2"> is a grinning face with smiling eyes</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Line Breaks:</strong> Each line break in the multi-line text is converted into a single newline character (<code class="literal" onclick="showOverlay('\\n','LINE FEED (LF), new line (NL), end of line (EOL)','Cc','U+000A','0A')"><span class="cp-role">\n</span></code>), regardless of the original line break style used in the configuration document.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">Morning sun rises</span>
+<span class="w">    </span><span class="s2">Afternoon clouds drift slowly</span>
+<span class="w">    </span><span class="s2">Evening stars twinkle</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>This will always result in: <code class="docutils literal notranslate"><span class="pre">Morning</span> <span class="pre">sun</span> <span class="pre">rises↵Afternoon</span> <span class="pre">clouds</span> <span class="pre">drift</span> <span class="pre">slowly↵Evening</span> <span class="pre">stars</span> <span class="pre">twinkle</span></code>.</p>
+</li>
+<li><p><strong>Trimming Whitespace:</strong> Leading and trailing whitespace around the text is removed, as described in <a class="reference internal" href="spacing.html#ref-spacing"><span class="std std-ref">Spacing</span></a>.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">Simplicity is the ultimate sophistication.</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>The resulting text will be: <code class="docutils literal notranslate"><span class="pre">Simplicity</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">ultimate</span> <span class="pre">sophistication.</span></code>. The leading and trailing spacing, including the final line break, is removed.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">    &quot;Simplicity is the ultimate sophistication.&quot;</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>In this second example, the resulting text will be: <code class="docutils literal notranslate"><span class="pre">⎵⎵⎵⎵&quot;Simplicity</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">ultimate</span> <span class="pre">sophistication.&quot;</span></code>. While the leading spacing is removed, only the characters after the opening sequence, including the line-break and the indentation pattern count as spacing. Every character afterwards is part of the content. See <a class="reference internal" href="spacing.html#ref-spacing"><span class="std std-ref">Spacing</span></a> for details.</p>
+</li>
+</ol>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Coverage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">core</span></p></td>
+<td><p>Escape sequences in multi-line text are part of the core language.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">multi-line</span></p></td>
+<td><p>Multi-line text values are a standard feature.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Error Code</p></th>
+<th class="head"><p>Causes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">Character</span></p></td>
+<td><p>Raised for any illegal character or invalid escape sequence within the text.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Syntax</span></p></td>
+<td><p>Raised if the closing sequence of double quotes is missing at the end of the line or document.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">Indentation</span></p></td>
+<td><div class="line-block">
+<div class="line">No space or tab character is present before a continued text.</div>
+<div class="line">The indentation pattern does not match the first entry for a continued text.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">LimitExceeded</span></p></td>
+<td><p>Raised if the text exceeds the maximum size the parser can handle.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="floating-point-value.html" class="btn btn-neutral float-left" title="Floating-Point Value" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="date-time-value.html" class="btn btn-neutral float-right" title="Date, Time, and Date-Time Values" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

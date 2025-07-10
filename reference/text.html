@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Names" href="names.html" />
+    <link rel="prev" title="Comments" href="comments.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Language Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Documentation Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="characters.html">Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-break.html">Line Break</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html">Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Text</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-rules">Basic Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#escape-sequence-rules">Escape Sequence Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="names.html">Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-name.html">Text Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-path/index.html">Name Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-conflict.html">Name Conflicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="section-names.html">Section Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections.html">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="named-values.html">Named Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-line-value-list.html">Single-Line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-value-list.html">Multi-line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-value.html">Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integer-value.html">Integer Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean-value.html">Boolean Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating-point-value.html">Floating-Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-text-value.html">Multi-line Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date-time-value.html">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-text-value.html">Code Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byte-data-value.html">Byte-Data Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regular-expression-value.html">Regular Expression Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-delta-value.html">Time-Delta Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-value.html">Meta Values and Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="include-meta-command.html">Meta Command “Include”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signature-meta-value.html">Meta Command “Signature”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value-type-names.html">Names for Value Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-code.html">Error Categories and Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-details.html">Error Category Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature-identifier.html">Feature Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Language Reference</a></li>
+      <li class="breadcrumb-item active">Text</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/text.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="text">
+<span id="index-0"></span><span id="ref-text"></span><h1>Text<a class="headerlink" href="#text" title="Link to this heading"></a></h1>
+<p>In the <em>Erbsland Configuration Language</em> (ELCL), <em>text</em>, or more specifically <em>single-line text</em>, serves not only as a value but also plays a special role in section and value names. Therefore, it is important to define the syntax of text early, as it will be used throughout this documentation.</p>
+<div class="highlight-bnf notranslate"><div class="highlight"><pre><span></span>text                <span class="o">::=</span> DOUBLE_QUOTE ( text_character | text_escape )* DOUBLE_QUOTE
+text_character      <span class="o">::=</span> TEXT - (BACKSLASH | DOUBLE_QUOTE)
+text_escape         <span class="o">::=</span> BACKSLASH (BACKSLASH | DOUBLE_QUOTE | DOLLAR | [nN] | [rR] | [tT] |
+                        [uU] text_unicode )
+text_unicode        <span class="o">::=</span> ( HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT |
+                        CU_BRACKET_OPEN HEX_DIGIT+ CU_BRACKET_CLOSE ) /* 1-8 hex digits */
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>A parser is not required to perform Unicode normalization on any parsed text.</strong></p>
+<p>Unicode text may be internally processed as UTF-8 encoded byte-data. It is the responsibility of the application to handle normalization or perform additional checks on the text, depending on the specific requirements of its use case.</p>
+</div>
+<section id="basic-rules">
+<span id="index-1"></span><h2>Basic Rules<a class="headerlink" href="#basic-rules" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Format:</strong> Text consists of characters enclosed between two double quote characters (<code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code>).</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>&quot;This is text&quot;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Regular Characters:</strong> Any Unicode character can be used in text, except for backslashes (which introduce <em>escape sequences</em>), double quotes (which mark the end of the text), and all <a class="reference internal" href="../glossary.html#term-Control-Characters"><span class="xref std std-term">control characters</span></a> (except the tab character, which is allowed).</p>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>&quot;This
+is
+wrong&quot;              # ERROR! Line breaks and other control characters aren&#39;t allowed in text.
+&quot;This &quot;is&quot; wrong&quot;   # ERROR! Double quotes must be escaped in text.
+&quot;This \ wrong&quot;      # ERROR! The backslash introduces escape sequences, so this is invalid.
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="escape-sequence-rules">
+<span id="index-2"></span><span id="ref-text-escape-sequence"></span><h2>Escape Sequence Rules<a class="headerlink" href="#escape-sequence-rules" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Escape Sequences:</strong> Each escape sequence inserts exactly one character into the text.</p></li>
+<li><p><strong>Format:</strong> An escape sequence begins with a backslash (<code class="literal" onclick="showOverlay('\\','REVERSE SOLIDUS','Po','U+005C','5C')"><span class="cp-role">\</span></code>), followed by one or more characters.</p></li>
+<li><p><strong>Case-insensitive:</strong> Escape sequences are not case-sensitive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\\</span></code>: Inserts a single backslash (<code class="literal" onclick="showOverlay('\\','REVERSE SOLIDUS','Po','U+005C','5C')"><span class="cp-role">\</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\&quot;</span></code>: Inserts a double quote (<code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\$</span></code>: Inserts a dollar sign (<code class="literal" onclick="showOverlay('$','DOLLAR SIGN','Sc','U+0024','24')"><span class="cp-role">$</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\n</span></code>: Inserts a newline control character (<code class="literal" onclick="showOverlay('\\n','LINE FEED (LF), new line (NL), end of line (EOL)','Cc','U+000A','0A')"><span class="cp-role">\n</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\r</span></code>: Inserts a carriage return control character (<code class="literal" onclick="showOverlay('\\r','CARRIAGE RETURN (CR)','Cc','U+000D','0D')"><span class="cp-role">\r</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\t</span></code>: Inserts a tab control character (<code class="literal" onclick="showOverlay('\\t','CHARACTER TABULATION, horizontal tabulation (HT), tab','Cc','U+0009','09')"><span class="cp-role">\t</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\uXXXX</span></code>: Inserts a Unicode character, where <code class="docutils literal notranslate"><span class="pre">XXXX</span></code> represents exactly four hexadecimal digits that form the character’s <a class="reference internal" href="../glossary.html#term-0"><span class="xref std std-term">code point</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\u{Y}</span></code>: Inserts a Unicode character, where <code class="docutils literal notranslate"><span class="pre">Y</span></code> can be one to eight hexadecimal digits, forming the character’s <a class="reference internal" href="../glossary.html#term-0"><span class="xref std std-term">code point</span></a>. Zero padding is allowed.</p></li>
+<li><p><strong>Null is Forbidden:</strong> The “null” character cannot be inserted into text.</p></li>
+<li><p><strong>Unknown Sequences Rejected:</strong> Any escape sequences not explicitly listed here must be rejected.</p></li>
+</ol>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Coverage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">core</span></p></td>
+<td><p>Text and all escape sequences are part of the core language.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Error Code</p></th>
+<th class="head"><p>Causes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">Character</span></p></td>
+<td><p>This error is raised for any illegal character or invalid escape sequence within the text.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Syntax</span></p></td>
+<td><p>Raised if the closing double quote character is missing at the end of the line or document.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">LimitExceeded</span></p></td>
+<td><p>Raised if the text exceeds the maximum text size the parser can handle.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="comments.html" class="btn btn-neutral float-left" title="Comments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="names.html" class="btn btn-neutral float-right" title="Names" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

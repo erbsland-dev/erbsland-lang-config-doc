@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Characters &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Line Break" href="line-break.html" />
+    <link rel="prev" title="Documentation Conventions" href="conventions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Language Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Documentation Conventions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Characters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#encoding">Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#illegal-utf-8-sequences">Illegal UTF-8 Sequences</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-examples">Implementation Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#illegal-control-codes">Illegal Control Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#named-characters-in-ebnf">Named Characters in EBNF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#character-groups-in-ebnf">Character Groups in EBNF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="line-break.html">Line Break</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html">Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="names.html">Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-name.html">Text Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-path/index.html">Name Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-conflict.html">Name Conflicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="section-names.html">Section Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections.html">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="named-values.html">Named Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-line-value-list.html">Single-Line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-value-list.html">Multi-line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-value.html">Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integer-value.html">Integer Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean-value.html">Boolean Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating-point-value.html">Floating-Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-text-value.html">Multi-line Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date-time-value.html">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-text-value.html">Code Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byte-data-value.html">Byte-Data Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regular-expression-value.html">Regular Expression Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-delta-value.html">Time-Delta Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-value.html">Meta Values and Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="include-meta-command.html">Meta Command “Include”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signature-meta-value.html">Meta Command “Signature”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value-type-names.html">Names for Value Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-code.html">Error Categories and Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-details.html">Error Category Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature-identifier.html">Feature Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Language Reference</a></li>
+      <li class="breadcrumb-item active">Characters</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/characters.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="characters">
+<span id="index-0"></span><span id="ref-character"></span><h1>Characters<a class="headerlink" href="#characters" title="Link to this heading"></a></h1>
+<p>The <em>Erbsland Configuration Language</em> (<a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>) supports all valid <a class="reference internal" href="../glossary.html#term-Unicode"><span class="xref std std-term">Unicode</span></a> characters, except for most control codes. In this section, we define characters, character groups, and ranges that carry specific meanings in the language.</p>
+<section id="encoding">
+<span id="index-1"></span><h2>Encoding<a class="headerlink" href="#encoding" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>An <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> document <strong>must</strong> be encoded in <a class="reference internal" href="../glossary.html#term-UTF-8"><span class="xref std std-term">UTF-8</span></a>.</p></li>
+<li><p>A parser <strong>must</strong> support an optional UTF-8 <em>BOM</em> (Byte Order Mark).</p></li>
+<li><p>A parser <strong>must</strong> raise an <code class="docutils literal notranslate"><span class="pre">Encoding</span></code> error if it encounters an illegal byte sequence in the UTF-8 encoded data.</p></li>
+<li><p>A parser <strong>must</strong> raise an <code class="docutils literal notranslate"><span class="pre">Encoding</span></code> error if it encounters a valid UTF-8 sequence that represents an illegal Unicode code point.</p></li>
+</ol>
+<div class="micro-parser-specs admonition">
+<p class="admonition-title">Micro-Parsers</p>
+<p>Parsers <strong>must</strong> support at least 7-bit ASCII, but may support additional UTF-8 encoded data.</p>
+</div>
+</section>
+<section id="illegal-utf-8-sequences">
+<span id="index-2"></span><h2>Illegal UTF-8 Sequences<a class="headerlink" href="#illegal-utf-8-sequences" title="Link to this heading"></a></h2>
+<p>An <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> parser must reject any illegal UTF-8 sequences and terminate with an error. Since not all programming languages or libraries fully implement UTF-8 decoding, the following list outlines illegal UTF-8 sequences that a parser must reject. These sequences are representative examples, not exhaustive lists.</p>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Sequence</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line"><span class="text-code">ED A0 80</span> …</div>
+<div class="line"><span class="text-code">ED BF BF</span></div>
+</div>
+</td>
+<td><p>Low- and high-surrogates are special 16-bit code points used in UTF-16 to encode 32-bit values. They represent the code point range from <span class="text-code">U+D800</span> to <span class="text-code">U+DFFF</span>, which are illegal in UTF-8 and must be rejected.</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line"><span class="text-code">F4 90 80 80</span> …</div>
+<div class="line"><span class="text-code">F5 ...</span></div>
+<div class="line"><span class="text-code">F6 ...</span></div>
+<div class="line">…</div>
+<div class="line"><span class="text-code">FD ...</span></div>
+</div>
+</td>
+<td><p>The <a class="reference internal" href="../glossary.html#term-Unicode"><span class="xref std std-term">Unicode</span></a> standard limits the highest valid code point to <span class="text-code">U+10FFFF</span>. Any UTF-8 sequence that generates a code point above this range, such as <span class="text-code">U+110000</span> and higher, must be rejected.</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line"><span class="text-code">C0 80</span></div>
+<div class="line"><span class="text-code">C1 80</span></div>
+<div class="line"><span class="text-code">E0 9F BF</span></div>
+<div class="line"><span class="text-code">F0 8F BF BF</span></div>
+</div>
+</td>
+<td><p>UTF-8 multi-byte sequences can encode the same value in multiple ways, but only the shortest possible encoding is allowed. Therefore, sequences that encode a value in a longer sequence than technical necessary are illegal and must be rejected.</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line"><span class="text-code">C2</span> + 7-bit</div>
+<div class="line"><span class="text-code">EO 80</span> + 7-bit</div>
+<div class="line"><span class="text-code">FO 80 80</span> + 7-bit</div>
+</div>
+</td>
+<td><p>If a start byte is not followed by the required number of continuation bytes, the sequence is illegal. This can occur if a 7-bit character follows an incomplete sequence, or if the document ends mid-sequence.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">80</span> — <span class="text-code">BF</span></p></td>
+<td><p>A continuation byte must only appear after a valid start byte. If encountered elsewhere, it is illegal and must be rejected.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">FE</span>, <span class="text-code">FF</span></p></td>
+<td><p>These are invalid start bytes and must be rejected.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Enforcing strict UTF-8 handling ensures predictable behavior, as opposed to lenient alternatives like skipping, ignoring, or replacing invalid encodings with the <em>replacement character</em>. If encoding issues are not handled upfront, they will surface in the application layer, potentially causing problems or requiring additional error-handling logic. Strict encoding rules ensure that users of an <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> parser can reliably process text from configuration files.</p>
+</div>
+<section id="implementation-examples">
+<h3>Implementation Examples<a class="headerlink" href="#implementation-examples" title="Link to this heading"></a></h3>
+<p>A safe and complete UTF-8 decoding process, including the rejection of all illegal characters, can be implemented with minimal code if you use bit-tests in your decoder.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Pseudo C++ code for proper UTF-8 decoding</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">at_end</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Char</span><span class="p">();</span><span class="w"> </span><span class="c1">// EOF</span>
+<span class="n">byte</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_next_byte</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mh">0x80</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Char</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="w"> </span><span class="c1">// 7-bit ASCII</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">cSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">unicodeValue</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mb">0b11100000u</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mb">0b11000000u</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mb">0b11000010u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2-byte sequence</span>
+<span class="w">    </span><span class="n">unicodeValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mb">0b00011111u</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mb">0b11110000u</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mb">0b11100000u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3-byte sequence</span>
+<span class="w">    </span><span class="n">unicodeValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mb">0b00001111u</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mb">0b11111000u</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mb">0b11110000u</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mb">0b11110101u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="c1">// 4-byte sequence</span>
+<span class="w">    </span><span class="n">unicodeValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mb">0b00000111u</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cSize</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">EncodingError</span><span class="p">();</span><span class="w"> </span><span class="c1">// Invalid start byte sequence</span>
+<span class="n">UnsafeConstBytePtr</span><span class="w"> </span><span class="n">lastIt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">it</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cSize</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">at_end</span><span class="p">())</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">EncodingError</span><span class="p">();</span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_next_char</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mb">0b11000000u</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mb">0b10000000u</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">EncodingError</span><span class="p">();</span><span class="w"> </span><span class="c1">// Invalid continuation byte</span>
+<span class="w">    </span><span class="n">unicodeValue</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<span class="w">    </span><span class="n">unicodeValue</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mb">0b00111111u</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">cSize</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">unicodeValue</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mh">0x800</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">cSize</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">unicodeValue</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mh">0x10000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">EncodingError</span><span class="p">();</span><span class="w"> </span><span class="c1">// Over-long UTF-8 sequence.</span>
+<span class="p">}</span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Char</span><span class="p">(</span><span class="n">unicodeValue</span><span class="p">);</span>
+<span class="c1">// Validate against invalid Unicode ranges (surrogates, code points &gt; 0x10FFFF)</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">result</span><span class="p">.</span><span class="n">isValidUnicode</span><span class="p">())</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">EncodingError</span><span class="p">();</span>
+<span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Pseudo Python code for proper UTF-8 decoding</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">parse_utf8_char</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">at_end</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># EOF</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">get_next_byte</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="mh">0x80</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>  <span class="c1"># 7-bit ASCII</span>
+    <span class="n">c_size</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">unicode_value</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="mb">0b11100000</span><span class="p">)</span> <span class="o">==</span> <span class="mb">0b11000000</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">&gt;=</span> <span class="mb">0b11000010</span><span class="p">:</span>
+        <span class="n">c_size</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 2-byte sequence</span>
+        <span class="n">unicode_value</span> <span class="o">=</span> <span class="n">c</span> <span class="o">&amp;</span> <span class="mb">0b00011111</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="mb">0b11110000</span><span class="p">)</span> <span class="o">==</span> <span class="mb">0b11100000</span><span class="p">:</span>
+        <span class="n">c_size</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># 3-byte sequence</span>
+        <span class="n">unicode_value</span> <span class="o">=</span> <span class="n">c</span> <span class="o">&amp;</span> <span class="mb">0b00001111</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="mb">0b11111000</span><span class="p">)</span> <span class="o">==</span> <span class="mb">0b11110000</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="mb">0b11110101</span><span class="p">:</span>
+        <span class="n">c_size</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># 4-byte sequence</span>
+        <span class="n">unicode_value</span> <span class="o">=</span> <span class="n">c</span> <span class="o">&amp;</span> <span class="mb">0b00000111</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">EncodingError</span><span class="p">(</span><span class="s2">&quot;Invalid start byte sequence&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">c_size</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">at_end</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">EncodingError</span><span class="p">(</span><span class="s2">&quot;Unexpected end of data&quot;</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">get_next_byte</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="mb">0b11000000</span><span class="p">)</span> <span class="o">!=</span> <span class="mb">0b10000000</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">EncodingError</span><span class="p">(</span><span class="s2">&quot;Invalid continuation byte&quot;</span><span class="p">)</span>
+        <span class="n">unicode_value</span> <span class="o">=</span> <span class="p">(</span><span class="n">unicode_value</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="mb">0b00111111</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">c_size</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">unicode_value</span> <span class="o">&lt;</span> <span class="mh">0x800</span> <span class="ow">or</span> <span class="n">c_size</span> <span class="o">==</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">unicode_value</span> <span class="o">&lt;</span> <span class="mh">0x10000</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">EncodingError</span><span class="p">(</span><span class="s2">&quot;Over-long UTF-8 sequence&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_valid_unicode</span><span class="p">(</span><span class="n">unicode_value</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">EncodingError</span><span class="p">(</span><span class="s2">&quot;Invalid Unicode code point&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">chr</span><span class="p">(</span><span class="n">unicode_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="illegal-control-codes">
+<span id="index-3"></span><h2>Illegal Control Codes<a class="headerlink" href="#illegal-control-codes" title="Link to this heading"></a></h2>
+<p>Most control codes are prohibited in an <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> document. The following table lists all illegal control codes.</p>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code/Range</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">U+0000</span></p></td>
+<td><p>The “null” control character is disallowed in any part of a document, including text. The escape sequence <code class="docutils literal notranslate"><span class="pre">\u0000</span></code> is not permitted in text.</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line"><span class="text-code">U+0001</span> — <span class="text-code">U+0008</span></div>
+<div class="line"><span class="text-code">U+000B</span> — <span class="text-code">U+000C</span></div>
+<div class="line"><span class="text-code">U+000E</span> — <span class="text-code">U+001F</span></div>
+<div class="line"><span class="text-code">U+007F</span> — <span class="text-code">U+00A0</span></div>
+</div>
+</td>
+<td><p>These control codes are disallowed in documents. However, they may appear in text blocks as escape sequences.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The only <strong>valid control codes</strong> in <em>ELCL</em> documents are the tab (<code class="literal" onclick="showOverlay('\\t','CHARACTER TABULATION, horizontal tabulation (HT), tab','Cc','U+0009','09')"><span class="cp-role">\t</span></code>), new-line (<code class="literal" onclick="showOverlay('\\n','LINE FEED (LF), new line (NL), end of line (EOL)','Cc','U+000A','0A')"><span class="cp-role">\n</span></code>), and carriage-return (<code class="literal" onclick="showOverlay('\\r','CARRIAGE RETURN (CR)','Cc','U+000D','0D')"><span class="cp-role">\r</span></code>).</p>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Historically, control codes had specific uses, but today, most of them introduce errors or even security vulnerabilities. For this reason, control codes are disallowed in <em>ELCL</em> documents, particularly in text. If a control code is needed in text, it can be inserted using the appropriate Unicode escape sequence.</p>
+<p>The “null” control character is forbidden in text because it frequently causes issues when passing text through API boundaries. Like other control codes, it serves no meaningful purpose in text contexts. If byte-data is needed, <em>ELCL</em> provides support for such structures, and if values need to be separated, lists can be used.</p>
+<p>Prohibiting control codes simplifies text processing, although more complex Unicode behaviors—such as combining characters or directionality markers—remain possible within text blocks. However, the responsibility for handling these complexities can safely be delegated to the application code.</p>
+</div>
+</section>
+<section id="named-characters-in-ebnf">
+<span id="index-4"></span><h2>Named Characters in EBNF<a class="headerlink" href="#named-characters-in-ebnf" title="Link to this heading"></a></h2>
+<p>Characters in the shown EBNF syntax are named according to their Unicode or common names, rather than their function within the language.</p>
+<div class="highlight-bnf notranslate"><div class="highlight"><pre><span></span>TAB                 <span class="o">::=</span> #x0009    /* Tab character               */
+LF                  <span class="o">::=</span> #x000A    /* Line feed                   */
+CR                  <span class="o">::=</span> #x000D    /* Carriage return             */
+SPACE               <span class="o">::=</span> #x0020    /* Space character             */
+DOUBLE_QUOTE        <span class="o">::=</span> #x0022    /* Double Quote (&quot;)            */
+HASH                <span class="o">::=</span> #x0023    /* Hash symbol (#)             */
+DOLLAR              <span class="o">::=</span> #x0024    /* Dollar sign ($)             */
+APOSTROPHE          <span class="o">::=</span> #x0027    /* Apostrophe (&#39;)              */
+ASTERISK            <span class="o">::=</span> #x002A    /* Asterisk (*)                */
+PLUS                <span class="o">::=</span> #x002B    /* The plus sign (+)           */
+COMMA               <span class="o">::=</span> #x002C    /* Comma (,)                   */
+HYPHEN              <span class="o">::=</span> #x002D    /* Hyphen (-)                  */
+PERIOD              <span class="o">::=</span> #x002E    /* Period (.)                  */
+SLASH               <span class="o">::=</span> #x002F    /* Slash (/)                   */
+COLON               <span class="o">::=</span> #x003A    /* Colon (:)                   */
+LESS_THAN_SIGN      <span class="o">::=</span> #x003C    /* Less-Than Sign (&lt;)          */
+EQUAL               <span class="o">::=</span> #x003D    /* Equals sign (=)             */
+GREATER_THAN_SIGN   <span class="o">::=</span> #x003E    /* Greater-Than Sign (&gt;)       */
+AT_SIGN             <span class="o">::=</span> #x0040    /* At sign (@)                 */
+SQ_BRACKET_OPEN     <span class="o">::=</span> #x005B    /* Opening square bracket ([)  */
+BACKSLASH           <span class="o">::=</span> #x005C    /* Backslash (\)               */
+SQ_BRACKET_CLOSE    <span class="o">::=</span> #x005D    /* Closing square bracket (])  */
+UNDERSCORE          <span class="o">::=</span> #x005F    /* Underscore (_)              */
+BACKTICK            <span class="o">::=</span> #x0060    /* Backtick (`)                */
+CU_BRACKET_OPEN     <span class="o">::=</span> #x007B    /* Opening curly bracket ({)   */
+CU_BRACKET_CLOSE    <span class="o">::=</span> #x007D    /* Closing curly bracket ({)   */
+</pre></div>
+</div>
+</section>
+<section id="character-groups-in-ebnf">
+<span id="index-5"></span><h2>Character Groups in EBNF<a class="headerlink" href="#character-groups-in-ebnf" title="Link to this heading"></a></h2>
+<p>In ELCL, certain character groups have predefined ranges or sets. Below is a list of important character groups used in the EBNF syntax:</p>
+<div class="highlight-bnf notranslate"><div class="highlight"><pre><span></span>DIGIT               <span class="o">::=</span> [#x0030-#x0039]               /* Decimal digits 0-9              */
+HEX_DIGIT           <span class="o">::=</span> [#x0030-#x0039#x0041-#x0046#x0061-#x0066]  /* Hexadecimal digits 0-9, A-F, a-f */
+BIN_DIGIT           <span class="o">::=</span> [#x0030#x0031]                /* Binary digits 0, 1              */
+ALPHA               <span class="o">::=</span> [#x0041-#x005A#x0061-#x007A]  /* Alphabetic characters A-Z, a-z  */
+TEXT                <span class="o">::=</span> [#x0009#x0020-#x007E#x00A0-#x10FFFF]  /* Any printable character (excluding control codes) */
+DIGIT_OR_ALPHA      <span class="o">::=</span> DIGIT | ALPHA                 /* Digits or alphabetic characters */
+FORMAT_DIGIT        <span class="o">::=</span> ALPHA | DIGIT | HYPHEN | UNDERSCORE  /* One element of a format specifier */
+PLUS_MINUS          <span class="o">::=</span> PLUS | HYPHEN                 /* Plus or minus                   */
+LETTER_E            <span class="o">::=</span> [eE]                          /* The letter E                    */
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> character group must exclude low and high surrogates, as well as any characters that are invalid in a UTF-8 encoded document.</p>
+</div>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Coverage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">core</span></p></td>
+<td><p>The full syntax outlined in this chapter is part of the core language.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Error Code</p></th>
+<th class="head"><p>Causes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">Encoding</span></p></td>
+<td><p>Raised if the parser detects invalid UTF-8 sequences.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Character</span></p></td>
+<td><p>Raised if an illegal control character is read in the configuration document.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="conventions.html" class="btn btn-neutral float-left" title="Documentation Conventions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="line-break.html" class="btn btn-neutral float-right" title="Line Break" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation Conventions &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Characters" href="characters.html" />
+    <link rel="prev" title="Language Reference" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Language Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Documentation Conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-ebnf-notation">The EBNF Notation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-rules">The Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-configuration-examples">The Configuration Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#visualization-of-invisible-characters">Visualization of Invisible Characters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#visualizations-of-value-trees">Visualizations of Value Trees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#covered-features">Covered Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="characters.html">Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-break.html">Line Break</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html">Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="names.html">Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-name.html">Text Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-path/index.html">Name Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-conflict.html">Name Conflicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="section-names.html">Section Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections.html">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="named-values.html">Named Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-line-value-list.html">Single-Line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-value-list.html">Multi-line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-value.html">Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integer-value.html">Integer Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean-value.html">Boolean Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating-point-value.html">Floating-Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-text-value.html">Multi-line Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date-time-value.html">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-text-value.html">Code Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byte-data-value.html">Byte-Data Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regular-expression-value.html">Regular Expression Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-delta-value.html">Time-Delta Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-value.html">Meta Values and Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="include-meta-command.html">Meta Command “Include”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signature-meta-value.html">Meta Command “Signature”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value-type-names.html">Names for Value Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-code.html">Error Categories and Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-details.html">Error Category Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature-identifier.html">Feature Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Language Reference</a></li>
+      <li class="breadcrumb-item active">Documentation Conventions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/conventions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="documentation-conventions">
+<span id="index-0"></span><span id="conventions"></span><h1>Documentation Conventions<a class="headerlink" href="#documentation-conventions" title="Link to this heading"></a></h1>
+<p>The <em>language reference</em> begins by describing the fundamental document structure and progressively introduces more complex elements, ultimately covering the entire language grammar. Most chapters contain one or more grammar sections, presented in <em>EBNF</em> (Extended Backus-Naur Form) notation. These syntax definitions are typically followed by a “Rules” section, which provides a more detailed explanation of the syntax. Additionally, many chapters include special “Implementation” and “Error” sections, offering implementation recommendations and specifying the error codes associated with the rules.</p>
+<p>Although we’ve aimed to present the language elements in a logical sequence, certain core concepts needed to be explained before other features could be introduced. As a result, while reading through this reference in the given order, you may encounter references to language features that are described later. Since this is a reference manual, you might need to navigate between chapters to fully understand specific features.</p>
+<section id="the-ebnf-notation">
+<span id="index-1"></span><h2>The EBNF Notation<a class="headerlink" href="#the-ebnf-notation" title="Link to this heading"></a></h2>
+<p>The <em>EBNF</em> notation used in this documentation follows the conventions outlined in the W3C document <a class="reference external" href="https://www.w3.org/TR/xml/#sec-notation">Extensible Markup Language</a>. This notation is designed for human readability and comprehension, rather than for direct use in automated parser generation.</p>
+<p>Below is a summary of the grammar conventions described in the W3C document, along with how these conventions are applied in this documentation:</p>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol / Expression</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">symbol ::= expression</span></p></td>
+<td><p>Each rule in the grammar defines one symbol.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">SYMBOL</span></p></td>
+<td><p>Uppercase symbols represent characters or character sets.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">symbol</span></p></td>
+<td><p>Lowercase symbols represent language syntax.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">#xN</span></p></td>
+<td><p>Represents a character with the Unicode code point N. N is a hexadecimal integer, and zero padding is allowed.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">[a-zA-Z], [#xN-#xN]</span></p></td>
+<td><p>Matches any character with a value in the specified range(s) (inclusive).</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">[abc], [#xN#xN#xN]</span></p></td>
+<td><p>Matches any character from the listed values. Enumerations and ranges can be mixed within a single set of brackets.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">[^a-z], [^#xN-#xN]</span></p></td>
+<td><p>Matches any character with a value outside the specified range.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">[^abc], [^#xN#xN#xN]</span></p></td>
+<td><p>Matches any character not in the specified set. Enumerations and ranges can be mixed within a single set of brackets.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">"string"</span></p></td>
+<td><p>Matches a literal string enclosed in double quotes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">'string'</span></p></td>
+<td><p>Matches a literal string enclosed in single quotes.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">(expression)</span></p></td>
+<td><p>The expression is treated as a unit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">A?</span></p></td>
+<td><p>Matches A or nothing; A is optional.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">A B</span></p></td>
+<td><p>Matches A followed by B. This has higher precedence than alternation; thus, <span class="text-code">A B | C D</span> is equivalent to <span class="text-code">(A B) | (C D)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">A | B</span></p></td>
+<td><p>Matches A or B.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">A - B</span></p></td>
+<td><p>Matches any string that matches A but not B.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">A+</span></p></td>
+<td><p>Matches one or more occurrences of A. Repetition has higher precedence than alternation; thus, <span class="text-code">A+ | B+</span> is equivalent to <span class="text-code">(A+) | (B+)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">A*</span></p></td>
+<td><p>Matches zero or more occurrences of A. Repetition has higher precedence than alternation; thus, <span class="text-code">A* | B*</span> is equivalent to <span class="text-code">(A*) | (B*)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">/* ... */</span></p></td>
+<td><p>Comment notation.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-rules">
+<span id="index-2"></span><h2>The Rules<a class="headerlink" href="#the-rules" title="Link to this heading"></a></h2>
+<p>The <em>rules</em> outlined in each section take <strong>precedence</strong> over the <em>EBNF</em> notation. For example, while <em>EBNF</em> notation may describe names with no length restrictions, a specific rule limits names to a maximum of 100 characters. Similarly, there is a rule that limits the length of a line to 4000 bytes, which cannot be expressed through <em>EBNF</em> syntax alone.</p>
+<p>The rules provided in the reference documentation apply universally across the language. We have made every effort to place each rule in the chapter where it is most relevant, minimizing redundancy and avoiding conflicts between rules.</p>
+</section>
+<section id="the-configuration-examples">
+<span id="index-3"></span><h2>The Configuration Examples<a class="headerlink" href="#the-configuration-examples" title="Link to this heading"></a></h2>
+<p>We have included numerous configuration examples throughout this documentation, recognizing their importance in illustrating key concepts and rules. Valid examples, such as the one below, are presented without additional labeling:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">user</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">threads</span><span class="o">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="nv">startup delay</span><span class="o">:</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="kt">s</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">]</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">8080</span>
+<span class="nv">interface</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;web&quot;</span>
+</pre></div>
+</div>
+<p>When we showcase invalid syntax, it is always clearly marked with the text <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> and often accompanied by a brief explanation. Where applicable, the location of the error is highlighted with a red frame for clarity.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="err">[.server</span><span class="o">]</span><span class="w">  </span><span class="c"># ERROR! Configuration must not start with a relative section.</span>
+<span class="nv">welcome</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;OK&quot;</span>
+</pre></div>
+</div>
+<p>These examples are typically concise and abstract, allowing you to focus on the specific topic being discussed without unnecessary complexity.</p>
+<section id="visualization-of-invisible-characters">
+<h3>Visualization of Invisible Characters<a class="headerlink" href="#visualization-of-invisible-characters" title="Link to this heading"></a></h3>
+<p>In instances where we need to visualize invisible characters, we use specific symbols for clarity: <code class="docutils literal notranslate"><span class="pre">⎵</span></code> represents a space, <code class="docutils literal notranslate"><span class="pre">→</span></code> represents a tab, and <code class="docutils literal notranslate"><span class="pre">↵</span></code> indicates a newline character in the results.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;
+⎵⎵⎵⎵One
+⎵⎵⎵⎵Two
+⎵⎵⎵⎵&quot;&quot;&quot;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="visualizations-of-value-trees">
+<span id="index-4"></span><h2>Visualizations of Value Trees<a class="headerlink" href="#visualizations-of-value-trees" title="Link to this heading"></a></h2>
+<p>To help you understand how configuration files are transformed into their internal representation, the <em>value tree</em>, we provide visualizations like the one shown below:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight value-tree"><pre>
+<span class="line section"><span class="connector"></span><span class="connector">● </span><span class="name">(root)</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Document</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section"><span class="connector">├── </span><span class="name">[main]</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=1</span><span class="content_bracket"> ) </span></span></span>
+<span class="line"><span class="connector">│   </span><span class="connector">└── </span><span class="name">user</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"example"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section"><span class="connector">└── </span><span class="name">[server]</span><span class="indent">                </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=4</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">├── </span><span class="name">[backend]</span><span class="indent">               </span><span class="arrow"><==</span> <span class="content"><span class="content_type">IntermediateSection</span><span class="content_bracket"> ( </span><span class="content_text"></span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">│   </span><span class="connector">└── </span><span class="name">[filter]</span><span class="indent">                </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span>    <span class="connector">├── </span><span class="name">accept</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"good"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span>    <span class="connector">└── </span><span class="name">reject</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"bad"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">├── </span><span class="name">*[connection]</span><span class="indent">           </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionList</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">│   </span><span class="connector">├── </span><span class="name">[0]</span><span class="indent">                     </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span><span class="connector">│   </span><span class="connector">├── </span><span class="name">interface</span><span class="indent">               </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"web"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span><span class="connector">│   </span><span class="connector">└── </span><span class="name">port</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Integer</span><span class="content_bracket"> ( </span><span class="content_text">8080</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">│   </span><span class="connector">└── </span><span class="name">[1]</span><span class="indent">                     </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span>    <span class="connector">├── </span><span class="name">interface</span><span class="indent">               </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"api"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span>    <span class="connector">└── </span><span class="name">port</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Integer</span><span class="content_bracket"> ( </span><span class="content_text">9000</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">├── </span><span class="name">startup_delay</span><span class="indent">           </span><span class="arrow"><==</span> <span class="content"><span class="content_type">TimeDelta</span><span class="content_bracket"> ( </span><span class="content_text">Not supported</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">└── </span><span class="name">threads</span><span class="indent">                 </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Integer</span><span class="content_bracket"> ( </span><span class="content_text">4</span><span class="content_bracket"> ) </span></span></span></pre></div></div><p>The tree structure on the left illustrates the hierarchy of values, showing their names or indexes. Sections and section lists are represented with square brackets and asterisks, matching the original syntax from the configuration files.</p>
+<p>On the right, you will see assignment arrows (<code class="docutils literal notranslate"><span class="pre">&lt;==</span></code>), followed by the type and content of each value where applicable. The type is identified by our recommended type names, and the content is enclosed in parentheses. These visualizations are generated dynamically by the documentation system. While the structure of the value tree is accurate, the actual content of the values is for demonstration purposes only and should not be treated as a reference.</p>
+</section>
+<section id="covered-features">
+<h2>Covered Features<a class="headerlink" href="#covered-features" title="Link to this heading"></a></h2>
+<p>This reference documentation covers all language features, whether they belong to the core language, standard features, or advanced features for full-featured parsers. We chose not to separate these features into different sections to avoid complicating the documentation and to keep it easy to read.</p>
+<p>Where appropriate, a section called “Features” details the language features covered in this chapter.</p>
+<p>To determine which elements belong to each feature set, refer to the chapters on <a class="reference internal" href="../parser-tiers.html#parser-tiers"><span class="std std-ref">Parser Tiers</span></a> and also to <a class="reference internal" href="../intro/core-language.html#intro-core"><span class="std std-ref">Core Language</span></a> for a rough classification. Whenever possible, we have labeled symbols in the EBNF grammar to indicate the feature set they belong to (e.g., <code class="docutils literal notranslate"><span class="pre">text-name</span></code>).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Language Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="characters.html" class="btn btn-neutral float-right" title="Characters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
