@@ -7,8 +7,8 @@
     single: Error
     single: Error Code
 
-Error Names and Codes
-=====================
+Error Categories and Codes
+==========================
 
 Error names and codes offer a standardized way to classify and report errors that occur while parsing a document. Every parser **must** support the predefined error categories. However, the implementation details—such as the specific names or casing—can be adjusted to align with the conventions of the programming language being used.
 
