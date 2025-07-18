@@ -379,7 +379,9 @@ Errors
         -   |   Raised if the spacing does not align with the bytes.
             |   Raised if non-hexadecimal or illegal characters are present in the content.
             |   Raised if the closing sequence is missing.
-            |   Raised if an unknown format is specified.
+            |   Raised if an invalid format identifier is specified.
+    *   -   :text-code:`Unsupported`
+        -   Raised if an unknown but valid format identifier is specified.
     *   -   :text-code:`Indentation`
         -   |   Raised if no space or tab character is present before a continued byte-data line.
             |   Raised if the indentation pattern does not match the first entry for multi-line byte-data.
