@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta Command “Signature” &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Limits Summary" href="limits.html" />
+    <link rel="prev" title="Meta Command “Include”" href="include-meta-command.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Language Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Documentation Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="characters.html">Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-break.html">Line Break</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html">Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="names.html">Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-name.html">Text Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-path/index.html">Name Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-conflict.html">Name Conflicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="section-names.html">Section Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections.html">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="named-values.html">Named Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-line-value-list.html">Single-Line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-value-list.html">Multi-line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-value.html">Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integer-value.html">Integer Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean-value.html">Boolean Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating-point-value.html">Floating-Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-text-value.html">Multi-line Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date-time-value.html">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-text-value.html">Code Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byte-data-value.html">Byte-Data Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regular-expression-value.html">Regular Expression Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-delta-value.html">Time-Delta Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-value.html">Meta Values and Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="include-meta-command.html">Meta Command “Include”</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Meta Command “Signature”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-the-meta-value">Rules for the Meta Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-the-implementation">Rules for the Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recommended-signature-implementation">Recommended Signature Implementation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#value-format">Value Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-a-signature">Creating a Signature</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verifying-the-signature">Verifying the Signature</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#important-considerations">Important Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value-type-names.html">Names for Value Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-code.html">Error Categories and Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-details.html">Error Category Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature-identifier.html">Feature Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Language Reference</a></li>
+      <li class="breadcrumb-item active">Meta Command “Signature”</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/signature-meta-value.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="meta-command-signature">
+<span id="index-0"></span><span id="ref-signature-meta-value"></span><h1>Meta Command “Signature”<a class="headerlink" href="#meta-command-signature" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;signature</span></code> meta command enables secure signing of configuration documents, allowing cryptographic verification of the author and protecting the document against accidental or malicious tampering. The <em>Erbsland Configuration Language</em> specifies only the general framework for this meta command, providing guidance on recommended implementation practices without mandating a specific method.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nb">@signature</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+
+<span class="p">[</span><span class="nt">main configuration</span><span class="o">]</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+<section id="rules-for-the-meta-value">
+<span id="index-1"></span><h2>Rules for the Meta Value<a class="headerlink" href="#rules-for-the-meta-value" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Format:</strong> The <code class="docutils literal notranslate"><span class="pre">&#64;signature</span></code> meta value <em>must</em> specify a text value that contains the document’s signature.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nb">@signature</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;signature data&gt;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Value Format:</strong> While a parser can interpret the <code class="docutils literal notranslate"><span class="pre">&#64;signature</span></code> text value as needed, it is strongly <em>recommended</em> to follow the format specified in <a class="reference internal" href="#ref-signature-recommendation"><span class="std std-ref">Recommended Signature Implementation</span></a>.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nb">@signature</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;name@example.com;2024-12-21T13:42:05;SHA-256;U2lnbmF0dXJlIERhdGEg8J+YiQ==&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Location:</strong> The <code class="docutils literal notranslate"><span class="pre">&#64;signature</span></code> meta value <em>must</em> appear on the <em>first line</em> of the document.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nb">@signature</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;name@example.com;2024-12-21T13:42:05;SHA-256;U2lnbmF0dXJlIERhdGEg8J+YiQ==&quot;</span>
+
+<span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="rules-for-the-implementation">
+<h2>Rules for the Implementation<a class="headerlink" href="#rules-for-the-implementation" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Callback for Verification:</strong> A parser that supports signatures <em>must</em> provide a callback to allow the application to verify a document’s signature. A parser <em>may</em> also implement a framework for signature verification.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>Document Verification:
+┌────────────────────┐                         ┌────────────────────┐
+│ Parser             │ ──────────────────────→ │ Application        │
+│                    │                         │                    │
+│                    │ ←────────────────────── │                    │
+└────────────────────┘                         └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Callback for Document Signing:</strong> A parser that supports signatures <em>must</em> provide a callback enabling the application to <em>sign</em> a document. Additionally, the parser <em>must</em> implement a method to sign an existing document using this callback.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>Signing Document:
+┌────────────────────┐                         ┌────────────────────┐
+│ Parser             │ ──────────────────────→ │ Application        │
+│                    │                         │                    │
+│                    │ ←────────────────────── │                    │
+└────────────────────┘                         └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Documents without Signatures:</strong> The verification callback <em>must</em> also be called for documents lacking a signature, allowing the application to reject unsigned documents if desired.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>Document Verification:
+┌────────────────────┐                         ┌────────────────────┐
+│ Parser             │ No signature            │ Application        │
+│                    │ ──────────────────────→ │                    │
+│                    │               Rejected! │                    │
+│                    │ ←────────────────────── │                    │
+└────────────────────┘                         └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verification Callback Interaction:</strong> During a verification callback, the parser <em>must</em> send the source identifier (e.g., file path), the signature text, and the hash of the signed content to the application.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>Document Verification:
+┌────────────────────┐                         ┌────────────────────┐
+│ Parser             │ Source Identifier       │ Application        │
+│                    │ Signature Text          │                    │
+│                    │ Hash Value              │                    │
+│                    │ ━━━━━━━━━━━━━━━━━━━━━━▶ │                    │
+│                    │               Accepted! │                    │
+│                    │ ←────────────────────── │                    │
+└────────────────────┘                         └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verification Callback Response:</strong> The application responds to the verification callback by either accepting or rejecting the signature.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>Document Verification:
+┌────────────────────┐                         ┌────────────────────┐
+│ Parser             │ Source Identifier       │ Application        │
+│                    │ Signature Text          │                    │
+│                    │ Hash Value              │                    │
+│                    │ ──────────────────────→ │                    │
+│                    │               Accepted! │                    │
+│                    │ ◀━━━━━━━━━━━━━━━━━━━━━━ │                    │
+└────────────────────┘                         └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Signing Callback Interaction:</strong> During a signing callback, the parser <em>must</em> send the source identifier and the hash of the content to the application.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>Signing Document:
+┌────────────────────┐                         ┌────────────────────┐
+│ Parser             │ Source Identifier       │ Application        │
+│                    │ Hash Value              │                    │
+│                    │ ━━━━━━━━━━━━━━━━━━━━━━▶ │                    │
+│                    │      &quot;&lt;signature text&gt;&quot; │                    │
+│                    │ ←────────────────────── │                    │
+└────────────────────┘                         └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Signing Callback Response:</strong> The application responds to the signing callback by returning the generated signature text.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>Signing Document:
+┌────────────────────┐                         ┌────────────────────┐
+│ Parser             │ Source Identifier       │ Application        │
+│                    │ Hash Value              │                    │
+│                    │ ──────────────────────→ │                    │
+│                    │      &quot;&lt;signature text&gt;&quot; │                    │
+│                    │ ◀━━━━━━━━━━━━━━━━━━━━━━ │                    │
+└────────────────────┘                         └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Signed Content Definition:</strong> Signed content begins on the line following the signature. If no content follows the signature line, the parser must return an error.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>@signature: &quot;&lt;signature data&gt;&quot;
+<span class="linenos">2</span>Content
+<span class="linenos">3</span>Content
+<span class="linenos">4</span>Content
+</pre></div>
+</div>
+</li>
+<li><p><strong>Hashing Algorithm:</strong> The parser reads all <em>byte data</em> starting from the second line to calculate a strong cryptographic hash (e.g., SHA-256 or SHA-3-512). The parser <em>may</em> parse the document and compute the hash simultaneously, performing signature verification after parsing.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>A list of recommended hashing algorithms at the time of writing (2024).
+
+- SHA-256
+- SHA-384
+- SHA-512
+- SHA-3-256
+- SHA-3-384
+- SHA-3-512
+- BLAKE-256
+- BLAKE-384
+- BLAKE-512
+</pre></div>
+</div>
+</li>
+<li><p><strong>Unsupported Algorithms:</strong> Non-cryptographic algorithms <em>must not</em> be used. Cryptographic algorithms proven unsafe at the time of parser development (e.g., MD5, SHA-1) are also disallowed. Algorithms producing hashes with fewer than 256 bits <em>must not</em> be used.</p>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>DON&#39;T USE: MD5, SHA-1, SHA-2 ...
+</pre></div>
+</div>
+</li>
+<li><p><strong>Hash Format:</strong> The parser <em>must</em> pass the cryptographic hash to the application in the format <code class="docutils literal notranslate"><span class="pre">&lt;type&gt;</span> <span class="pre">&lt;hash</span> <span class="pre">in</span> <span class="pre">hex&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;type&gt;</span></code> is the hashing algorithm (e.g., <code class="docutils literal notranslate"><span class="pre">SHA-3-256</span></code>) and the hash is a hex-encoded sequence, such as <code class="docutils literal notranslate"><span class="pre">a0b1c2d...3e4f5</span></code>.</p></li>
+</ol>
+</section>
+<section id="recommended-signature-implementation">
+<span id="ref-signature-recommendation"></span><h2>Recommended Signature Implementation<a class="headerlink" href="#recommended-signature-implementation" title="Link to this heading"></a></h2>
+<p>We recommend using S/MIME certificates for signature verification. S/MIME infrastructure is widely supported, and many organizations already issue these certificates internally from a local certification authority.</p>
+<p>By using S/MIME certificates, ownership of an email address can be verified, which is typically sufficient for ensuring that only authorized individuals—such as a specific group of administrators—can modify configurations.</p>
+<section id="value-format">
+<h3>Value Format<a class="headerlink" href="#value-format" title="Link to this heading"></a></h3>
+<p>We recommend the following format for signatures:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;Email address&gt;;&lt;ISO date-time&gt;;&lt;Hash Algorithm&gt;;&lt;Signature data, base64 encoded&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><em>Email address</em>: The email address associated with the S/MIME certificate’s subject.</p></li>
+<li><p><em>ISO date-time</em>: The date and time when the configuration was signed.</p></li>
+<li><p><em>Hash Algorithm</em>: The hash algorithm used by the parser to create the signature.</p></li>
+<li><p><em>Signature data</em>: The signature, encoded in Base64. For an RSA-4096 certificate, this results in approximately 700 characters, easily fitting within a single line.</p></li>
+</ul>
+</section>
+<section id="creating-a-signature">
+<h3>Creating a Signature<a class="headerlink" href="#creating-a-signature" title="Link to this heading"></a></h3>
+<p>The following steps outline the process for creating a signature:</p>
+<ol class="arabic">
+<li><p>The user provides their email address and access to certificate keys (usually managed by the OS).</p></li>
+<li><p>The application assembles a text string in the following format:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;Email address&gt;;&lt;Current ISO date-time&gt;;&lt;Document Hash from Parser&gt;
+</pre></div>
+</div>
+</li>
+<li><p>The assembled text (email address, date-time, and hash) is signed using the private key of the certificate.</p></li>
+<li><p>A signature text, as shown in the Value Format section, is generated with the Base64-encoded signature.</p></li>
+<li><p>The parser replaces the unsigned configuration with the newly signed version.</p></li>
+</ol>
+</section>
+<section id="verifying-the-signature">
+<h3>Verifying the Signature<a class="headerlink" href="#verifying-the-signature" title="Link to this heading"></a></h3>
+<p>To verify a signature, the application performs the following steps:</p>
+<ol class="arabic">
+<li><p>It retrieves the relevant certificate associated with the email address stored in the signature.</p></li>
+<li><p>It verifies that the signing time falls within the certificate’s validity period.</p></li>
+<li><p>It checks the validity of the certificate signature itself.</p></li>
+<li><p>It reconstructs the exact text used during the signing process:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;Email address from signature&gt;;&lt;ISO date-time from signature&gt;;&lt;Document Hash from Parser&gt;
+</pre></div>
+</div>
+</li>
+<li><p>It verifies whether the signature matches.</p></li>
+</ol>
+</section>
+</section>
+<section id="important-considerations">
+<h2>Important Considerations<a class="headerlink" href="#important-considerations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Hashing Algorithm Compatibility</strong>: If the parser changes the hashing algorithm, verification of older configurations will fail. To prevent this, design the parser’s API to support previously used hashing algorithms for legacy signatures.</p></li>
+<li><p><strong>Document Integrity</strong>: While a document signature establishes author identity and prevents tampering, it’s essential to remember the following:</p>
+<ul>
+<li><p>A signed document can still be freely copied. If this poses a risk, consider integrating location information into the signature.</p></li>
+<li><p>Possession of a valid certificate does not automatically confer trust. The application should maintain a secure, non-locally modifiable list of trusted certificates.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Coverage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">core</span></p></td>
+<td><p>Meta values and commands are part of the core language.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">signature</span></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">&#64;signature</span></code> command is an advanced feature.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Error Code</p></th>
+<th class="head"><p>Causes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>All errors related to parsing name and text values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Syntax</span></p></td>
+<td><div class="line-block">
+<div class="line">Raised if the <code class="docutils literal notranslate"><span class="pre">&#64;signature</span></code> meta value is followed by a non-text value.</div>
+<div class="line">Raised if the command is not specified on the first line.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">Signature</span></p></td>
+<td><div class="line-block">
+<div class="line">Raised if a <code class="docutils literal notranslate"><span class="pre">&#64;signature</span></code> meta value is present but the application cannot verify it.</div>
+<div class="line">Raised if the application requires a signature but the document lacks one.</div>
+<div class="line">Raised if the application rejects the signature.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Unsupported</span></p></td>
+<td><div class="line-block">
+<div class="line">Raised if the parser does not support the <code class="docutils literal notranslate"><span class="pre">&#64;signature</span></code> command.</div>
+<div class="line">Raised if the application does not support signatures.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="include-meta-command.html" class="btn btn-neutral float-left" title="Meta Command “Include”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="limits.html" class="btn btn-neutral float-right" title="Limits Summary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

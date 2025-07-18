@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Language Overview &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script src="_static/overlay.js?v=11512746"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Test Suite" href="tests/index.html" />
+    <link rel="prev" title="Advanced Features" href="intro/advanced-features.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Language Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-core-language">The Core Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#standard-features">Standard Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-features">Advanced Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Language Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Language Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/language-overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="language-overview">
+<span id="index-0"></span><span id="id1"></span><h1>Language Overview<a class="headerlink" href="#language-overview" title="Link to this heading"></a></h1>
+<p>This chapter provides a quick overview of the <em>Erbsland Configuration Language</em> for those who want to get up to speed quickly. For more detailed information without delving too deeply into technical specifics, refer to the <a class="reference internal" href="intro/index.html#intro"><span class="std std-ref">Introduction</span></a> chapter.</p>
+<section id="the-core-language">
+<span id="index-1"></span><h2>The Core Language<a class="headerlink" href="#the-core-language" title="Link to this heading"></a></h2>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ▶︎ Meta Values must be at the top before any sections</span>
+<span class="nb">@version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="w">                           </span><span class="c"># Optionally set the version</span>
+<span class="nb">@features</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;regex&quot;</span><span class="w">                        </span><span class="c"># Also optionally, require certain features.</span>
+
+<span class="c"># ▶︎ Section Definitions</span>
+<span class="p">[</span><span class="nt">Main Settings</span><span class="o">]</span><span class="w">                           </span><span class="c"># Interpreted as: main_settings</span>
+<span class="nv">App Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ELCL Demo&quot;</span><span class="w">                     </span><span class="c"># Name-Value Pair with Text Value</span>
+<span class="nv">Version</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="w">                                </span><span class="c"># Name-Value Pair with Integer Value</span>
+
+<span class="o">--</span><span class="p">[</span><span class="w"> </span><span class="nt">Numbers</span><span class="w"> </span><span class="o">]---------</span><span class="w">                    </span><span class="c"># &#39;-&#39; and spacing can be adding to sections</span>
+<span class="nv">Decimal Value</span><span class="o">:</span><span class="w"> </span><span class="mi">42</span><span class="w">                         </span><span class="c"># Integer Values with different formats</span>
+<span class="nv">Hex Value</span><span class="o">:</span><span class="w"> </span><span class="mh">0x2A</span>
+<span class="nv">Binary Value</span><span class="o">:</span><span class="w"> </span><span class="mb">0b101010</span>
+<span class="nv">Large Number</span><span class="o">:</span><span class="w"> </span><span class="mi">1&#39;000&#39;000</span><span class="w">                   </span><span class="c"># Digit separators for readability</span>
+
+<span class="p">[</span><span class="nt">Features</span><span class="o">]</span><span class="w">                                </span><span class="c"># ▶︎ Boolean Values using different synonyms</span>
+<span class="nv">Feature Enabled</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="nv">Debug Mode</span><span class="o">:</span><span class="w"> </span><span class="kc">On</span>
+<span class="nv">Logging</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kc">Enabled</span><span class="w">                      </span><span class="c"># &#39;=&#39; is an alternative to &#39;:&#39;</span>
+<span class="nv">Maintenance Mode</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">no</span><span class="w">                     </span><span class="c"># spacing around &#39;:&#39; and &#39;=&#39; is allowed</span>
+
+<span class="p">[</span><span class="nt">Messages</span><span class="o">]</span><span class="w">                                </span><span class="c"># ▶︎ Text Values with escape sequences</span>
+<span class="nv">Welcome Message</span><span class="o">:</span><span class="w">    </span><span class="s2">&quot;Welcome to </span><span class="se">\&quot;</span><span class="s2">ELCL Demo</span><span class="se">\&quot;</span><span class="s2">!&quot;</span>
+<span class="nv">Multi Line Support</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;First Line</span><span class="se">\n</span><span class="s2">Second Line&quot;</span>
+<span class="nv">Unicode Example</span><span class="o">:</span><span class="w">    </span><span class="s2">&quot;Unicode test: </span><span class="se">\u{1F600}</span><span class="s2">&quot;</span><span class="w">  </span><span class="c"># 😀 Emoji</span>
+
+<span class="p">[</span><span class="nt">Server</span><span class="o">]</span><span class="w">                                  </span><span class="c"># ▶︎ Subsections and Relative Sections</span>
+<span class="nv">Host</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span><span class="w">                         </span><span class="c"># =&gt; &#39;server.host&#39;</span>
+<span class="nv">Port</span><span class="o">:</span><span class="w"> </span><span class="mi">8080</span><span class="w">                                </span><span class="c"># =&gt; &#39;server.port&#39;</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">Credentials</span><span class="o">]</span><span class="w">                            </span><span class="c"># ▶︎ Relative subsection of Server</span>
+<span class="nv">User</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w">                             </span><span class="c"># =&gt; &#39;server.credentials.user&#39;</span>
+<span class="nv">Password</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span><span class="w">                        </span><span class="c"># =&gt; &#39;server.credentials.password&#39;</span>
+
+<span class="p">[</span><span class="nt">Name Rules</span><span class="o">]</span><span class="w">                              </span><span class="c"># ▶︎ Name Rules</span>
+<span class="nv">ValidName1</span><span class="o">:</span><span class="w">   </span><span class="s2">&quot;Starts with a letter&quot;</span>
+<span class="nv">Valid_Name2</span><span class="o">:</span><span class="w">  </span><span class="s2">&quot;Uses letters, digits, underscores&quot;</span>
+<span class="nv">Valid Name3</span><span class="o">:</span><span class="w">  </span><span class="s2">&quot;Spaces are converted to underscores&quot;</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># Invalid Names</span>
+<span class="err">1Invalid</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Starts with a digit&quot;</span><span class="w">           </span><span class="c"># ERROR! Names must start with a letter</span>
+<span class="err">Invalid__Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Consecutive underscores&quot;</span><span class="w">  </span><span class="c"># ERROR! No consecutive underscores</span>
+<span class="err">InvalidName_</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Trailing underscore&quot;</span><span class="w">       </span><span class="c"># ERROR! No trailing underscores</span>
+
+<span class="p">[</span><span class="nt">Config</span><span class="o">]</span><span class="w">                                  </span><span class="c"># ▶︎ Name Conflicts</span>
+<span class="nv">Setting</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value1&quot;</span>
+<span class="err">Setting</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value2&quot;</span><span class="w">                         </span><span class="c"># ERROR! &#39;Setting&#39; is already defined in &#39;Config&#39;</span>
+
+<span class="p">[</span><span class="err">Config</span><span class="o">]</span><span class="w">                                  </span><span class="c"># ERROR! &#39;Config&#39; section is already defined</span>
+<span class="nv">NewSetting</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span>
+
+<span class="p">[</span><span class="nt">Wrong Value Placement</span><span class="o">]</span>
+<span class="nv">BadValue</span><span class="o">:</span><span class="w">                                 </span><span class="c"># ERROR! Value must be indented if on a new line</span>
+<span class="err">&quot;This is incorrect&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="standard-features">
+<span id="index-2"></span><h2>Standard Features<a class="headerlink" href="#standard-features" title="Link to this heading"></a></h2>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">Floating Point Values</span><span class="o">]</span><span class="w">                   </span><span class="c"># ▶︎ Floating-Point Values:</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="mf">0.</span><span class="w">                               </span><span class="c"># As soon there is a decimal point,</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="mf">.0</span><span class="w">                               </span><span class="c"># the value is a floating point value.</span>
+<span class="nv">Value C</span><span class="o">:</span><span class="w"> </span><span class="mf">12&#39;802.</span><span class="w">                          </span><span class="c"># With digit separators</span>
+<span class="nv">Value D</span><span class="o">:</span><span class="w"> </span><span class="mf">1.293&#39;281</span><span class="w">                        </span><span class="c"># Fractional number with digit separators</span>
+<span class="nv">Value E</span><span class="o">:</span><span class="w"> </span><span class="mf">12e+12</span><span class="w">                           </span><span class="c"># Exponent notation</span>
+<span class="nv">Value F</span><span class="o">:</span><span class="w"> </span><span class="mf">0.45E-7</span><span class="w">                          </span><span class="c"># Exponent notation with decimal fraction</span>
+<span class="nv">Value G</span><span class="o">:</span><span class="w"> </span><span class="mf">-Inf</span><span class="w">                             </span><span class="c"># Negative infinity</span>
+<span class="nv">Value H</span><span class="o">:</span><span class="w"> </span><span class="mf">NaN</span><span class="w">                              </span><span class="c"># Not a number</span>
+
+<span class="p">[</span><span class="nt">Byte Counts</span><span class="o">]</span><span class="w">                             </span><span class="c"># ▶︎ Integers that are Byte Counts:</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">kb</span><span class="w">                              </span><span class="c"># Equals 1&#39;000</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="mi">540</span><span class="w"> </span><span class="kt">TiB</span><span class="w">                          </span><span class="c"># Equals 593&#39;736&#39;278&#39;999&#39;040</span>
+
+<span class="p">[</span><span class="nt">Multiline Text</span><span class="o">]</span><span class="w">                          </span><span class="c"># ▶︎ Multi-line Text Values:</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span><span class="w">                              </span><span class="c"># Must start on the next line ...</span>
+<span class="w">    </span><span class="s2">This is the first line of text.</span>
+<span class="w">    </span><span class="s2">This is the second line of text.</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span><span class="w">                                   </span><span class="c"># Must end with &quot;&quot;&quot; on its own line.</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w">                                  </span><span class="c"># even better, start the value here</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span><span class="w">                                   </span><span class="c"># First line sets indent sequence.</span>
+<span class="w">    </span><span class="s2">Another multi-line text value.</span>
+<span class="w">    </span><span class="s2">It spans multiple lines.</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span><span class="w">               </span><span class="c"># Indent sequence, space to text and after the text is removed.</span>
+
+<span class="p">[</span><span class="nt">Value Lists</span><span class="o">]</span><span class="w">                             </span><span class="c"># ▶︎ Value Lists:</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="mi">100</span><span class="o">,</span><span class="w"> </span><span class="mi">200</span><span class="o">,</span><span class="w"> </span><span class="mi">300</span><span class="o">,</span><span class="w"> </span><span class="mi">400</span><span class="o">,</span><span class="w"> </span><span class="mi">500</span><span class="w">          </span><span class="c"># Single-line list of integers</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="kc">Yes</span><span class="w">                   </span><span class="c"># Mixed type list</span>
+<span class="nv">Rainbow Colors</span><span class="o">:</span><span class="w">                           </span><span class="c"># Multi-line value list</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;Red&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;Orange&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;Yellow&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;Green&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;Blue&quot;</span>
+<span class="w">                                          </span><span class="c"># ▶︎ List Sections:</span>
+<span class="o">*</span><span class="p">[</span><span class="nt">Server</span><span class="o">.</span><span class="nt">Connection</span><span class="o">]</span><span class="w">                      </span><span class="c"># Asterik marks a list section</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web Localhost&quot;</span>
+<span class="nv">Port</span><span class="o">:</span><span class="w"> </span><span class="mi">8090</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">Server</span><span class="o">.</span><span class="nt">Connection</span><span class="o">]*</span><span class="w">                     </span><span class="c"># Second asterix, after section is valid</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web Public&quot;</span>
+<span class="nv">Port</span><span class="o">:</span><span class="w"> </span><span class="mi">80</span>
+
+<span class="o">---*</span><span class="p">[</span><span class="nt">Server</span><span class="o">.</span><span class="nt">Connection</span><span class="o">]*----------------</span><span class="w">  </span><span class="c"># Can be combined with `-` as well</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Connector&quot;</span>
+<span class="nv">Port</span><span class="o">:</span><span class="w"> </span><span class="mi">9010</span>
+<span class="w">                                          </span><span class="c"># ▶︎ Text Names for Sections:</span>
+<span class="p">[</span><span class="nt">Email Filter</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">&quot;anna@example.com&quot;</span><span class="o">]</span><span class="w">       </span><span class="c"># Text name in section</span>
+<span class="nv">Reject</span><span class="o">:</span><span class="w"> </span><span class="kc">Yes</span>
+
+<span class="p">[</span><span class="nt">Email Filter</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">&quot;bert@example.com&quot;</span><span class="o">]</span><span class="w">       </span><span class="c"># Another text-named section</span>
+<span class="nv">Reject</span><span class="o">:</span><span class="w"> </span><span class="kc">No</span>
+<span class="nv">Forward To</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;caesar@example.com&quot;</span>
+
+<span class="p">[</span><span class="nt">Translations</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nt">jp</span><span class="o">]</span><span class="w">                       </span><span class="c"># ▶︎ Text Names for Values:</span>
+<span class="nv">&quot;Good Morning!&quot;</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;おはようございます！&quot;</span>
+<span class="nv">&quot;Have a great day!&quot;</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;良い一日をお過ごしください！&quot;</span>
+<span class="nv">&quot;What is your name?&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;お名前は何ですか？&quot;</span>
+
+<span class="p">[</span><span class="nt">Time Values</span><span class="o">]</span><span class="w">                             </span><span class="c"># ▶︎ Time Values:</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="ld">01:23</span><span class="o">,</span><span class="w"> </span><span class="ld">23:59:01</span><span class="o">,</span><span class="w"> </span><span class="ld">04:27:09.003</span><span class="w">    </span><span class="c"># Hours and minutes [:seconds [.fractions]]</span>
+<span class="nv">Value D</span><span class="o">:</span><span class="w"> </span><span class="ld">01:23z</span><span class="o">,</span><span class="w"> </span><span class="ld">22:45:15z</span><span class="w">                </span><span class="c"># UTC time indicated by &#39;z&#39;</span>
+<span class="nv">Value G</span><span class="o">:</span><span class="w"> </span><span class="ld">12:01+02</span><span class="o">,</span><span class="w"> </span><span class="ld">17:31-03:30</span><span class="w">            </span><span class="c"># Time with timezone offset in hours[:minutes]</span>
+<span class="nv">Value I</span><span class="o">:</span><span class="w"> </span><span class="ld">t16:49:03z</span><span class="w">                       </span><span class="c"># Optional &#39;t&#39; prefix for ISO compatibility</span>
+
+<span class="p">[</span><span class="nt">Date Values</span><span class="o">]</span><span class="w">                             </span><span class="c"># ▶︎ Date Values:</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-12-01</span><span class="w">                       </span><span class="c"># Date in YYYY-MM-DD format</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="ld">2018-01-14</span><span class="w">                       </span><span class="c"># Another date</span>
+
+<span class="p">[</span><span class="nt">DateTime Values</span><span class="o">]</span><span class="w">                         </span><span class="c"># ▶︎ Date-Time Values:</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-11-19 17:45</span><span class="w">                 </span><span class="c"># Date and time with hours and minutes</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-11-19 23:59:01</span><span class="w">              </span><span class="c"># Including seconds</span>
+<span class="nv">Value C</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-11-19 04:27:09.003</span><span class="w">          </span><span class="c"># Including fractions of a second</span>
+<span class="nv">Value D</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-11-19t01:23z</span><span class="w">                </span><span class="c"># Using &#39;t&#39; separator and UTC time</span>
+<span class="nv">Value E</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-11-19T22:45:15z</span><span class="w">             </span><span class="c"># Using &#39;T&#39; separator and UTC time</span>
+
+<span class="p">[</span><span class="nt">Code Text</span><span class="o">]</span><span class="w">                               </span><span class="c"># ▶︎ Code Text Values:</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span><span class="s2">return $name + &quot;\r\n&quot;;</span><span class="sb">`</span><span class="w">         </span><span class="c"># Single-line code text, no escape possible.</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="sb">```</span><span class="w">                              </span><span class="c"># Multi-line code text, must start on new line</span>
+<span class="w">    </span><span class="s2">function callback($name) {</span>
+<span class="w">    </span><span class="s2">    return $name + &quot;\r\n&quot;;</span>
+<span class="w">    </span><span class="s2">}</span>
+<span class="w">    </span><span class="sb">```</span><span class="w">                                   </span><span class="c"># must end on its own line</span>
+<span class="nv">Value C</span><span class="o">:</span><span class="w">                                  </span><span class="c"># ... text can have single backticks</span>
+<span class="w">    </span><span class="sb">```</span><span class="sa">js</span><span class="w">                                 </span><span class="c"># Language identifier is allowed</span>
+<span class="w">    </span><span class="s2">const overlay = document.createElement(&#39;div&#39;);</span>
+<span class="w">    </span><span class="s2">overlay.innerHTML = `</span>
+<span class="w">    </span><span class="s2">    &lt;div class=&quot;content&quot;&gt;</span>
+<span class="w">    </span><span class="s2">        &lt;span&gt;Name: ${name}&lt;/span&gt;</span>
+<span class="w">    </span><span class="s2">    &lt;/div&gt;</span>
+<span class="w">    </span><span class="s2">`;</span>
+<span class="w">    </span><span class="sb">```</span>
+
+<span class="p">[</span><span class="nt">Byte Data Values</span><span class="o">]</span><span class="w">                        </span><span class="c"># ▶︎ Byte-Data Values</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;</span><span class="mh">01b203c405</span><span class="s1">&gt;</span><span class="w">                     </span><span class="c"># Single-line byte-data</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;</span><span class="w"> </span><span class="mh">01B2</span><span class="w"> </span><span class="mh">03C4</span><span class="w"> </span><span class="mh">05</span><span class="w"> </span><span class="s1">&gt;</span><span class="w">                 </span><span class="c"># Spacing between bytes is allowed</span>
+<span class="nv">Value C</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;</span><span class="sa">hex:</span><span class="w"> </span><span class="mh">01</span><span class="w"> </span><span class="mh">b2</span><span class="w"> </span><span class="mh">03</span><span class="w"> </span><span class="mh">c4</span><span class="w"> </span><span class="mh">05</span><span class="s1">&gt;</span><span class="w">            </span><span class="c"># Optional &#39;hex:&#39; prefix</span>
+<span class="nv">Value D</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;&lt;&lt;</span><span class="w">                              </span><span class="c"># Multi-line byte-data</span>
+<span class="w">    </span><span class="mh">01b2</span><span class="w"> </span><span class="mh">03c4</span><span class="w"> </span><span class="mh">05a6</span><span class="w">                        </span><span class="c"># Comments and line breaks are allowed</span>
+<span class="w">    </span><span class="mh">0728</span><span class="w"> </span><span class="mh">390a</span><span class="w"> </span><span class="mh">1b0c</span>
+<span class="w">    </span><span class="s1">&gt;&gt;&gt;</span>
+<span class="nv">Value E</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;&lt;&lt;</span><span class="sa">hex</span><span class="w">                           </span><span class="c"># Format specifier for multi-line byte-data</span>
+<span class="w">    </span><span class="mh">01b203c4</span><span class="w"> </span><span class="mh">05a60728</span><span class="w"> </span><span class="mh">390a1b0c</span>
+<span class="w">    </span><span class="s1">&gt;&gt;&gt;</span>
+<span class="w">                                          </span><span class="c"># ▶︎ Include Meta Command</span>
+<span class="nf">@include</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;file:configurations/*.ecl&quot;</span><span class="w">     </span><span class="c"># Include additional configuration files</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-features">
+<span id="index-3"></span><h2>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading"></a></h2>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">Regular Expressions</span><span class="o">]</span><span class="w">                     </span><span class="c"># ▶ Regular Expressions</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="sr">/</span><span class="o">^</span><span class="s s-Regexp">m</span><span class="p">(</span><span class="s s-Regexp">a</span><span class="o">+</span><span class="p">)</span><span class="s s-Regexp">tch!</span><span class="o">$</span><span class="sr">/</span><span class="w">                    </span><span class="c"># Enclosed in `/` characters</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="sr">///                              </span><span class="c"># Multi-line is verbose, enclosed in `///`</span>
+<span class="w">    </span><span class="o">^</span>
+<span class="w">    </span><span class="s s-Regexp">m </span><span class="p">(</span><span class="s s-Regexp">a</span><span class="o">+</span><span class="p">)</span><span class="s s-Regexp"> tch !</span>
+<span class="w">    </span><span class="o">$</span>
+<span class="w">    </span><span class="sr">///</span><span class="w">                                   </span><span class="c"># Must end on its own line.</span>
+
+<span class="p">[</span><span class="nt">Time Deltas</span><span class="o">]</span><span class="w">                             </span><span class="c"># ▶ Time Deltas</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">s</span><span class="w">                              </span><span class="c"># Integer with suffix, like `s`, `m`, `h`</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="mi">59</span><span class="kt">m</span><span class="w">                              </span><span class="c"># Single `m` is minutes.</span>
+<span class="nv">Value C</span><span class="o">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="kt">minutes</span><span class="w">                        </span><span class="c"># Optional single space, long names</span>
+<span class="nv">Value D</span><span class="o">:</span><span class="w"> </span><span class="mi">-4</span><span class="kt">days</span><span class="w">                           </span><span class="c"># Positive and negative values.</span>
+
+<span class="c"># ▶ Validation Rules Support</span>
+<span class="c"># ▶ Document Signatures</span>
+<span class="c">#                        --→ more about these in the documentation.</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro/advanced-features.html" class="btn btn-neutral float-left" title="Advanced Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tests/index.html" class="btn btn-neutral float-right" title="The Test Suite" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
