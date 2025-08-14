@@ -1,5 +1,5 @@
+# Requirements for building the documentation
 sphinx
 sphinx-rtd-theme
-sphinx-autobuild
 sphinx-design
 jinja2

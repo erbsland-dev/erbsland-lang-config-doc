@@ -38,6 +38,14 @@ In the example below, you can see various valid floating-point values:
     value f: -12.9
     value g: -8'283.9e-5
 
+.. code-block:: text
+    :class: bad-example
+
+    [main]
+    value a: .                      # Must have at least whole or fraction path.
+    value b: 0x1.921fb54442d18p+1   # Non-decimal formats are not allowed.
+    value c: 100'000'000.000'000'000'001  # Too many digits
+
 .. important::
 
     This specification does not require a specific floating-point storage format for programming language or parser implementations. The reference to ISO/IEC 60559:2020 (or IEEE 754) is only meant to clarify the definition of *floating-point numbers*. What matters most is that parsers follow the floating-point syntax and rules described in the grammar.
@@ -103,7 +111,7 @@ Rules
         value b: .029
         value c: 11.0067
 
-#.  **Exponent:** A floating-point value with a decimal point *can* have an exponent. A floating-point value without a decimal point *must* include an exponent to be considered a valid floating-point number..
+#.  **Exponent:** A floating-point value with a decimal point *can* have an exponent. A floating-point value without a decimal point *must* include an exponent to be considered a valid floating-point number.
 
     .. code-block:: erbsland-conf
         :class: good-example
@@ -121,8 +129,10 @@ Rules
         [main]
         value a: nan
         value b: inf
-        value c: -nan   # Though logically unnecessary, this syntax is supported for completeness.
+        value c: -nan   # Though logically unnecessary, this syntax is supported for completeness...
         value d: -inf
+        value e: +nan
+        value f: +inf
 
 #.  **Integral Part:** The integral part of a floating-point number consists of a sequence of digits :cp:`0-9`.
 
@@ -149,7 +159,7 @@ Rules
         [main]
         value: .00201982
 
-#.  **Digit Limit:** The total number of digits in both the integral and fractional parts *must not* exceed 20 digits. Trailing zeroes in the fractional part add to the total digit count.
+#.  **Digit Limit:** The total number of digits in both the integral and fractional parts *must not* exceed 20 digits. Trailing zeroes in the fractional part add to the total digit count. Digit separators are not counted towards the limit.
 
     .. code-block:: erbsland-conf
         :class: bad-example
@@ -216,7 +226,7 @@ Rules
         [main]
         value: 100''000    # ERROR! Consecutive separators are not allowed.
 
-#.  **No Hexadecimal and Binary Forms:** Hexadecimal or octal formats of floating-point numbers are not allowed
+#.  **No Non-Decimal Forms:** Non-decimal floating forms, like hexadecimal, binary, or octal forms, are not allowed.
 
     .. code-block:: erbsland-conf
         :class: bad-example
@@ -231,7 +241,7 @@ Rules
 
         :term:`ELCL` is a **configuration format**, not a storage format. Therefore, small rounding errors, especially after 15 significant digits, are perfectly acceptable.
 
-#.  **Behavior When Limits Are Exceeded:** If a floating-point value exceeds the internal storage range (crossing the minimum or maximum value), the stored value should be rounded down to zero or rounded up to represent infinity, as appropriate.
+#.  **Behavior When Limits Are Exceeded:** On overflow, the value becomes +inf or -inf with the correct sign. On underflow, the value becomes a subnormal or +0/-0 according to the implementation’s rounding mode (flush-to-zero is acceptable).
 
     .. important::
 

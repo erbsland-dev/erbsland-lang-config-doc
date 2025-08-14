@@ -1,0 +1,7 @@
+# Requirements for working on the documentation
+sphinx
+sphinx-rtd-theme
+sphinx-autobuild
+sphinx-design
+html2text
+jinja2
