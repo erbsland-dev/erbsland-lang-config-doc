@@ -248,6 +248,7 @@ When rendering text in values or name paths for the test output, certain charact
 * Double quote (:cp:`"`)
 * Period (:cp:`.`)
 * Equal sign (:cp:`=`)
+* Colon (:cp:`:`)
 
 All escapes must use the Unicode syntax ``\u{X}``, where ``X`` is the hexadecimal code point (without leading zeros). No other escape sequences are allowed.
 
@@ -256,3 +257,21 @@ This escaping strategy matches the one recommended for parsers in :doc:`../refer
 .. important::
 
     In test output rendering, the **short-form index notation** for text names (e.g. ``book.""[1]``) **must not be used**. Test adapters should always emit the full, quoted text form to allow a name based comparison.
+
+.. design-rationale::
+
+    **Why is escaping necessary?**
+
+    The goal of this escaping strategy is to make test results **robust, portable, and easy to parse**.
+
+    * **Robustness across platforms**
+      By escaping all non-ASCII characters, we avoid side effects from test systems, shells, or operating systems that may otherwise misinterpret encodings. This ensures that test output looks and behaves the same, regardless of locale or environment.
+
+    * **Unambiguous parsing**
+      Certain characters, such as the period, equal sign, and colon, carry special meaning in name-paths and values. Escaping them guarantees that they cannot accidentally break the syntax.
+      For example, the equal sign is always the separator between the name-path and its value, making it safe to split the two with a simple regular expression.
+
+    * **Consistency and simplicity**
+      Using only one escape form (``\u{X}``) avoids ambiguity and keeps the parser implementation small and predictable.
+
+    In short, escaping prevents subtle encoding issues and reduces parsing complexity, making tests more reliable and tooling easier to implement.
