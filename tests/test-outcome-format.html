@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Test Outcome Format &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parser Tiers" href="../parser-tiers.html" />
+    <link rel="prev" title="Writing a Test Adapter" href="test-adapter.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The Test Suite</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="test-file-structure.html">Test File Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test-adapter.html">Writing a Test Adapter</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Test Outcome Format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-format">General Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#failure-format">Failure Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#passing-format">Passing Format</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#format-of-the-name-path">Format of the Name Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#format-of-the-values">Format of the Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#order-of-the-values">Order of the Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comparison-of-values">Comparison of Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#escaping-of-text">Escaping of Text</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">The Test Suite</a></li>
+      <li class="breadcrumb-item active">The Test Outcome Format</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tests/test-outcome-format.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-test-outcome-format">
+<span id="index-0"></span><span id="test-outcome-format"></span><h1>The Test Outcome Format<a class="headerlink" href="#the-test-outcome-format" title="Link to this heading"></a></h1>
+<p>The <a class="reference internal" href="test-adapter.html#test-adapter"><span class="std std-ref">test adapters</span></a> and the <a class="reference internal" href="test-file-structure.html#test-file-structure"><span class="std std-ref">test file structure</span></a> utilize a custom format to encode the expected or actual parsing results of a configuration file. This chapter provides an in-depth description of this format.</p>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>The test outcome format is intentionally line-based, avoiding dependencies on external libraries, making it robust and easy to produce, even in restricted environments.</p>
+<p>Although standard formats like JSON or XML might seem suitable, creating such formats from scratch can introduce additional complexity, including escape sequences and unique syntax constraints. Relying on external libraries for rendering introduces a risk that errors may result from the library rather than the tested code itself.</p>
+</div>
+<section id="general-format">
+<h2>General Format<a class="headerlink" href="#general-format" title="Link to this heading"></a></h2>
+<p>The test outcome must be UTF-8 encoded text, with each value separated by a line break. A line break can be either a single newline or a carriage return followed by a newline. The document must always end with a line break.</p>
+<p>Each line follows the structure <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span> <span class="pre">=</span> <span class="pre">&lt;value&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">name</span></code> is either a lowercase name path (as described below) or the special uppercase keyword <code class="docutils literal notranslate"><span class="pre">FAIL</span></code> to indicate an error. The separator `` = `` must consist of a space, an equal sign, and another space. The format for values is outlined below.</p>
+<p>While there is no specific line length limit, test systems may impose an upper limit, such as 200 kB, to manage memory and processing requirements effectively.</p>
+<p>The test outcome format is intended to be as compact as possible, containing only essential data. It does not support syntax for comments, empty lines, indentation, or trailing spaces.</p>
+</section>
+<section id="failure-format">
+<h2>Failure Format<a class="headerlink" href="#failure-format" title="Link to this heading"></a></h2>
+<p>In the event of a failure, the document should appear as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FAIL = NameConflict
+</pre></div>
+</div>
+<p>The name <code class="docutils literal notranslate"><span class="pre">FAIL</span></code> must be uppercase, followed by the error name as specified in <a class="reference internal" href="../reference/error-code.html#ref-error-code"><span class="std std-ref">Error Categories and Codes</span></a>. Ideally, the error name should use the case detailed in that chapter (e.g., “NameConflict”), but it is matched in a case-insensitive manner, so <code class="docutils literal notranslate"><span class="pre">NAMECONFLICT</span></code> and <code class="docutils literal notranslate"><span class="pre">nameconflict</span></code> are also acceptable.</p>
+<p>Optionally, the <code class="docutils literal notranslate"><span class="pre">FAIL</span></code> keyword can be followed by parentheses enclosing a detailed error message:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FAIL = NameConflict(&quot;The name &#39;example&#39; is already used.&quot;)
+FAIL = NameConflict(line: 5, column: 6, message: &quot;The name &#39;example&#39; is already used.&quot;)
+</pre></div>
+</div>
+<p>This optional part, beginning with the opening parenthesis, is ignored by the test system. However, you may include it for debugging purposes or to provide additional context during testing.</p>
+</section>
+<section id="passing-format">
+<h2>Passing Format<a class="headerlink" href="#passing-format" title="Link to this heading"></a></h2>
+<p>When the parser successfully parses a document, it must return all values from the parsed value tree. This includes not only parsed values but also all value maps generated by sections, even intermediate or empty ones.</p>
+<p>Here’s an example of what the outcome file might look like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@version = String(&quot;1.0&quot;)
+main = SectionWithNames()
+main.connection = SectionList()
+main.connection[0] = SectionWithNames()
+main.connection[0].filter = String(&quot;test\u{12fe}&quot;)
+main.connection[0].flag = Boolean(true)
+main.connection[1] = SectionWithNames()
+main.connection[1].filter = String(&quot;test\u{12fe}&quot;)
+main.connection[1].flag = Boolean(false)
+main.server = Integer(-473945)
+translation = SectionWithTexts()
+translation.&quot;text&quot; = Float(12.9)
+</pre></div>
+</div>
+<section id="format-of-the-name-path">
+<h3>Format of the Name Path<a class="headerlink" href="#format-of-the-name-path" title="Link to this heading"></a></h3>
+<p>The name path format resembles that described in <a class="reference internal" href="../reference/name-path/index.html#ref-name-path"><span class="std std-ref">Name Paths</span></a>, with an important modification for lists.</p>
+<section id="regular-paths">
+<h4>Regular Paths<a class="headerlink" href="#regular-paths" title="Link to this heading"></a></h4>
+<p>Consider a simple example:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">Main</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nt">Example Section</span><span class="o">]</span>
+<span class="nv">Value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+</pre></div>
+</div>
+<p>This should produce an outcome file as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>main = IntermediateSection()
+main.example_section = SectionWithNames()
+main.example_section.value = Integer(123)
+</pre></div>
+</div>
+<p>Each name in the path is written in its normalized form (see <a class="reference internal" href="../reference/names.html#ref-name-normalization"><span class="std std-ref">Name Normalization</span></a>), with segments separated by a period and no spaces allowed in the path.</p>
+</section>
+<section id="section-lists">
+<h4>Section Lists<a class="headerlink" href="#section-lists" title="Link to this heading"></a></h4>
+<p>Consider the following example:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+<span class="o">*</span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+</pre></div>
+</div>
+<p>This should produce an outcome file as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>main = IntermediateSection()
+main.server = SectionList()
+main.server[0] = SectionWithNames()
+main.server[0].value = Integer(123)
+main.server[1] = SectionWithNames()
+main.server[1].value = Integer(123)
+</pre></div>
+</div>
+<p>A section list is represented in the outcome file by its name path. Each entry in the section list uses this name path, with the entry’s index enclosed in square brackets. Index numbering starts at zero for the first entry in the configuration, formatted as a decimal without leading zeros.</p>
+<p>Each entry, if it is a <code class="docutils literal notranslate"><span class="pre">SectionWithNames</span></code> or <code class="docutils literal notranslate"><span class="pre">SectionWithTexts</span></code>, must also appear in the output. Paths for any subsections or values continue from this path after the closing square bracket.</p>
+</section>
+<section id="value-lists">
+<h4>Value Lists<a class="headerlink" href="#value-lists" title="Link to this heading"></a></h4>
+<p>Consider the following example:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span>
+</pre></div>
+</div>
+<p>This should produce an outcome file as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>main = SectionWithNames()
+main.value = ValueList()
+main.value[0] = Integer(1)
+main.value[1] = Integer(2)
+main.value[2] = Integer(3)
+</pre></div>
+</div>
+<p>The format for value lists is similar to that of section lists. The list path itself is part of the output and is identified as a <code class="docutils literal notranslate"><span class="pre">ValueList</span></code>. Each value in the list uses this path, with its index in square brackets. Index numbering starts at zero, with decimal formatting and no leading zeros.</p>
+</section>
+<section id="text-names">
+<h4>Text Names<a class="headerlink" href="#text-names" title="Link to this heading"></a></h4>
+<p>For text names that are part of a name path, the text must be enclosed in double quotes. This is the recommended internal format for storing text names. The text name must first be normalized, as outlined in <a class="reference internal" href="../reference/text-name.html#ref-text-name-normalization"><span class="std std-ref">Text Name Normalization</span></a>.</p>
+<p>Once normalized, the text must be escaped as described in <a class="reference internal" href="#test-outcome-escaping"><span class="std std-ref">Escaping of Text</span></a>. The same escaping logic applies to both text names and text values, so you can reuse the logic for both.</p>
+<p>For test output, the <em>indexed short form</em>, described in <a class="reference internal" href="../reference/name-path/text-names-for-parsers.html"><span class="doc">Parser-Specific Usage of Text Names</span></a>, <strong>must not</strong> be used.</p>
+</section>
+<section id="meta-values">
+<h4>Meta Values<a class="headerlink" href="#meta-values" title="Link to this heading"></a></h4>
+<p>Meta values such as <code class="docutils literal notranslate"><span class="pre">&#64;version</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;features</span></code> <em>can</em> be included in the output, but they are ignored by the test system. These values are ignored because parsers are not required to expose these values through their API. Requiring them solely for testing would necessitate unnecessary parser modifications.</p>
+</section>
+</section>
+<section id="format-of-the-values">
+<h3>Format of the Values<a class="headerlink" href="#format-of-the-values" title="Link to this heading"></a></h3>
+<p>Each value follows the format <code class="docutils literal notranslate"><span class="pre">Type(Content)</span></code>, where the type identifier is immediately followed by the actual value enclosed in parentheses, with no spaces around the parentheses.</p>
+<p>The type identifier should match one of the recommended type names from the parser section. While type names are matched case-insensitively, it is recommended to use the original casing for readability.</p>
+<p>The content of each type is standardized as shown in the table below.</p>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">Integer</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">123</span></code></p></td>
+<td><p>The integer value in decimal format. Negative values use a minus sign; positive values are unprefixed. No leading zeros or digit separators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Boolean</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>Either <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>, both in lowercase.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">Float</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.45e+20</span></code></p></td>
+<td><p>A floating-point number, or <code class="docutils literal notranslate"><span class="pre">inf</span></code> or <code class="docutils literal notranslate"><span class="pre">nan</span></code>, all lowercase. Represented in a compact format compatible with Python.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Text</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;text&quot;</span></code></p></td>
+<td><p>Text enclosed in double quotes. Characters are escaped as described in <a class="reference internal" href="#test-outcome-escaping"><span class="std std-ref">Escaping of Text</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">Date</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2024-06-12</span></code></p></td>
+<td><p>Date in ISO format, using four digits for the year, two digits for the month and day, separated with a hyphen (<code class="literal" onclick="showOverlay('-','HYPHEN-MINUS','Pd','U+002D','2D')"><span class="cp-role">-</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Time</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">12:23:00z</span></code></p></td>
+<td><p>Time in ISO format, with two digits for hour, minute and second, separated by a colon (<code class="literal" onclick="showOverlay(':','COLON','Po','U+003A','3A')"><span class="cp-role">:</span></code>). If the time has an offset, the offset must be present with hour and minute. If the offset is zero or the time is marked as UTC (which is the same), a lowercase <code class="docutils literal notranslate"><span class="pre">z</span></code> must be used. If the second fractions are zero, the fractions must be omitted. If the second fractions are non-zero, it must be provided without trailing zeros.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">DateTime</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2024-06-12</span> <span class="pre">12:23:00z</span></code></p></td>
+<td><p>Date and time in ISO format, separated by a space. Same rules as for dates and times.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Bytes</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">02ca2e</span></code></p></td>
+<td><p>Byte-data represented in lowercase hexadecimal, without separators.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">TimeDelta</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5,second</span></code></p></td>
+<td><p>An integer, as specified for integer values, followed by a comma and the unit in lowercase singular form. For parsers that combine a list of time-delta values into a single value, this behavior <strong>must be avoided</strong> by the test adapter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">RegEx</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;^reg$&quot;</span></code></p></td>
+<td><p>Formatted with the same rules as text.</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line"><span class="text-code">ValueList</span></div>
+<div class="line"><span class="text-code">SectionList</span></div>
+<div class="line"><span class="text-code">IntermediateSection</span></div>
+<div class="line"><span class="text-code">SectionWithNames</span></div>
+<div class="line"><span class="text-code">SectionWithTexts</span></div>
+</div>
+</td>
+<td><p>–</p></td>
+<td><p>Containers of any kind have their content ignored by the test system. Content after the opening parenthesis is optional but should end with a closing parenthesis. For example, <code class="docutils literal notranslate"><span class="pre">size=12</span></code> can be included as content.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="order-of-the-values">
+<h3>Order of the Values<a class="headerlink" href="#order-of-the-values" title="Link to this heading"></a></h3>
+<p>The order of named values is not significant; the test system does not consider the sequence of these entries in its comparisons.</p>
+<p>However, the order of list entries <em>is important</em>. The test system requires that list indices match the sequence specified in the test files.</p>
+</section>
+<section id="comparison-of-values">
+<h3>Comparison of Values<a class="headerlink" href="#comparison-of-values" title="Link to this heading"></a></h3>
+<p>Most values are compared as text, evaluating each character by its code point. If the value text matches the reference in the test file exactly, it is considered a pass. Therefore, it’s crucial to disable any Unicode normalization when using the test system, particularly for text values.</p>
+<p>One value type has additional comparison logic:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Float</span></code>: Floating-point values are compared using a default relative tolerance of <code class="docutils literal notranslate"><span class="pre">1e-9</span></code> and an absolute tolerance of <code class="docutils literal notranslate"><span class="pre">1e-10</span></code>. For positive and negative values larger than <code class="docutils literal notranslate"><span class="pre">1e+307</span></code>, <code class="docutils literal notranslate"><span class="pre">inf</span></code> or <code class="docutils literal notranslate"><span class="pre">-inf</span></code> is also accepted. These tolerances can be configured within the test system, allowing you to adjust the precision to meet specific requirements.</p></li>
+</ul>
+</section>
+</section>
+<section id="escaping-of-text">
+<span id="test-outcome-escaping"></span><h2>Escaping of Text<a class="headerlink" href="#escaping-of-text" title="Link to this heading"></a></h2>
+<p>When rendering text in values or name paths for the test output, certain characters must be escaped to ensure clarity and consistency. The following characters must always be escaped:</p>
+<ul class="simple">
+<li><p>Unicode control characters in the range <span class="text-code">U+0000</span>–<span class="text-code">U+001F</span></p></li>
+<li><p>Unicode code points in the extended range <span class="text-code">U+007F</span>–<span class="text-code">U+1FFFFF</span></p></li>
+<li><p>Backslash (<code class="literal" onclick="showOverlay('\\','REVERSE SOLIDUS','Po','U+005C','5C')"><span class="cp-role">\</span></code>)</p></li>
+<li><p>Double quote (<code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code>)</p></li>
+<li><p>Period (<code class="literal" onclick="showOverlay('.','FULL STOP','Po','U+002E','2E')"><span class="cp-role">.</span></code>)</p></li>
+<li><p>Equal sign (<code class="literal" onclick="showOverlay('=','EQUALS SIGN','Sm','U+003D','3D')"><span class="cp-role">=</span></code>)</p></li>
+<li><p>Colon (<code class="literal" onclick="showOverlay(':','COLON','Po','U+003A','3A')"><span class="cp-role">:</span></code>)</p></li>
+</ul>
+<p>All escapes must use the Unicode syntax <code class="docutils literal notranslate"><span class="pre">\u{X}</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the hexadecimal code point (without leading zeros). No other escape sequences are allowed.</p>
+<p>This escaping strategy matches the one recommended for parsers in <a class="reference internal" href="../reference/name-path/text-names-for-parsers.html"><span class="doc">Parser-Specific Usage of Text Names</span></a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In test output rendering, the <strong>short-form index notation</strong> for text names (e.g. <code class="docutils literal notranslate"><span class="pre">book.&quot;&quot;[1]</span></code>) <strong>must not be used</strong>. Test adapters should always emit the full, quoted text form to allow a name based comparison.</p>
+</div>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p><strong>Why is escaping necessary?</strong></p>
+<p>The goal of this escaping strategy is to make test results <strong>robust, portable, and easy to parse</strong>.</p>
+<ul class="simple">
+<li><p><strong>Robustness across platforms</strong>
+By escaping all non-ASCII characters, we avoid side effects from test systems, shells, or operating systems that may otherwise misinterpret encodings. This ensures that test output looks and behaves the same, regardless of locale or environment.</p></li>
+<li><p><strong>Unambiguous parsing</strong>
+Certain characters, such as the period, equal sign, and colon, carry special meaning in name-paths and values. Escaping them guarantees that they cannot accidentally break the syntax.
+For example, the equal sign is always the separator between the name-path and its value, making it safe to split the two with a simple regular expression.</p></li>
+<li><p><strong>Consistency and simplicity</strong>
+Using only one escape form (<code class="docutils literal notranslate"><span class="pre">\u{X}</span></code>) avoids ambiguity and keeps the parser implementation small and predictable.</p></li>
+</ul>
+<p>In short, escaping prevents subtle encoding issues and reduces parsing complexity, making tests more reliable and tooling easier to implement.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="test-adapter.html" class="btn btn-neutral float-left" title="Writing a Test Adapter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../parser-tiers.html" class="btn btn-neutral float-right" title="Parser Tiers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spacing &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Comments" href="comments.html" />
+    <link rel="prev" title="Line Break" href="line-break.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Language Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Documentation Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="characters.html">Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-break.html">Line Break</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Spacing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules">Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#strict-indentation-patterns-explained">Strict Indentation Patterns Explained</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#matching-patterns">Matching Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#empty-lines">Empty Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spacing-in-the-content">Spacing in the Content</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indentation-in-the-first-line">Indentation in the First Line</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ignored-spacing-in-multi-line-text">Ignored Spacing in Multi-line Text</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#spacing-at-the-beginning-and-end">Spacing at the Beginning and End</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-empty-lines">Adding Empty Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-trailing-spacing">Adding Trailing Spacing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="names.html">Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-name.html">Text Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-path/index.html">Name Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-conflict.html">Name Conflicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="section-names.html">Section Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections.html">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="named-values.html">Named Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-line-value-list.html">Single-Line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-value-list.html">Multi-line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-value.html">Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integer-value.html">Integer Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean-value.html">Boolean Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating-point-value.html">Floating-Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-text-value.html">Multi-line Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date-time-value.html">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-text-value.html">Code Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byte-data-value.html">Byte-Data Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regular-expression-value.html">Regular Expression Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-delta-value.html">Time-Delta Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-value.html">Meta Values and Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="include-meta-command.html">Meta Command “Include”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signature-meta-value.html">Meta Command “Signature”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value-type-names.html">Names for Value Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-code.html">Error Categories and Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-details.html">Error Category Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature-identifier.html">Feature Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Language Reference</a></li>
+      <li class="breadcrumb-item active">Spacing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/spacing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spacing">
+<span id="index-0"></span><span id="ref-spacing"></span><h1>Spacing<a class="headerlink" href="#spacing" title="Link to this heading"></a></h1>
+<p>In an <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> document, spacing is crucial for indentation and alignment. Proper use of spacing ensures readability and helps the parser correctly interpret the structure of the document.</p>
+<div class="highlight-bnf notranslate"><div class="highlight"><pre><span></span>spacing             <span class="o">::=</span> (SPACE | TAB)*        /* optional spacing */
+indentation_pattern <span class="o">::=</span> (SPACE | TAB)+        /* required indentation */
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To visualize the spacing in the examples in this chapter, we use the symbols <code class="docutils literal notranslate"><span class="pre">⎵</span></code> (for space) and <code class="docutils literal notranslate"><span class="pre">→</span></code> (for tab). In the results, <code class="docutils literal notranslate"><span class="pre">↵</span></code> is used to represent a newline character.</p>
+</div>
+<section id="rules">
+<span id="index-1"></span><h2>Rules<a class="headerlink" href="#rules" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Valid Characters for Spacing:</strong> Spacing can consist of any combination of spaces (<code class="literal" onclick="showOverlay(' ','SPACE','Zs','U+0020','20')"><span class="cp-role"> </span></code>) and tab characters (<code class="literal" onclick="showOverlay('\\t','CHARACTER TABULATION, horizontal tabulation (HT), tab','Cc','U+0009','09')"><span class="cp-role">\t</span></code>). These characters can be used freely within lines to separate elements or align content.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[→      ⎵⎵name⎵⎵]→      # Example with space and tab usage
+</pre></div>
+</div>
+</li>
+<li><p><strong>Consistent Indentation Pattern:</strong> When continuing multi-line text, code, byte-data, or regular expression values, the indentation pattern used on each consecutive line <strong>must</strong> match exactly. This means each line must use the same combination and sequence of spaces and tabs for alignment. Completely empty lines, however, are exempt from this rule.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;
+⎵⎵⎵⎵⎵⎵⎵⎵First Line
+→          Second Line   # ERROR! Indentation pattern must match.
+⎵⎵⎵⎵⎵⎵⎵⎵&quot;&quot;&quot;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Spacing at the Beginning:</strong> Spacing at the beginning of multi-line text, code, byte-data, or regular expression values (i.e., between the opening quote and the first line of content) is not part of the value. Only the characters between the opening sequence and the line break are considered for spacing, along with the indentation pattern on the following lines.</p>
+<p>In the example below, the spacing between <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">One</span></code> on the first line is ignored.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;⎵⎵⎵⎵
+⎵⎵⎵⎵One⎵
+⎵⎵⎵⎵Two⎵⎵
+⎵⎵⎵⎵&quot;&quot;&quot;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Spacing at the End:</strong> Spacing at the end of multi-line text, code, byte-data, or regular expression values (i.e., between the last line and the closing quote) is also not part of the value.</p>
+<p>In the example below, the spacing after <code class="docutils literal notranslate"><span class="pre">Two</span></code> and before the closing quote <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> is ignored.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;⎵⎵⎵⎵
+⎵⎵⎵⎵One⎵
+⎵⎵⎵⎵Two⎵⎵
+⎵⎵⎵⎵&quot;&quot;&quot;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Spacing at Line Ends:</strong> Any spacing at the end of each line in multi-line text, byte-data, or regular expression values is ignored and not included as part of the value.</p>
+<p>In the example below, the space after <code class="docutils literal notranslate"><span class="pre">One</span></code> and the two spaces after <code class="docutils literal notranslate"><span class="pre">Two</span></code> are excluded from the final value.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;⎵⎵⎵⎵
+⎵⎵⎵⎵One⎵
+⎵⎵⎵⎵Two⎵⎵
+⎵⎵⎵⎵&quot;&quot;&quot;
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="strict-indentation-patterns-explained">
+<span id="index-2"></span><span id="ref-indentation-pattern"></span><h2>Strict Indentation Patterns Explained<a class="headerlink" href="#strict-indentation-patterns-explained" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> enforces strict indentation patterns for multi-line values to prevent misconfigurations. This rule helps avoid issues, such as accidentally mixing tabs and spaces, which can lead to incorrect interpretation of text and code in the configuration. By enforcing a consistent pattern, it also allows parsers to strip unnecessary indentation while preserving the intended format.</p>
+<p>The rule for <code class="docutils literal notranslate"><span class="pre">indentation_pattern</span></code> in the EBNF syntax indicates where the parser must ensure matching indentation across multi-line values. Each subsequent line in a multi-line value must follow the same pattern as the first line. Any spacing after this pattern is treated as part of the value itself.</p>
+<p>This rule applies only to multi-line values such as text, code, byte-data, and regular expressions. Single-line values that continue on the next line after the value separator do not require indentation pattern matching.</p>
+<section id="matching-patterns">
+<h3>Matching Patterns<a class="headerlink" href="#matching-patterns" title="Link to this heading"></a></h3>
+<p>In the following example, mixed spaces and tabs are used for indentation in a multi-line value:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">      </span><span class="s2">One</span>
+<span class="w">      </span><span class="s2">Two</span>
+<span class="w">      </span><span class="s2">Three</span>
+<span class="w">      </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">┊</span></code> character represents the baseline of the indentation pattern. All characters before this baseline are removed from the value.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;
+→   ⎵⎵┊One
+→   ⎵⎵┊Two
+→   ⎵⎵┊Three
+→   ⎵⎵┊&quot;&quot;&quot;
+</pre></div>
+</div>
+<p>The resulting value is <code class="docutils literal notranslate"><span class="pre">One↵Two↵Three</span></code>.</p>
+</section>
+<section id="empty-lines">
+<h3>Empty Lines<a class="headerlink" href="#empty-lines" title="Link to this heading"></a></h3>
+<p>If a line is completely empty—meaning it contains only spaces, tabs, or no characters at all—the indentation pattern for that line is ignored. Here’s an example demonstrating both cases:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;
+→   ⎵⎵┊One
+<span class="hll">
+</span>→   ⎵⎵┊Two
+<span class="hll">→→→→⎵⎵
+</span>→   ⎵⎵┊Three
+→   ⎵⎵┊&quot;&quot;&quot;
+</pre></div>
+</div>
+<p>The resulting text is <code class="docutils literal notranslate"><span class="pre">One↵↵Two↵↵Three</span></code>, where the empty lines are preserved in the final output.</p>
+</section>
+<section id="spacing-in-the-content">
+<h3>Spacing in the Content<a class="headerlink" href="#spacing-in-the-content" title="Link to this heading"></a></h3>
+<p>The purpose of strict indentation pattern matching is to allow for safe and predictable indentation of multi-line content such as text or code. Here’s an example where spaces are included within the content itself:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;
+⎵⎵⎵⎵┊One
+⎵⎵⎵⎵┊⎵⎵Two
+⎵⎵⎵⎵┊⎵⎵⎵⎵Three
+⎵⎵⎵⎵┊&quot;&quot;&quot;
+</pre></div>
+</div>
+<p>The resulting text will be <code class="docutils literal notranslate"><span class="pre">One↵⎵⎵Two↵⎵⎵⎵⎵Three</span></code>, with spaces preserved within the content.</p>
+</section>
+<section id="indentation-in-the-first-line">
+<h3>Indentation in the First Line<a class="headerlink" href="#indentation-in-the-first-line" title="Link to this heading"></a></h3>
+<p>If a multi-line value begins on the next line after the value separator, the opening indentation pattern will be set by the line with the opening quotes. This allows for the first line to be indented as well.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text:
+⎵⎵⎵⎵┊&quot;&quot;&quot;
+⎵⎵⎵⎵┊⎵⎵⎵⎵One
+⎵⎵⎵⎵┊⎵⎵Two
+⎵⎵⎵⎵┊Three
+⎵⎵⎵⎵┊&quot;&quot;&quot;
+</pre></div>
+</div>
+<p>The resulting text is <code class="docutils literal notranslate"><span class="pre">⎵⎵⎵⎵One↵⎵⎵Two↵Three</span></code>, maintaining the initial indentation of the first line.</p>
+</section>
+</section>
+<section id="ignored-spacing-in-multi-line-text">
+<span id="index-3"></span><h2>Ignored Spacing in Multi-line Text<a class="headerlink" href="#ignored-spacing-in-multi-line-text" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> automatically removes unwanted spacing from the beginning and end of multi-line text, as well as any trailing spacing at the end of each line. This behavior reflects a common requirement in text processing, where leading and trailing spacing is typically unnecessary. By handling this automatically, <em>ELCL</em> simplifies application code and makes configuration files more robust.</p>
+<section id="spacing-at-the-beginning-and-end">
+<h3>Spacing at the Beginning and End<a class="headerlink" href="#spacing-at-the-beginning-and-end" title="Link to this heading"></a></h3>
+<p>In the following example, all the spacing before the first line and after the last line is removed:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;⎵⎵⎵⎵
+⎵⎵⎵⎵First⎵line⎵
+⎵⎵⎵⎵Second⎵line⎵⎵⎵
+⎵⎵⎵⎵&quot;&quot;&quot;
+</pre></div>
+</div>
+<p>This results in the text: <code class="docutils literal notranslate"><span class="pre">First⎵line↵Second⎵line</span></code>. The spaces at the start, after “Second⎵line”, and at the end of each line are ignored.</p>
+</section>
+<section id="adding-empty-lines">
+<h3>Adding Empty Lines<a class="headerlink" href="#adding-empty-lines" title="Link to this heading"></a></h3>
+<p>The spacing removal rule applies only to spacing around the content, meaning that empty lines can still be added if needed for specific use cases. You can add empty lines at the beginning or end of the text, or even within the text itself:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;
+
+⎵⎵⎵⎵Second⎵line
+
+⎵⎵⎵⎵Fourth⎵line
+
+⎵⎵⎵⎵&quot;&quot;&quot;
+</pre></div>
+</div>
+<p>This results in the text: <code class="docutils literal notranslate"><span class="pre">↵Second⎵line↵↵Fourth⎵line↵</span></code>, with leading and trailing empty lines retained.</p>
+</section>
+<section id="adding-trailing-spacing">
+<h3>Adding Trailing Spacing<a class="headerlink" href="#adding-trailing-spacing" title="Link to this heading"></a></h3>
+<p>If trailing spaces at the end of a line are required, they can be explicitly added using the escape sequence for the space character <code class="docutils literal notranslate"><span class="pre">\u{20}</span></code>. This ensures that the spacing is preserved in the final output.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[main]
+text: &quot;&quot;&quot;
+⎵⎵⎵⎵Trailing⎵Space⎵⎵⎵⎵\u{20}
+⎵⎵⎵⎵&quot;&quot;&quot;
+</pre></div>
+</div>
+<p>This results in the text: <code class="docutils literal notranslate"><span class="pre">Trailing⎵Space⎵⎵⎵⎵⎵</span></code>, where the trailing spaces are maintained.</p>
+</section>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Coverage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">core</span></p></td>
+<td><p>Spacing, comment and indentation pattern matching are part of the core language.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">multi-line</span></p></td>
+<td><p>Multi-line values are a standard feature.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Error Code</p></th>
+<th class="head"><p>Causes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">Indentation</span></p></td>
+<td><div class="line-block">
+<div class="line">No space or tab character is present before a continued value.</div>
+<div class="line">The indentation pattern does not match the first entry for a continued value.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="line-break.html" class="btn btn-neutral float-left" title="Line Break" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="comments.html" class="btn btn-neutral float-right" title="Comments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

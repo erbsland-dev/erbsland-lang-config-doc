@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erbsland Configuration Language &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script src="_static/overlay.js?v=11512746"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="intro/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Language Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Erbsland Configuration Language</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="erbsland-configuration-language">
+<h1>Erbsland Configuration Language<a class="headerlink" href="#erbsland-configuration-language" title="Link to this heading"></a></h1>
+<p>The Erbsland Configuration Language (<a class="reference internal" href="glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>) is a human-centric configuration format designed with a focus on clarity and ease of use. <a class="reference internal" href="glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> simplifies software configuration, making it intuitive for both developers and end-users.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/intro-code-example.svg"><img alt="_images/intro-code-example.svg" src="_images/intro-code-example.svg" style="width: 100%;" />
+</a>
+</figure>
+</section>
+<section id="where-to-start">
+<h1>Where to Start?<a class="headerlink" href="#where-to-start" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><strong>Short on time?</strong> Check out the <a class="reference internal" href="language-overview.html#language-overview"><span class="std std-ref">Language Overview</span></a> for a quick introduction.</p></li>
+<li><p><strong>Looking for more details?</strong> Read the comprehensive <a class="reference internal" href="intro/index.html#intro"><span class="std std-ref">introduction chapter</span></a> to get started.</p></li>
+<li><p><strong>Implementing a parser?</strong> Find all details <a class="reference internal" href="reference/index.html#reference"><span class="std std-ref">the language reference chapter</span></a>.</p></li>
+</ul>
+</section>
+<section id="design-rationale-and-key-features">
+<h1>Design Rationale and Key Features<a class="headerlink" href="#design-rationale-and-key-features" title="Link to this heading"></a></h1>
+<p><a class="reference internal" href="glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> balances the flexibility required for human users to freely edit configuration documents and add comments, with the technical needs for strict and straightforward parsing. The language is designed to be familiar and easy to learn, enabling developers to quickly adopt it. Some of the main features include:</p>
+<ul class="simple">
+<li><p><strong>Simplicity</strong>: <a class="reference internal" href="glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> offers an intuitive syntax with built-in type safety, minimizing common configuration errors.</p></li>
+<li><p><strong>Safety</strong>: The language supports strict and safe parsers, ensuring robust and secure configurations.</p></li>
+<li><p><strong>Comprehensive Documentation</strong>: Detailed specifications, along with user and developer guides, make <a class="reference internal" href="glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> easy to understand and implement.</p></li>
+<li><p><strong>Reference Implementations</strong>: Available for Python and C++, these implementations help integrate <a class="reference internal" href="glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> into your application or serve as examples for writing your own parser.</p></li>
+<li><p><strong>Compliance Test Suite</strong>: An extensive test suite ensures that parsers conform to the <a class="reference internal" href="glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> specification, fostering reliable and consistent implementations.</p></li>
+<li><p><strong>Implementation Levels</strong>: <a class="reference internal" href="glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> supports various implementation levels, from lightweight micro-parsers for resource-constrained environments to full-featured parsers for complex use cases.</p></li>
+<li><p><strong>Metadata Support</strong>: Metadata statements allow you to specify language versions and required features, ensuring backward compatibility and future-proofing.</p></li>
+</ul>
+</section>
+<section id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro/index.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/core-language.html">Core Language</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#file-encoding-and-line-breaks">File Encoding and Line Breaks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#document-structure">Document Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#comments">Comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#names">Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#sections">Sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#subsections">Subsections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#name-value-pairs">Name-Value Pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#values">Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#core-value-types">Core Value Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#integer-values">Integer Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#boolean-values">Boolean Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#text-values">Text Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#meta-values">Meta Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#name-paths-and-name-conflicts">Name Paths and Name Conflicts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/core-language.html#core-language-key-takeaways-and-beyond">Core Language: Key Takeaways and Beyond</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="intro/standard-features.html">Standard Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="intro/standard-features.html#floating-point-values">Floating-Point Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/standard-features.html#byte-counts">Byte Counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/standard-features.html#multi-line-text-values">Multi-line Text Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/standard-features.html#section-lists">Section Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/standard-features.html#value-lists">Value Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/standard-features.html#text-names">Text Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/standard-features.html#date-time-and-date-time-values">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/standard-features.html#code-text">Code Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/standard-features.html#byte-data-values">Byte-Data Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/standard-features.html#meta-command-include">Meta Command “Include”</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="intro/advanced-features.html">Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="intro/advanced-features.html#regular-expression-values">Regular Expression Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/advanced-features.html#time-delta-values">Time-Delta Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/advanced-features.html#validation-rules-support">Validation Rules Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro/advanced-features.html#document-signatures">Document Signatures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="language-overview.html">Language Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="language-overview.html#the-core-language">The Core Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language-overview.html#standard-features">Standard Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language-overview.html#advanced-features">Advanced Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">The Test Suite</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/test-file-structure.html">Test File Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests/test-file-structure.html#test-naming-convention">Test Naming Convention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests/test-file-structure.html#outcome-files">Outcome Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests/test-file-structure.html#directory-structure">Directory Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests/test-adapter.html">Writing a Test Adapter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests/test-adapter.html#command-line-arguments">Command Line Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests/test-adapter.html#return-codes">Return Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests/test-adapter.html#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests/test-outcome-format.html">The Test Outcome Format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests/test-outcome-format.html#general-format">General Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests/test-outcome-format.html#failure-format">Failure Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests/test-outcome-format.html#passing-format">Passing Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests/test-outcome-format.html#escaping-of-text">Escaping of Text</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parser-tiers.html">Parser Tiers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parser-tiers.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser-tiers.html#core-language">Core Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser-tiers.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser-tiers.html#recommended-parser-naming">Recommended Parser Naming</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Language Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/conventions.html">Documentation Conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/conventions.html#the-ebnf-notation">The EBNF Notation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/conventions.html#the-rules">The Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/conventions.html#the-configuration-examples">The Configuration Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/conventions.html#visualizations-of-value-trees">Visualizations of Value Trees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/conventions.html#covered-features">Covered Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/characters.html">Characters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/characters.html#encoding">Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/characters.html#illegal-utf-8-sequences">Illegal UTF-8 Sequences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/characters.html#illegal-control-codes">Illegal Control Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/characters.html#named-characters-in-ebnf">Named Characters in EBNF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/characters.html#character-groups-in-ebnf">Character Groups in EBNF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/characters.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/characters.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/line-break.html">Line Break</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/line-break.html#rules">Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/line-break.html#implementation-recommendations">Implementation Recommendations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/line-break.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/line-break.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/spacing.html">Spacing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/spacing.html#rules">Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/spacing.html#strict-indentation-patterns-explained">Strict Indentation Patterns Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/spacing.html#ignored-spacing-in-multi-line-text">Ignored Spacing in Multi-line Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/spacing.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/spacing.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/comments.html">Comments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/comments.html#rules">Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/comments.html#implementation-recommendations">Implementation Recommendations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/comments.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/comments.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/text.html">Text</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/text.html#basic-rules">Basic Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/text.html#escape-sequence-rules">Escape Sequence Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/text.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/text.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/names.html">Names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/names.html#name-definition">Name Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/names.html#rules">Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/names.html#name-normalization">Name Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/names.html#name-comparison">Name Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/names.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/names.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/text-name.html">Text Names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/text-name.html#text-name-rules">Text Name Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/text-name.html#text-name-normalization">Text Name Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/text-name.html#text-name-comparison">Text Name Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/text-name.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/text-name.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/name-path/index.html">Name Paths</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-path/intro.html">Visualizing the Value Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-path/single.html">Name Paths with One Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-path/multiple.html">Name Paths with Multiple Elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-path/addressing-list.html">Addressing a Section List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-path/list-without-index.html">Addressing Section List Values without an Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-path/list-with-index.html">Addressing Values with an Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-path/text-names.html">Text Names in Name Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-path/text-names-for-parsers.html">Parser-Specific Usage of Text Names</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/name-conflict.html">Name Conflicts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-conflict.html#using-a-name">Using a Name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-conflict.html#straightforward-conflict-scenarios">Straightforward Conflict Scenarios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-conflict.html#conflicts-with-sections-and-values-mixed">Conflicts with Sections and Values Mixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-conflict.html#why-section-lists-do-not-cause-conflicts">Why Section Lists Do Not Cause Conflicts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-conflict.html#the-special-case-of-intermediate-sections">The Special Case of Intermediate Sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-conflict.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/name-conflict.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/section-names.html">Section Names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/section-names.html#section-name-rules">Section Name Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/section-names.html#relative-sections-explained">Relative Sections Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/section-names.html#intermediate-section-rules">Intermediate Section Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/section-names.html#section-list-rules-for-name-paths">Section List Rules for Name Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/section-names.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/section-names.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/sections.html">Sections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/sections.html#rules-for-regular-sections">Rules for Regular Sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/sections.html#rules-for-section-lists">Rules for Section Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/sections.html#implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/sections.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/sections.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/named-values.html">Named Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/named-values.html#named-value-rules">Named Value Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/named-values.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/named-values.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/single-line-value-list.html">Single-Line Value Lists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/single-line-value-list.html#single-line-value-list-rules">Single-Line Value List Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/single-line-value-list.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/single-line-value-list.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/multi-line-value-list.html">Multi-line Value Lists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/multi-line-value-list.html#multi-line-value-list-rules">Multi-line Value List Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/multi-line-value-list.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/multi-line-value-list.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/text-value.html">Text Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/text-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/text-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/integer-value.html">Integer Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/integer-value.html#rules-for-all-integer-values">Rules for All Integer Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/integer-value.html#rules-for-decimal-integers">Rules for Decimal Integers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/integer-value.html#rules-for-the-byte-count-format">Rules for the Byte Count Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/integer-value.html#rules-for-hexadecimal-integers">Rules for Hexadecimal Integers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/integer-value.html#rules-for-binary-integers">Rules for Binary Integers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/integer-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/integer-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/boolean-value.html">Boolean Value</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/boolean-value.html#rules">Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/boolean-value.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/floating-point-value.html">Floating-Point Value</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/floating-point-value.html#rules">Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/floating-point-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/floating-point-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/multi-line-text-value.html">Multi-line Text Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/multi-line-text-value.html#rules-for-multi-line-text">Rules for Multi-line Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/multi-line-text-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/multi-line-text-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/date-time-value.html">Date, Time, and Date-Time Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/date-time-value.html#date-rules">Date Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/date-time-value.html#time-rules">Time Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/date-time-value.html#date-time-rules">Date-Time Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/date-time-value.html#rules-about-handling-times-without-offsets">Rules About Handling Times Without Offsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/date-time-value.html#about-time-offsets-utc-time-zones-and-local-time">About Time Offsets, UTC, Time Zones, and Local Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/date-time-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/date-time-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/code-text-value.html">Code Text Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/code-text-value.html#rules-for-single-line-code-text">Rules for Single Line Code Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/code-text-value.html#rules-for-multi-line-code-text">Rules for Multi-line Code Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/code-text-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/code-text-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/byte-data-value.html">Byte-Data Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/byte-data-value.html#rules-for-single-line-byte-data">Rules for Single Line Byte-Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/byte-data-value.html#rules-for-multi-line-byte-data">Rules for Multi-line Byte-Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/byte-data-value.html#supported-byte-data-formats">Supported Byte-Data Formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/byte-data-value.html#rules-for-the-hexadecimal-format">Rules for the Hexadecimal Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/byte-data-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/byte-data-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/regular-expression-value.html">Regular Expression Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/regular-expression-value.html#rules-for-regular-expression-values">Rules for Regular Expression Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/regular-expression-value.html#rules-for-multi-line-regular-expression-values">Rules for Multi-line Regular Expression Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/regular-expression-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/regular-expression-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/time-delta-value.html">Time-Delta Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/time-delta-value.html#rules-for-time-delta-values">Rules for Time-Delta Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/time-delta-value.html#time-units">Time Units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/time-delta-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/time-delta-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/meta-value.html">Meta Values and Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/meta-value.html#basic-rules-for-meta-values">Basic Rules for Meta Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/meta-value.html#the-meta-value-version">The Meta Value “Version”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/meta-value.html#the-meta-value-features">The Meta Value “Features”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/meta-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/meta-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/include-meta-command.html">Meta Command “Include”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/include-meta-command.html#rules">Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/include-meta-command.html#recommended-value-format">Recommended Value Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/include-meta-command.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/include-meta-command.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/signature-meta-value.html">Meta Command “Signature”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/signature-meta-value.html#rules-for-the-meta-value">Rules for the Meta Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/signature-meta-value.html#rules-for-the-implementation">Rules for the Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/signature-meta-value.html#recommended-signature-implementation">Recommended Signature Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/signature-meta-value.html#important-considerations">Important Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/signature-meta-value.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/signature-meta-value.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/value-type-names.html">Names for Value Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/value-type-names.html#containers">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/value-type-names.html#values">Values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/error-code.html">Error Categories and Codes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-code.html#rules-for-error-reporting">Rules for Error Reporting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-code.html#list-of-error-codes">List of Error Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-code.html#available-data">Available Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/error-details.html">Error Category Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#relaxed-handling-of-specialized-syntax-errors">Relaxed Handling of Specialized Syntax Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-io">Error <code class="docutils literal notranslate"><span class="pre">IO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-encoding">Error <code class="docutils literal notranslate"><span class="pre">Encoding</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-unexpectedend">Error <code class="docutils literal notranslate"><span class="pre">UnexpectedEnd</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-character">Error <code class="docutils literal notranslate"><span class="pre">Character</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-syntax">Error <code class="docutils literal notranslate"><span class="pre">Syntax</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-limitexceeded">Error <code class="docutils literal notranslate"><span class="pre">LimitExceeded</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-nameconflict">Error <code class="docutils literal notranslate"><span class="pre">NameConflict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-indentation">Error <code class="docutils literal notranslate"><span class="pre">Indentation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-unsupported">Error <code class="docutils literal notranslate"><span class="pre">Unsupported</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-access">Error <code class="docutils literal notranslate"><span class="pre">Access</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-validation">Error <code class="docutils literal notranslate"><span class="pre">Validation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-signature">Error <code class="docutils literal notranslate"><span class="pre">Signature</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/error-details.html#error-internal">Error <code class="docutils literal notranslate"><span class="pre">Internal</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/feature-identifier.html">Feature Identifiers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/feature-identifier.html#feature-groups">Feature Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/feature-identifier.html#individual-language-features">Individual Language Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/feature-identifier.html#parser-features">Parser Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/feature-identifier.html#available-data">Available Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing/code_of_conduct.html">Code of Conduct</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/code_of_conduct.html#our-commitment">Our Commitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/code_of_conduct.html#our-standards">Our Standards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/code_of_conduct.html#our-responsibilities">Our Responsibilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/code_of_conduct.html#scope">Scope</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/code_of_conduct.html#reporting-and-enforcement">Reporting and Enforcement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/code_of_conduct.html#enforcement-guidelines">Enforcement Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/how_to_contribute.html">How Can I Contribute?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/how_to_contribute.html#reporting-issues-in-the-language-specification">Reporting Issues in the Language Specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/how_to_contribute.html#suggesting-enhancements-to-the-language">Suggesting Enhancements to the Language</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-1-0-8-2025-08-22">Version 1.0.8 - 2025-08-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-1-0-6-2025-08-14">Version 1.0.6 - 2025-08-14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-1-0-4-2025-07-10">Version 1.0.4 - 2025-07-10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-1-0-0-2025-07-09">Version 1.0.0 - 2025-07-09</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</div>
+</section>
+<section id="dictionaries">
+<h1>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro/index.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

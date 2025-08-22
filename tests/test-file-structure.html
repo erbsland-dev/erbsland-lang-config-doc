@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test File Structure &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Writing a Test Adapter" href="test-adapter.html" />
+    <link rel="prev" title="The Test Suite" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The Test Suite</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Test File Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#test-naming-convention">Test Naming Convention</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sequence-number">Sequence Number</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#outcome">Outcome</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#label">Label</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#suffix">Suffix</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#outcome-files">Outcome Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#passed-tests">Passed Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#failed-tests">Failed Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#directory-structure">Directory Structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generated-tests">Generated Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#human-crafted-tests">Human-Crafted Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests-from-documentation-examples">Tests from Documentation Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test-adapter.html">Writing a Test Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test-outcome-format.html">The Test Outcome Format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">The Test Suite</a></li>
+      <li class="breadcrumb-item active">Test File Structure</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tests/test-file-structure.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="index-0">
+<span id="test-file-structure"></span><span id="id1"></span><h1>Test File Structure<a class="headerlink" href="#index-0" title="Link to this heading"></a></h1>
+<p>All test files are organized in a dedicated GitHub repository: <code class="docutils literal notranslate"><span class="pre">erbsland-lang-config-tests</span></code>. You can easily include this repository as a submodule in your project to integrate the tests.</p>
+<p class="sd-text-center"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="https://github.com/erbsland-dev/erbsland-lang-config-tests.git"><span>GitHub Repository with the Test Files →</span></a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory contains file-based tests for the <em>Erbsland Configuration Language (ELCL)</em>. These tests ensure that your parser or syntax highlighter correctly implements the language. Each test is designed for readability and easy integration into your unit tests.</p>
+<p>You do not need to build an entire testing framework from scratch. Instead, you only need to create a minimal test adapter for your parser. Our test system will execute all tests and verify your parser’s output. For more information, see <a class="reference internal" href="test-adapter.html#test-adapter"><span class="std std-ref">Writing a Test Adapter</span></a>.</p>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>The test file structure is deliberately simple and flexible. Test characteristics are embedded directly in filenames and paths, avoiding the need for external test libraries and ensuring broad compatibility. The clear directory and naming conventions also make test data handling straightforward and consistent.</p>
+<p>By using static, file-based tests instead of dynamic test case generators, this system promotes better platform compatibility. These tests can be run across different systems without requiring extensive setup or specialized tools.</p>
+</div>
+<section id="test-naming-convention">
+<h2>Test Naming Convention<a class="headerlink" href="#test-naming-convention" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0120-FAIL-dec_underscore.elcl
+</pre></div>
+</div>
+<p>Each test file follows a specific naming convention: <code class="docutils literal notranslate"><span class="pre">NNNN-&lt;outcome&gt;-&lt;label&gt;.&lt;suffix&gt;</span></code>. The filename is divided into three primary parts, separated by hyphens (<code class="literal" onclick="showOverlay('-','HYPHEN-MINUS','Pd','U+002D','2D')"><span class="cp-role">-</span></code>): sequence number, outcome, and label.</p>
+<section id="sequence-number">
+<h3>Sequence Number<a class="headerlink" href="#sequence-number" title="Link to this heading"></a></h3>
+<p>A unique identifier from 1 to 9999, used exclusively for sorting and organizing tests. This sequence number has no functional impact on test behavior.</p>
+</section>
+<section id="outcome">
+<h3>Outcome<a class="headerlink" href="#outcome" title="Link to this heading"></a></h3>
+<p>A keyword indicating the expected test result, with the following possible outcomes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PASS</span></code>: The test should parse successfully without errors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span></code>: The test may parse successfully or may trigger an error, depending on the parser’s handling of ambiguous cases.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FAIL</span></code>: The test should fail with a parsing error.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">READ</span></code> outcome applies in cases where the parser may either accept the file or produce an error, allowing both strict and lenient parsing behaviors. These tests ensure that the parser can handle the input without causing unintended side effects or crashes.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">FAIL</span></code> tests, the parser is expected to fail with one of the error codes specified in the <em>outcome file</em> (see below).</p>
+</section>
+<section id="label">
+<h3>Label<a class="headerlink" href="#label" title="Link to this heading"></a></h3>
+<p>A brief description of the test’s purpose. The label should answer the question, “What does this test check?” For example, “This test checks if the parser succeeds/fails when it encounters…”.</p>
+</section>
+<section id="suffix">
+<h3>Suffix<a class="headerlink" href="#suffix" title="Link to this heading"></a></h3>
+<p>Each test comprises two files with the same name but different suffixes:</p>
+<ul class="simple">
+<li><p>An <code class="docutils literal notranslate"><span class="pre">*.elcl</span></code> file containing the <em>ELCL</em> document to be parsed.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">*.out</span></code> file detailing the expected <em>test outcome</em>.</p></li>
+</ul>
+</section>
+</section>
+<section id="outcome-files">
+<h2>Outcome Files<a class="headerlink" href="#outcome-files" title="Link to this heading"></a></h2>
+<p>Each test includes a corresponding outcome file with the <code class="docutils literal notranslate"><span class="pre">out</span></code> suffix. This file is UTF-8 encoded, with each line separated by a newline or carriage return and newline, depending on the system. For failed tests, the outcome file specifies the expected error code(s). For passed tests, it contains the parsed data derived from the test file.</p>
+<p>The format for outcome files is detailed in <a class="reference internal" href="test-outcome-format.html#test-outcome-format"><span class="std std-ref">The Test Outcome Format</span></a>.</p>
+<section id="passed-tests">
+<h3>Passed Tests<a class="headerlink" href="#passed-tests" title="Link to this heading"></a></h3>
+<p>For <code class="docutils literal notranslate"><span class="pre">PASS</span></code> and <code class="docutils literal notranslate"><span class="pre">READ</span></code> tests, the outcome file provides the parsed result of the document in the following format:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@version = String(&quot;1.0&quot;)
+main.connection[0].filter = String(&quot;test\u{12fe}&quot;)
+main.connection[0].flag = Boolean(true)
+main.connection[1].filter = String(&quot;test\u{12fe}&quot;)
+main.connection[1].flag = Boolean(false)
+main.server = Integer(-473945)
+translation.&quot;text&quot; = Float(12.9)
+</pre></div>
+</div>
+<p>This output format standardizes the parsed data structure, ensuring consistent validation across tests.</p>
+</section>
+<section id="failed-tests">
+<h3>Failed Tests<a class="headerlink" href="#failed-tests" title="Link to this heading"></a></h3>
+<p>For <code class="docutils literal notranslate"><span class="pre">FAIL</span></code> tests, the outcome file follows this structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FAIL = NameConflict
+</pre></div>
+</div>
+<p>The identifier <code class="docutils literal notranslate"><span class="pre">FAIL</span></code> is followed by zero, one, or more error codes, separated by vertical bars (<code class="literal" onclick="showOverlay('|','VERTICAL LINE','Sm','U+007C','7C')"><span class="cp-role">|</span></code>). If no specific error code is listed, any error will satisfy the test. If one or more error codes are specified, the parser must fail with one of the listed errors.</p>
+</section>
+</section>
+<section id="directory-structure">
+<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tests/V1_0/core/27_integer/...
+</pre></div>
+</div>
+<p>The first level of subdirectories corresponds to the language version, using the format <code class="docutils literal notranslate"><span class="pre">V1_0</span></code> where the major and minor version numbers are separated by an underscore.</p>
+<p>Within each version directory, tests are further organized by language feature, with each feature assigned its own subdirectory. These feature directories are named based on unique feature identifiers, as explained in <a class="reference internal" href="../reference/feature-identifier.html#ref-feature-identifier"><span class="std std-ref">Feature Identifiers</span></a>.</p>
+<p>Within each feature directory, additional subdirectories use the format <code class="docutils literal notranslate"><span class="pre">NN_&lt;name&gt;</span></code> to group tests. The <code class="docutils literal notranslate"><span class="pre">NN</span></code> prefix is a two-digit sequence number that indicates both the order and origin of the tests:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">01</span></code>–<code class="docutils literal notranslate"><span class="pre">19</span></code>: Generated tests, created from templates and scripts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">20</span></code>–<code class="docutils literal notranslate"><span class="pre">29</span></code>: Manually crafted tests, typically a set of passing ones and a list of tests targeting specific scenarios, or testing the logic of the parser.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">30</span></code>–<code class="docutils literal notranslate"><span class="pre">39</span></code>: Tests derived from documentation examples, in order to make sure the documentation is accurate.</p></li>
+</ul>
+<section id="generated-tests">
+<h3>Generated Tests<a class="headerlink" href="#generated-tests" title="Link to this heading"></a></h3>
+<p>Directories with generated tests (<code class="docutils literal notranslate"><span class="pre">01</span></code>–<code class="docutils literal notranslate"><span class="pre">19</span></code>) can be removed and recreated as needed using predefined templates. Since these tests are automatically constructed, manual modifications should be avoided, as they get overwritten.</p>
+</section>
+<section id="human-crafted-tests">
+<h3>Human-Crafted Tests<a class="headerlink" href="#human-crafted-tests" title="Link to this heading"></a></h3>
+<p>Tests in the <code class="docutils literal notranslate"><span class="pre">20</span></code>–<code class="docutils literal notranslate"><span class="pre">29</span></code> range are manually written by developers to address specific scenarios or edge cases that generated tests may not cover. These tests provide coverage for real-world parsing situations and are particularly useful for validating language logic, such as handling name conflicts and other nuanced conditions.</p>
+<p>These human-created tests are loosely numbered in increments (e.g., by five or ten) to allow additional cases to be added as needed. If parser issues are identified that aren’t addressed by existing tests, new tests should be added in this section to cover those cases.</p>
+</section>
+<section id="tests-from-documentation-examples">
+<h3>Tests from Documentation Examples<a class="headerlink" href="#tests-from-documentation-examples" title="Link to this heading"></a></h3>
+<p>The test suite also includes tests derived from example listings in the documentation (<code class="docutils literal notranslate"><span class="pre">30</span></code>–<code class="docutils literal notranslate"><span class="pre">39</span></code>), which help verify the accuracy of documented examples. Currently, these tests are curated manually to ensure they reflect valid or invalid cases as described.</p>
+<p>In the future, the goal is to annotate example listings within the documentation to allow for automatic extraction into the test suite, further streamlining the process and enhancing the reliability of documentation.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="The Test Suite" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test-adapter.html" class="btn btn-neutral float-right" title="Writing a Test Adapter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

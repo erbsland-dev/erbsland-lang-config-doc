@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Features &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Language Overview" href="../language-overview.html" />
+    <link rel="prev" title="Standard Features" href="standard-features.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core-language.html">Core Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard-features.html">Standard Features</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#regular-expression-values">Regular Expression Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#single-line-regular-expressions">Single-Line Regular Expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-line-regular-expressions">Multi-line Regular Expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-considerations">Implementation Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#time-delta-values">Time-Delta Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#optional-units">Optional Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combining-time-deltas">Combining Time-Deltas</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-rules-support">Validation Rules Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#document-signatures">Document Signatures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Introduction</a></li>
+      <li class="breadcrumb-item active">Advanced Features</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/intro/advanced-features.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="advanced-features">
+<span id="index-0"></span><span id="intro-advanced-features"></span><h1>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading"></a></h1>
+<p>Advanced features in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> are optional capabilities that standard parsers may or may not support. A parser must implement all advanced features to be considered a full-featured parser. These features extend the functionality beyond the core and standard features, enabling more sophisticated configurations when necessary.</p>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p><strong>Why are advanced features separate?</strong></p>
+<p>While core and standard features are designed to be easily implemented by any parser across most programming languages and platforms, advanced features rely on more complex components like regular expressions and time-deltas. These components often have varying implementations across different languages and environments. If the underlying system does not natively support these features, it may not be practical or feasible to include them in a parser.</p>
+<p>Additionally, advanced features like validation rules support and digital signatures introduce significant implementation complexity. Schema support requires extensive validation capabilities, adding considerable code and overhead to a parser. Similarly, signature verification demands at least a cryptographic hashing function, such as SHA-256, for even a minimal implementation.</p>
+<p>By separating these advanced features, ELCL allows for a more flexible and modular approach to parser implementation, enabling developers to choose the level of complexity that suits their needs.</p>
+</div>
+<section id="regular-expression-values">
+<span id="index-1"></span><span id="intro-regular-expression"></span><h2>Regular Expression Values<a class="headerlink" href="#regular-expression-values" title="Link to this heading"></a></h2>
+<p>Regular expression values are an advanced feature because their support depends heavily on the platform and programming language used by the parser. They introduce an additional data type that can be returned to the application either as plain text or as a regular expression object, depending on what makes the most sense for the specific platform.</p>
+<p>In <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>, a regular expression is enclosed in slashes (<code class="literal" onclick="showOverlay('/','SOLIDUS','Po','U+002F','2F')"><span class="cp-role">/</span></code>). For multi-line regular expressions, three slashes (<code class="docutils literal notranslate"><span class="pre">///</span></code>) are used.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">regular_expressions</span><span class="o">]</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="sr">/</span><span class="p">(</span><span class="s s-Regexp">get</span><span class="p">[</span><span class="s s-Regexp">A</span><span class="o">-</span><span class="s s-Regexp">Z</span><span class="p">]</span><span class="se">\w</span><span class="o">+</span><span class="p">)</span><span class="se">\s</span><span class="o">*</span><span class="se">\(\s</span><span class="o">*</span><span class="s s-Regexp">int</span><span class="se">\s</span><span class="o">+</span><span class="p">(</span><span class="se">\w</span><span class="o">+</span><span class="p">)</span><span class="se">\s</span><span class="o">*</span><span class="se">\)</span><span class="sr">/</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="sr">/</span><span class="o">^</span><span class="se">\/</span><span class="s s-Regexp">data</span><span class="se">\/</span><span class="s s-Regexp">folder</span><span class="se">\/</span><span class="p">(</span><span class="o">.+</span><span class="p">)</span><span class="o">$</span><span class="sr">/</span>
+<span class="nv">Value C</span><span class="o">:</span><span class="w"> </span><span class="sr">///</span>
+<span class="w">    </span><span class="p">(</span><span class="s s-Regexp">get </span><span class="p">[</span><span class="s s-Regexp">A</span><span class="o">-</span><span class="s s-Regexp">Z</span><span class="p">]</span><span class="s s-Regexp"> </span><span class="se">\w</span><span class="o">+</span><span class="p">)</span><span class="s s-Regexp"> </span><span class="se">\s</span><span class="o">*</span><span class="s s-Regexp">          </span><span class="c"># Group 1: getter name</span>
+<span class="w">    </span><span class="se">\(</span><span class="s s-Regexp"> </span><span class="se">\s</span><span class="o">*</span><span class="s s-Regexp"> int </span><span class="se">\s</span><span class="o">+</span><span class="s s-Regexp"> </span><span class="p">(</span><span class="se">\w</span><span class="o">+</span><span class="p">)</span><span class="s s-Regexp"> </span><span class="se">\s</span><span class="o">*</span><span class="s s-Regexp"> </span><span class="se">\)</span><span class="s s-Regexp">  </span><span class="c"># Group 2: parameter name</span>
+<span class="w">    </span><span class="sr">///</span>
+<span class="nv">Value D</span><span class="o">:</span><span class="w"> </span><span class="sr">///</span>
+<span class="w">    </span><span class="o">^</span><span class="s s-Regexp"> </span><span class="sr">/</span><span class="s s-Regexp"> data </span><span class="sr">/</span><span class="s s-Regexp"> folder </span><span class="sr">/</span><span class="s s-Regexp"> </span><span class="p">(</span><span class="o">.+</span><span class="p">)</span><span class="s s-Regexp"> </span><span class="o">$</span>
+<span class="w">    </span><span class="sr">///</span>
+</pre></div>
+</div>
+<section id="single-line-regular-expressions">
+<h3>Single-Line Regular Expressions<a class="headerlink" href="#single-line-regular-expressions" title="Link to this heading"></a></h3>
+<p>A single-line regular expression is enclosed between two slashes (<code class="literal" onclick="showOverlay('/','SOLIDUS','Po','U+002F','2F')"><span class="cp-role">/</span></code>). You can use the backslash character (<code class="literal" onclick="showOverlay('\\','REVERSE SOLIDUS','Po','U+005C','5C')"><span class="cp-role">\</span></code>) as usual to escape special characters within the pattern. The sequence <code class="docutils literal notranslate"><span class="pre">\\/</span></code> is converted to a single slash, allowing you to include slashes in the expression itself without terminating it prematurely.</p>
+</section>
+<section id="multi-line-regular-expressions">
+<h3>Multi-line Regular Expressions<a class="headerlink" href="#multi-line-regular-expressions" title="Link to this heading"></a></h3>
+<p>Multi-line regular expressions are enclosed in three slashes (<code class="docutils literal notranslate"><span class="pre">///</span></code>) and work similarly to <a class="reference internal" href="standard-features.html#intro-multi-line-text"><span class="std std-ref">multi-line text</span></a>. The key differences are:</p>
+<ul class="simple">
+<li><p>The enclosing delimiters are three slashes (<code class="docutils literal notranslate"><span class="pre">///</span></code>) instead of three double quotes.</p></li>
+<li><p>Parsers should enable “verbose” or “extended” mode by default, where whitespace, line breaks, and comments within the regular expression are ignored.</p></li>
+</ul>
+<p>This format is useful for complex patterns that require more readability and organization, as it allows you to spread the pattern over multiple lines and add comments for clarity.</p>
+</section>
+<section id="implementation-considerations">
+<h3>Implementation Considerations<a class="headerlink" href="#implementation-considerations" title="Link to this heading"></a></h3>
+<p>Because regular expression syntax and features can vary between platforms, support for regular expression values in ELCL depends on the capabilities of the parser’s underlying language. Some parsers may return regular expression values as text, while others may provide them as specialized regular expression objects. This flexibility allows parsers to integrate more seamlessly with the languages and platforms they support.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Make sure to read the documentation of your parser implementation, to learn if a specific regular expression format is supported and if the regular expression is passed as plain text to the application.</p>
+</div>
+</section>
+</section>
+<section id="time-delta-values">
+<span id="index-2"></span><span id="intro-time-delta"></span><h2>Time-Delta Values<a class="headerlink" href="#time-delta-values" title="Link to this heading"></a></h2>
+<p><em>Time-delta values</em> are an additional value type in the <em>Erbsland Configuration Language</em>, used to represent durations of time. They consist of a whole number followed by a unit. Consider the following examples:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">time_deltas</span><span class="o">]</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">s</span><span class="w">            </span><span class="c"># s = seconds</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="mi">250</span><span class="w"> </span><span class="kt">ms</span><span class="w">        </span><span class="c"># Space between number and unit is optional.</span>
+<span class="nv">Value C</span><span class="o">:</span><span class="w"> </span><span class="mi">2&#39;898&#39;283</span><span class="w"> </span><span class="kt">µs</span><span class="w">  </span><span class="c"># Digit separators are allowed.</span>
+<span class="nv">Value D</span><span class="o">:</span><span class="w"> </span><span class="mi">-20</span><span class="w"> </span><span class="kt">days</span><span class="w">      </span><span class="c"># Negative values are also allowed.</span>
+</pre></div>
+</div>
+<p>The unit must immediately follow the integer value, optionally separated by a single <a class="reference internal" href="../glossary.html#term-Space"><span class="xref std std-term">space</span></a> (<code class="literal" onclick="showOverlay(' ','SPACE','Zs','U+0020','20')"><span class="cp-role"> </span></code>). The following units are supported by the language:</p>
+<table class="docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Short</p></th>
+<th class="head"><p>Long Singular</p></th>
+<th class="head"><p>Long Plural</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">ms</span></p></td>
+<td><p><span class="text-code">millisecond</span></p></td>
+<td><p><span class="text-code">milliseconds</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">s</span></p></td>
+<td><p><span class="text-code">second</span></p></td>
+<td><p><span class="text-code">seconds</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">m</span></p></td>
+<td><p><span class="text-code">minute</span></p></td>
+<td><p><span class="text-code">minutes</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">h</span></p></td>
+<td><p><span class="text-code">hour</span></p></td>
+<td><p><span class="text-code">hours</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">d</span></p></td>
+<td><p><span class="text-code">day</span></p></td>
+<td><p><span class="text-code">days</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">w</span></p></td>
+<td><p><span class="text-code">week</span></p></td>
+<td><p><span class="text-code">weeks</span></p></td>
+</tr>
+</tbody>
+</table>
+<section id="optional-units">
+<h3>Optional Units<a class="headerlink" href="#optional-units" title="Link to this heading"></a></h3>
+<p>The following units are optional for parsers to support. Even if a parser does not support these units, it must recognize them and stop with an appropriate error message.</p>
+<table class="docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Short</p></th>
+<th class="head"><p>Long Singular</p></th>
+<th class="head"><p>Long Plural</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">ns</span></p></td>
+<td><p><span class="text-code">nanosecond</span></p></td>
+<td><p><span class="text-code">nanoseconds</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">us</span>, <span class="text-code">µs</span></p></td>
+<td><p><span class="text-code">microsecond</span></p></td>
+<td><p><span class="text-code">microseconds</span></p></td>
+</tr>
+<tr class="row-even"><td><p>—</p></td>
+<td><p><span class="text-code">month</span></p></td>
+<td><p><span class="text-code">months</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>—</p></td>
+<td><p><span class="text-code">year</span></p></td>
+<td><p><span class="text-code">years</span></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Support for nano- and microseconds is optional because not all platforms provide this level of precision.</p></li>
+<li><p>There are intentionally no short forms for months and years because they are less commonly used, and their abbreviations can be ambiguous.</p></li>
+</ul>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p><strong>Design Rationale for Optional Units</strong></p>
+<p>Nanoseconds and microseconds are optional because not all systems provide the necessary precision to handle these values effectively. Months and years, on the other hand, introduce a different complexity level. Units from weeks down to seconds can be converted to a base unit (seconds) relatively easily. However, months and years require more complex date and time calculations, which are not universally supported across platforms.</p>
+</div>
+</section>
+<section id="combining-time-deltas">
+<h3>Combining Time-Deltas<a class="headerlink" href="#combining-time-deltas" title="Link to this heading"></a></h3>
+<p>Time-deltas can be combined in value lists, as shown in the following examples:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">complex_time_deltas</span><span class="o">]</span>
+<span class="nv">Value A</span><span class="o">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">s</span><span class="o">,</span><span class="w"> </span><span class="mi">120</span><span class="kt">ms</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="kt">us</span>
+<span class="nv">Value B</span><span class="o">:</span><span class="w"> </span><span class="mi">-4</span><span class="w"> </span><span class="kt">days</span><span class="o">,</span><span class="w"> </span><span class="mi">-20</span><span class="w"> </span><span class="kt">hours</span>
+</pre></div>
+</div>
+<p>Parsers are allowed to merge lists that contain only time-delta values into a single cumulative time-delta value. Alternatively, parsers may treat each time-delta as a separate value with its own unit and leave the conversion to the application.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Even if a parser supports time-delta values, and it must recognize all units, there may be significant differences in how they are handled across implementations. As this is not fully specified in the language standard, always refer to the documentation of your specific parser implementation for details.</p>
+</div>
+</section>
+</section>
+<section id="validation-rules-support">
+<h2>Validation Rules Support<a class="headerlink" href="#validation-rules-support" title="Link to this heading"></a></h2>
+<p>Validation rules play a crucial role in defining and verifying the structure of a configuration file. By providing a parser with a set of validation rules before reading the configuration, it can automatically verify both the document’s structure and each value, and apply default values where applicable.</p>
+<p>Validation rules are essential for anyone using a configuration parser. Without them, configurations must be verified programmatically after parsing, which typically requires considerable effort. As a result, many developers skip this step altogether, which not only leads to a poor user experience but can also pose significant security risks.</p>
+<p>In its simplest form, validation rules are expressed as a regular <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> document containing constraints for each <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a>. Parser implementors may also offer programmatic interfaces to define validation rules in code, or provide tools to convert validation rules from an <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> document into a code-based representation.</p>
+<p>The <em>Erbsland Configuration Language</em> specifies the exact format for validation rules in document form and offers recommendations for designing a programmatic API for validation rules validation. Consistent with the overall design philosophy of ELCL, validation rules are straightforward and user-friendly.</p>
+</section>
+<section id="document-signatures">
+<h2>Document Signatures<a class="headerlink" href="#document-signatures" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> provides a framework to support embedded digital signatures within configuration files. By embedding a signature, administrators can sign configuration files, ensuring their integrity and authenticity. For any modification of a signed configuration, it has to be signed again or its signature must be removed.</p>
+<p>The implementation of signature creation and verification must be handled by the application using the configuration parser. This language specification, however, defines how cryptographic hashes for signatures should be generated and verified and offers best-practice recommendations on signature encoding and implementation.</p>
+<p>Signatures enable workflows for change verification and approval in configurations. For example:</p>
+<ol class="arabic simple">
+<li><p>In a basic setup, an organization may require configuration changes to be digitally signed by an authorized individual, facilitating a simple approval workflow.</p></li>
+<li><p>In more advanced scenarios, an application might enforce a signature validation mechanism, requiring configurations to be signed with an approved certificate from a trusted list before execution. This approach would reject any unsigned or unauthorized configurations.</p></li>
+</ol>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>While applications could implement configuration signatures using separate “side-car” files, embedding the signature directly in the configuration file simplifies deployment, versioning, and integrity checks. By defining a standard for generating and verifying signatures, along with recommended practices, we aim to encourage consistency and interoperability across implementations.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="standard-features.html" class="btn btn-neutral float-left" title="Standard Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../language-overview.html" class="btn btn-neutral float-right" title="Language Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,455 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta Command “Include” &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Meta Command “Signature”" href="signature-meta-value.html" />
+    <link rel="prev" title="Meta Values and Commands" href="meta-value.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Language Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Documentation Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="characters.html">Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-break.html">Line Break</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html">Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="names.html">Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-name.html">Text Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-path/index.html">Name Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-conflict.html">Name Conflicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="section-names.html">Section Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections.html">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="named-values.html">Named Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-line-value-list.html">Single-Line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-value-list.html">Multi-line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-value.html">Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integer-value.html">Integer Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean-value.html">Boolean Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating-point-value.html">Floating-Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-text-value.html">Multi-line Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date-time-value.html">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-text-value.html">Code Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byte-data-value.html">Byte-Data Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regular-expression-value.html">Regular Expression Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-delta-value.html">Time-Delta Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-value.html">Meta Values and Commands</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Meta Command “Include”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules">Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recommended-value-format">Recommended Value Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="signature-meta-value.html">Meta Command “Signature”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value-type-names.html">Names for Value Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-code.html">Error Categories and Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-details.html">Error Category Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature-identifier.html">Feature Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Language Reference</a></li>
+      <li class="breadcrumb-item active">Meta Command “Include”</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/include-meta-command.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="meta-command-include">
+<span id="ref-include"></span><span id="index-0"></span><h1>Meta Command “Include”<a class="headerlink" href="#meta-command-include" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> meta command enables the integration of multiple configuration files into a single, unified configuration. The <em>Erbsland Configuration Language</em> specifies only the general framework for this command, offering guidance on recommended implementation practices without mandating a specific approach. This flexibility is essential to support various platforms and programming languages, each with unique requirements.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main configuration</span><span class="o">]</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="nf">@include</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;file:extensions/*.ecl&quot;</span>
+</pre></div>
+</div>
+<section id="rules">
+<span id="index-1"></span><h2>Rules<a class="headerlink" href="#rules" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Parser Security and Application Consent:</strong> A parser <em>must</em> provide a callback or filter mechanism for the application, allowing it to <em>verify</em> each included configuration source at a <em>minimum</em>. If this callback or filter is not set, the parser <em>must</em> reject every included configuration or raise an <code class="docutils literal notranslate"><span class="pre">Unsupported</span></code> error.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────────────┐
+│ main.elcl          │                         ┌────────────────────┐
+├────────────────────┤ Is this include ok?     │ Application        │
+│ [main]             │ ──────────────────────→ │                    │
+│ value: 1           │        yes, this is ok! │                    │
+│ @include &quot;...&quot;     │ ←────────────────────── │                    │
+└────────────────────┘                         │                    │
+                                               └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Format:</strong> The <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> meta command <em>must</em> specify a text value that indicates the source of one or more configuration files to be included in the main configuration.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nf">@include</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;source&gt;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Value Format:</strong> While a parser can interpret the text value of the <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> command as needed, it is strongly <em>recommended</em> to use the format outlined in <a class="reference internal" href="#ref-include-format"><span class="std std-ref">Recommended Value Format</span></a>.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nf">@include</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;file:sub.elcl&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Location:</strong> The <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> meta command <em>can</em> be specified one or more times, both before and after sections within a configuration.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nf">@include</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;source&gt;&quot;</span>
+
+<span class="p">[</span><span class="nt">section 1</span><span class="o">]</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+
+<span class="nf">@include</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;source&gt;&quot;</span>
+
+<span class="p">[</span><span class="nt">section 2</span><span class="o">]</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+
+<span class="nf">@include</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;source&gt;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Impact on the Including Configuration:</strong> Each <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> command <em>must</em> close any currently open section and clear the last absolute section name. Therefore, no values or relative sections are permitted following an <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> command.</p>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>[server]
+value: 123
+
+@include: &quot;&lt;source&gt;&quot;
+
+another: 123    # ERROR! There is no open section for this value.
+
+[.connection]   # ERROR! There is no last absolute section after @include
+value: 123
+</pre></div>
+</div>
+</li>
+<li><p><strong>Inclusion Order:</strong> Configuration files <em>must</em> be included in the order specified by the <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> statements.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>@include: &quot;&lt;source&gt;&quot;   # First
+@include: &quot;&lt;source&gt;&quot;   # Second
+</pre></div>
+</div>
+</li>
+<li><p><strong>Alphabetical Inclusion of Named Configurations:</strong> If the included configurations contain named files, they <em>should</em> be included in alphabetical order, based on Unicode code points.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>0first.elcl
+Second.elcl
+last.elcl
+</pre></div>
+</div>
+</li>
+<li><p><strong>Hierarchical Inclusion Order:</strong> When configurations are organized in a tree-like structure (e.g., directories), they should be included bottom-up (starting from the deepest files or directories and working upward).</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>first.elcl
+sub/second.elcl
+sub/sub/last.elcl
+</pre></div>
+</div>
+</li>
+<li><p><strong>Shared Value Tree:</strong> The included configuration <em>must only</em> share the <em>value tree</em> with the main configuration, ensuring a unified data structure across included configurations.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────────────┐
+│ main.elcl          │
+├────────────────────┤
+│ [main]             │
+│ value: 1           │        ┌────────────────────┐
+│ @include &quot;...&quot;     │  ───→  │ sub.elcl           │
+└────────────────────┘        ├────────────────────┤
+          │                   │ [main.sub]         │
+          │                   │ value: 2           │
+          │                   └────────────────────┘
+          ↓                             ↓
+┌──────────────────────────────────────────────────┐
+│ Value Tree                                       │
+└──────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Name Conflicts:</strong> Any name conflicts <em>must</em> be resolved as though all included files form a single, unified configuration. For details, refer to <a class="reference internal" href="name-conflict.html#ref-name-conflict"><span class="std std-ref">Name Conflicts</span></a>.</p>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────────────┐
+│ main.elcl          │
+├────────────────────┤
+│ [main]             │
+│ value: 1           │        ┌────────────────────┐
+│ @include &quot;...&quot;     │  ───→  │ sub.elcl           │
+└────────────────────┘        ├────────────────────┤
+                              │ [main] # ERROR!    │
+                              │ value: 2           │
+                              └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Section Lists Across Inclusions:</strong> Section lists <em>must</em> function seamlessly across multiple included configurations.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────────────┐
+│ main.elcl          │
+├────────────────────┤
+│ [*list]            │
+│ value: 1           │        ┌────────────────────┐
+│ @include &quot;...&quot;     │  ───→  │ sub.elcl           │
+└────────────────────┘        ├────────────────────┤
+                              │ [*list]            │
+                              │ value: 2           │
+                              └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>No Access to Outer Context:</strong> The included configuration <em>must not</em> have access to any context information from the configuration file that includes it. Only the shared value tree is accessible.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────────────┐
+│ main.elcl          │
+├────────────────────┤  include   ┌────────────────────┐
+│ [main]             │  ───────→  │ extension.elcl     │
+│ value: 1           │            ├────────────────────┤
+│ @include &quot;...&quot;     │  access    │ [extension]        │
+└────────────────────┘  ←───╳───  │ value: 2           │
+          │ ✓ OK        forbidden └────────────────────┘
+          ↓                             ↓ ✓ OK
+    ┌────────────────────────────────────────────┐
+    │ Value Tree                                 │
+    └────────────────────────────────────────────┘
+</pre></div>
+</div>
+<p>Examples of forbidden context access:</p>
+<ul class="simple">
+<li><p>The version set in one configuration must not influence an included configuration.</p></li>
+<li><p>The last absolute section or currently open section must not be available to the included configuration.</p></li>
+<li><p>The included configuration must not be aware of its inclusion location.</p></li>
+<li><p>The name or path of the including file must not be known to the included configuration.</p></li>
+</ul>
+</li>
+<li><p><strong>Parsed as Standalone:</strong> The included configuration <em>must</em> be parsed as if it were a standalone configuration file.</p>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────────────┐
+│ main.elcl          │
+├────────────────────┤
+│ [main]             │
+│ value: 1           │        ┌────────────────────┐
+│ @include &quot;...&quot;     │  ───→  │ sub.elcl           │
+└────────────────────┘        ├────────────────────┤
+                              │ value: 2 # ERROR!  │
+                              │ [.sub]   # ERROR!  │
+                              └────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Recursion Handling:</strong> A parser <em>should</em> detect inclusion loops and <em>must</em> limit inclusion to a maximum of <em>five</em> nesting levels.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>main.elcl ───→ extension.elcl ───→ extension_detail.elcl
+</pre></div>
+</div>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>main.elcl ───→ sub1.elcl ───→ sub2.elcl ──┐
+                                          │
+    ┌─────────────────────────────────────┘
+    │
+    └──→ sub3.elcl ───→ sub4.elcl ──╳─→ sub5.elcl
+
+main.elcl ───→ sub.elcl ──┐
+↑                         │
+└────────────╳────────────┘
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="recommended-value-format">
+<span id="ref-include-format"></span><h2>Recommended Value Format<a class="headerlink" href="#recommended-value-format" title="Link to this heading"></a></h2>
+<p>While parsers can freely determine the format used to specify the source for included configuration files, we recommend using the following format for file-based inclusion or a subset/variation of it.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[ &quot;file:&quot; ] &lt;path&gt;
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p><strong>Format:</strong> The path may be optionally prefixed with <code class="docutils literal notranslate"><span class="pre">file:</span></code>, but if the prefix is absent, the entire text is interpreted as a file path.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>@include &quot;file:sub/detail.elcl&quot;
+@include &quot;sub/detail.elcl&quot;
+</pre></div>
+</div>
+<p>Allowing a “protocol” prefix like <code class="docutils literal notranslate"><span class="pre">file:</span></code> not only enables future parser extensions but also allows applications to implement custom data sources (e.g., using <code class="docutils literal notranslate"><span class="pre">internal:</span></code> as a prefix for embedded configuration data).</p>
+</li>
+<li><p><strong>File Path:</strong> The file path can be either relative or absolute, pointing to a file and following the path syntax of the underlying operating system. The slash character (<code class="literal" onclick="showOverlay('/','SOLIDUS','Po','U+002F','2F')"><span class="cp-role">/</span></code>) <em>must</em> be supported as a path separator on all operating systems.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>@include &quot;sub/detail.elcl&quot;
+@include &quot;../sub/detail.elcl&quot;
+@include &quot;/users/example/project/configuration.elcl&quot;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Relative Paths:</strong> Relative paths should always resolve relative to the file that includes them.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>&quot;~/app/main/config.elcl&quot;
+@include &quot;../ext/foo/ext_config.elcl&quot;  =&gt;  &quot;~/app/ext/foo/ext_config.elcl&quot;
+@include &quot;sub/detail.elcl&quot;  =&gt;  &quot;~/app/main/sub/detail.elcl&quot;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Filename Pattern:</strong> An asterisk (<code class="literal" onclick="showOverlay('*','ASTERISK','Po','U+002A','2A')"><span class="cp-role">*</span></code>) in the filename portion of the path includes all matching files from the specified directory.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span>@include &quot;extensions/*.elcl&quot;      # Includes all files matching &quot;*.elcl&quot; in &quot;extensions&quot;.
+@include &quot;extensions/ext_*.elcl&quot;  # Includes all files matching &quot;ext_*.elcl&quot; in &quot;extensions&quot;.
+@include &quot;extensions/*&quot;           # Includes every file in &quot;extensions&quot;.
+</pre></div>
+</div>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>@include &quot;ext*/file.elcl&quot;  # ERROR! &quot;*&quot; is allowed only in the filename portion.
+</pre></div>
+</div>
+</li>
+<li><p><strong>Directory Pattern:</strong> Two consecutive asterisks (<code class="docutils literal notranslate"><span class="pre">**</span></code>) in the path denote a recursive search for matching files across all subdirectories.</p>
+<div class="good-example highlight-text notranslate"><div class="highlight"><pre><span></span># Includes all &quot;config.elcl&quot; files in &quot;extensions&quot; and its subdirectories.
+@include &quot;extensions/**/config.elcl&quot;
+# Includes all &quot;config.elcl&quot; files in the current directory and its subdirectories.
+@include &quot;**/config.elcl&quot;
+# Includes all &quot;*.elcl&quot; files in any &quot;conf&quot; subdirectory within the current directory and its subdirectories.
+@include &quot;**/conf/*.elcl&quot;
+</pre></div>
+</div>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>@include &quot;ext**/config.elcl&quot;  # ERROR! &quot;**&quot; must be a standalone path element.
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Coverage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">core</span></p></td>
+<td><p>Meta values and commands are part of the core language.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">include</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> is a standard feature.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Error Code</p></th>
+<th class="head"><p>Causes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>All errors related to parsing the name and text values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Syntax</span></p></td>
+<td><div class="line-block">
+<div class="line">Raised if the <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> meta command is followed by a non-text value.</div>
+<div class="line">Raised if the include value syntax is invalid.</div>
+<div class="line">Raised if an inclusion loop is detected.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">LimitExceeded</span></p></td>
+<td><p>Raised if more than five nesting levels are detected.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Unsupported</span></p></td>
+<td><p>Raised if the parser does not support the <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> command.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="meta-value.html" class="btn btn-neutral float-left" title="Meta Values and Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="signature-meta-value.html" class="btn btn-neutral float-right" title="Meta Command “Signature”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

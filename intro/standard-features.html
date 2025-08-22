@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Standard Features &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Advanced Features" href="advanced-features.html" />
+    <link rel="prev" title="Core Language" href="core-language.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core-language.html">Core Language</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Standard Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#floating-point-values">Floating-Point Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-floating-point-values">Rules for Floating-Point Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special-floating-point-values">Special Floating-Point Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#floating-point-precision">Floating-Point Precision</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#byte-counts">Byte Counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-line-text-values">Multi-line Text Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ignored-spacing-around-text">Ignored Spacing Around Text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#strict-indentation-rules">Strict Indentation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#section-lists">Section Lists</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-section-lists">Creating Section Lists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-section-lists">Rules for Section Lists</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#value-lists">Value Lists</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#single-line-value-lists">Single-Line Value Lists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-line-value-lists">Multi-line Value Lists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combining-single-line-and-multi-line-value-lists">Combining Single-Line and Multi-line Value Lists</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#text-names">Text Names</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#text-names-for-sections">Text Names for Sections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#text-names-for-values">Text Names for Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-text-names">Rules for Text Names</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#date-time-and-date-time-values">Date, Time, and Date-Time Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#time-values">Time Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#date-values">Date Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#date-time-values">Date-Time Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iso-compatibility">ISO Compatibility</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#code-text">Code Text</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-code-text">Rules for Code Text</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#byte-data-values">Byte-Data Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-byte-data">Rules for Byte-Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#meta-command-include">Meta Command “Include”</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interpretation-of-the-path">Interpretation of the Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#order-of-included-configuration-values">Order of Included Configuration Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-configurations-are-imported">How Configurations are Imported</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-features.html">Advanced Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Introduction</a></li>
+      <li class="breadcrumb-item active">Standard Features</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/intro/standard-features.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="standard-features">
+<span id="index-0"></span><span id="intro-standard-features"></span><h1>Standard Features<a class="headerlink" href="#standard-features" title="Link to this heading"></a></h1>
+<p>Beyond the core language, <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> offers a set of <strong>standard features</strong> that all parsers—except for lightweight <a class="reference internal" href="../glossary.html#term-Micro-Parser"><span class="xref std std-term">micro-parsers</span></a> on embedded platforms—must support. These features extend the basic capabilities of the core language, enabling more sophisticated and flexible configurations.</p>
+<p>This chapter introduces these standard features, which include advanced data types, enhanced syntax options, and additional configuration tools. Together, they provide the functionality needed for complex and maintainable configurations, making ELCL suitable for a wide range of use cases, from desktop applications to server environments.</p>
+<section id="floating-point-values">
+<span id="index-1"></span><span id="intro-floating-point-value"></span><h2>Floating-Point Values<a class="headerlink" href="#floating-point-values" title="Link to this heading"></a></h2>
+<p>Floating-point values introduce an additional data type to the language. They are not part of the <a class="reference internal" href="core-language.html#intro-core"><span class="std std-ref">core language</span></a> because microcontrollers often lack support for floating-point arithmetic, making it impractical to implement them in <a class="reference internal" href="../glossary.html#term-Micro-Parser"><span class="xref std std-term">micro-parsers</span></a>.</p>
+<p>In <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>, a floating-point number is defined by the presence of a decimal point (<code class="literal" onclick="showOverlay('.','FULL STOP','Po','U+002E','2E')"><span class="cp-role">.</span></code>). As soon as a number includes a decimal point, it is interpreted as a floating-point value. Consider the following examples:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">floating_point</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="mf">.0</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w"> </span><span class="mf">12&#39;802.</span>
+<span class="nv">value d</span><span class="o">:</span><span class="w"> </span><span class="mf">1.293&#39;281</span>
+<span class="nv">value e</span><span class="o">:</span><span class="w"> </span><span class="mf">12e+12</span>
+<span class="nv">value f</span><span class="o">:</span><span class="w"> </span><span class="mf">0.45E-7</span>
+<span class="nv">value g</span><span class="o">:</span><span class="w"> </span><span class="mf">-Inf</span>
+<span class="nv">value h</span><span class="o">:</span><span class="w"> </span><span class="mf">NaN</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Well-implemented applications should also accept integer values where a floating-point number is expected. Therefore, while <code class="docutils literal notranslate"><span class="pre">0.</span></code>, <code class="docutils literal notranslate"><span class="pre">.0</span></code>, or <code class="docutils literal notranslate"><span class="pre">12'802.</span></code> are technically correct floating-point numbers, you should be able to write <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">12'802</span></code>, which is more readable.</p>
+</div>
+<section id="rules-for-floating-point-values">
+<h3>Rules for Floating-Point Values<a class="headerlink" href="#rules-for-floating-point-values" title="Link to this heading"></a></h3>
+<p>When using floating-point numbers in ELCL, keep the following rules in mind:</p>
+<ul class="simple">
+<li><p><strong>Mandatory Whole or Fraction Part</strong>: A floating-point number must have either a whole number part, a fraction part, or both. A lone decimal point (e.g., <code class="docutils literal notranslate"><span class="pre">.</span></code>) is not allowed.</p></li>
+<li><p><strong>Decimal Separators</strong>: The whole number and fraction parts can use digit separators (<code class="literal" onclick="showOverlay('\'','APOSTROPHE','Po','U+0027','27')"><span class="cp-role">'</span></code>), following the same rules as for integer numbers: separators cannot be at the beginning or end of the number, and two or more consecutive separators are not allowed.</p></li>
+<li><p><strong>Exponent Notation</strong>: Floating-point numbers may include an exponent, indicated by the letter <code class="literal" onclick="showOverlay('e','LATIN SMALL LETTER E','Ll','U+0065','65')"><span class="cp-role">e</span></code> or <code class="literal" onclick="showOverlay('E','LATIN CAPITAL LETTER E','Lu','U+0045','45')"><span class="cp-role">E</span></code>, followed by an optional sign (<code class="literal" onclick="showOverlay('+','PLUS SIGN','Sm','U+002B','2B')"><span class="cp-role">+</span></code> or <code class="literal" onclick="showOverlay('-','HYPHEN-MINUS','Pd','U+002D','2D')"><span class="cp-role">-</span></code>) and an integer.</p></li>
+<li><p><strong>Exponent Range</strong>: The exponent can have up to six digits and may be prefixed with zeros. However, since most parsers use the IEEE 754 double-precision floating-point format, practical exponent values typically range from approximately ±308. Values beyond this range will result in <code class="docutils literal notranslate"><span class="pre">inf</span></code> (infinity).</p></li>
+</ul>
+</section>
+<section id="special-floating-point-values">
+<h3>Special Floating-Point Values<a class="headerlink" href="#special-floating-point-values" title="Link to this heading"></a></h3>
+<p>ELCL also supports two special floating-point values:</p>
+<ul class="simple">
+<li><p><strong>Infinity</strong>: Represented as <code class="docutils literal notranslate"><span class="pre">Inf</span></code> or <code class="docutils literal notranslate"><span class="pre">-Inf</span></code>, used to denote a value greater than any finite number.</p></li>
+<li><p><strong>Not-a-Number</strong>: Represented as <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, used to denote a value that is undefined or unrepresentable, often resulting from an invalid operation.</p></li>
+</ul>
+<p>These special values are case-insensitive and can be written in lowercase or uppercase (e.g., <code class="docutils literal notranslate"><span class="pre">inf</span></code>, <code class="docutils literal notranslate"><span class="pre">NAN</span></code>).</p>
+</section>
+<section id="floating-point-precision">
+<h3>Floating-Point Precision<a class="headerlink" href="#floating-point-precision" title="Link to this heading"></a></h3>
+<p>ELCL is a practical configuration language, designed with the understanding that floating-point values may be handled differently depending on the programming language or CPU architecture a parser uses. Consequently, the specification clearly states that converting floating-point numbers into the backend’s floating-point data type is not strictly defined and should be done “as accurately as possible,” allowing for reasonable tolerance during conversion.</p>
+<p>Platform-independent applications should be aware of this variability and treat an ELCL document as a configuration file rather than a data format. This means allowing for the same tolerances when interpreting floating-point values, rather than expecting exact numerical precision across different systems.</p>
+</section>
+</section>
+<section id="byte-counts">
+<span id="index-2"></span><span id="intro-byte-count"></span><h2>Byte Counts<a class="headerlink" href="#byte-counts" title="Link to this heading"></a></h2>
+<p>Byte counts are an additional format for decimal values. A suffix like <code class="docutils literal notranslate"><span class="pre">kb</span></code> or <code class="docutils literal notranslate"><span class="pre">kib</span></code> can be added to any decimal integer, in order to write larger byte counts in a more readable way. Byte counts are not part of the <a class="reference internal" href="core-language.html#intro-core"><span class="std std-ref">core language</span></a> because handling these suffixes correctly adds complexity to the parser for a feature that may not be needed in all use cases.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">Byte Counts</span><span class="o">]</span>
+<span class="nv">Size A</span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">kb</span>
+<span class="nv">Size B</span><span class="o">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="kt">MB</span>
+<span class="nv">Size D</span><span class="o">:</span><span class="w"> </span><span class="mi">56</span><span class="w"> </span><span class="kt">TiB</span>
+</pre></div>
+</div>
+<p>While a parser must support all suffixes up to yota-bytes, the actual byte count is limited by the underlying size for integer values. For example, one yota byte does not fit in a 64-bit integer, and must therefore rejected by the parser.</p>
+</section>
+<section id="multi-line-text-values">
+<span id="index-3"></span><span id="intro-multi-line-text"></span><h2>Multi-line Text Values<a class="headerlink" href="#multi-line-text-values" title="Link to this heading"></a></h2>
+<p>For configuring larger amounts of text that span multiple lines, <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> supports a special format called <strong>multi-line text</strong>. Unlike single-line text values, which are enclosed in double quotes (<code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code>), multi-line text is enclosed in three double quotes (<code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code><code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code><code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code>).</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">multi_line_text</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">The first line of text.</span>
+<span class="w">    </span><span class="s2">The second line of text.</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w">   </span><span class="c"># Multi-line text values can start on the next line,</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span><span class="w">    </span><span class="c"># following the core language rule for values.</span>
+<span class="w">    </span><span class="s2">The first line of text.</span>
+<span class="w">    </span><span class="s2">The second line of text.</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>If you are familiar with languages like Python, Swift, or Kotlin, which also support the <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;...&quot;&quot;&quot;</span></code> syntax, note that ELCL applies stricter rules to avoid common pitfalls associated with multi_line text.</p>
+<p>The allowed characters and escape sequences are the same as for single-line text, but there are additional rules specific to the multi_line format:</p>
+<ul class="simple">
+<li><p><strong>Enclosure</strong>: Multi-line text is enclosed in three double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>), not a single double quote.</p></li>
+<li><p><strong>Start on a New Line</strong>: The text must begin on the line after the opening triple quotes.</p></li>
+<li><p><strong>Consistent Indentation</strong>: All lines must be indented with the same number of <a class="reference internal" href="../glossary.html#term-Space"><span class="xref std std-term">spaces</span></a> or <a class="reference internal" href="../glossary.html#term-Tab"><span class="xref std std-term">tabs</span></a> as the first line.</p></li>
+<li><p><strong>Closing Line</strong>: The closing triple quotes must appear on their own line, after the last line of text.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Line breaks are normalized to a single newline character (<code class="literal" onclick="showOverlay('\\n','LINE FEED (LF), new line (NL), end of line (EOL)','Cc','U+000A','0A')"><span class="cp-role">\n</span></code>), and any trailing <a class="reference internal" href="../glossary.html#term-Spacing"><span class="xref std std-term">spacing</span></a> after the text is ignored.</p>
+</div>
+<section id="ignored-spacing-around-text">
+<h3>Ignored Spacing Around Text<a class="headerlink" href="#ignored-spacing-around-text" title="Link to this heading"></a></h3>
+<p>The actual content of the multi_line text starts on the line following the opening <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>. This means any spacing or comments between the opening <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> and the first line of text are ignored. Similarly, all spaces or comments after the last line of text and before the closing <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> are ignored.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/intro-multi-line-1.svg"><img alt="../_images/intro-multi-line-1.svg" src="../_images/intro-multi-line-1.svg" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">The opening <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> on the same line as the name, with spacing before the first line of text.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/intro-multi-line-2.svg"><img alt="../_images/intro-multi-line-2.svg" src="../_images/intro-multi-line-2.svg" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">The opening <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> on the next line, showing the ignored spacing.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>To preserve a line break at the end of the text, you must add an explicit newline (<cite>n</cite>) at the end of the last line, or leave an empty line before the closing <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>. Also, if you need trailing spaces in your text, you can use the escape sequence <code class="docutils literal notranslate"><span class="pre">\u{20}</span></code>.</p>
+</section>
+<section id="strict-indentation-rules">
+<h3>Strict Indentation Rules<a class="headerlink" href="#strict-indentation-rules" title="Link to this heading"></a></h3>
+<p>The first line’s indentation sets the left margin for all subsequent lines. This margin is ignored and does not become part of the actual text content.</p>
+<p>ELCL enforces strict indentation rules to prevent common mistakes. While you can use any combination of spaces and tabs for indentation, you must repeat the exact same sequence of characters for each line. If the indentation differs, for example, using four spaces on the first line and a tab on the second, the parser will stop with an error.</p>
+<p>An exception of the strict indentation rules are empty lines: They can repeat the indentation pattern, but a line-break with no spacing is allowed too.</p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h3>
+<p>While these rules might seem complex at first, they help avoid ambiguity and ensure consistent formatting. Consider the following examples:</p>
+<p>In the example below, the resulting text for <code class="docutils literal notranslate"><span class="pre">value_a</span></code> is <code class="docutils literal notranslate"><span class="pre">One\n⋅⋅⋅⋅Two\nThree</span></code> (the dots represent spaces).</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">multi_line_text_example</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span><span class="w">    </span><span class="c"># Comment</span>
+<span class="w">    </span><span class="s2">One</span>
+<span class="w">    </span><span class="s2">    Two</span>
+<span class="w">    </span><span class="s2">Three</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>If your text requires leading indentation, it’s best to start the multi_line text on the next line, using the opening <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> to set the indentation level. The resulting text for <code class="docutils literal notranslate"><span class="pre">value_a</span></code> in the following example is <code class="docutils literal notranslate"><span class="pre">⋅⋅⋅⋅&quot;One&quot;\n⋅⋅&quot;Two&quot;\n⋅⋅⋅⋅&quot;Three&quot;</span></code> (the dots represent spaces).</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">multi_line_text_example</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">    &quot;One&quot;</span>
+<span class="w">    </span><span class="s2">  &quot;Two&quot;</span>
+<span class="w">    </span><span class="s2">    &quot;Three&quot;</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="section-lists">
+<span id="index-4"></span><span id="intro-section-list"></span><h2>Section Lists<a class="headerlink" href="#section-lists" title="Link to this heading"></a></h2>
+<p>In many configurations, you may need to specify a list of entries rather than a single entry. For these cases, <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> provides <strong>section lists</strong>. A section list behaves like a regular section, but it allows the same section to be repeated multiple times. These repeating sections are then stored as a list in the resulting configuration.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">]</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web Localhost&quot;</span>
+<span class="nv">Port</span><span class="o">:</span><span class="w"> </span><span class="mi">8090</span>
+<span class="nv">Address</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span>
+<span class="nv">Protocol</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;web&quot;</span>
+<span class="nv">SSL</span><span class="o">:</span><span class="w"> </span><span class="kc">Off</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">]</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web Public&quot;</span>
+<span class="nv">Port</span><span class="o">:</span><span class="w"> </span><span class="mi">80</span>
+<span class="nv">Address</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span>
+<span class="nv">Protocol</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;web&quot;</span>
+<span class="nv">SSL</span><span class="o">:</span><span class="w"> </span><span class="kc">On</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">]</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Connector&quot;</span>
+<span class="nv">Port</span><span class="o">:</span><span class="w"> </span><span class="mi">9010</span>
+<span class="nv">Address</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span>
+<span class="nv">Protocol</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;connector&quot;</span>
+<span class="nv">SSL</span><span class="o">:</span><span class="w"> </span><span class="kc">On</span>
+</pre></div>
+</div>
+<p>The configuration above results in a list of three entries under the <code class="docutils literal notranslate"><span class="pre">connection</span></code> section within the <code class="docutils literal notranslate"><span class="pre">server</span></code> section, as shown below:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[server]
+└── [connection]
+    ├── [0]
+    │   ├── name = &quot;Web Localhost&quot;
+    │   ├── port = 8090
+    │   └── ...
+    ├── [1]
+    │   ├── name = &quot;Web Public&quot;
+    │   ├── port = 80
+    │   └── ...
+    └── [2]
+        ├── name = &quot;Connector&quot;
+        ├── port = 9010
+        └── ...
+</pre></div>
+</div>
+<section id="creating-section-lists">
+<h3>Creating Section Lists<a class="headerlink" href="#creating-section-lists" title="Link to this heading"></a></h3>
+<p>To create a section list, simply prefix the opening bracket (<code class="literal" onclick="showOverlay('[','LEFT SQUARE BRACKET','Ps','U+005B','5B')"><span class="cp-role">[</span></code>) with an asterisk (<code class="literal" onclick="showOverlay('*','ASTERISK','Po','U+002A','2A')"><span class="cp-role">*</span></code>). Optionally, you can add an asterisk after the closing bracket (<code class="literal" onclick="showOverlay(']','RIGHT SQUARE BRACKET','Pe','U+005D','5D')"><span class="cp-role">]</span></code>) and surround the section name with minus (<code class="literal" onclick="showOverlay('-','HYPHEN-MINUS','Pd','U+002D','2D')"><span class="cp-role">-</span></code>) characters for visual separation.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">]*</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web&quot;</span>
+
+<span class="o">---*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">]*------------------------------------</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="rules-for-section-lists">
+<h3>Rules for Section Lists<a class="headerlink" href="#rules-for-section-lists" title="Link to this heading"></a></h3>
+<p>The most important rule to keep in mind: you must never mix regular and section lists for the same <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a> in a configuration. If you define a regular section like <code class="docutils literal notranslate"><span class="pre">[server.connection]</span></code> and later switch to a section list with <code class="docutils literal notranslate"><span class="pre">*[server.connection]*</span></code>, the parser will stop with an error. This restriction ensures that a section can only be represented as either a <a class="reference internal" href="../glossary.html#term-Value-Map"><span class="xref std std-term">value map</span></a> or a <a class="reference internal" href="../glossary.html#term-Value-List"><span class="xref std std-term">value list</span></a> for the same <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a>, but not both.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">]</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web&quot;</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="err">connection</span><span class="o">]</span><span class="w">   </span><span class="c"># Error! You must not mix regular with section lists.</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web&quot;</span>
+</pre></div>
+</div>
+<p>The second important rule: When you start a new section, and a <em>section list</em> is part of the <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a>, this section always refers to the <strong>last section</strong> in the list that was created in the document.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">]</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web&quot;</span><span class="w">           </span><span class="c"># &quot;web&quot; =&gt; server.connection[0].name</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">Ignore</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value_a&quot;</span><span class="w">     </span><span class="c"># &quot;value_a&quot; =&gt; server.connection[0].filter.ignore</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">]</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;API&quot;</span><span class="w">           </span><span class="c"># &quot;API&quot; =&gt; server.connection[1].name</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">Ignore</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value_b&quot;</span><span class="w">     </span><span class="c"># &quot;value_b&quot; =&gt; server.connection[1].filter.ignore</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">connection</span><span class="o">]</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Tunnel&quot;</span><span class="w">        </span><span class="c"># &quot;Tunnel&quot; =&gt; server.connection[2].name</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">Ignore</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value_c&quot;</span><span class="w">     </span><span class="c"># &quot;value_c&quot; =&gt; server.connection[2].filter.ignore</span>
+</pre></div>
+</div>
+<p>The configuration above results in a list of three entries under the <code class="docutils literal notranslate"><span class="pre">connection</span></code> section within the <code class="docutils literal notranslate"><span class="pre">server</span></code> section, each with a subsection <code class="docutils literal notranslate"><span class="pre">filter</span></code>, as shown below:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>server
+    connection
+        [0]
+            name = &quot;Web&quot;
+            filter
+                ignore = &quot;value_a&quot;
+        [1]
+            name = &quot;API&quot;
+            filter
+                ignore = &quot;value_b&quot;
+        [2]
+            name = &quot;Tunnel&quot;
+            filter
+                ignore = &quot;value_c&quot;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="value-lists">
+<span id="index-5"></span><span id="intro-value-list"></span><h2>Value Lists<a class="headerlink" href="#value-lists" title="Link to this heading"></a></h2>
+<p>In many configuration scenarios, you may need a list of values rather than a single value. <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> supports this by allowing the creation of <strong>value lists</strong>. There are two types of value lists:</p>
+<ol class="arabic simple">
+<li><p><strong>Single-line value lists</strong>, where values are separated by a comma (<code class="literal" onclick="showOverlay(',','COMMA','Po','U+002C','2C')"><span class="cp-role">,</span></code>).</p></li>
+<li><p><strong>Multi-line value lists</strong>, where each value is placed on a new line, prefixed with an asterisk (<code class="literal" onclick="showOverlay('*','ASTERISK','Po','U+002A','2A')"><span class="cp-role">*</span></code>).</p></li>
+</ol>
+<section id="single-line-value-lists">
+<h3>Single-Line Value Lists<a class="headerlink" href="#single-line-value-lists" title="Link to this heading"></a></h3>
+<p>Single-line value lists are created by separating values with a comma. Here are some examples:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">value_lists</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="mi">100</span><span class="o">,</span><span class="w"> </span><span class="mi">200</span><span class="o">,</span><span class="w"> </span><span class="mi">300</span><span class="o">,</span><span class="w"> </span><span class="mi">400</span><span class="o">,</span><span class="w"> </span><span class="mi">500</span><span class="w">   </span><span class="c"># A list of integers.</span>
+<span class="nv">value d</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="kc">Yes</span><span class="w">            </span><span class="c"># A list with mixed value types.</span>
+</pre></div>
+</div>
+<p>You cannot create empty lists or single-line lists with only one value. These details are handled at the application level. If an application requests a list for a given value and it’s defined as a regular value, a list with one element is returned. If the value isn’t configured, an empty list is returned.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>Multi-line values are not allowed in single-line lists.</p></li>
+<li><p>Consecutive commas are not allowed in lists.</p></li>
+</ul>
+</div>
+</section>
+<section id="multi-line-value-lists">
+<h3>Multi-line Value Lists<a class="headerlink" href="#multi-line-value-lists" title="Link to this heading"></a></h3>
+<p>Multi-line value lists are useful when you want to list values vertically. Each value must be placed on a new line and must be prefixed with an asterisk (<code class="literal" onclick="showOverlay('*','ASTERISK','Po','U+002A','2A')"><span class="cp-role">*</span></code>).</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">value_lists</span><span class="o">]</span>
+<span class="nv">rainbow</span><span class="o">:</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;red&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;yellow&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;green&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;blue&quot;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>Empty lines between values, even lines with only comments, are not allowed.</p></li>
+<li><p>Multi-line values are not allowed in multi_line lists.</p></li>
+<li><p>Each asterisk (<code class="literal" onclick="showOverlay('*','ASTERISK','Po','U+002A','2A')"><span class="cp-role">*</span></code>) must be followed by a value.</p></li>
+</ul>
+</div>
+</section>
+<section id="combining-single-line-and-multi-line-value-lists">
+<h3>Combining Single-Line and Multi-line Value Lists<a class="headerlink" href="#combining-single-line-and-multi-line-value-lists" title="Link to this heading"></a></h3>
+<p>You can combine single-line and multi_line value lists to create a two-dimensional array of values, as shown below:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">value_lists</span><span class="o">]</span>
+<span class="nv">array</span><span class="o">:</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">1</span><span class="o">,</span><span class="w">   </span><span class="mi">2</span><span class="o">,</span><span class="w">   </span><span class="mi">3</span><span class="o">,</span><span class="w">   </span><span class="mi">4</span>
+<span class="w">    </span><span class="o">*</span><span class="w">  </span><span class="mi">12</span><span class="o">,</span><span class="w">  </span><span class="mi">23</span><span class="o">,</span><span class="w">  </span><span class="mi">34</span><span class="o">,</span><span class="w">  </span><span class="mi">45</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="mi">123</span><span class="o">,</span><span class="w"> </span><span class="mi">234</span><span class="o">,</span><span class="w"> </span><span class="mi">345</span><span class="o">,</span><span class="w"> </span><span class="mi">456</span>
+</pre></div>
+</div>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Value lists in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> are designed to handle common configuration needs effectively, while avoiding unnecessary complexity. Key design choices include:</p>
+<ul class="simple">
+<li><p><strong>Prohibiting Multi-line Values</strong>: Multi-line values are not allowed in lists to maintain clarity and simplicity in the configuration.</p></li>
+<li><p><strong>Limited Nesting</strong>: ELCL limits list nesting to two dimensions to keep configurations easy to write and understand. For more complex data structures, formats like JSON or XML are recommended.</p></li>
+<li><p><strong>No Empty Lists</strong>: There is no way to create an empty list, similar to how there is no “undefined” value in ELCL. Undefined values or empty lists can overcomplicate configurations by being used to represent default values.</p></li>
+<li><p><strong>No Single-Entry Lists</strong>: There is no distinction between a single regular value and a list with one element. Differentiating between them would create unnecessary confusion for users.</p></li>
+</ul>
+<p>These constraints ensure that ELCL remains a practical and human-readable configuration language, suited to common use cases without introducing complexity.</p>
+</div>
+</section>
+</section>
+<section id="text-names">
+<span id="index-6"></span><span id="intro-text-name"></span><h2>Text Names<a class="headerlink" href="#text-names" title="Link to this heading"></a></h2>
+<p>In some cases, naming values or sections with just <a class="reference internal" href="../glossary.html#term-Letter"><span class="xref std std-term">letters</span></a> and <a class="reference internal" href="../glossary.html#term-Digit"><span class="xref std std-term">digits</span></a> isn’t sufficient. For these situations, <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> provides <strong>text names</strong>, where the name is treated as a text value enclosed in double quotes.</p>
+<section id="text-names-for-sections">
+<h3>Text Names for Sections<a class="headerlink" href="#text-names-for-sections" title="Link to this heading"></a></h3>
+<p>Text names can be used in section definitions to accommodate names that include special characters not allowed in regular names. In the example below, text names are used to configure filter rules for email addresses. Since email addresses often contain characters like <code class="literal" onclick="showOverlay('@','COMMERCIAL AT','Po','U+0040','40')"><span class="cp-role">@</span></code> and <code class="literal" onclick="showOverlay('.','FULL STOP','Po','U+002E','2E')"><span class="cp-role">.</span></code>, which are not valid in regular names, using text names solves this problem and makes the configuration more readable.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">Email Filter</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">&quot;anna@example.com&quot;</span><span class="o">]</span>
+<span class="nv">Reject</span><span class="o">:</span><span class="w"> </span><span class="kc">Yes</span>
+
+<span class="p">[</span><span class="nt">Email Filter</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">&quot;bert@example.com&quot;</span><span class="o">]</span>
+<span class="nv">Reject</span><span class="o">:</span><span class="w"> </span><span class="kc">No</span>
+<span class="nv">Forward To</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;caesar@example.com&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="text-names-for-values">
+<h3>Text Names for Values<a class="headerlink" href="#text-names-for-values" title="Link to this heading"></a></h3>
+<p>Text names can also be used as value names. This is useful when the value name itself contains special characters or needs to be represented as a string.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">Translation</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nt">jp</span><span class="o">]</span>
+<span class="nv">&quot;Good Morning!&quot;</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;おはようございます！&quot;</span>
+<span class="nv">&quot;Have a great day!&quot;</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;良い一日をお過ごしください！&quot;</span>
+<span class="nv">&quot;What is your name?&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;お名前は何ですか？&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="rules-for-text-names">
+<h3>Rules for Text Names<a class="headerlink" href="#rules-for-text-names" title="Link to this heading"></a></h3>
+<p>There are a few important rules to follow when using text names in ELCL:</p>
+<ul class="simple">
+<li><p><strong>Text Format</strong>: Text names for sections and values use the same format, limitations, and escape sequences as single-line text values.</p></li>
+<li><p><strong>Position in Name Path</strong>: In sections, a text name must always be the last element in a <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a> and cannot be the first.</p></li>
+<li><p><strong>No Subsections</strong>: Sections with a text name cannot have subsections. The text name effectively acts as a terminal point in the hierarchy.</p></li>
+<li><p><strong>Mutually Exclusive Naming</strong>: A section can contain either regular named values or text-named values, but not a mix of both.</p></li>
+</ul>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>The design and limitations of text names in ELCL are intended to prevent misuse and maintain clarity in configurations. This feature allows developers to integrate text mapping into configurations, such as mapping a string to a single value or a set of configuration values. However, it is not meant to enable complex Unicode texts as configuration names or to support native language configuration names. The goal is to provide flexibility without sacrificing the simplicity and readability of the configuration.</p>
+</div>
+</section>
+</section>
+<section id="date-time-and-date-time-values">
+<span id="index-7"></span><span id="intro-time"></span><h2>Date, Time, and Date-Time Values<a class="headerlink" href="#date-time-and-date-time-values" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> supports date, time, and combined date-time values using a subset of the formats defined in the ISO 8601-1:2019 standard.</p>
+<section id="time-values">
+<h3>Time Values<a class="headerlink" href="#time-values" title="Link to this heading"></a></h3>
+<p>Here are some examples of time values in ELCL:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">time_values</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="ld">01:23</span><span class="w">              </span><span class="c"># A local time in &lt;hour&gt;:&lt;minute&gt; format.</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="ld">23:59:01</span><span class="w">           </span><span class="c"># A local time with seconds.</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w"> </span><span class="ld">04:27:09.003</span><span class="w">       </span><span class="c"># A local time with fractions of seconds.</span>
+<span class="nv">value d</span><span class="o">:</span><span class="w"> </span><span class="ld">01:23z</span><span class="w">             </span><span class="c"># UTC time (indicated by &#39;z&#39;).</span>
+<span class="nv">value e</span><span class="o">:</span><span class="w"> </span><span class="ld">22:45:15z</span><span class="w">          </span><span class="c"># UTC time with seconds.</span>
+<span class="nv">value f</span><span class="o">:</span><span class="w"> </span><span class="ld">14:21:59.141Z</span><span class="w">      </span><span class="c"># UTC time with fractions of seconds.</span>
+<span class="nv">value g</span><span class="o">:</span><span class="w"> </span><span class="ld">12:01+02</span><span class="w">           </span><span class="c"># Time with a timezone offset in hours.</span>
+<span class="nv">value h</span><span class="o">:</span><span class="w"> </span><span class="ld">17:31-03:30</span><span class="w">        </span><span class="c"># Time with a timezone offset in hours and minutes.</span>
+<span class="nv">value i</span><span class="o">:</span><span class="w"> </span><span class="ld">t16:49:03z</span><span class="w">         </span><span class="c"># Optional &#39;t&#39; prefix for ISO compatibility.</span>
+</pre></div>
+</div>
+<p>A time value must contain at least one colon separator (<code class="literal" onclick="showOverlay(':','COLON','Po','U+003A','3A')"><span class="cp-role">:</span></code>) and must therefore specify at least hours and minutes. You can optionally include seconds and fractions of seconds. Each element (hours, minutes, and seconds) must consist of two digits. Fractions of a second can be specified with up to nine digits, separated by a decimal point (<code class="literal" onclick="showOverlay('.','FULL STOP','Po','U+002E','2E')"><span class="cp-role">.</span></code>).</p>
+<p>Each time value can also have an optional timezone offset. This can either be the letter <code class="literal" onclick="showOverlay('z','LATIN SMALL LETTER Z','Ll','U+007A','7A')"><span class="cp-role">z</span></code> for UTC, or an offset starting with a plus (<code class="literal" onclick="showOverlay('+','PLUS SIGN','Sm','U+002B','2B')"><span class="cp-role">+</span></code>) or minus (<code class="literal" onclick="showOverlay('-','HYPHEN-MINUS','Pd','U+002D','2D')"><span class="cp-role">-</span></code>) sign. The offset can be specified with hours and, optionally, minutes.</p>
+<p>A parser must always assign a timezone or offset to a time value. For local times without a specified offset, the parser should use the system’s local timezone. Unlike data formats where a timezone is crucial, ELCL allows local times since they automatically adapt to the system’s timezone.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Geographical time zones are not supported in ELCL because they require a date and are rarely needed in configuration files. If a specific time at a particular geographical location is required, it is best practice to convert it to UTC first.</p>
+</div>
+</section>
+<section id="date-values">
+<h3>Date Values<a class="headerlink" href="#date-values" title="Link to this heading"></a></h3>
+<p>The following examples demonstrate date values:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">date_values</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-12-01</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="ld">2018-01-14</span>
+</pre></div>
+</div>
+<p>Dates must include a year, month, and day, separated by a minus sign (<code class="literal" onclick="showOverlay('-','HYPHEN-MINUS','Pd','U+002D','2D')"><span class="cp-role">-</span></code>). The year requires four digits, while the month and day require two digits each. The year must be in the range of 1 to 9999.</p>
+</section>
+<section id="date-time-values">
+<h3>Date-Time Values<a class="headerlink" href="#date-time-values" title="Link to this heading"></a></h3>
+<p>The following examples show combined date-time values:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">date_time_values</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-11-19 17:45</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-11-19 23:59:01</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-11-19 04:27:09.003</span>
+<span class="nv">value d</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-11-19t01:23z</span>
+<span class="nv">value e</span><span class="o">:</span><span class="w"> </span><span class="ld">2024-11-19T22:45:15z</span>
+</pre></div>
+</div>
+<p>Date-time values combine a date and a time, separated by either a <a class="reference internal" href="../glossary.html#term-Space"><span class="xref std std-term">space</span></a> (<code class="literal" onclick="showOverlay(' ','SPACE','Zs','U+0020','20')"><span class="cp-role"> </span></code>) or the letter <code class="literal" onclick="showOverlay('T','LATIN CAPITAL LETTER T','Lu','U+0054','54')"><span class="cp-role">T</span></code>.</p>
+</section>
+<section id="iso-compatibility">
+<h3>ISO Compatibility<a class="headerlink" href="#iso-compatibility" title="Link to this heading"></a></h3>
+<p>ELCL supports only a subset of the ISO 8601-1:2019 standard:</p>
+<ul class="simple">
+<li><p>The year zero is not allowed.</p></li>
+<li><p>Week and ordinal dates are not supported.</p></li>
+<li><p>Times must include at least hours and minutes, and dates require all three components (year, month, and day).</p></li>
+<li><p>Separator characters (<code class="literal" onclick="showOverlay('-','HYPHEN-MINUS','Pd','U+002D','2D')"><span class="cp-role">-</span></code> and <code class="literal" onclick="showOverlay(':','COLON','Po','U+003A','3A')"><span class="cp-role">:</span></code>) are mandatory.</p></li>
+<li><p>Hour and minute fractions are not allowed, and the number of fractional digits for seconds is limited to nine.</p></li>
+</ul>
+</section>
+</section>
+<section id="code-text">
+<span id="index-8"></span><span id="intro-code"></span><h2>Code Text<a class="headerlink" href="#code-text" title="Link to this heading"></a></h2>
+<p><em>Code</em> is a special format for text values that does not support escape sequences. It uses backtick (grave accent, <code class="literal" onclick="showOverlay('`','GRAVE ACCENT','Sk','U+0060','60')"><span class="cp-role">`</span></code>) characters to enclose the text. This format is useful for including short code snippets or text with many backslashes (<code class="literal" onclick="showOverlay('\\','REVERSE SOLIDUS','Po','U+005C','5C')"><span class="cp-role">\</span></code>) in the configuration without needing to escape special characters. Code text is not a distinct value type; rather, it is a special <a class="reference internal" href="../glossary.html#term-Value-Format"><span class="xref std std-term">format</span></a> for text values.</p>
+<p>Consider the following examples:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">code_text</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span><span class="s2">return $name + &quot;\r\n&quot;;</span><span class="sb">`</span><span class="w">  </span><span class="c"># Single-line code text.</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w">                           </span><span class="c"># Multi-line code text.</span>
+<span class="w">    </span><span class="sb">```</span>
+<span class="w">    </span><span class="s2">function callback($name) {</span>
+<span class="w">    </span><span class="s2">    return $name + &quot;\r\n&quot;;</span>
+<span class="w">    </span><span class="s2">}</span>
+<span class="w">    </span><span class="sb">```</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w">                           </span><span class="c"># Text with backticks.</span>
+<span class="w">    </span><span class="sb">```</span>
+<span class="w">    </span><span class="s2">const overlay = document.createElement(&#39;div&#39;);</span>
+<span class="w">    </span><span class="s2">overlay.innerHTML = `</span>
+<span class="w">    </span><span class="s2">    &lt;div class=&quot;content&quot;&gt;</span>
+<span class="w">    </span><span class="s2">        &lt;span&gt;Name: ${name}&lt;/span&gt;</span>
+<span class="w">    </span><span class="s2">    &lt;/div&gt;</span>
+<span class="w">    </span><span class="s2">`;</span>
+<span class="w">    </span><span class="sb">```</span>
+<span class="nv">value d</span><span class="o">:</span>
+<span class="w">    </span><span class="sb">```</span><span class="sa">xml</span><span class="w">    </span><span class="c"># A language identifier is allowed but ignored by the parser.</span>
+<span class="w">    </span><span class="s2">&lt;Document&gt;</span>
+<span class="w">    </span><span class="s2">&lt;/Document&gt;</span>
+<span class="w">    </span><span class="sb">```</span>
+</pre></div>
+</div>
+<p>In the examples above, the code format allows JavaScript snippets to be included naturally in the configuration, without escaping double quotes and backslashes, which are common in many programming languages.</p>
+<section id="rules-for-code-text">
+<h3>Rules for Code Text<a class="headerlink" href="#rules-for-code-text" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>No Escape Sequences</strong>: Code text does not support escape sequences. This means that it is not possible to use a single backtick in single-line code text or to start a line with three backticks in multi_line code text.</p></li>
+<li><p><strong>Language Identifier</strong>: For multi_line code text, a language identifier like <code class="docutils literal notranslate"><span class="pre">cpp</span></code> or <code class="docutils literal notranslate"><span class="pre">xml</span></code> can be added immediately after the opening three backticks. This identifier is ignored by the parser but can be useful for syntax highlighters.</p></li>
+<li><p><strong>Same Rules as Text Values</strong>: Except for the lack of escape sequences, code text follows the same rules as <a class="reference internal" href="core-language.html#intro-text"><span class="std std-ref">text</span></a>:</p>
+<ul>
+<li><p><strong>No Control Characters</strong>: Control characters are not allowed in code text.</p></li>
+<li><p><strong>Line Breaks</strong>: Line breaks are normalized to a single newline character.</p></li>
+<li><p><strong>Consistent Indentation</strong>: Continued lines must start with the same sequence of indentation characters.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="byte-data-values">
+<span id="index-9"></span><span id="intro-byte-data"></span><h2>Byte-Data Values<a class="headerlink" href="#byte-data-values" title="Link to this heading"></a></h2>
+<p><em>Byte-data</em> introduces a new data type to <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>, allowing short sequences of byte-data to be included in configurations. Byte-data is represented using pairs of hexadecimal digits enclosed in angle brackets <code class="docutils literal notranslate"><span class="pre">&lt;...&gt;</span></code> for single-line values, or triple angle brackets <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;...&gt;&gt;&gt;</span></code> for multi_line values.</p>
+<p>Consider the following examples:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">byte_data_values</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;</span><span class="mh">01b203c405</span><span class="s1">&gt;</span><span class="w">           </span><span class="c"># A single-line value with five bytes.</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;</span><span class="w"> </span><span class="mh">01B2</span><span class="w"> </span><span class="mh">03C4</span><span class="w"> </span><span class="mh">05</span><span class="w"> </span><span class="s1">&gt;</span><span class="w">       </span><span class="c"># Spacing between bytes is allowed.</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;</span><span class="sa">hex:</span><span class="w"> </span><span class="mh">01</span><span class="w"> </span><span class="mh">b2</span><span class="w"> </span><span class="mh">03</span><span class="w"> </span><span class="mh">c4</span><span class="w"> </span><span class="mh">05</span><span class="s1">&gt;</span><span class="w">  </span><span class="c"># Optional &quot;hex:&quot; prefix is allowed.</span>
+<span class="nv">value d</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;&lt;&lt;</span><span class="w">                    </span><span class="c"># A multi_line byte-data value.</span>
+<span class="w">    </span><span class="mh">01b2</span><span class="w"> </span><span class="mh">03c4</span><span class="w"> </span><span class="mh">05a6</span><span class="w">              </span><span class="c"># Comments and line breaks are allowed</span>
+<span class="w">    </span><span class="mh">0728</span><span class="w"> </span><span class="mh">390a</span><span class="w"> </span><span class="mh">1b0c</span><span class="w">              </span><span class="c"># in multi_line &quot;hex&quot; byte-data.</span>
+<span class="w">    </span><span class="s1">&gt;&gt;&gt;</span>
+<span class="nv">value e</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;&lt;&lt;</span><span class="sa">hex</span><span class="w">                 </span><span class="c"># Optional format prefix for multi_line byte-data.</span>
+<span class="w">    </span><span class="mh">01b203c4</span><span class="w"> </span><span class="mh">05a60728</span><span class="w"> </span><span class="mh">390a1b0c</span>
+<span class="w">    </span><span class="s1">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<section id="rules-for-byte-data">
+<h3>Rules for Byte-Data<a class="headerlink" href="#rules-for-byte-data" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Hexadecimal Pairs</strong>: Byte-data must be specified in pairs of hexadecimal digits, each pair representing a single byte.</p></li>
+<li><p><strong>Allowed Spacing</strong>: Spaces are allowed between byte pairs. In multi_line values, line breaks are also permitted.</p></li>
+<li><p><strong>Format Specifier</strong>: The format of the data can optionally be specified immediately after the opening bracket. Currently, only the <code class="docutils literal notranslate"><span class="pre">hex</span></code> format is supported. For single-line values, the format specifier must be followed by a colon (<code class="literal" onclick="showOverlay(':','COLON','Po','U+003A','3A')"><span class="cp-role">:</span></code>).</p></li>
+</ul>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>The purpose of supporting byte-data in ELCL is not to embed large data blobs but to allow for short sequences of byte-data in configurations. This is useful for scenarios such as configuring file headers or protocol-specific data sequences that cannot be easily expressed using text. By providing a dedicated byte-data format, ELCL avoids the uncontrolled growth of various ad-hoc formats embedded in text values, ensuring that configurations remain clear and manageable.</p>
+<p>The optional format specifier (<code class="docutils literal notranslate"><span class="pre">hex</span></code>) is included in this version of the language specification to simplify future extensions. When no format specifier is present, the hexadecimal format is assumed by default.</p>
+</div>
+</section>
+</section>
+<section id="meta-command-include">
+<span id="index-10"></span><span id="intro-include"></span><h2>Meta Command “Include”<a class="headerlink" href="#meta-command-include" title="Link to this heading"></a></h2>
+<p>A standard feature of <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> is the <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> <a class="reference internal" href="../glossary.html#term-Meta-Command"><span class="xref std std-term">meta command</span></a>. <em>Meta commands</em> are similar to <a class="reference internal" href="core-language.html#intro-meta-value"><span class="std std-ref">meta values</span></a>, but they can be defined multiple times, and they can be placed between sections or at the end of a document.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> meta command must be followed by a <a class="reference internal" href="core-language.html#intro-text"><span class="std std-ref">text</span></a> value containing a URL-like path, either a relative or absolute file-system path, or a file system pattern. This path or pattern specifies one or more configuration files to be read and included at the position of the meta command.</p>
+<p>Consider the following example:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">section</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span>
+
+<span class="nf">@include</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;file:configurations/*.ecl&quot;</span>
+</pre></div>
+</div>
+<section id="interpretation-of-the-path">
+<h3>Interpretation of the Path<a class="headerlink" href="#interpretation-of-the-path" title="Link to this heading"></a></h3>
+<p>A parser is <em>not</em> responsible for interpreting or resolving the path specified in the <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> meta command. In the simplest implementation, the parser can pass this value to the application and expect a list of data streams to parse. However, the ELCL specification recommends that parsers provide a default implementation for resolving paths, allowing the application to validate each path or set limits beforehand.</p>
+<p>For security and consistency, applications may want to restrict paths to be within a specific directory, such as the main configuration directory, or require that included files be located in the same directory as the original configuration file. While ELCL defines the mechanism and behavior for including additional configuration files, it leaves the specifics of path resolution and validation to the parser and application.</p>
+</section>
+<section id="order-of-included-configuration-values">
+<h3>Order of Included Configuration Values<a class="headerlink" href="#order-of-included-configuration-values" title="Link to this heading"></a></h3>
+<p>Configuration sections and values from included files are integrated into the main configuration in the order they are encountered.</p>
+<p>If multiple files are included using a file pattern, the specification recommends that they be processed in alphabetical order. For recursive patterns, files should be included in alphabetical order within each directory, and subdirectories should be processed in alphabetical order as well. These recommendations are provided to ensure consistency, but they are not strict requirements, as configurations may not always be stored as files with predictable names. Check your parser’s documentation for specific details on how it handles file inclusion.</p>
+</section>
+<section id="how-configurations-are-imported">
+<h3>How Configurations are Imported<a class="headerlink" href="#how-configurations-are-imported" title="Link to this heading"></a></h3>
+<p>Each included file must be a complete and valid ELCL configuration document. This means it can contain meta values, signatures, and must follow all standard ELCL rules. For example:</p>
+<ul class="simple">
+<li><p>An included document must not begin with a relative section or contain values outside of a section.</p></li>
+<li><p><a class="reference internal" href="core-language.html#intro-name-conflict"><span class="std std-ref">Name conflicts</span></a> are handled like everything is one single document.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> meta command does not simply copy text from another file into the main configuration. Instead, it incorporates the fully parsed configuration data from the included file into the current document.</p>
+<p>Since the <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> meta command is always placed at the <a class="reference internal" href="../glossary.html#term-Document-Root"><span class="xref std std-term">document root</span></a>, it closes any previously open section. After an <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code> command, you cannot continue configuring values in the previous section or start a new <a class="reference internal" href="core-language.html#intro-subsection"><span class="std std-ref">relative section</span></a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core-language.html" class="btn btn-neutral float-left" title="Core Language" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="advanced-features.html" class="btn btn-neutral float-right" title="Advanced Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

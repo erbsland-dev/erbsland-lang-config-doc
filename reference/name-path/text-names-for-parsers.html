@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parser-Specific Usage of Text Names &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/overlay.js?v=11512746"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Name Conflicts" href="../name-conflict.html" />
+    <link rel="prev" title="Text Names in Name Paths" href="text-names.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Language Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../conventions.html">Documentation Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../characters.html">Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../line-break.html">Line Break</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spacing.html">Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../comments.html">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../names.html">Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text-name.html">Text Names</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Name Paths</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="intro.html">Visualizing the Value Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="single.html">Name Paths with One Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiple.html">Name Paths with Multiple Elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addressing-list.html">Addressing a Section List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="list-without-index.html">Addressing Section List Values without an Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="list-with-index.html">Addressing Values with an Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="text-names.html">Text Names in Name Paths</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parser-Specific Usage of Text Names</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#escaping-special-characters-in-text-names">Escaping Special Characters in Text Names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#short-form-index-based-access-to-text-names">Short Form: Index-Based Access to Text Names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-guidance">Implementation Guidance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../name-conflict.html">Name Conflicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../section-names.html">Section Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sections.html">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../named-values.html">Named Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../single-line-value-list.html">Single-Line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi-line-value-list.html">Multi-line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text-value.html">Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integer-value.html">Integer Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boolean-value.html">Boolean Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../floating-point-value.html">Floating-Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi-line-text-value.html">Multi-line Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../date-time-value.html">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../code-text-value.html">Code Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../byte-data-value.html">Byte-Data Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regular-expression-value.html">Regular Expression Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../time-delta-value.html">Time-Delta Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../meta-value.html">Meta Values and Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../include-meta-command.html">Meta Command “Include”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../signature-meta-value.html">Meta Command “Signature”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../value-type-names.html">Names for Value Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../error-code.html">Error Categories and Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../error-details.html">Error Category Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature-identifier.html">Feature Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Language Reference</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Name Paths</a></li>
+      <li class="breadcrumb-item active">Parser-Specific Usage of Text Names</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/reference/name-path/text-names-for-parsers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="parser-specific-usage-of-text-names">
+<h1>Parser-Specific Usage of Text Names<a class="headerlink" href="#parser-specific-usage-of-text-names" title="Link to this heading"></a></h1>
+<p>In configuration files, text names always appear as the <strong>final component</strong> in a name path. However, parsers are not bound by this restriction. When traversing or addressing a parsed value tree, a text name may appear in <strong>any position</strong> of a name path — including intermediate positions.</p>
+<p>For example, the following name path addresses the <code class="docutils literal notranslate"><span class="pre">isbn</span></code> field of a specific book entry:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>book.&quot;The Practice of System and Network Administration&quot;.isbn
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section documents <strong>parser conventions</strong>, not ELCL language syntax. Although not part of the configuration language itself, these conventions matter for users because name paths often appear in <strong>error messages</strong>, <strong>debug output</strong>, or <strong>API references</strong>.</p>
+</div>
+<section id="escaping-special-characters-in-text-names">
+<h2>Escaping Special Characters in Text Names<a class="headerlink" href="#escaping-special-characters-in-text-names" title="Link to this heading"></a></h2>
+<p>When parsers handle name paths that include text names, they must apply precise escaping and unescaping rules. These rules follow the same encoding model as single-line string values (see <a class="reference internal" href="../text.html#ref-text"><span class="std std-ref">Text</span></a>) and ensure that name paths remain unambiguous across various contexts such as error messages, API calls, or test diagnostics.</p>
+<section id="parsing-text-names-in-name-paths">
+<h3>Parsing Text Names in Name Paths<a class="headerlink" href="#parsing-text-names-in-name-paths" title="Link to this heading"></a></h3>
+<p>When reading a name path, a parser must resolve all escape sequences into their corresponding Unicode code points. The double quotes surrounding a text name must be preserved during parsing to distinguish it from a regular identifier — for example, <code class="docutils literal notranslate"><span class="pre">&quot;text&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">text</span></code> are interpreted as distinct names.</p>
+</section>
+<section id="rendering-text-names-in-name-paths">
+<h3>Rendering Text Names in Name Paths<a class="headerlink" href="#rendering-text-names-in-name-paths" title="Link to this heading"></a></h3>
+<p>When rendering name paths for diagnostic or programmatic output, parsers should follow a consistent escaping strategy:</p>
+<ul class="simple">
+<li><p>Escape all control characters and all characters in the multi-byte Unicode range:</p>
+<ul>
+<li><p><span class="text-code">U+0000</span> – <span class="text-code">U+001F</span></p></li>
+<li><p><span class="text-code">U+007F</span> – <span class="text-code">U+1FFFFF</span></p></li>
+</ul>
+</li>
+<li><p>Always escape the following characters:</p>
+<ul>
+<li><p>Backslash (<code class="literal" onclick="showOverlay('\\','REVERSE SOLIDUS','Po','U+005C','5C')"><span class="cp-role">\</span></code>)</p></li>
+<li><p>Double quote (<code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code>)</p></li>
+<li><p>Period (<code class="literal" onclick="showOverlay('.','FULL STOP','Po','U+002E','2E')"><span class="cp-role">.</span></code>)</p></li>
+<li><p>Colon (<code class="literal" onclick="showOverlay(':','COLON','Po','U+003A','3A')"><span class="cp-role">:</span></code>)</p></li>
+<li><p>Equal sign (<code class="literal" onclick="showOverlay('=','EQUALS SIGN','Sm','U+003D','3D')"><span class="cp-role">=</span></code>)</p></li>
+</ul>
+</li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">\u{...}</span></code> format for <strong>all</strong> escape sequences — even for the regular character, new-lines, carriage-returns, and tabs.</p></li>
+</ul>
+<p>The purpose of this strategy is to make name paths easy to parse programmatically. For instance:</p>
+<ul class="simple">
+<li><p>By escaping periods, tools can split name paths on unescaped periods without ambiguity.</p></li>
+<li><p>By escaping colons and equals signs, lines like <code class="docutils literal notranslate"><span class="pre">main.&quot;text\u{3a}&quot;:</span> <span class="pre">123</span></code> can be split reliably at separators.</p></li>
+</ul>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>In contrast to parsing, which affects how users write configuration files, rendering is only used for internal tooling: error messages, logs, diagnostics, or API output. By applying a rigorous escaping scheme, rendered name paths remain predictable and safe for downstream tools.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If a text name contains several characters that require escaping, the resulting name path can become hard to read. In these cases, consider using the <strong>short-form notation</strong> described in the next section for improved clarity.</p>
+</div>
+</section>
+</section>
+<section id="short-form-index-based-access-to-text-names">
+<h2>Short Form: Index-Based Access to Text Names<a class="headerlink" href="#short-form-index-based-access-to-text-names" title="Link to this heading"></a></h2>
+<p>Parsers may support a <strong>short-form representation</strong> of text-named entries to simplify name paths in internal contexts such as logs, diagnostics, or programmatic APIs.</p>
+<p>Instead of including the full text name, a parser may use a numeric index enclosed in square brackets, prefixed by an empty quoted string (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>). This index refers to the position of the entry in the corresponding section (order of definition).</p>
+<p>For example, both of the following name paths refer to the same value:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>book.&quot;The Practice of System and Network Administration&quot;.isbn
+book.&quot;&quot;[1].isbn
+</pre></div>
+</div>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight value-tree highlight-path"><pre>
+Path: <span class="path">book."The Practice of System and Network Administration".isbn</span>
+
+<span class="line highlight section"><span class="connector path"></span><span class="connector path">● </span><span class="name">(root)</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Document</span><span class="content_bracket"> ( </span><span class="content_text">size=1</span><span class="content_bracket"> ) </span></span></span>
+<span class="line highlight section"><span class="connector path">┗━━ </span><span class="name">[book]</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithTexts</span><span class="content_bracket"> ( </span><span class="content_text">size=3</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector path">┠</span><span class="connector">── </span><span class="name">[&quot;Essential System Administration&quot;]</span><span class="indent"></span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=3</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector path">┃   </span><span class="connector">├── </span><span class="name">edition</span><span class="indent">                 </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"3rd (2002)"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector path">┃   </span><span class="connector">├── </span><span class="name">isbn</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"978\u{2d}0596003432"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector path">┃   </span><span class="connector">└── </span><span class="name">pages</span><span class="indent">                   </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Integer</span><span class="content_bracket"> ( </span><span class="content_text">1176</span><span class="content_bracket"> ) </span></span></span>
+<span class="line highlight section">    <span class="connector path">┡━━ </span><span class="name">[&quot;The Practice of System and Network Administration&quot;]</span><span class="indent"></span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=3</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span><span class="connector path">┠</span><span class="connector">── </span><span class="name">edition</span><span class="indent">                 </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"2nd (2007)"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line highlight">    <span class="connector">│   </span><span class="connector path">┡━━ </span><span class="name">isbn</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"978\u{2d}0321492661"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span><span class="connector">└── </span><span class="name">pages</span><span class="indent">                   </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Integer</span><span class="content_bracket"> ( </span><span class="content_text">1056</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">└── </span><span class="name">[&quot;UNIX and Linux System Administration Handbook&quot;]</span><span class="indent"></span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=3</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">├── </span><span class="name">edition</span><span class="indent">                 </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"5th (2017)"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">├── </span><span class="name">isbn</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"978\u{2d}0134277554"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">└── </span><span class="name">pages</span><span class="indent">                   </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Integer</span><span class="content_bracket"> ( </span><span class="content_text">1232</span><span class="content_bracket"> ) </span></span></span></pre></div></div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The empty quoted string (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>) serves as a <strong>placeholder</strong>, indicating that the following index applies to a text-named entry.
+Since empty text names are invalid in ELCL, this notation provides a clean and unambiguous way to separate the short-form from literal text-names.</p>
+</div>
+</section>
+<section id="implementation-guidance">
+<h2>Implementation Guidance<a class="headerlink" href="#implementation-guidance" title="Link to this heading"></a></h2>
+<p>Parsers are encouraged to:</p>
+<ul class="simple">
+<li><p>Use the index form <strong>when it improves readability or reduces complexity</strong>, especially in diagnostics or developer tools.</p></li>
+<li><p>Support <strong>both forms</strong> — full-text and index-based — in API calls that resolve or return name paths.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="text-names.html" class="btn btn-neutral float-left" title="Text Names in Name Paths" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../name-conflict.html" class="btn btn-neutral float-right" title="Name Conflicts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

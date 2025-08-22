@@ -1,0 +1,665 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Core Language &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Standard Features" href="standard-features.html" />
+    <link rel="prev" title="Introduction" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Core Language</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#file-encoding-and-line-breaks">File Encoding and Line Breaks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#document-structure">Document Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#names">Names</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#name-rules">Name Rules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sections">Sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subsections">Subsections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#absolute-and-relative-sections">Absolute and Relative Sections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#name-value-pairs">Name-Value Pairs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#spacing-and-formatting">Spacing and Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#values">Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#core-value-types">Core Value Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#value-formats">Value Formats</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#integer-values">Integer Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decimal-format">Decimal Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hexadecimal-format">Hexadecimal Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#binary-format">Binary Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#negative-and-positive-numbers">Negative and Positive Numbers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#digit-separators">Digit Separators</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#boolean-values">Boolean Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#boolean-synonyms">Boolean Synonyms</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#text-values">Text Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#text-content-restrictions">Text Content Restrictions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#text-escape-sequences">Text Escape Sequences</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#meta-values">Meta Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-version-value">The Version Value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-features-value">The Features Value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-signature-value">The Signature Value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parser-meta-values">Parser Meta Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#name-paths-and-name-conflicts">Name Paths and Name Conflicts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#multiple-values-with-the-same-name">Multiple Values with the Same Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiple-sections-with-the-same-name">Multiple Sections with the Same Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conflicts-between-value-and-section-names">Conflicts between Value and Section Names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#no-conflicts-with-intermediate-sections">No Conflicts with Intermediate Sections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#core-language-key-takeaways-and-beyond">Core Language: Key Takeaways and Beyond</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="standard-features.html">Standard Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-features.html">Advanced Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Introduction</a></li>
+      <li class="breadcrumb-item active">Core Language</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/intro/core-language.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="core-language">
+<span id="index-0"></span><span id="intro-core"></span><h1>Core Language<a class="headerlink" href="#core-language" title="Link to this heading"></a></h1>
+<p>All parsers must support the <a class="reference internal" href="../glossary.html#term-Core-Language"><span class="xref std std-term">core language</span></a>, which defines a minimal set of concepts, <a class="reference internal" href="../glossary.html#term-Feature"><span class="xref std std-term">features</span></a>, and value types. This chapter introduces these essential elements. Here, you’ll learn about fundamental topics such as <a class="reference internal" href="#intro-file-encoding"><span class="std std-ref">file encoding</span></a>, <a class="reference internal" href="#intro-comment"><span class="std std-ref">comments</span></a>, <a class="reference internal" href="#intro-section"><span class="std std-ref">sections</span></a>, <a class="reference internal" href="#intro-name"><span class="std std-ref">names</span></a>, and <a class="reference internal" href="#intro-value"><span class="std std-ref">values</span></a> in a concise format.</p>
+<section id="file-encoding-and-line-breaks">
+<span id="index-1"></span><span id="intro-file-encoding"></span><h2>File Encoding and Line Breaks<a class="headerlink" href="#file-encoding-and-line-breaks" title="Link to this heading"></a></h2>
+<p>Let’s begin with the basics. All <em>ELCL</em> configuration files must be encoded in <strong>UTF-8</strong>. ELCL supports nearly all valid <a class="reference internal" href="../glossary.html#term-UTF-8"><span class="xref std std-term">UTF-8</span></a> <a class="reference internal" href="../glossary.html#term-Unicode"><span class="xref std std-term">Unicode</span></a> <a class="reference internal" href="../glossary.html#term-Character"><span class="xref std std-term">characters</span></a>, except for certain <a class="reference internal" href="../glossary.html#term-Control-Characters"><span class="xref std std-term">control characters</span></a>.</p>
+<p>ELCL is a <strong>line-based</strong> configuration language, meaning that <a class="reference internal" href="../glossary.html#term-Line-Break"><span class="xref std std-term">line breaks</span></a> are syntactically significant. Line breaks terminate comments, separate statements, and influence overall structure. The following <a class="reference internal" href="../glossary.html#term-Line-Ending"><span class="xref std std-term">line-ending</span></a> styles are supported, and can be mixed within the same document:</p>
+<ul class="simple">
+<li><p>A single newline character (<code class="literal" onclick="showOverlay('\\n','LINE FEED (LF), new line (NL), end of line (EOL)','Cc','U+000A','0A')"><span class="cp-role">\n</span></code>).</p></li>
+<li><p>A Windows-style carriage return followed by a newline (<code class="literal" onclick="showOverlay('\\r','CARRIAGE RETURN (CR)','Cc','U+000D','0D')"><span class="cp-role">\r</span></code> and <code class="literal" onclick="showOverlay('\\n','LINE FEED (LF), new line (NL), end of line (EOL)','Cc','U+000A','0A')"><span class="cp-role">\n</span></code>).</p></li>
+</ul>
+</section>
+<section id="document-structure">
+<span id="index-2"></span><span id="intro-document-structure"></span><h2>Document Structure<a class="headerlink" href="#document-structure" title="Link to this heading"></a></h2>
+<p>Every configuration document in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> is made up of a sequence of lines, separated by <a class="reference internal" href="../glossary.html#term-Line-Break"><span class="xref std std-term">line breaks</span></a>. Lines that are empty or contain only <a class="reference internal" href="#intro-comment"><span class="std std-ref">comments</span></a> are ignored by the parser. Configuration data is organized into one or more <a class="reference internal" href="#intro-section"><span class="std std-ref">sections</span></a>, with each section containing any number of <a class="reference internal" href="#intro-name-value"><span class="std std-ref">name-value pairs</span></a>. Each pair assigns a value to a given name within its section, effectively configuring the settings for that section.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># A comment</span>
+
+<span class="p">[</span><span class="nt">first_section</span><span class="o">]</span>
+<span class="nv">Name1</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;A text value&quot;</span><span class="w">       </span><span class="c"># Comment</span>
+<span class="nv">Name2</span><span class="o">:</span><span class="w"> </span><span class="mi">1&#39;000</span>
+<span class="nv">last_name</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="w">                </span><span class="c"># Another comment.</span>
+
+<span class="p">[</span><span class="nt">another_section</span><span class="o">.</span><span class="nt">subsection</span><span class="o">]</span><span class="w">  </span><span class="c"># Comment</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;more keys&quot;</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/intro_main_structure_simplified.svg"><img alt="../_images/intro_main_structure_simplified.svg" src="../_images/intro_main_structure_simplified.svg" style="width: 100%;" />
+</a>
+</figure>
+</section>
+<section id="comments">
+<span id="index-3"></span><span id="intro-comment"></span><h2>Comments<a class="headerlink" href="#comments" title="Link to this heading"></a></h2>
+<p>In <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>, a <a class="reference internal" href="../glossary.html#term-Comment"><span class="xref std std-term">comment</span></a> begins with the <code class="literal" onclick="showOverlay('#','NUMBER SIGN','Po','U+0023','23')"><span class="cp-role">#</span></code> character and continues until the end of the line. Comments are ignored entirely during parsing and can contain any text, except for some <a class="reference internal" href="../glossary.html#term-Control-Characters"><span class="xref std std-term">control characters</span></a> that are disallowed in ELCL documents.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># A comment at the start of the line.</span>
+<span class="w">    </span><span class="c"># A comment preceded by some spacing.</span>
+<span class="p">[</span><span class="nt">section</span><span class="o">]</span><span class="w">   </span><span class="c"># A comment after a section.</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span><span class="w">  </span><span class="c"># A comment after a name-value pair.</span>
+</pre></div>
+</div>
+<p>Comments can only appear <em>outside</em> of a <a class="reference internal" href="#intro-value"><span class="std std-ref">value</span></a>. For example, a <code class="literal" onclick="showOverlay('#','NUMBER SIGN','Po','U+0023','23')"><span class="cp-role">#</span></code> character within a <a class="reference internal" href="../glossary.html#term-Text"><span class="xref std std-term">text</span></a> or <a class="reference internal" href="../glossary.html#term-Code"><span class="xref std std-term">code</span></a> value does not initiate a comment.</p>
+</section>
+<section id="names">
+<span id="index-4"></span><span id="intro-name"></span><h2>Names<a class="headerlink" href="#names" title="Link to this heading"></a></h2>
+<p>In <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>, <em>names</em> are used to identify both <a class="reference internal" href="#intro-section"><span class="std std-ref">sections</span></a> and <a class="reference internal" href="#intro-name-value"><span class="std std-ref">name-value pairs</span></a>. Names are always <strong>case-insensitive</strong>, meaning variations like <code class="docutils literal notranslate"><span class="pre">example</span></code>, <code class="docutils literal notranslate"><span class="pre">EXAMPLE</span></code>, and <code class="docutils literal notranslate"><span class="pre">eXaMpLe</span></code> are treated as the same name.</p>
+<section id="name-rules">
+<h3>Name Rules<a class="headerlink" href="#name-rules" title="Link to this heading"></a></h3>
+<p>Names in ELCL follow specific rules to ensure consistency and readability. They can include <a class="reference internal" href="../glossary.html#term-Letter"><span class="xref std std-term">letters</span></a> (<code class="literal" onclick="showOverlay('a','LATIN SMALL LETTER A','Ll','U+0061','61')"><span class="cp-role">a</span></code> – <code class="literal" onclick="showOverlay('z','LATIN SMALL LETTER Z','Ll','U+007A','7A')"><span class="cp-role">z</span></code>), <a class="reference internal" href="../glossary.html#term-Digit"><span class="xref std std-term">digits</span></a> (<code class="literal" onclick="showOverlay('0','DIGIT ZERO','Nd','U+0030','30')"><span class="cp-role">0</span></code> – <code class="literal" onclick="showOverlay('9','DIGIT NINE','Nd','U+0039','39')"><span class="cp-role">9</span></code>), <a class="reference internal" href="../glossary.html#term-Underscore"><span class="xref std std-term">underscores</span></a> (<code class="literal" onclick="showOverlay('_','LOW LINE','Pc','U+005F','5F')"><span class="cp-role">_</span></code>), and <a class="reference internal" href="../glossary.html#term-Space"><span class="xref std std-term">spaces</span></a> (<code class="literal" onclick="showOverlay(' ','SPACE','Zs','U+0020','20')"><span class="cp-role"> </span></code>). However, there are a few important constraints:</p>
+<ol class="arabic simple">
+<li><p><strong>Names must start with a letter</strong>: Names cannot begin with a digit or an underscore. For example, <code class="docutils literal notranslate"><span class="pre">100days</span></code> or <code class="docutils literal notranslate"><span class="pre">_example</span></code> are invalid names.</p></li>
+<li><p><strong>Spaces and underscores are interchangeable</strong>: Spaces in names are automatically converted to underscores. This means that <code class="docutils literal notranslate"><span class="pre">Example</span> <span class="pre">Name</span></code> is treated as <code class="docutils literal notranslate"><span class="pre">example_name</span></code>.</p></li>
+<li><p><strong>No consecutive underscores</strong>: Names cannot contain consecutive underscores or multiple spaces in a row. This prevents names like <code class="docutils literal notranslate"><span class="pre">this__name</span></code> or <code class="docutils literal notranslate"><span class="pre">this</span>&#160; <span class="pre">name</span></code> from being valid.</p></li>
+<li><p><strong>No trailing underscores</strong>: Names must not end with an underscore. For instance, <code class="docutils literal notranslate"><span class="pre">example_</span></code> is not considered valid.</p></li>
+</ol>
+<p>These rules ensure that names in ELCL are consistent, readable, and unambiguous.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"> </span><span class="nt">Example Section</span><span class="w"> </span><span class="o">]</span><span class="w">     </span><span class="c"># Interpreted as: example_section</span>
+<span class="nv">DNS Host</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w">   </span><span class="c"># Interpreted as: dns_host</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sections">
+<span id="index-5"></span><span id="intro-section"></span><h2>Sections<a class="headerlink" href="#sections" title="Link to this heading"></a></h2>
+<p>In <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>, a section begins with a <a class="reference internal" href="#intro-name"><span class="std std-ref">name</span></a> enclosed in square brackets <code class="literal" onclick="showOverlay('[','LEFT SQUARE BRACKET','Ps','U+005B','5B')"><span class="cp-role">[</span></code> and <code class="literal" onclick="showOverlay(']','RIGHT SQUARE BRACKET','Pe','U+005D','5D')"><span class="cp-role">]</span></code>. After the section name, you can define any number of <a class="reference internal" href="#intro-name-value"><span class="std std-ref">name-value pairs</span></a>. Empty sections—those without any name-value pairs—are also valid.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">section</span><span class="o">]</span>
+<span class="nv">Name1</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span>
+<span class="nv">Name2</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span>
+
+<span class="p">[</span><span class="nt">empty_section</span><span class="o">]</span><span class="w">  </span><span class="c"># Empty sections are allowed.</span>
+</pre></div>
+</div>
+<p>A section <strong>must</strong> start at the <strong>beginning of a line</strong>, with no <a class="reference internal" href="../glossary.html#term-Spacing"><span class="xref std std-term">spacing</span></a> before the opening square bracket <code class="literal" onclick="showOverlay('[','LEFT SQUARE BRACKET','Ps','U+005B','5B')"><span class="cp-role">[</span></code>. However, spacing around the section <a class="reference internal" href="#intro-name"><span class="std std-ref">name</span></a> inside the brackets is allowed.</p>
+<p>Additionally, sections can be visually separated using any number of minus <code class="literal" onclick="showOverlay('-','HYPHEN-MINUS','Pd','U+002D','2D')"><span class="cp-role">-</span></code> characters surrounding the section name. These characters are ignored by the parser but can help with visual organization in configuration files.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w">   </span><span class="nt">section1</span><span class="w">    </span><span class="o">]</span><span class="w">   </span><span class="c"># Spacing around section names is allowed.</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span>
+
+<span class="o">-----------------</span><span class="p">[</span><span class="w"> </span><span class="nt">section2</span><span class="w"> </span><span class="o">]--------------------</span><span class="w">  </span><span class="c"># Surrounding minus signs are allowed.</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span>
+
+<span class="p">[</span><span class="w"> </span><span class="nt">section3</span><span class="w"> </span><span class="o">]-------------------------------------</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span>
+
+<span class="o">-------------------------------------</span><span class="p">[</span><span class="w"> </span><span class="nt">section4</span><span class="w"> </span><span class="o">]</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="subsections">
+<span id="index-6"></span><span id="intro-subsection"></span><h2>Subsections<a class="headerlink" href="#subsections" title="Link to this heading"></a></h2>
+<p>In <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>, subsections are created by joining two or more <a class="reference internal" href="#intro-name"><span class="std std-ref">section names</span></a> with a <code class="literal" onclick="showOverlay('.','FULL STOP','Po','U+002E','2E')"><span class="cp-role">.</span></code> character, forming a <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a>. This allows you to define nested configurations within a document’s structure.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">section</span><span class="o">.</span><span class="nt">subsection</span><span class="o">.</span><span class="nt">one</span><span class="o">]</span>
+<span class="nv">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span>
+
+<span class="p">[</span><span class="w">  </span><span class="nt">section</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nt">subsection</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nt">another_one</span><span class="w"> </span><span class="o">]</span><span class="w">  </span><span class="c"># Spacing around the &#39;.&#39; is also allowed.</span>
+</pre></div>
+</div>
+<section id="absolute-and-relative-sections">
+<h3>Absolute and Relative Sections<a class="headerlink" href="#absolute-and-relative-sections" title="Link to this heading"></a></h3>
+<p>If a section name begins with a <code class="literal" onclick="showOverlay('.','FULL STOP','Po','U+002E','2E')"><span class="cp-role">.</span></code> character, it is considered a <strong>relative section</strong>. Otherwise, it is treated as an <strong>absolute section</strong>.</p>
+<ul class="simple">
+<li><p>An <strong>absolute section</strong> starts from the document root. Each additional name separated by a dot represents a deeper level in the hierarchy.</p></li>
+<li><p>A <strong>relative section</strong> refers to a subsection of the <strong>most recently defined absolute section</strong>. Each relative section resets the hierarchy relative to the last absolute section, rather than nesting further under previous subsections. An ELCL document must never begin with a relative section.</p></li>
+</ul>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">root</span><span class="o">]</span><span class="w">             </span><span class="c"># =&gt; root (absolute)</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">section1</span><span class="o">.</span><span class="nt">sub</span><span class="o">]</span><span class="w">    </span><span class="c"># =&gt; root.section1.sub (relative to root)</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">section2</span><span class="o">]</span><span class="w">        </span><span class="c"># =&gt; root.section2 (relative to root)</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">section3</span><span class="o">.</span><span class="nt">x</span><span class="o">]</span><span class="w">      </span><span class="c"># =&gt; root.section3.x (relative to root)</span>
+<span class="p">[</span><span class="nt">another</span><span class="o">.</span><span class="nt">sub</span><span class="o">]</span><span class="w">      </span><span class="c"># =&gt; another.sub (absolute)</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">section1</span><span class="o">.</span><span class="nt">sub</span><span class="o">]</span><span class="w">    </span><span class="c"># =&gt; another.sub.section1.sub (relative to another.sub)</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">section2</span><span class="o">]</span><span class="w">        </span><span class="c"># =&gt; another.sub.section2 (relative to another.sub)</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">section3</span><span class="o">.</span><span class="nt">x</span><span class="o">]</span><span class="w">      </span><span class="c"># =&gt; another.sub.section3.x (relative to another.sub)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="name-value-pairs">
+<span id="index-7"></span><span id="intro-name-value"></span><h2>Name-Value Pairs<a class="headerlink" href="#name-value-pairs" title="Link to this heading"></a></h2>
+<p>Name-value pairs in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> configure individual settings within a <a class="reference internal" href="#intro-section"><span class="std std-ref">section</span></a>. Each pair must begin with a <a class="reference internal" href="#intro-name"><span class="std std-ref">name</span></a> at the start of a line, followed by a <a class="reference internal" href="../glossary.html#term-Value-Separator"><span class="xref std std-term">value separator</span></a>, which can be either a colon (<code class="literal" onclick="showOverlay(':','COLON','Po','U+003A','3A')"><span class="cp-role">:</span></code>) or an equal sign (<code class="literal" onclick="showOverlay('=','EQUALS SIGN','Sm','U+003D','3D')"><span class="cp-role">=</span></code>). After the separator comes the actual <a class="reference internal" href="#intro-value"><span class="std std-ref">value</span></a>, which is assigned to the name.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">dns name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ecl.example.com&quot;</span><span class="w">   </span><span class="c"># Assigns &quot;ecl.example.com&quot; to `server.dns_name`</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">9080</span><span class="w">                    </span><span class="c"># Assigns 9080 to `server.port`</span>
+</pre></div>
+</div>
+<section id="spacing-and-formatting">
+<h3>Spacing and Formatting<a class="headerlink" href="#spacing-and-formatting" title="Link to this heading"></a></h3>
+<p>You are free to add spaces around the value separator for readability:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">dns name</span><span class="w">      </span><span class="o">:</span><span class="w">    </span><span class="s2">&quot;ecl.example.com&quot;</span><span class="w">    </span><span class="c"># Spacing around the name and value is allowed.</span>
+<span class="nv">port</span><span class="w">          </span><span class="o">:</span><span class="w">                         </span><span class="c"># The value can begin on the next line,</span>
+<span class="w">    </span><span class="mi">9080</span><span class="w">                                </span><span class="c"># but indentation is required.</span>
+</pre></div>
+</div>
+<p>If the value starts on the next line, it <strong>must be indented</strong> with at least one <a class="reference internal" href="../glossary.html#term-Space"><span class="xref std std-term">space</span></a> or <a class="reference internal" href="../glossary.html#term-Tab"><span class="xref std std-term">tab</span></a>. Also, there should be no empty line between the name and the start of the value.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/intro_section_name_value.svg"><img alt="../_images/intro_section_name_value.svg" src="../_images/intro_section_name_value.svg" style="width: 100%;" />
+</a>
+</figure>
+</section>
+</section>
+<section id="values">
+<span id="index-8"></span><span id="intro-value"></span><h2>Values<a class="headerlink" href="#values" title="Link to this heading"></a></h2>
+<p>A value <em>must</em> follow a <a class="reference internal" href="#intro-name"><span class="std std-ref">name</span></a> and the <a class="reference internal" href="../glossary.html#term-Value-Separator"><span class="xref std std-term">value separator</span></a>. You can write the value either on the same line or start it on the following line. There are two key rules to remember:</p>
+<ul class="simple">
+<li><p>A value must not start or continue at the beginning of a line.</p></li>
+<li><p>There must be no empty line between the name and its value.</p></li>
+</ul>
+<p>The example below shows two valid placements of values. The first value is placed on the same line as the name, while the second value begins on the next line. If you place the value on a new line, you must indent it with at least one <a class="reference internal" href="../glossary.html#term-Space"><span class="xref std std-term">space</span></a> (<code class="literal" onclick="showOverlay(' ','SPACE','Zs','U+0020','20')"><span class="cp-role"> </span></code>) or <a class="reference internal" href="../glossary.html#term-Tab"><span class="xref std std-term">tab</span></a> (<code class="literal" onclick="showOverlay('\\t','CHARACTER TABULATION, horizontal tabulation (HT), tab','Cc','U+0009','09')"><span class="cp-role">\t</span></code>) character.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">value_placement</span><span class="o">]</span>
+<span class="nv">same_line</span><span class="o">:</span><span class="w"> </span><span class="mi">7000</span>
+<span class="nv">next_line</span><span class="o">:</span>
+<span class="w">    </span><span class="mi">7000</span>
+</pre></div>
+</div>
+</section>
+<section id="core-value-types">
+<span id="index-9"></span><h2>Core Value Types<a class="headerlink" href="#core-value-types" title="Link to this heading"></a></h2>
+<p>The <em>core language</em> defines three primary <a class="reference internal" href="../glossary.html#term-Value-Type"><span class="xref std std-term">value types</span></a>, which are fundamental to configuring settings in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>:</p>
+<ol class="arabic simple">
+<li><p><strong>Integer</strong>: Represents whole numbers, such as <code class="docutils literal notranslate"><span class="pre">42</span></code> or <code class="docutils literal notranslate"><span class="pre">-1000</span></code>. Integers are commonly used for numeric settings like port numbers or limits.</p></li>
+<li><p><strong>Boolean</strong>: Represents logical values. Common literals include <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>, but ELCL supports multiple synonyms, such as <code class="docutils literal notranslate"><span class="pre">yes</span></code> and <code class="docutils literal notranslate"><span class="pre">no</span></code>, or <code class="docutils literal notranslate"><span class="pre">on</span></code> and <code class="docutils literal notranslate"><span class="pre">off</span></code>. Booleans are ideal for toggling features on or off, such as enabling or disabling a module.</p></li>
+<li><p><strong>Text</strong>: Represents strings of characters enclosed in quotes, such as <code class="docutils literal notranslate"><span class="pre">&quot;example</span> <span class="pre">text&quot;</span></code>. Text values are used for settings that require descriptive information, like file paths or descriptions.</p></li>
+</ol>
+<p>While these are the core value types, ELCL also supports additional types that extend its capabilities beyond the core language. These extended types will be discussed in detail in later sections.</p>
+<section id="value-formats">
+<span id="index-10"></span><h3>Value Formats<a class="headerlink" href="#value-formats" title="Link to this heading"></a></h3>
+<p>Each value type supports various <a class="reference internal" href="../glossary.html#term-Value-Format"><span class="xref std std-term">formats</span></a>, offering flexibility in how values can be represented in configuration files. For example, an integer can be written as a decimal, hexadecimal, or even using digit grouping, depending on the allowed formats.</p>
+<p>These formats provide multiple ways to represent the same value type, making ELCL adaptable to different scenarios and user preferences.</p>
+</section>
+</section>
+<section id="integer-values">
+<span id="index-11"></span><span id="intro-integer"></span><h2>Integer Values<a class="headerlink" href="#integer-values" title="Link to this heading"></a></h2>
+<p>An integer value in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> represents a whole positive or negative number. It can be written in decimal, hexadecimal, or binary format. Consider the following examples:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">integer_values</span><span class="o">]</span>
+<span class="nv">decimal</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="mi">-12&#39;000&#39;000</span>
+<span class="nv">hexadecimal</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mh">0xAC12&#39;08CD</span>
+<span class="nv">binary</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="mb">0b10100100&#39;00010101</span>
+</pre></div>
+</div>
+<section id="decimal-format">
+<h3>Decimal Format<a class="headerlink" href="#decimal-format" title="Link to this heading"></a></h3>
+<p>Numbers without any prefix are interpreted as decimal values. For example, <code class="docutils literal notranslate"><span class="pre">120</span></code> is a regular decimal number. Note that ELCL does not support an octal number format, so avoid leading zeros (e.g., <code class="docutils literal notranslate"><span class="pre">0120</span></code>) to prevent confusion, as they might be misinterpreted as octal in other contexts.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">decimal_numbers</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="w">                </span><span class="c"># Zero value</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="mi">12&#39;000</span><span class="w">           </span><span class="c"># Positive decimal value with separators</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w"> </span><span class="mi">-987654321</span><span class="w">       </span><span class="c"># Negative decimal value</span>
+</pre></div>
+</div>
+</section>
+<section id="hexadecimal-format">
+<h3>Hexadecimal Format<a class="headerlink" href="#hexadecimal-format" title="Link to this heading"></a></h3>
+<p>Numbers prefixed with <cite>0x</cite> are treated as hexadecimal values. In this format, you can use both lower-case and upper-case letters <code class="literal" onclick="showOverlay('a','LATIN SMALL LETTER A','Ll','U+0061','61')"><span class="cp-role">a</span></code> – <code class="literal" onclick="showOverlay('f','LATIN SMALL LETTER F','Ll','U+0066','66')"><span class="cp-role">f</span></code> interchangeably, as ELCL is case-insensitive. Leading zeros are allowed, but the total number of digits must not exceed the parser’s limit, typically 16 digits.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">hexadecimal_numbers</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="mh">0x0</span><span class="w">                 </span><span class="c"># Zero value</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="mh">0x2ee0</span><span class="w">              </span><span class="c"># Positive hexadecimal value</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w"> </span><span class="mh">-0x3ADE&#39;68B1</span><span class="w">        </span><span class="c"># Negative hexadecimal value with separators</span>
+</pre></div>
+</div>
+</section>
+<section id="binary-format">
+<h3>Binary Format<a class="headerlink" href="#binary-format" title="Link to this heading"></a></h3>
+<p>Numbers prefixed with <cite>0b</cite> are interpreted as binary values, consisting only of the digits <code class="literal" onclick="showOverlay('0','DIGIT ZERO','Nd','U+0030','30')"><span class="cp-role">0</span></code> and <code class="literal" onclick="showOverlay('1','DIGIT ONE','Nd','U+0031','31')"><span class="cp-role">1</span></code>. Leading zeros are also permitted. Binary numbers are right-aligned, meaning the last digit always represents the least significant bit.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">binary_numbers</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="mb">0b0</span><span class="w">                   </span><span class="c"># Zero value</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="mb">0b00101110&#39;11100000</span><span class="w">   </span><span class="c"># Positive binary value with separators</span>
+<span class="c">#        ↓ Negative binary value with separators</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w"> </span><span class="mb">-0b111010&#39;11011110&#39;01101000&#39;10110001</span>
+</pre></div>
+</div>
+</section>
+<section id="negative-and-positive-numbers">
+<h3>Negative and Positive Numbers<a class="headerlink" href="#negative-and-positive-numbers" title="Link to this heading"></a></h3>
+<p>Any of these formats can represent negative numbers by prefixing the value with a minus sign (<code class="literal" onclick="showOverlay('-','HYPHEN-MINUS','Pd','U+002D','2D')"><span class="cp-role">-</span></code>). For example, <code class="docutils literal notranslate"><span class="pre">-0x1A</span></code> and <code class="docutils literal notranslate"><span class="pre">-42</span></code> are valid negative hexadecimal and decimal values, respectively. Note that setting the most significant bit (the leftmost bit) in binary format results in a negative value when interpreted as a signed integer. Also, it is possible to explicitly prefix any number with a plus sign (<code class="literal" onclick="showOverlay('+','PLUS SIGN','Sm','U+002B','2B')"><span class="cp-role">+</span></code>).</p>
+<p>The four values in the following example represent the same negative integer using different formats:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">negative_numbers</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="mi">-987&#39;654&#39;321</span><span class="w">                          </span><span class="c"># Decimal format</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="mh">-0x3ADE68B1</span><span class="w">                           </span><span class="c"># Hexadecimal format</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w"> </span><span class="mb">-0b111010&#39;11011110&#39;01101000&#39;10110001</span><span class="w">  </span><span class="c"># Binary format</span>
+<span class="c">#        ↓ Long binary format (negative 64-bit value)</span>
+<span class="nv">value d</span><span class="o">:</span><span class="w"> </span><span class="mb">0b11111111&#39;11111111&#39;11111111&#39;11111111&#39;11000101&#39;00100001&#39;10010111&#39;01001111</span>
+</pre></div>
+</div>
+</section>
+<section id="digit-separators">
+<h3>Digit Separators<a class="headerlink" href="#digit-separators" title="Link to this heading"></a></h3>
+<p>To enhance readability, you can use a digit separator <code class="literal" onclick="showOverlay('\'','APOSTROPHE','Po','U+0027','27')"><span class="cp-role">'</span></code> between digits in any number format. For instance, <code class="docutils literal notranslate"><span class="pre">12'345'678</span></code> or <code class="docutils literal notranslate"><span class="pre">0xAC12'08CD</span></code> are valid uses. However, there are some restrictions:</p>
+<ul class="simple">
+<li><p>Separators must be placed between digits only, not at the beginning or end of a number.</p></li>
+<li><p>Consecutive separators (e.g., <code class="docutils literal notranslate"><span class="pre">12''345</span></code>) are not allowed.</p></li>
+</ul>
+<p>By following these rules, you can format numbers in a way that is both flexible and clear, making your configurations easier to read and understand.</p>
+</section>
+</section>
+<section id="boolean-values">
+<span id="index-12"></span><span id="intro-boolean"></span><h2>Boolean Values<a class="headerlink" href="#boolean-values" title="Link to this heading"></a></h2>
+<p>Boolean values represent two possible states, typically <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>. They are ideal for toggling features, enabling or disabling functionalities, or providing affirmative or negative responses to configuration options. To improve readability, <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> offers several synonyms for “true” and “false” that can be used interchangeably.</p>
+<p>ELCL is also <a class="reference internal" href="../glossary.html#term-Case-Insensitive"><span class="xref std std-term">case-insensitive</span></a>, meaning there is no difference between <code class="docutils literal notranslate"><span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, or even <code class="docutils literal notranslate"><span class="pre">tRuE</span></code>—all are interpreted as the same value.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">boolean_values</span><span class="o">]</span>
+<span class="nv">ecl_is_nice</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w">        </span><span class="c"># True using lowercase</span>
+<span class="nv">light</span><span class="o">:</span><span class="w"> </span><span class="kc">Off</span><span class="w">               </span><span class="c"># False using a synonym</span>
+<span class="nv">motor</span><span class="o">:</span><span class="w"> </span><span class="kc">ENABLED</span><span class="w">           </span><span class="c"># True using uppercase synonym</span>
+<span class="nv">stop_now</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span><span class="w">            </span><span class="c"># True using another synonym</span>
+</pre></div>
+</div>
+<section id="boolean-synonyms">
+<h3>Boolean Synonyms<a class="headerlink" href="#boolean-synonyms" title="Link to this heading"></a></h3>
+<p>The table below lists all the boolean literals recognized by ELCL. You can use any of these for a true or false value, based on your preference.</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="text-code">True</span></p></th>
+<th class="head"><p><span class="text-code">False</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">Yes</span></p></td>
+<td><p><span class="text-code">No</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">On</span></p></td>
+<td><p><span class="text-code">Off</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">Enabled</span></p></td>
+<td><p><span class="text-code">Disabled</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="text-values">
+<span id="index-13"></span><span id="intro-text"></span><h2>Text Values<a class="headerlink" href="#text-values" title="Link to this heading"></a></h2>
+<p>The third core value type in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> is text. Text values are enclosed in double quotes (<code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code>). They are used for storing strings of characters, which can include almost any <a class="reference internal" href="../glossary.html#term-Unicode"><span class="xref std std-term">Unicode</span></a> character, making them ideal for representing descriptive or freeform information.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">text_values</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w">                        </span><span class="c"># An empty text</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Text can be anything&quot;</span><span class="w">    </span><span class="c"># A basic text value</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;    Spaces    are    preserved   &quot;</span><span class="w">  </span><span class="c"># Text with preserved spaces</span>
+</pre></div>
+</div>
+<p>The core language supports only single-line text values, as shown above. Multi-line text values are also available in ELCL and will be covered in a later section.</p>
+<section id="text-content-restrictions">
+<h3>Text Content Restrictions<a class="headerlink" href="#text-content-restrictions" title="Link to this heading"></a></h3>
+<p>You can use almost any <a class="reference internal" href="../glossary.html#term-Unicode"><span class="xref std std-term">Unicode</span></a> character in text values, except for the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../glossary.html#term-Control-Characters"><span class="xref std std-term">Control characters</span></a> and <a class="reference internal" href="../glossary.html#term-Line-Break"><span class="xref std std-term">line breaks</span></a> (<code class="literal" onclick="showOverlay('\\r','CARRIAGE RETURN (CR)','Cc','U+000D','0D')"><span class="cp-role">\r</span></code> and <code class="literal" onclick="showOverlay('\\n','LINE FEED (LF), new line (NL), end of line (EOL)','Cc','U+000A','0A')"><span class="cp-role">\n</span></code>).</p></li>
+<li><p>The double quote (<code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code>).</p></li>
+<li><p>The backslash (<code class="literal" onclick="showOverlay('\\','REVERSE SOLIDUS','Po','U+005C','5C')"><span class="cp-role">\</span></code>).</p></li>
+</ul>
+<p>To include these characters in your text values, you must use <a class="reference internal" href="../glossary.html#term-Escape-Sequence"><span class="xref std std-term">escape sequences</span></a>.</p>
+</section>
+<section id="text-escape-sequences">
+<h3>Text Escape Sequences<a class="headerlink" href="#text-escape-sequences" title="Link to this heading"></a></h3>
+<p>Escape sequences allow you to include special characters in text values by using a backslash (<code class="literal" onclick="showOverlay('\\','REVERSE SOLIDUS','Po','U+005C','5C')"><span class="cp-role">\</span></code>) followed by a specific sequence of characters. The following table provides an overview of all supported escape sequences in ELCL:</p>
+<table class="wrap-lines docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Sequence</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">\\</span></p></td>
+<td><p>Inserts a backslash (<code class="literal" onclick="showOverlay('\\','REVERSE SOLIDUS','Po','U+005C','5C')"><span class="cp-role">\</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">\"</span></p></td>
+<td><p>Inserts a double quote (<code class="literal" onclick="showOverlay('\"','QUOTATION MARK','Po','U+0022','22')"><span class="cp-role">"</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">\$</span></p></td>
+<td><p>Inserts a dollar sign (<code class="literal" onclick="showOverlay('$','DOLLAR SIGN','Sc','U+0024','24')"><span class="cp-role">$</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">\n</span></p></td>
+<td><p>Inserts a newline control code (<code class="literal" onclick="showOverlay('\\n','LINE FEED (LF), new line (NL), end of line (EOL)','Cc','U+000A','0A')"><span class="cp-role">\n</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">\r</span></p></td>
+<td><p>Inserts a carriage-return control code (<code class="literal" onclick="showOverlay('\\r','CARRIAGE RETURN (CR)','Cc','U+000D','0D')"><span class="cp-role">\r</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">\t</span></p></td>
+<td><p>Inserts a tab character (<code class="literal" onclick="showOverlay('\\t','CHARACTER TABULATION, horizontal tabulation (HT), tab','Cc','U+0009','09')"><span class="cp-role">\t</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">\uXXXX</span></p></td>
+<td><p>Inserts a Unicode character represented by the four-digit hexadecimal code <code class="docutils literal notranslate"><span class="pre">XXXX</span></code>. The code must be between <code class="docutils literal notranslate"><span class="pre">0001</span></code> and <code class="docutils literal notranslate"><span class="pre">FFFF</span></code>. Surrogate code points between <code class="docutils literal notranslate"><span class="pre">D800</span></code> and <code class="docutils literal notranslate"><span class="pre">DFFF</span></code> are not allowed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">\u{YYYY}</span></p></td>
+<td><p>Inserts a Unicode character represented by the hexadecimal code <code class="docutils literal notranslate"><span class="pre">YYYY</span></code>. This form allows for codes with one to eight digits, between <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">10FFFF</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The escape sequence <code class="docutils literal notranslate"><span class="pre">\uXXXX</span></code> requires a four-digit hexadecimal code, while <code class="docutils literal notranslate"><span class="pre">\u{YYYY}</span></code> provides more flexibility, allowing one to eight digits. This flexibility helps when you need to represent characters beyond the Basic Multilingual Plane or when a fixed digit length is inconvenient.</p>
+<p>ELCL intentionally supports only a limited set of escape sequences to keep the language simple and easy to read. For instance, rarely used escape sequences like “form feed” or “vertical tab” are not included.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The escape sequence for the dollar sign (<code class="literal" onclick="showOverlay('$','DOLLAR SIGN','Sc','U+0024','24')"><span class="cp-role">$</span></code>) is included in the core language to establish a foundation for a unified placeholder system or text interpolation. Although the specification includes a recommended placeholder syntax, support for text replacements during configuration parsing is an optional <a class="reference internal" href="../glossary.html#term-Feature"><span class="xref std std-term">feature</span></a>. <a class="reference internal" href="../glossary.html#term-Full-featured-Parser"><span class="xref std std-term">Full-featured parsers</span></a> must implement this functionality, allowing dynamic substitution of placeholder values as the configuration is processed.</p>
+</div>
+<p>All three text values in the example below are equivalent, despite being represented with different escape sequences:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">escape_sequences</span><span class="o">]</span>
+<span class="nv">text a</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ψ</span><span class="se">\&quot;</span><span class="s2">ありがとう</span><span class="se">\&quot;</span><span class="s2">😄&quot;</span><span class="w">  </span><span class="c"># Direct Unicode characters, except for the double quotes</span>
+<span class="nv">text b</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;</span><span class="se">\u{3c8}\u{22}\u3042\u308a\u304c\u3068\u3046\u{22}\u{1f604}</span><span class="s2">&quot;</span><span class="w">  </span><span class="c"># Lowercase escape sequences</span>
+<span class="nv">text c</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;</span><span class="se">\U{3C8}\U{22}\U3042\U308A\U304C\U3068\U3046\U{22}\U{1F604}</span><span class="s2">&quot;</span><span class="w">  </span><span class="c"># Uppercase escape sequences</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="meta-values">
+<span id="index-14"></span><span id="intro-meta-value"></span><h2>Meta Values<a class="headerlink" href="#meta-values" title="Link to this heading"></a></h2>
+<p><em>Meta values</em> are special values that are part of the configuration language itself and its parser, not the actual configuration data. These values have a name that is starting with the “at”-character <code class="literal" onclick="showOverlay('@','COMMERCIAL AT','Po','U+0040','40')"><span class="cp-role">@</span></code> and they must always be defined at the beginning of a document, in the document root.</p>
+<p>The core language requires all meta values to be placed before the first section in the document, and like <a class="reference internal" href="#intro-name-value"><span class="std std-ref">name-value pairs</span></a>, each meta value cannot be defined more than once. There are also <a class="reference internal" href="../glossary.html#term-Meta-Command"><span class="xref std std-term">meta commands</span></a>, like <code class="docutils literal notranslate"><span class="pre">&#64;include</span></code>, which will be discussed later. <em>Meta commands</em> can be defined later in the document, between section blocks.</p>
+<p>The core language supports the following three meta values:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nb">@signature</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<span class="nb">@version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span>
+<span class="nb">@features</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;regex, timedelta&quot;</span>
+</pre></div>
+</div>
+<p>It’s important to note that all meta values are completely optional.</p>
+<section id="the-version-value">
+<h3>The Version Value<a class="headerlink" href="#the-version-value" title="Link to this heading"></a></h3>
+<p>The <em>version</em> meta value specifies the version of <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> for which the configuration was written. This value takes a text with the version number in the format <code class="docutils literal notranslate"><span class="pre">&lt;major&gt;.&lt;minor&gt;</span></code>. Currently, ELCL is at version <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, which is the only valid value at this time.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nb">@version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span>
+
+<span class="p">[</span><span class="nt">first_section</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span>
+</pre></div>
+</div>
+<p>When a parser reads the <em>version</em> meta value, it must compare it to its own supported version of the language. For example, if a future version “1.2” of ELCL introduces new features, and a parser that only supports version “1.0” encounters <code class="docutils literal notranslate"><span class="pre">&#64;version:</span> <span class="pre">&quot;1.2&quot;</span></code>, it must stop parsing. This is to prevent the parser from misinterpreting the configuration due to unsupported language features.</p>
+<p>This value also helps ensure backward compatibility. If a future version “2.0” introduces breaking changes, a parser reading <code class="docutils literal notranslate"><span class="pre">&#64;version:</span> <span class="pre">&quot;1.0&quot;</span></code> can switch to a legacy mode to handle the older syntax correctly.</p>
+</section>
+<section id="the-features-value">
+<h3>The Features Value<a class="headerlink" href="#the-features-value" title="Link to this heading"></a></h3>
+<p>The <em>features</em> meta value specifies a list of features that the document requires. This value takes a space-separated list of feature identifiers as text. If a parser does not support a specified feature, it must stop parsing the configuration.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nb">@features</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;regex timedelta&quot;</span>
+
+<span class="p">[</span><span class="nt">first_section</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span>
+</pre></div>
+</div>
+<p>This meta value ensures that a configuration document is compatible with different parsers. If a parser encounters an unsupported feature, it can provide a clear error message, preventing confusion that may arise from encountering unexpected character sequences in the document.</p>
+</section>
+<section id="the-signature-value">
+<h3>The Signature Value<a class="headerlink" href="#the-signature-value" title="Link to this heading"></a></h3>
+<p>The <em>signature</em> value, if present, must appear in the first line of the document. This value is used to verify the integrity of the document. If a parser or application does not support signature verification, it must stop with an error when it encounters this value.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="nb">@signature</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+
+<span class="p">[</span><span class="nt">first_section</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span>
+</pre></div>
+</div>
+<p>This meta value is part of the core language as a security measure. If a document has been signed, the signature must be validated to ensure the document’s integrity. If a parser cannot verify the signature, it should not ignore it. Instead, it should require the signature to be manually removed before processing the document. This prevents potentially unauthorized changes to the configuration from going unnoticed.</p>
+</section>
+<section id="parser-meta-values">
+<h3>Parser Meta Values<a class="headerlink" href="#parser-meta-values" title="Link to this heading"></a></h3>
+<p>Parser implementations are allowed to provide additional meta values, that must start with <code class="docutils literal notranslate"><span class="pre">&#64;parser_...</span></code>. Like meta values of the <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>, parser meta values must be optional.</p>
+</section>
+</section>
+<section id="name-paths-and-name-conflicts">
+<span id="index-15"></span><span id="intro-name-conflict"></span><h2>Name Paths and Name Conflicts<a class="headerlink" href="#name-paths-and-name-conflicts" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> is designed to keep configurations simple and easy to understand. To maintain this simplicity, each value can be defined only once. Overwriting existing values is not allowed, and <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> does not support “inheritance” or “templates.” These features are often sources of unintended complexity and can lead to configuration errors, particularly in large and complex systems.</p>
+<p>The rules are intentionally straightforward: every section and value is assigned a unique <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a> starting from the document root. Once a <em>name path</em> has been assigned through a written definition in the configuration, it cannot be redefined or overwritten later in the document.</p>
+<section id="multiple-values-with-the-same-name">
+<h3>Multiple Values with the Same Name<a class="headerlink" href="#multiple-values-with-the-same-name" title="Link to this heading"></a></h3>
+<p>In a single configuration, two values cannot share the same name. Attempting to define a value more than once results in an error.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">block</span><span class="o">.</span><span class="nt">one</span><span class="o">]</span><span class="w">      </span><span class="c"># Creates the value map &quot;block.one&quot;</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value a&quot;</span><span class="w">  </span><span class="c"># Assigns the value &quot;value a&quot; to &quot;block.one.name&quot;</span>
+<span class="err">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value b&quot;</span><span class="w">  </span><span class="c"># Error! &quot;block.one.name&quot; is already defined.</span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-sections-with-the-same-name">
+<h3>Multiple Sections with the Same Name<a class="headerlink" href="#multiple-sections-with-the-same-name" title="Link to this heading"></a></h3>
+<p>The same rule applies to sections. Two sections in the same configuration cannot share the same name.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">block</span><span class="o">.</span><span class="nt">one</span><span class="o">]</span><span class="w">      </span><span class="c"># Creates the section &quot;block.one&quot;</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value a&quot;</span>
+
+<span class="p">[</span><span class="nt">block</span><span class="o">.</span><span class="err">one</span><span class="o">]</span><span class="w">      </span><span class="c"># Error! The section &quot;block.one&quot; is already defined.</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value b&quot;</span>
+</pre></div>
+</div>
+<p>This rule also prevents sections from being “continued” later in the document.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">block one</span><span class="o">]</span>
+<span class="nv">value a</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+<span class="nv">value b</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+<span class="nv">value c</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+
+<span class="p">[</span><span class="nt">another block</span><span class="o">]</span>
+<span class="c"># ... other definitions ...</span>
+
+<span class="p">[</span><span class="err">block one</span><span class="o">]</span><span class="w">      </span><span class="c"># Error! The section &quot;block one&quot; was already defined.</span>
+<span class="nv">value d</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+<span class="nv">value e</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+<span class="nv">value f</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+</pre></div>
+</div>
+</section>
+<section id="conflicts-between-value-and-section-names">
+<h3>Conflicts between Value and Section Names<a class="headerlink" href="#conflicts-between-value-and-section-names" title="Link to this heading"></a></h3>
+<p>A section defines a unique instance with its name, behaving similarly to any other value. Consequently, a section cannot share the same <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a> with an existing value.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">block</span><span class="o">]</span><span class="w">          </span><span class="c"># Creates the section &quot;block&quot;</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value a&quot;</span><span class="w">  </span><span class="c"># Assigns the value &quot;value a&quot; to &quot;block.name&quot;</span>
+
+<span class="p">[</span><span class="nt">block</span><span class="o">.</span><span class="err">name</span><span class="o">]</span><span class="w">     </span><span class="c"># Error! A value already exists for &quot;block.name&quot;.</span>
+</pre></div>
+</div>
+<p>Likewise, no value can share the same <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a> as a section.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">block</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span><span class="w">     </span><span class="c"># Creates the section &quot;block.name&quot;</span>
+
+<span class="p">[</span><span class="nt">block</span><span class="o">]</span>
+<span class="err">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value b&quot;</span><span class="w">  </span><span class="c"># Error! The name path &quot;block.name&quot; is already in use.</span>
+</pre></div>
+</div>
+<p>The order in which sections or values are defined does not matter—the conflict will occur regardless. The only difference is whether the error is raised for the value or the section, depending on the order of definition.</p>
+</section>
+<section id="no-conflicts-with-intermediate-sections">
+<h3>No Conflicts with Intermediate Sections<a class="headerlink" href="#no-conflicts-with-intermediate-sections" title="Link to this heading"></a></h3>
+<p>Intermediate sections are implicitly created when defining a <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a>. These sections are not considered “defined” until explicitly declared, allowing them to be defined later in the same document.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">one</span><span class="o">.</span><span class="nt">two</span><span class="o">.</span><span class="nt">three</span><span class="o">]</span><span class="w">  </span><span class="c"># Creates the intermediate sections &quot;one&quot; and &quot;one.two&quot;.</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+
+<span class="p">[</span><span class="nt">one</span><span class="o">.</span><span class="nt">two</span><span class="o">]</span><span class="w">        </span><span class="c"># This is allowed! Defines the section &quot;one.two&quot;.</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+
+<span class="p">[</span><span class="nt">one</span><span class="o">]</span><span class="w">            </span><span class="c"># This is allowed! Defines the section &quot;one&quot;.</span>
+<span class="nv">value</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span>
+</pre></div>
+</div>
+<p>This exception from the rule is only valid for intermediate sections being defined, the name path for intermediate sections cannot be used by values later in the same document.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">one</span><span class="o">.</span><span class="nt">two</span><span class="o">.</span><span class="nt">three</span><span class="o">]</span><span class="w"> </span><span class="c"># Creates the intermediate sections &quot;one&quot; and &quot;one.two&quot;.</span>
+
+<span class="p">[</span><span class="nt">one</span><span class="o">]</span>
+<span class="err">two</span><span class="o">:</span><span class="w"> </span><span class="mi">123</span><span class="w">        </span><span class="c"># Error! The name &quot;one.two&quot; is already in use.</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="core-language-key-takeaways-and-beyond">
+<h2>Core Language: Key Takeaways and Beyond<a class="headerlink" href="#core-language-key-takeaways-and-beyond" title="Link to this heading"></a></h2>
+<p>In this chapter, we explored the essential components of the <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> core language. We discussed how to structure configuration documents using sections, subsections, and name-value pairs, and how to effectively utilize comments for clarity. We also covered the fundamental value types—<strong>integers</strong>, <strong>booleans</strong>, and <strong>text</strong>—along with their formats, rules, and best practices.</p>
+<p>Mastering these core concepts is crucial for working with ELCL, as they provide the foundational building blocks for all configurations. Whether you are defining simple settings or creating more complex structures, the core language ensures consistency, readability, and flexibility in your configurations.</p>
+<p>While the core language is sufficient for basic configurations and essential for lightweight <a class="reference internal" href="../glossary.html#term-Micro-Parser"><span class="xref std std-term">micro-parsers</span></a> on microcontrollers, real-world scenarios on desktop applications often require more than just the basics. This is where ELCL’s <strong>Standard Features</strong> come into play. These features significantly extend the capabilities of the core language, enabling more sophisticated configurations.</p>
+<p>With additional value types like floating-point numbers, dates, times, and byte-data, as well as powerful tools such as multi-line text and code blocks, value and section lists, text names, and the “include” meta command, ELCL provides the flexibility needed for complex and robust configurations.</p>
+<p>In the next chapter, we’ll explore these standard features in detail, learning how they can help you tackle advanced configuration challenges with ease. Let’s move forward and discover the possibilities that await with ELCL’s extended capabilities.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="standard-features.html" class="btn btn-neutral float-right" title="Standard Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

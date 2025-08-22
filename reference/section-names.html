@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section Names &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bfa5a15" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sections" href="sections.html" />
+    <link rel="prev" title="Name Conflicts" href="name-conflict.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Language Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Documentation Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="characters.html">Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-break.html">Line Break</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html">Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="names.html">Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-name.html">Text Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-path/index.html">Name Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name-conflict.html">Name Conflicts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Section Names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#section-name-rules">Section Name Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relative-sections-explained">Relative Sections Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intermediate-section-rules">Intermediate Section Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-list-rules-for-name-paths">Section List Rules for Name Paths</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#implications-of-this-rule">Implications of This Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nested-section-lists">Nested Section Lists</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sections.html">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="named-values.html">Named Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-line-value-list.html">Single-Line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-value-list.html">Multi-line Value Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text-value.html">Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integer-value.html">Integer Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean-value.html">Boolean Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating-point-value.html">Floating-Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-line-text-value.html">Multi-line Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date-time-value.html">Date, Time, and Date-Time Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-text-value.html">Code Text Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="byte-data-value.html">Byte-Data Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regular-expression-value.html">Regular Expression Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-delta-value.html">Time-Delta Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-value.html">Meta Values and Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="include-meta-command.html">Meta Command “Include”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signature-meta-value.html">Meta Command “Signature”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Limits Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value-type-names.html">Names for Value Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-code.html">Error Categories and Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-details.html">Error Category Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature-identifier.html">Feature Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../validation-rules/index.html">Validation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Language Reference</a></li>
+      <li class="breadcrumb-item active">Section Names</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/section-names.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-names">
+<span id="index-0"></span><span id="ref-section-name"></span><h1>Section Names<a class="headerlink" href="#section-names" title="Link to this heading"></a></h1>
+<p>Section names in <em>Erbsland Configuration Language</em> (ELCL) follow a structured format called <em>name paths</em>, as described in <a class="reference internal" href="name-path/index.html#ref-name-path"><span class="std std-ref">Name Paths</span></a>. These section names serve to organize the configuration into hierarchical structures.</p>
+<div class="highlight-bnf notranslate"><div class="highlight"><pre><span></span>name_separator      <span class="o">::=</span> spacing PERIOD spacing
+
+section_abs_name    <span class="o">::=</span> name (name_separator name)*
+section_rel_name    <span class="o">::=</span> name_separator section_abs_name
+section_abs_text    <span class="o">::=</span> section_abs_name name_separator text_name
+section_rel_text    <span class="o">::=</span> section_separator (name name_separator)* text_name
+
+section_name        <span class="o">::=</span> section_abs_name | section_rel_name |
+                        section_abs_text | section_rel_text
+</pre></div>
+</div>
+<p>This section focuses on the rules for naming sections, while the detailed behavior of sections is covered later in <a class="reference internal" href="sections.html#ref-section"><span class="std std-ref">Sections</span></a>. The rule <code class="docutils literal notranslate"><span class="pre">text_name</span></code> in the syntax above is defined in <a class="reference internal" href="text-name.html#ref-text-name"><span class="std std-ref">Text Names</span></a>.</p>
+<section id="section-name-rules">
+<h2>Section Name Rules<a class="headerlink" href="#section-name-rules" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Name Paths:</strong> Section names consist of one or more names, separated by a period (<code class="literal" onclick="showOverlay('.','FULL STOP','Po','U+002E','2E')"><span class="cp-role">.</span></code>). Each name in the path represents a hierarchy level, with the last name referring to the specific section.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">one</span><span class="o">.</span><span class="nt">two</span><span class="o">.</span><span class="nt">three</span><span class="o">]</span><span class="w">  </span><span class="c"># Defines the section &quot;three&quot; within &quot;one.two&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Absolute Sections:</strong> A section name that starts with a name is considered an <a class="reference internal" href="../glossary.html#term-Absolute-Section"><span class="xref std std-term">absolute section</span></a>. This means the section is defined from the root of the configuration document.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">one</span><span class="o">.</span><span class="nt">two</span><span class="o">.</span><span class="nt">three</span><span class="o">]</span><span class="w">  </span><span class="c"># Absolute section starting at the root</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Relative Sections:</strong> A section name starting with a <a class="reference internal" href="../glossary.html#term-Name-Separator"><span class="xref std std-term">name separator</span></a> is a <a class="reference internal" href="../glossary.html#term-Relative-Section"><span class="xref std std-term">relative section</span></a>, indicating that the path is relative to the <em>last defined</em> absolute section.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">server</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span><span class="w">  </span><span class="c"># Relative section =&gt; resolves to &quot;main.server.filter&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>No Relative Section at Start:</strong> A configuration document must <em>not</em> start with a relative section. The first section in a document must always be an absolute section.</p>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>[.server.filter]  # ERROR! Cannot start with a relative section
+</pre></div>
+</div>
+</li>
+<li><p><strong>No Consecutive Name Separators:</strong> A name path must <em>not</em> contain multiple consecutive periods (<code class="literal" onclick="showOverlay('.','FULL STOP','Po','U+002E','2E')"><span class="cp-role">.</span></code>) as name separators.</p>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>[one..two]  # ERROR! Consecutive periods are not allowed
+</pre></div>
+</div>
+</li>
+<li><p><strong>No Trailing Name Separator:</strong> A name path must <em>not</em> end with a period.</p>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>[one.two.]  # ERROR! The path cannot end with a period
+</pre></div>
+</div>
+</li>
+<li><p><strong>Name Path Length Limit:</strong> A name path must not exceed 10 names. If a section name has more than 10 names, it will be considered invalid.</p>
+<div class="bad-example highlight-text notranslate"><div class="highlight"><pre><span></span>[one.two.three.four.five.six.seven.eight.nine.ten.eleven]  # ERROR! Exceeds the limit of 10 names
+</pre></div>
+</div>
+<div class="micro-parser-specs admonition">
+<p class="admonition-title">Micro-Parsers</p>
+<p>The name path limit is <em>five</em> names.</p>
+</div>
+</li>
+</ol>
+</section>
+<section id="relative-sections-explained">
+<span id="index-1"></span><h2>Relative Sections Explained<a class="headerlink" href="#relative-sections-explained" title="Link to this heading"></a></h2>
+<p>Relative sections in <em>Erbsland Configuration Language</em> (ELCL) start with a <a class="reference internal" href="../glossary.html#term-Name-Separator"><span class="xref std std-term">name separator</span></a> and must always follow a previously defined <a class="reference internal" href="../glossary.html#term-Absolute-Section"><span class="xref std std-term">absolute section</span></a>. Relative sections extend the path of the most recently defined absolute section, meaning they are not <em>nested</em> sections, but rather continue from the last absolute section defined.</p>
+<p>The example below illustrates a configuration with a mix of absolute and relative sections. To simplify, the sections are left empty without any values:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span><span class="w">                 </span><span class="c"># Absolute section</span>
+<span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">sub</span><span class="o">]</span><span class="w">             </span><span class="c"># Absolute section</span>
+<span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">sub</span><span class="o">.</span><span class="nt">sub_a</span><span class="o">]</span><span class="w">       </span><span class="c"># Absolute section</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">sub1</span><span class="o">]</span><span class="w">                </span><span class="c"># Relative section -&gt; refers to &quot;main.sub.sub_a.sub1&quot;</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">sub2</span><span class="o">]</span><span class="w">                </span><span class="c"># Relative section -&gt; refers to &quot;main.sub.sub_a.sub2&quot;</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">sub1</span><span class="o">.</span><span class="nt">sub</span><span class="o">]</span><span class="w">            </span><span class="c"># Relative section -&gt; refers to &quot;main.sub.sub_a.sub1.sub&quot;</span>
+<span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">sub</span><span class="o">.</span><span class="nt">sub_b</span><span class="o">]</span><span class="w">       </span><span class="c"># Absolute section</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">sub1</span><span class="o">]</span><span class="w">                </span><span class="c"># Relative section -&gt; refers to &quot;main.sub.sub_b.sub1&quot;</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">sub2</span><span class="o">]</span><span class="w">                </span><span class="c"># Relative section -&gt; refers to &quot;main.sub.sub_b.sub2&quot;</span>
+<span class="p">[</span><span class="o">.</span><span class="nt">sub1</span><span class="o">.</span><span class="nt">sub</span><span class="o">]</span><span class="w">            </span><span class="c"># Relative section -&gt; refers to &quot;main.sub.sub_b.sub1.sub&quot;</span>
+</pre></div>
+</div>
+<p>This configuration is transformed into the following <a class="reference internal" href="name-path/index.html#ref-name-path"><span class="std std-ref">value tree</span></a>:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight value-tree"><pre>
+<span class="line section"><span class="connector"></span><span class="connector">● </span><span class="name">(root)</span></span>
+<span class="line section"><span class="connector">└── </span><span class="name">[main]</span></span>
+<span class="line section">    <span class="connector">└── </span><span class="name">[sub]</span></span>
+<span class="line section">        <span class="connector">├── </span><span class="name">[sub_a]</span></span>
+<span class="line section">        <span class="connector">│   </span><span class="connector">├── </span><span class="name">[sub1]</span></span>
+<span class="line section">        <span class="connector">│   </span><span class="connector">│   </span><span class="connector">└── </span><span class="name">[sub]</span></span>
+<span class="line section">        <span class="connector">│   </span><span class="connector">└── </span><span class="name">[sub2]</span></span>
+<span class="line section">        <span class="connector">└── </span><span class="name">[sub_b]</span></span>
+<span class="line section">            <span class="connector">├── </span><span class="name">[sub1]</span></span>
+<span class="line section">            <span class="connector">│   </span><span class="connector">└── </span><span class="name">[sub]</span></span>
+<span class="line section">            <span class="connector">└── </span><span class="name">[sub2]</span></span></pre></div></div><p>In the example above, each relative section (starting with a period) extends the path of the last absolute section that was defined. For example, <code class="docutils literal notranslate"><span class="pre">.sub1</span></code> and <code class="docutils literal notranslate"><span class="pre">.sub2</span></code> extend from both <code class="docutils literal notranslate"><span class="pre">main.sub.sub_a</span></code> and <code class="docutils literal notranslate"><span class="pre">main.sub.sub_b</span></code> depending on their position in the configuration.</p>
+</section>
+<section id="intermediate-section-rules">
+<span id="index-2"></span><h2>Intermediate Section Rules<a class="headerlink" href="#intermediate-section-rules" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Create Missing Elements:</strong> If a name in the name path defining a section is unused at the point of its definition, an <a class="reference internal" href="../glossary.html#term-Intermediate-Section"><span class="xref std std-term">intermediate section</span></a> must be created implicitly for all these elements.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">server</span><span class="o">.</span><span class="nt">binding</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">filter</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;any&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight value-tree"><pre>
+<span class="line section"><span class="connector"></span><span class="connector">● </span><span class="name">(root)</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Document</span><span class="content_bracket"> ( </span><span class="content_text">size=1</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section"><span class="connector">└── </span><span class="name">[main]</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">IntermediateSection</span><span class="content_bracket"> ( </span><span class="content_text"></span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">└── </span><span class="name">[server]</span><span class="indent">                </span><span class="arrow"><==</span> <span class="content"><span class="content_type">IntermediateSection</span><span class="content_bracket"> ( </span><span class="content_text"></span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">        <span class="connector">└── </span><span class="name">[binding]</span><span class="indent">               </span><span class="arrow"><==</span> <span class="content"><span class="content_type">IntermediateSection</span><span class="content_bracket"> ( </span><span class="content_text"></span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">            <span class="connector">└── </span><span class="name">[port]</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=1</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">                <span class="connector">└── </span><span class="name">filter</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"any"</span><span class="content_bracket"> ) </span></span></span></pre></div></div></li>
+<li><p><strong>Names of Intermediate Sections Stay Unused:</strong> The names for implicitly created intermediate sections do not count used. Therefore a regular section with that name can be defined later in a configuration.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">8000</span>
+
+<span class="p">[</span><span class="nt">main</span><span class="o">]</span><span class="w">  </span><span class="c"># That&#39;s ok!</span>
+<span class="nv">threads</span><span class="o">:</span><span class="w"> </span><span class="mi">16</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>No Redefinition as Section List or Value:</strong> Intermediate sections <em>must not</em> not be (re-)defined as a section list or value later in the configuration.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">server</span><span class="o">.</span><span class="nt">binding</span><span class="o">]</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">8000</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="err">server</span><span class="o">]</span><span class="w">       </span><span class="c"># ERROR! You must not redefine &quot;server&quot; as section list.</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
+
+<span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="err">server</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;host01&quot;</span><span class="w">     </span><span class="c"># ERROR! You must not redefine &quot;server&quot; as a value.</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="section-list-rules-for-name-paths">
+<span id="index-3"></span><h2>Section List Rules for Name Paths<a class="headerlink" href="#section-list-rules-for-name-paths" title="Link to this heading"></a></h2>
+<p>There is one critical rule regarding the use of <em>section lists</em> in a name path:</p>
+<ol class="arabic simple">
+<li><p><strong>Use the Last Element:</strong> If a section list appears in the <em>middle</em> of a <a class="reference internal" href="name-path/index.html#ref-name-path"><span class="std std-ref">name path</span></a>, the <em>last element</em> in the list is used to continue following the path.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please note that the <em>last element</em> refers to the last element <em>at the time</em> the name path is defined in the configuration. With each new section defined for a section list, the last element points to the newly added element.</p>
+</div>
+<section id="implications-of-this-rule">
+<h3>Implications of This Rule<a class="headerlink" href="#implications-of-this-rule" title="Link to this heading"></a></h3>
+<p>At first glance, repeating the section <code class="docutils literal notranslate"><span class="pre">server.filter</span></code> might seem like a potential conflict. However, due to the rule that only the last element of the section list is referenced, each definition of <code class="docutils literal notranslate"><span class="pre">server.filter</span></code> points to a unique instance.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;host01&quot;</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">reject</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;udp&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;host02&quot;</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">8000</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">reject</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tcp&quot;</span>
+</pre></div>
+</div>
+<p>In the configuration above, two sections of <code class="docutils literal notranslate"><span class="pre">server.filter</span></code> are defined under different <code class="docutils literal notranslate"><span class="pre">server</span></code> entries. The resulting <a class="reference internal" href="name-path/index.html#ref-name-path"><span class="std std-ref">value tree</span></a> looks like this:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight value-tree"><pre>
+<span class="line section"><span class="connector"></span><span class="connector">● </span><span class="name">(root)</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Document</span><span class="content_bracket"> ( </span><span class="content_text">size=1</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section"><span class="connector">└── </span><span class="name">*[server]</span><span class="indent">               </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionList</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">├── </span><span class="name">[0]</span><span class="indent">                     </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=3</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">│   </span><span class="connector">├── </span><span class="name">[filter]</span><span class="indent">                </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=1</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span><span class="connector">│   </span><span class="connector">└── </span><span class="name">reject</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"udp"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span><span class="connector">├── </span><span class="name">name</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"host01"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">    <span class="connector">│   </span><span class="connector">└── </span><span class="name">port</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Integer</span><span class="content_bracket"> ( </span><span class="content_text">9000</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">└── </span><span class="name">[1]</span><span class="indent">                     </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=3</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">        <span class="connector">├── </span><span class="name">[filter]</span><span class="indent">                </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=1</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">│   </span><span class="connector">└── </span><span class="name">reject</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"tcp"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">├── </span><span class="name">name</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"host02"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">└── </span><span class="name">port</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Integer</span><span class="content_bracket"> ( </span><span class="content_text">8000</span><span class="content_bracket"> ) </span></span></span></pre></div></div><p>This configuration can also be written using relative <em>name paths</em> to achieve the same result.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;host01&quot;</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">reject</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;udp&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;host02&quot;</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">8000</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">reject</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tcp&quot;</span>
+</pre></div>
+</div>
+<p>This alternative produces the same value tree.</p>
+</section>
+<section id="nested-section-lists">
+<h3>Nested Section Lists<a class="headerlink" href="#nested-section-lists" title="Link to this heading"></a></h3>
+<p>Section lists can also be nested, and the same simple rule applies: the last element in the list is used to continue the path. Even with nested sections, this rule remains straightforward to follow.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;host01&quot;</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+
+<span class="o">*</span><span class="p">[</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span>
+<span class="nv">reject</span><span class="o">:</span><span class="w"> </span><span class="kc">Yes</span>
+
+<span class="o">*</span><span class="p">[</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span>
+<span class="nv">reject</span><span class="o">:</span><span class="w"> </span><span class="kc">Yes</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">filter</span><span class="o">.</span><span class="nt">log</span><span class="o">]</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Rejected x&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;host02&quot;</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">8000</span>
+
+<span class="o">*</span><span class="p">[</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;f&quot;</span>
+<span class="nv">reject</span><span class="o">:</span><span class="w"> </span><span class="kc">No</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">filter</span><span class="o">.</span><span class="nt">log</span><span class="o">]</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Accepted f&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;g&quot;</span>
+<span class="nv">reject</span><span class="o">:</span><span class="w"> </span><span class="kc">Yes</span>
+</pre></div>
+</div>
+<p>In this more complex configuration, multiple <code class="docutils literal notranslate"><span class="pre">filter</span></code> sections are nested under different <code class="docutils literal notranslate"><span class="pre">server</span></code> entries. The resulting value tree maintains the structure of unique instances:</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight value-tree"><pre>
+<span class="line section"><span class="connector"></span><span class="connector">● </span><span class="name">(root)</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Document</span><span class="content_bracket"> ( </span><span class="content_text">size=1</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section"><span class="connector">└── </span><span class="name">[main]</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">IntermediateSection</span><span class="content_bracket"> ( </span><span class="content_text"></span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">    <span class="connector">└── </span><span class="name">*[server]</span><span class="indent">               </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionList</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">        <span class="connector">├── </span><span class="name">[0]</span><span class="indent">                     </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=3</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">        <span class="connector">│   </span><span class="connector">├── </span><span class="name">*[filter]</span><span class="indent">               </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionList</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">        <span class="connector">│   </span><span class="connector">│   </span><span class="connector">├── </span><span class="name">[0]</span><span class="indent">                     </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">│   </span><span class="connector">│   </span><span class="connector">│   </span><span class="connector">├── </span><span class="name">reject</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Boolean</span><span class="content_bracket"> ( </span><span class="content_text">true</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">│   </span><span class="connector">│   </span><span class="connector">│   </span><span class="connector">└── </span><span class="name">text</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"a"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">        <span class="connector">│   </span><span class="connector">│   </span><span class="connector">└── </span><span class="name">[1]</span><span class="indent">                     </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=3</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">        <span class="connector">│   </span><span class="connector">│   </span>    <span class="connector">├── </span><span class="name">[log]</span><span class="indent">                   </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=1</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">│   </span><span class="connector">│   </span>    <span class="connector">│   </span><span class="connector">└── </span><span class="name">error</span><span class="indent">                   </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"Rejected x"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">│   </span><span class="connector">│   </span>    <span class="connector">├── </span><span class="name">reject</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Boolean</span><span class="content_bracket"> ( </span><span class="content_text">true</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">│   </span><span class="connector">│   </span>    <span class="connector">└── </span><span class="name">text</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"x"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">│   </span><span class="connector">├── </span><span class="name">name</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"host01"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">        <span class="connector">│   </span><span class="connector">└── </span><span class="name">port</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Integer</span><span class="content_bracket"> ( </span><span class="content_text">9000</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">        <span class="connector">└── </span><span class="name">[1]</span><span class="indent">                     </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=3</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">            <span class="connector">├── </span><span class="name">*[filter]</span><span class="indent">               </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionList</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">            <span class="connector">│   </span><span class="connector">├── </span><span class="name">[0]</span><span class="indent">                     </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=3</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">            <span class="connector">│   </span><span class="connector">│   </span><span class="connector">├── </span><span class="name">[log]</span><span class="indent">                   </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=1</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">            <span class="connector">│   </span><span class="connector">│   </span><span class="connector">│   </span><span class="connector">└── </span><span class="name">error</span><span class="indent">                   </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"Accepted f"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">            <span class="connector">│   </span><span class="connector">│   </span><span class="connector">├── </span><span class="name">reject</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Boolean</span><span class="content_bracket"> ( </span><span class="content_text">false</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">            <span class="connector">│   </span><span class="connector">│   </span><span class="connector">└── </span><span class="name">text</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"f"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line section">            <span class="connector">│   </span><span class="connector">└── </span><span class="name">[1]</span><span class="indent">                     </span><span class="arrow"><==</span> <span class="content"><span class="content_type">SectionWithNames</span><span class="content_bracket"> ( </span><span class="content_text">size=2</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">            <span class="connector">│   </span>    <span class="connector">├── </span><span class="name">reject</span><span class="indent">                  </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Boolean</span><span class="content_bracket"> ( </span><span class="content_text">true</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">            <span class="connector">│   </span>    <span class="connector">└── </span><span class="name">text</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"g"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">            <span class="connector">├── </span><span class="name">name</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Text</span><span class="content_bracket"> ( </span><span class="content_text">"host02"</span><span class="content_bracket"> ) </span></span></span>
+<span class="line">            <span class="connector">└── </span><span class="name">port</span><span class="indent">                    </span><span class="arrow"><==</span> <span class="content"><span class="content_type">Integer</span><span class="content_bracket"> ( </span><span class="content_text">8000</span><span class="content_bracket"> ) </span></span></span></pre></div></div><p>This configuration demonstrates how nested section lists are managed:</p>
+<ul class="simple">
+<li><p>Each section under <code class="docutils literal notranslate"><span class="pre">main.server</span></code> is unique, and the last element in the list is used to build the value tree.</p></li>
+<li><p>Nested lists (such as <code class="docutils literal notranslate"><span class="pre">filter</span></code>) still follow the same rule, therefore <code class="docutils literal notranslate"><span class="pre">.filter.log</span></code> is added to the first entry of the new <code class="docutils literal notranslate"><span class="pre">filter</span></code> section list.</p></li>
+</ul>
+</section>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Coverage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">core</span></p></td>
+<td><p>Regular names, name paths, absolute and relative regular sections are part of the core language.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">section-list</span></p></td>
+<td><p>Section lists are a standard feature.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">text-names</span></p></td>
+<td><p>Text names and sections with text names are a standard feature.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Link to this heading"></a></h2>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Error Code</p></th>
+<th class="head"><p>Causes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="text-code">NameConflict</span></p></td>
+<td><p>Raised for any name conflict as described here and in <a class="reference internal" href="name-conflict.html#ref-name-conflict"><span class="std std-ref">Name Conflicts</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="text-code">Syntax</span></p></td>
+<td><div class="line-block">
+<div class="line">Raised if a document starts with a relative section.</div>
+<div class="line">Raised if a name path contains multiple consecutive name separators.</div>
+<div class="line">Raised if a name path ends in a name separator.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><span class="text-code">LimitExceeded</span></p></td>
+<td><p>Raised if a name path has more than 10 elements.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="name-conflict.html" class="btn btn-neutral float-left" title="Name Conflicts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sections.html" class="btn btn-neutral float-right" title="Sections" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
