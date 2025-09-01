@@ -42,6 +42,7 @@ Table of Contents
     parser-tiers
     reference/index
     validation-rules/index
+    parser-implementations
     contributing/index
     license
     changelog

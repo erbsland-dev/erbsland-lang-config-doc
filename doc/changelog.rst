@@ -10,6 +10,13 @@
 Changelog
 *********
 
+Version 1.0.10 - 2025-09-01
+===========================
+
+* Added a page with a list of all known parser implementations.
+* Explained how to add your own parser to the list.
+* Improved the contribution guide with buttons to create issues and start discussions.
+
 Version 1.0.8 - 2025-08-22
 ==========================
 
