@@ -17,6 +17,12 @@ Glossary
 
         → Read :ref:`intro` for details.
 
+    VR
+    ELCL-VR
+        *ELCL-VR* stands for *Erbsland Configuration Language Validation Rules*. They are a standardized mini-language, defined as part of :term:`ELCL`, for validating the content of parsed configuration documents. A validation rules document is itself written in :term:`ELCL` form.
+
+        → Read :doc:`validation-rules/index` for details.
+
     Document
         :term:`ELCL` configuration *documents* must be encoded in :term:`UTF-8`. A *document* can contain almost all valid :term:`Unicode` :term:`characters<character>`, except :term:`control characters` with a few exceptions.
 
@@ -361,6 +367,11 @@ Glossary
             Name 13: <45 72 62 73 6c 61 6e 64>  # A byte-data value
 
         → Read :ref:`ref-named-value` for details.
+
+    Scalar Value
+        An *scalar value* is a :term:`value` that is not a :term:`section`, :term:`section list` or :term:`value list`. An scalar value is either a :term:`text`, a :term:`number` or one of many other :term:`value types<value type>` and :term:`value formats<value format>`.
+
+        Scalar types: Integer, Boolean, Float, Text, Date, Time, DateTime, Bytes, TimeDelta and RegEx.
 
     Value Separator
         The *value separator* distinguishes a :term:`name` from its corresponding :term:`value`. In :term:`ELCL`, it can be either be the character :cp:`:` or alternatively :cp:`=`. :term:`Spacing` is allowed before and after the *separator*, also a :term:`line break` is allowed after the *separator*, before the configured :term:`value` starts.
@@ -741,17 +752,56 @@ Glossary
         → Read :ref:`intro-core` for details.
 
     Value Tree
-        The *value tree* is the hierarchical structure representing ELCL configurations, where :term:`sections<section>` and values are organized in a nested, tree-like format based on their :term:`name paths<name path>`.
+        The *value tree* is the hierarchical structure that represents an parsed ELCL configuration. It organizes :term:`sections<Section>` and values in a nested, tree-like form based on their :term:`name paths<Name Path>`.
 
-        → Read :ref:`ref-name-path` for details.
+        Individual points in a value tree are called :term:`Nodes<Node>`. A node can represent either a :term:`Value<Value>` or a :term:`Section<Section>`. We prefer the term *node* to avoid confusion when distinguishing between scalar values and larger structures.
+
+        → See :ref:`ref-name-path` for details.
 
     Value Map
-        A *value map* is a collection of :term:`name-value pairs<name>` within an ELCL section, where each key uniquely identifies a value. It serves as a way to group related data.
+        A *value map* is a collection of :term:`name-value pairs<Name>` within an ELCL section, where each key uniquely identifies a value. It groups related data under a single section.
 
-        → Read :ref:`ref-named-value` for details.
+        → See :ref:`ref-named-value` for details.
 
     Value List
-        A *value list* in ELCL is an ordered sequence of values, which can be defined on a single line or across multiple lines, allowing multiple values to be grouped under a single name.
+        A *value list* is an ordered sequence of values within ELCL. A value list can be written on a single line or across multiple lines, allowing multiple values to be grouped under one name.
 
-        → Read :ref:`ref-single-line-value-list` and :ref:`ref-multi-line-value-list` for details.
+        → See :ref:`ref-single-line-value-list` and :ref:`ref-multi-line-value-list` for details.
+
+    Validation Rules
+        *Validation Rules (ELCL-VR)* are a standardized mini-language, defined as part of :term:`ELCL`, that parsers can use to validate the contents of a parsed configuration document or one of its subtrees.
+
+        → See :doc:`validation-rules/index` for details.
+
+    Node
+        A *node* describes one location in a :term:`Value Tree`.
+        A node can be:
+
+        * a :term:`Value`, such as an integer or text,
+        * a :term:`Value List`,
+        * a :term:`Section`, or
+        * a :term:`Section List`.
+
+        We use the term *node* to clearly distinguish between an actual value (e.g. an integer) and its position in the tree. For this reason, the specification uses the term :term:`Node-Rules` instead of *value rules*, since rules apply not only to scalar values but also to sections and lists.
+
+    Node-Rules
+        *Node-Rules* are a set of :term:`constraints<Constraint>` that apply to one :term:`Node` in a :term:`Value Tree`.
+        Node-Rules are always defined within a :term:`Validation Rules` document.
+
+        → See :doc:`validation-rules/index` for details.
+
+    Constraint
+        A *constraint* is a rule applied to a :term:`Node` within a :term:`Validation Rules` document. Constraints restrict values or structures beyond basic type checking.
+
+        For example, the ``minimum`` constraint may define the lowest valid integer value, or the minimum number of characters required in a text.
+
+        → See :doc:`validation-rules/constraints/index` for details.
+
+    Reserved Name
+        A *reserved name* is a special identifier in a :term:`Validation Rules` document that has predefined semantics and cannot be repurposed for other nodes.
+
+        All reserved names begin with the prefix ``vr_``. Examples include ``vr_any`` and ``vr_template``.
+
+        → See :doc:`validation-rules/index` for details.
+
 

@@ -1,0 +1,37 @@
+
+:root {
+    --color-design-rationale-bg: rgb(243, 231, 250);
+    --color-design-rationale-title-bg: rgb(152, 106, 222);
+    --color-design-rationale-title-text: white;
+    --color-micro-parser-specs-bg: #fff;
+    --color-micro-parser-specs-title-bg: #e8e8e8;
+    --color-micro-parser-specs-title-text: #444;
+}
+
+.design-rationale.admonition {
+    background-color: var(--color-design-rationale-bg);
+
+    .admonition-title {
+        background-color: var(--color-design-rationale-title-bg);
+        color: var(--color-design-rationale-title-text);
+    }
+
+    .admonition-title::before {
+        content: "\f040";
+    }
+}
+
+.micro-parser-specs.admonition {
+    background-color: var(--color-micro-parser-specs-bg);
+    border: 1px solid var(--color-micro-parser-specs-title-bg);
+
+    .admonition-title {
+        color: var(--color-micro-parser-specs-title-text);
+        background-color: var(--color-micro-parser-specs-title-bg);
+    }
+
+    .admonition-title::before {
+        content: "\f2db";
+    }
+}
+

@@ -1,0 +1,414 @@
+{
+  "generated_from": "doc/validation-rules/constraints",
+  "constraints": [
+    {
+      "name": "chars",
+      "source": "doc/validation-rules/constraints/chars.rst",
+      "rows": [
+        {"node_types": ["Integer"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Boolean"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Float"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["Text"],
+          "supported": true,
+          "value_types": ["Text", "ValueList[Text]"],
+          "details": "Constrains the text so that it only contains allowed characters (``chars``) or does not contain forbidden characters (``not_chars``)."
+        },
+        {"node_types": ["Date"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Time"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["DateTime"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Bytes"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["TimeDelta"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["RegEx"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Value"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["ValueList"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["ValueMatrix"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Section"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["SectionList"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["SectionWithTexts"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["NotValidated"], "supported": false, "value_types": [], "details": ""}
+      ]
+    },
+    {
+      "name": "equals",
+      "source": "doc/validation-rules/constraints/equals.rst",
+      "rows": [
+        {
+          "node_types": ["Integer"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the integer value to the given constant."
+        },
+        {
+          "node_types": ["Boolean"],
+          "supported": true,
+          "value_types": ["Boolean"],
+          "details": "Constrains the boolean value to the given constant."
+        },
+        {
+          "node_types": ["Float"],
+          "supported": true,
+          "value_types": ["Float"],
+          "details": "Constrains the floating-point value to the given constant. Fuzzy equality *must* be implemented in a platform-consistent way (e.g., tolerance for IEEE rounding)."
+        },
+        {
+          "node_types": ["Text"],
+          "supported": true,
+          "value_types": ["Text", "Integer"],
+          "details": "If a text is given, constrains the value to that exact text. If an integer is given, constrains the text length (in Unicode code points)."
+        },
+        {"node_types": ["Date"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Time"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["DateTime"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["Bytes"],
+          "supported": true,
+          "value_types": ["Bytes", "Integer"],
+          "details": "If a bytes sequence is given, constrains the value to that exact sequence. If an integer is given, constrains the bytes sequence length."
+        },
+        {"node_types": ["TimeDelta"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["RegEx"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Value"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["ValueList"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the list to exactly *n* entries."
+        },
+        {
+          "node_types": ["ValueMatrix"],
+          "supported": true,
+          "value_types": ["ValueList"],
+          "details": "Constrains the matrix to exactly *n* rows and *m* columns. The first integer applies to rows, the second to columns."
+        },
+        {
+          "node_types": ["Section"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the number of child entries when using ``vr_any``."
+        },
+        {
+          "node_types": ["SectionList"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the section list to exactly *n* entries."
+        },
+        {
+          "node_types": ["SectionWithTexts"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the number of child entries when using ``vr_any``."
+        },
+        {"node_types": ["NotValidated"], "supported": false, "value_types": [], "details": ""}
+      ]
+    },
+    {
+      "name": "in",
+      "source": "doc/validation-rules/constraints/in.rst",
+      "rows": [
+        {
+          "node_types": ["Integer"],
+          "supported": true,
+          "value_types": ["ValueList"],
+          "details": "Valid only if the integer value appears in the list of integers."
+        },
+        {"node_types": ["Boolean"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["Float"],
+          "supported": true,
+          "value_types": ["ValueList"],
+          "details": "Valid only if the float value appears in the list of floats. Fuzzy equality *must* be implemented in a platform-consistent way (e.g., tolerance for IEEE rounding)."
+        },
+        {
+          "node_types": ["Text"],
+          "supported": true,
+          "value_types": ["ValueList"],
+          "details": "Valid only if the text matches one of the given text values."
+        },
+        {"node_types": ["Date"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Time"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["DateTime"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["Bytes"],
+          "supported": true,
+          "value_types": ["ValueList"],
+          "details": "Valid only if the byte sequence matches one of the listed byte sequences."
+        },
+        {"node_types": ["TimeDelta"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["RegEx"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Value"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["ValueList"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["ValueMatrix"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Section"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["SectionList"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["SectionWithTexts"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["NotValidated"], "supported": false, "value_types": [], "details": ""}
+      ]
+    },
+    {
+      "name": "key",
+      "source": "doc/validation-rules/constraints/key.rst",
+      "rows": [
+        {
+          "node_types": ["Integer"],
+          "supported": true,
+          "value_types": ["Text", "ValueList[Text]"],
+          "details": "Constrains the integer to reference a key from one of the given indexes."
+        },
+        {"node_types": ["Boolean"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Float"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["Text"],
+          "supported": true,
+          "value_types": ["Text", "ValueList[Text]"],
+          "details": "Constrains the text to reference a key from one of the given indexes."
+        },
+        {"node_types": ["Date"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Time"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["DateTime"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Bytes"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["TimeDelta"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["RegEx"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Value"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["ValueList"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["ValueMatrix"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Section"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["SectionList"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["SectionWithTexts"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["NotValidated"], "supported": false, "value_types": [], "details": ""}
+      ]
+    },
+    {
+      "name": "matches",
+      "source": "doc/validation-rules/constraints/matches.rst",
+      "rows": [
+        {"node_types": ["Integer"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Boolean"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Float"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["Text"],
+          "supported": true,
+          "value_types": ["RegEx"],
+          "details": "Constrains the text to match the given regular expression."
+        },
+        {"node_types": ["Date"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Time"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["DateTime"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Bytes"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["TimeDelta"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["RegEx"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Value"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["ValueList"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["ValueMatrix"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Section"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["SectionList"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["SectionWithTexts"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["NotValidated"], "supported": false, "value_types": [], "details": ""}
+      ]
+    },
+    {
+      "name": "minimum-maximum",
+      "source": "doc/validation-rules/constraints/minimum-maximum.rst",
+      "rows": [
+        {
+          "node_types": ["Integer"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the minimum and maximum valid integer value."
+        },
+        {"node_types": ["Boolean"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["Float"],
+          "supported": true,
+          "value_types": ["Float"],
+          "details": "Constrains the minimum and maximum floating-point value. If *any range* is set, ``NaN`` is disallowed. If the value is bounded on the positive or negative side, ``+Inf`` or ``-Inf`` is disallowed."
+        },
+        {
+          "node_types": ["Text"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the number of *characters* (code points)."
+        },
+        {
+          "node_types": ["Date"],
+          "supported": true,
+          "value_types": ["Date"],
+          "details": "Constrains the earliest and/or latest valid date."
+        },
+        {"node_types": ["Time"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["DateTime"],
+          "supported": true,
+          "value_types": ["DateTime"],
+          "details": "Constrains the earliest and/or latest valid date-time."
+        },
+        {
+          "node_types": ["Bytes"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the number of *bytes*."
+        },
+        {"node_types": ["TimeDelta"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["RegEx"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Value"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["ValueList"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the minimum and maximum number of elements in the list."
+        },
+        {
+          "node_types": ["ValueMatrix"],
+          "supported": true,
+          "value_types": ["ValueList", "Integer"],
+          "details": "Constrains the minimum and maximum number of rows and columns. The first integer applies to rows, the second to columns."
+        },
+        {
+          "node_types": ["Section"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the number of child entries when using ``vr_any``."
+        },
+        {
+          "node_types": ["SectionList"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the number of entries in the section list."
+        },
+        {
+          "node_types": ["SectionWithTexts"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Constrains the number of child entries when using ``vr_any``."
+        },
+        {"node_types": ["NotValidated"], "supported": false, "value_types": [], "details": ""}
+      ]
+    },
+    {
+      "name": "multiple",
+      "source": "doc/validation-rules/constraints/multiple.rst",
+      "rows": [
+        {
+          "node_types": ["Integer"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Value is valid only if ``value mod n == 0``."
+        },
+        {"node_types": ["Boolean"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["Float"],
+          "supported": true,
+          "value_types": ["Float"],
+          "details": "Value is valid only if ``value mod n == 0`` within platform-consistent floating-point tolerance."
+        },
+        {
+          "node_types": ["Text"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Length of the text (in code points) must be a multiple of ``n``."
+        },
+        {"node_types": ["Date"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Time"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["DateTime"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["Bytes"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Number of bytes must be a multiple of ``n``."
+        },
+        {"node_types": ["TimeDelta"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["RegEx"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Value"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["ValueList"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Number of elements must be a multiple of ``n``."
+        },
+        {
+          "node_types": ["ValueMatrix"],
+          "supported": true,
+          "value_types": ["ValueList", "Integer"],
+          "details": "Both dimensions must be multiples of ``n``. The first integer applies to rows, the second to columns."
+        },
+        {
+          "node_types": ["Section"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Number of child nodes (when using ``vr_any``) must be a multiple of ``n``."
+        },
+        {
+          "node_types": ["SectionList"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Number of list entries must be a multiple of ``n``."
+        },
+        {
+          "node_types": ["SectionWithTexts"],
+          "supported": true,
+          "value_types": ["Integer"],
+          "details": "Number of child nodes (when using ``vr_any``) must be a multiple of ``n``."
+        },
+        {"node_types": ["NotValidated"], "supported": false, "value_types": [], "details": ""}
+      ]
+    },
+    {
+      "name": "starts-ends-contains",
+      "source": "doc/validation-rules/constraints/starts-ends-contains.rst",
+      "rows": [
+        {"node_types": ["Integer"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Boolean"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Float"], "supported": false, "value_types": [], "details": ""},
+        {
+          "node_types": ["Text"],
+          "supported": true,
+          "value_types": ["Text", "ValueList[Text]"],
+          "details": "Constrains the text to start with, end with, or contain one of the given values."
+        },
+        {"node_types": ["Date"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Time"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["DateTime"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Bytes"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["TimeDelta"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["RegEx"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Value"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["ValueList"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["ValueMatrix"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["Section"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["SectionList"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["SectionWithTexts"], "supported": false, "value_types": [], "details": ""},
+        {"node_types": ["NotValidated"], "supported": false, "value_types": [], "details": ""}
+      ]
+    },
+    {
+      "name": "version",
+      "source": "doc/validation-rules/constraints/version.rst",
+      "rows": [
+        {
+          "node_types": [
+            "Integer",
+            "Boolean",
+            "Float",
+            "Text",
+            "Date",
+            "Time",
+            "DateTime",
+            "Bytes",
+            "TimeDelta",
+            "RegEx",
+            "Value",
+            "ValueList",
+            "ValueMatrix",
+            "Section",
+            "SectionList",
+            "SectionWithTexts",
+            "NotValidated"
+          ],
+          "supported": true,
+          "value_types": ["Integer", "ValueList[Integer]"],
+          "details": "Constraints are applied to the version number passed to the validator, not to the configuration document."
+        }
+      ]
+    }
+  ]
+}

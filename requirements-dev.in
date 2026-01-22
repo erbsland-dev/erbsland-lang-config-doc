@@ -3,5 +3,6 @@ sphinx
 sphinx-rtd-theme
 sphinx-autobuild
 sphinx-design
+sphinx-copybutton
 html2text
 jinja2

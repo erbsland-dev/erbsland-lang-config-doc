@@ -211,7 +211,7 @@ Time Rules
         [precision]
         precise       : 13:21:58.0             # Precise like setting your microwave timer
         more precise  : 13:21:58.004           # Precise like a hummingbird's wingbeat
-        super precise : 13:21:58.004289        # Precise like an atomic clock
+        super precise : 13:21:58.004289        # Precise like an scalar clock
         ultra precise : 13:21:58.004289192     # Precise like a particle accelerator’s timing
 
 #.  **Time Precision:** Time values must support a precision of nanoseconds.

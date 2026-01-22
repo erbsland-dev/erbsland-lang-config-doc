@@ -1,0 +1,30 @@
+
+.wy-table-responsive table.constraint-matrix {
+
+    td:first-child {
+        font-family: var(--font-family-monospace), monospace;
+    }
+
+    td:not(:first-child) {
+        vertical-align: center;
+        padding: 0.5em;
+    }
+
+    th:first-child {
+        vertical-align: bottom;
+    }
+
+    th:not(:first-child) {
+        height: 100px;
+        vertical-align: bottom;
+        padding: 0.5em;
+        font-weight: 500;
+        font-family: var(--font-family-monospace), monospace;
+    }
+
+    th:not(:first-child) p {
+        writing-mode: vertical-lr;
+        text-orientation: mixed;
+        white-space: nowrap;
+    }
+}

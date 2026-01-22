@@ -10,20 +10,30 @@
 Changelog
 *********
 
-Version 1.0.10 - 2025-09-01
+Version 1.2.0 — 2026-01-22
+==========================
+
+*   Added a new chapter :doc:`validation-rules/index` defining **ELCL Validation Rules (ELCL-VR)**:
+
+    *   Introduces a standardized mini-language for declarative configuration validation.
+    *   Covers document structure, node rules, types, constraints, templates, dependencies,
+        versioning, diagnostics, and security considerations.
+    *   Enables portable, implementation-independent validation of ELCL configuration documents.
+
+Version 1.0.10 — 2025-09-01
 ===========================
 
 * Added a page with a list of all known parser implementations.
 * Explained how to add your own parser to the list.
 * Improved the contribution guide with buttons to create issues and start discussions.
 
-Version 1.0.8 - 2025-08-22
+Version 1.0.8 — 2025-08-22
 ==========================
 
 * Added the colon to the list of escaped characters in the "Test Outcome Format" chapter. This character had been accidentally omitted.
 * Added a design rationale box to explain the reasoning behind the escaping rules.
 
-Version 1.0.6 - 2025-08-14
+Version 1.0.6 — 2025-08-14
 ==========================
 
 * Added examples of invalid floating-point values for clarity.
@@ -32,7 +42,7 @@ Version 1.0.6 - 2025-08-14
 * Broadened the rule to better deny any non-decimal formats for floating-point values.
 * Refined explanation of behavior when limits are exceeded, removing potentially misleading rounding example in the context of floating-point numbers.
 
-Version 1.0.4 - 2025-07-10
+Version 1.0.4 — 2025-07-10
 ==========================
 
 - Clarified the relationship between `Syntax` and its specialized subcategories (`Character`, `UnexpectedEnd`, `Indentation`, `LimitExceeded`, `Unsupported`).
@@ -40,7 +50,7 @@ Version 1.0.4 - 2025-07-10
 - Added design rationales to explain the purpose and intent behind each specialized category.
 - Explicitly stated that distinguishing specialized errors is optional for parser conformance.
 
-Version 1.0.0 - 2025-07-09
+Version 1.0.0 — 2025-07-09
 ==========================
 
 - Initial release

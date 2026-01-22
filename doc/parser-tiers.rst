@@ -64,14 +64,14 @@ The following table shows the three tiers with all encoding and size requirement
         -   32
         -   64
     *   -   FP-Number Size (Bit) [5]_
-        -   —
+        -   :fas:`minus;el-text-ghost`
         -   64
     *   -   Event Driven Parser Implementation
-        -   ✅
-        -   ✅
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   Model Parser Implementation
-        -   —
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
 
 .. [1] This includes the characters for the line-break.
 .. [2] A parser must reject any name path that exceeds this number of names.
@@ -120,79 +120,80 @@ Features
         -   Standard
         -   Full
     *   -   Floating-Point Values
-        -   —
-        -   ✅
-        -   ✅
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   Byte Counts
-        -   —
-        -   ✅
-        -   ✅
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   Multi-line Text
-        -   —
-        -   —
-        -   ✅
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   Text Names (for Values and Sections)
-        -   —
-        -   —
-        -   ✅
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   List Sections
-        -   —
-        -   —
-        -   ✅
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   Value Lists (Single- / Multi-line)
-        -   —
-        -   —
-        -   ✅
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   Date, Time and Date/Time Values
-        -   —
-        -   —
-        -   ✅
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   Code Text (Single- / Multi-line) [8]_
-        -   —
-        -   —
-        -   ✅
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   Byte-Data Value (Single- / Multi-line)
-        -   —
-        -   —
-        -   ✅
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   Meta Command ``@include``
-        -   —
-        -   —
-        -   ✅
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+        -   :fas:`check;sd-text-success`
     *   -   Regular Expression (Single- / Multi-line) [9]_
-        -   —
-        -   —
-        -   —
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
     *   -   Time-Delta Values
-        -   —
-        -   —
-        -   —
-        -   ✅
-    *   -   Validation Rules Support
-        -   —
-        -   —
-        -   —
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
     *   -   Document Signatures [10]_
-        -   —
-        -   —
-        -   —
-        -   ✅
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`check;sd-text-success`
+    *   -   Validation Rules Support [11]_
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`minus;el-text-ghost`
+        -   :fas:`plus;sd-text-success`
 
 .. [8] A parser is not required to distinguish between text and code and can handle both as regular text.
 .. [9] The parser passes regular expressions to the application as text.
 .. [10] The parser just provides the callback-interface for signing documents and verifying a document signature. The parser is not required to implement the required cryptological algorithms.
+.. [11] Support of validation rules is expected, but not required for a full-featured implementation of the parser.
 
 
 Recommended Parser Naming

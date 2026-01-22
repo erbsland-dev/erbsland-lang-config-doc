@@ -7,17 +7,27 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
+# -- Project information -----------------------------------------------------
 project = "Erbsland Configuration Language"
 copyright = "2025, Erbsland DEV"
 author = "Erbsland DEV"
 release = "1.0"
-extensions = ["sphinx_rtd_theme", "_ext.styles", "sphinx_design"]
+
+# -- General configuration ---------------------------------------------------
+extensions = ["sphinx_rtd_theme", "sphinx_design", "sphinx_copybutton", "_ext.styles"]
 templates_path = ["_templates"]
 exclude_patterns = ["build", "_build", "Thumbs.db", ".DS_Store"]
+
+# -- Options for HTML output -------------------------------------------------
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
-html_css_files = ["custom.css"]
-html_js_files = ["overlay.js"]
+html_css_files = [
+    "custom.css",
+]
+html_js_files = [
+    "overlay.js",
+    "https://erbsland.dev/ext/fa7/js/all.min.js",
+]
 
 
 def setup(app):

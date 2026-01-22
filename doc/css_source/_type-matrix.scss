@@ -1,0 +1,48 @@
+
+/* Tables with identifiers in the first column */
+
+div.wy-table-responsive table.type-matrix {
+
+    border: none;
+
+    thead th {
+        border: none !important;
+
+        &:first-child {
+            padding-left: 0;
+        }
+    }
+
+    tr {
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    td {
+        border: none;
+        background: transparent !important;
+        vertical-align: top;
+    }
+
+    tr td:first-child {
+        padding-left: 0;
+    }
+
+    tr td:first-child, tr td:nth-child(3) {
+        white-space: nowrap;
+        font-family: var(--font-family-monospace), monospace;
+        vertical-align: top;
+
+        p, div {
+            font-size: .8rem;
+        }
+    }
+
+    tr td:nth-child(2) {
+        padding: 0.4em;
+        text-align: center;
+    }
+
+    span.fas {
+        font-size: 20px;
+    }
+}

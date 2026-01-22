@@ -1,0 +1,77 @@
+// Value tree styles
+
+$vt-muted: #ccc;
+$vt-name: #115193;
+$vt-section-name: #147114;
+
+$vt-content-type: #8010ac;
+$vt-content-text: #b747e1;
+
+$vt-arrow: #aaa;
+$vt-connector-inactive: #ccc;
+$vt-connector-path: #da0000;
+
+$vt-font: Lato, proxima-nova, "Helvetica Neue", Arial, sans-serif;
+
+div.value-tree {
+  // Base name styling
+  span.name {
+    color: $vt-name;
+  }
+
+  // Section name variant
+  span.line.section {
+    span.name {
+      color: $vt-section-name;
+      font-weight: bold;
+    }
+  }
+
+  // Content appearance
+  span.content {
+    font-family: $vt-font;
+    font-style: italic;
+  }
+
+  // Content color roles
+  span.content_type,
+  span.content_bracket {
+    color: $vt-content-type;
+  }
+
+  span.content_text {
+    color: $vt-content-text;
+  }
+
+  // Brackets emphasized
+  span.content_bracket {
+    font-weight: bold;
+  }
+
+  // Connectors and arrows
+  span.arrow,
+  span.connector {
+    color: $vt-arrow;
+  }
+
+  span.connector:not(.path) {
+    color: $vt-connector-inactive;
+  }
+
+  // Highlighted path dimming and emphasis
+  &.highlight-path {
+    span.line:not(.highlight) {
+      span.name,
+      span.content_type,
+      span.content_bracket,
+      span.content_text {
+        color: $vt-muted;
+      }
+    }
+
+    span.connector.path {
+      color: $vt-connector-path;
+    }
+  }
+}
+

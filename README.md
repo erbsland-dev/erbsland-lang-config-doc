@@ -4,11 +4,12 @@ The Erbsland Configuration Language (*ELCL*) is a human-centric configuration fo
 
 ## Current Status
 
-**ELCL version 1.0 has been officially released.** The language specification is complete, and reference implementations are currently in development and will be available soon.
+**ELCL version 1.2 has been officially released.** The language specification is complete, and reference implementations for c++ and python are available:
+- [C++ Reference Implementation](https://github.com/erbsland-dev/erbsland-cpp-configuration)
+- [Python Reference Implementation](https://github.com/erbsland-dev/erbsland-py-conf).
 
 What’s still pending:
-- There are currently no defined guidelines for verification rules or for implementing a parser API. These sections will be published once the reference implementations are finalized.
-- Also, there are currently no contribution guidelines for the language specification. 
+- There are no contribution guidelines for the language specification. 
 
 ## Where to Start?
 
@@ -27,10 +28,11 @@ What’s still pending:
 * **Compliance Test Suite**: An extensive test suite ensures that parsers conform to the *ELCL* specification, fostering reliable and consistent implementations.
 * **Implementation Levels**: *ELCL* supports various implementation levels, from lightweight micro-parsers for resource-constrained environments to full-featured parsers that handle complex configurations seamlessly.
 * **Metadata Support**: Metadata statements allow you to specify language versions and required features, ensuring backward compatibility and future-proofing.
+* **Validation Rules**: A standardized mini-language for validating configuration documents, ensuring data integrity and adherence to application-specific constraints.
 
 ## License
 
-Copyright (c) 2025 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
+Copyright (c) 2025-2026 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

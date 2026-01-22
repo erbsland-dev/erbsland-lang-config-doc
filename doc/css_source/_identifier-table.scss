@@ -1,0 +1,12 @@
+
+/* Tables with identifiers in the first column */
+
+div.wy-table-responsive table.identifier-table {
+
+    tr td:first-child {
+        white-space: nowrap;
+        font-family: var(--font-family-monospace), monospace;
+        vertical-align: top;
+    }
+
+}

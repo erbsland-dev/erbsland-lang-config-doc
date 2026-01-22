@@ -2,4 +2,5 @@
 sphinx
 sphinx-rtd-theme
 sphinx-design
+sphinx-copybutton
 jinja2
