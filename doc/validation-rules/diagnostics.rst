@@ -32,7 +32,7 @@ Each diagnostic message should ideally answer the following questions:
 
 Where possible, validators *should* include:
 
-* The :term:`name-path` of the offending node.
+* The :term:`name path` of the offending node.
 * A document location (file name, line, column) if such information is available.
 * A short hint describing the expected value, structure, or constraint.
 

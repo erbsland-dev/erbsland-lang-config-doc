@@ -139,7 +139,7 @@ Rules for Keys
 ==============
 
 #.  **Text Name-Path Required:**
-    Each ``key`` value *must* be a text string containing a valid :term:`name-path`.
+    Each ``key`` value *must* be a text string containing a valid :term:`name path`.
 
     .. code-block:: erbsland-conf
         :class: validation-rules
@@ -209,7 +209,7 @@ Rules for Keys
         in: "https", "json"
 
 Rules for Index Names
-====================
+=====================
 
 #.  **Optional Name:**
     An index may define a ``name`` entry, which is used by ``key`` constraints to
@@ -226,7 +226,7 @@ Rules for Index Names
 
 #.  **Normalization and Comparison:**
     Index names are normalized and compared according to the
-    :ref:`ELCL name rules <ref-names>`.
+    :doc:`ELCL name rules </reference/names>`.
 
     Underscores and spaces are equivalent, and comparisons are case-insensitive.
 

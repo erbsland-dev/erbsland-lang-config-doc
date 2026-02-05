@@ -12,7 +12,7 @@ rules map onto a parsed configuration document and how the resulting *value tree
 is interpreted during validation.
 
 Rules for Validation Rules Documents
-------------------------------------
+====================================
 
 #.  **Valid ELCL Document:**
     A Validation Rules document *must* itself be a valid :term:`ELCL` document and

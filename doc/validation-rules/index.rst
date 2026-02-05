@@ -86,6 +86,7 @@ design rationale, and practical examples.
     variable-names
     keys-and-references
     dependencies
+    custom-errors
     diagnostics
     security
     constraint-matrix

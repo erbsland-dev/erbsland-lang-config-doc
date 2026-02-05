@@ -82,7 +82,7 @@ Rules for Dependencies
     Each dependency *must* define both ``source`` and ``target``.
 
     * Each entry may be a single text value or a list of text values.
-    * Values are :term:`relative name-paths <name-path>` resolved within the same section.
+    * Values are :term:`relative name-paths <name path>` resolved within the same section.
 
     .. code-block:: erbsland-conf
         :class: validation-rules
