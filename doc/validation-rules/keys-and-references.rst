@@ -1,12 +1,12 @@
-*******************
-Keys and References
-*******************
+****************************
+Indexes, Keys and References
+****************************
 
 Indexes allow validators to enforce **uniqueness** and to create **references**
 between different parts of a configuration document.
 
 Indexes are defined using the reserved section list ``vr_key`` and can appear
-either at the document root or inside a section definition.
+either at the document root or inside a *section* definition.
 Once defined, the values collected by an index can be referenced using the
 ``key`` constraint (see :doc:`constraints/key`).
 
@@ -19,7 +19,7 @@ elsewhere.
 
     *[vr_key]*
     name: "filter"
-    key: "filter.identifier"
+    key: "filter.vr_entry.identifier"
 
     [filter]
     type: "SectionList"
@@ -43,6 +43,12 @@ elsewhere.
     [app]
     start_filter: "first"
 
+.. note::
+
+    For readability, older documentation sometimes omitted ``vr_entry`` in key paths.
+    Validators may treat ``list.value`` as shorthand for ``list.vr_entry.value`` when
+    ``list`` resolves to a section list.
+
 Rules for Indexes
 =================
 
@@ -54,7 +60,7 @@ Rules for Indexes
 
         *[vr_key]*
         name: "filter"
-        key: "filter.identifier"
+        key: "filter.vr_entry.identifier"
 
 #.  **Uniqueness:**
     All key values collected in an index *must* be unique.
@@ -75,15 +81,31 @@ Rules for Indexes
     * at the document root, or
     * inside a node-rules definition for a section.
 
+    If defined inside a section node-rules definition, the index is scoped
+    to each validated instance of that section.
+
+    In the following example, the index is defined inside the
+    ``app.server.vr_entry`` definition. As a result, ``id`` must
+    be unique *within each individual* ``server`` entry.
+
+    Different ``server`` entries may reuse the same ``id`` values,
+    because each ``server`` instance has its own independent index scope.
+
     .. code-block:: erbsland-conf
         :class: validation-rules
 
         [app.server]
         type: "SectionList"
 
+        [app.server.vr_entry.connection]
+        type: "SectionList"
+
+        [app.server.vr_entry.connection.vr_entry.id]
+        type: "text"
+
         *[app.server.vr_entry.vr_key]*
         name: "connection_id"
-        key: "connection.id"
+        key: "connection.vr_entry.id"
 
 #.  **Scope and Visibility:**
     An index is visible only within the subtree in which it is defined.
@@ -92,11 +114,20 @@ Rules for Indexes
     .. code-block:: erbsland-conf
         :class: bad-validation-rules
 
+        [app.server]
+        type: "SectionList"
+
+        [app.server.vr_entry.connection]
+        type: "SectionList"
+
+        [app.server.vr_entry.connection.vr_entry.id]
+        type: "text"
+
         *[app.server.vr_entry.vr_key]*
         name: "connection_id"
-        key: "connection.id"
+        key: "connection.vr_entry.id"
 
-        [app.connection]
+        [app.main_connection]
         type: "text"
         key: "connection_id"  # ERROR: No such index in this scope
 
@@ -107,8 +138,10 @@ Rules for Indexes
     .. code-block:: erbsland-conf
         :class: validation-rules
 
+        # ...
+
         *[vr_key]*
-        key: "filter.identifier"
+        key: "filter.vr_entry.identifier"
 
 #.  **Optional Name:**
     A ``vr_key`` entry *may* define a ``name`` field, which assigns an identifier
@@ -117,23 +150,11 @@ Rules for Indexes
     .. code-block:: erbsland-conf
         :class: validation-rules
 
+        # ...
+
         *[vr_key]*
         name: "filter"
-        key: "filter.identifier"
-
-.. design-rationale::
-
-    Indexes are intentionally scoped to the subtree in which they are defined.
-    This prevents name collisions between unrelated parts of a configuration and
-    keeps validation rules modular and predictable.
-
-    A global index space would introduce two problems:
-
-    * **Accidental collisions** between unrelated rules using the same index name.
-    * **Unnecessary coupling** between distant parts of the configuration.
-
-    If global or cross-document references are required, they should be modeled
-    explicitly at a higher level instead of overloading ``vr_key``.
+        key: "filter.vr_entry.identifier"
 
 Rules for Keys
 ==============
@@ -144,9 +165,11 @@ Rules for Keys
     .. code-block:: erbsland-conf
         :class: validation-rules
 
+        # ...
+
         *[vr_key]*
         name: "filter"
-        key: "filter.identifier"
+        key: "filter.vr_entry.identifier"
 
 #.  **Allowed Value Types:**
     A referenced key *must* point to either a text or an integer value.
@@ -155,7 +178,7 @@ Rules for Keys
         :class: bad-validation-rules
 
         *[vr_key]*
-        key: "blog.created"  # ERROR: Must reference text or integer
+        key: "blog.vr_entry.created"  # ERROR: Must reference text or integer
 
         [blog]
         type: "SectionList"
@@ -166,15 +189,16 @@ Rules for Keys
 #.  **Section List + Value Requirement:**
     Each name-path *must* resolve to:
 
-    * a section list, and
-    * a value inside each entry of that section list.
+    * a section list,
+    * its ``vr_entry``, and
+    * a value inside each ``vr_entry`` of that section list.
 
     .. code-block:: erbsland-conf
         :class: validation-rules
 
         *[vr_key]*
         name: "filter"
-        key: "app.filter.meta.id"
+        key: "app.filter.vr_entry.meta.id"
 
         [app.filter]
         type: "SectionList"
@@ -185,28 +209,79 @@ Rules for Keys
     In this example:
 
     * ``app.filter`` identifies the section list
+    * ``vr_entry`` identifies the section list's entries
     * ``meta.id`` identifies the value within each entry
 
-#.  **Composite Keys:**
-    If multiple keys are specified, their **combination** must be unique across
-    all entries.
+#.  **No Nested Section Lists:**
+    A ``key`` name-path *must not* reference a section list that is nested
+    inside another section list.
+
+    Keys must resolve to values within a single, directly addressed
+    section list. Referencing nested section lists would make index
+    construction ambiguous and dependent on traversal depth.
+
+    .. code-block:: erbsland-conf
+        :class: bad-validation-rules
+
+        [app.filters]
+        type: "SectionList"
+
+        [app.filters.vr_entry.rules]
+        type: "SectionList"
+
+        [app.filters.vr_entry.rules.vr_entry.id]
+        type: "text"
+
+        *[vr_key]*
+        key: "app.filters.vr_entry.rules.vr_entry.id"  # ERROR: Cannot reference nested section list
+
+#.  **Alternatives, Optionality and Version Constraints in Key Paths:**
+    If a node-rules definition that is part of a ``key`` name-path contains
+    version constraints, optionality, or alternatives, index creation becomes
+    conditional on the effective structure present in the validated document.
+
+    The following rules apply:
+
+    #. If the referenced section list does not exist in the configuration
+       document, the index is created as an empty index.
+
+    #. If a referenced value inside a section list entry does not exist,
+       is not active due to version constraints, or resolves to a value
+       other than ``text`` or ``integer``, that entry is omitted from the
+       index.
+
+       Omitted entries are not validated for uniqueness.
+
+    This behavior ensures that index construction is deterministic and
+    tolerant of versioned or alternative schema structures.
 
     .. code-block:: erbsland-conf
         :class: validation-rules
 
-        *[vr_key]*
-        key: "server.service", "server.protocol"
+        [app.filters]
+        type: "SectionList"
+        minimum_version: 2
 
-        [server]
+        [app.filters.vr_entry.id]
+        type: "text"
+
+        *[vr_key]*
+        key: "app.filters.vr_entry.id"
+        # Index is created only if app.filters is active for the current version
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [app.filters]
         type: "SectionList"
 
-        [server.vr_entry.service]
+        [app.filters.vr_entry.id]
         type: "text"
-        in: "api", "management"
+        minimum_version: 2
 
-        [server.vr_entry.protocol]
-        type: "text"
-        in: "https", "json"
+        *[vr_key]*
+        key: "app.filters.vr_entry.id"
+        # For versions < 2, entries without an active 'id' are ignored by the index
 
 Rules for Index Names
 =====================
@@ -221,8 +296,11 @@ Rules for Index Names
     .. code-block:: erbsland-conf
         :class: bad-validation-rules
 
+        # ...
+
         *[vr_key]*
         name: "%my-name%"  # ERROR: Invalid ELCL name
+        # ...
 
 #.  **Normalization and Comparison:**
     Index names are normalized and compared according to the
@@ -235,24 +313,81 @@ Rules for Index Names
 
         *[vr_key]*
         name: "filter_index"
-        key: "filter.identifier"
+        key: "filter.vr_entry.identifier"
 
         [app.start_filter]
         type: "text"
         key: "Filter Index"  # VALID after normalization
 
+
 Rules for Multi-Key Indexes
 ===========================
 
-#.  **Key Combination Representation:**
-    Multi-key indexes combine their key values into a single entry, separated by
-    commas (:cp:`,`).
+#.  **Combination Must Be Unique:**
+    If multiple ``key`` values are specified, the **combination** of their
+    resolved values must be unique across all entries of the referenced
+    section list.
+
+    Uniqueness is evaluated on the tuple of key values, not on the individual
+    components.
 
     .. code-block:: erbsland-conf
         :class: validation-rules
 
         *[vr_key]*
-        key: "server.service", "server.protocol"
+        key: "server.vr_entry.service", "server.vr_entry.protocol"
+
+        [server]
+        type: "SectionList"
+
+        [server.vr_entry.service]
+        type: "text"
+        in: "api", "management"
+
+        [server.vr_entry.protocol]
+        type: "text"
+        in: "https", "json"
+
+#.  **All Keys Must Reference the Same Section List:**
+    All name-paths defined in a composite key *must* resolve to values within
+    the same section list.
+
+    Mixing keys from different section lists is not permitted.
+
+    .. code-block:: erbsland-conf
+        :class: bad-validation-rules
+
+        *[vr_key]*
+        key:
+            * "server.vr_entry.service"
+            * "client.vr_entry.protocol"  # ERROR: Different section lists
+
+        [server]
+        type: "SectionList"
+
+        # ...
+
+        [client]
+        type: "SectionList"
+
+        # ...
+
+#.  **Composite Key Representation:**
+    When a multi-key index is referenced as a whole, its values are combined
+    into a single text value separated by commas (:cp:`,`).
+
+    The order of the combined values matches the order in which the
+    ``key`` name-paths are defined.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        # ...
+
+        *[vr_key]*
+        key:
+            * "server.vr_entry.service"
+            * "server.vr_entry.protocol"
 
     .. code-block:: erbsland-conf
         :class: good-example
@@ -263,25 +398,31 @@ Rules for Multi-Key Indexes
 
     .. design-rationale::
 
-        While commas could theoretically appear in key values, such cases can be
-        avoided by disallowing commas in fields used as keys.
-        This keeps index representation simple and efficient.
+        Although commas could theoretically appear in key values, such cases
+        can be avoided by disallowing commas in fields that are used as keys.
+        This keeps composite key representation simple, deterministic,
+        and efficient.
 
-#.  **Referencing Parts of a Multi-Key:**
-    A multi-key index can be referenced either as a whole or by individual parts
-    using the ``key[index]`` syntax, where the index is zero-based.
+#.  **Referencing Parts of a Composite Key:**
+    A multi-key index may be referenced either as a whole or by addressing
+    individual components using the ``key[index]`` syntax.
+
+    The index is zero-based and refers to the position of the corresponding
+    name-path in the ``key`` definition.
 
     .. code-block:: erbsland-conf
         :class: validation-rules
 
         *[vr_key]*
         name: "server"
-        key: "server.service", "server.protocol"
+        key:
+            * "server.vr_entry.service"
+            * "server.vr_entry.protocol"
 
         [server.ports]
         type: "SectionList"
 
         [server.ports.vr_entry.protocol]
         type: "text"
-        key: "server[1]"  # References only the protocol part
+        key: "server[1]"  # References only the protocol component
         key_error: "No server with this protocol was configured"

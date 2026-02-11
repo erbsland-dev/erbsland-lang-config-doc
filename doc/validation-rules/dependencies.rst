@@ -181,7 +181,7 @@ A value is required only when a related feature is configured:
 
     *[vr_key]*
     name: "media_link"
-    key: "api.media_link.id"
+    key: "api.media_link.vr_entry.id"
 
     [app.primary_medialink]
     type: "text"

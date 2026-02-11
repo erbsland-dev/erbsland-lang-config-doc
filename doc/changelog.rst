@@ -10,15 +10,43 @@
 Changelog
 *********
 
+Version 1.2.10 — 2026-02-20
+===========================
+
+Extended and clarified the validation rules documentation, with a focus on edge cases and key semantics.
+
+*   Significantly expanded the documentation for ``vr_any`` with additional rules, clearer scoping semantics,
+    and more comprehensive examples.
+*   Expanded and clarified the rules for ``vr_entry``, especially regarding optionality and default values.
+*   Refined the documentation for indexes, keys, and references,
+    defining precise behavior for edge cases such as versioned schemas, optional nodes, and alternatives in key paths.
+*   Corrected key path examples to consistently include ``vr_entry`` where required,
+    and explicitly documented that ``vr_entry`` is a mandatory part of section list key paths.
+
+    .. note::
+
+        Key paths are now documented in their canonical form including ``vr_entry``.
+        For compatibility, paths that omit ``vr_entry`` may be treated as shorthand.
+
+Version 1.2.4 — 2026-02-05
+==========================
+
+Added a “custom errors” chapter and refined validation rules documentation
+
+*   Introduced a new "Custom Errors" chapter detailing the use and rules of defining error messages for user-friendly feedback.
+*   Standardized headings and improved consistency in the validation rules documentation.
+*   Fixed typos, formatting issues, and refined terminology (e.g., "name-path" to "name path").
+*   Updated references to align with the latest structure and naming conventions.
+
 Version 1.2.0 — 2026-01-22
 ==========================
 
-*   Added a new chapter :doc:`validation-rules/index` defining **ELCL Validation Rules (ELCL-VR)**:
+Added a new chapter :doc:`validation-rules/index` defining **ELCL Validation Rules (ELCL-VR)**:
 
-    *   Introduces a standardized mini-language for declarative configuration validation.
-    *   Covers document structure, node rules, types, constraints, templates, dependencies,
-        versioning, diagnostics, and security considerations.
-    *   Enables portable, implementation-independent validation of ELCL configuration documents.
+*   Introduces a standardized mini-language for declarative configuration validation.
+*   Covers document structure, node rules, types, constraints, templates, dependencies,
+    versioning, diagnostics, and security considerations.
+*   Enables portable, implementation-independent validation of ELCL configuration documents.
 
 Version 1.0.10 — 2025-09-01
 ===========================

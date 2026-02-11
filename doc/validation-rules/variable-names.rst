@@ -113,20 +113,265 @@ represent priorities:
     documentation: 4
     misc: 5
 
-Rules for Variable Names
-=======================
+Rules for ``vr_any``
+====================
 
-#.  **Exclusive Mechanism:**
-    ``vr_any`` is the *only* mechanism to define rules for variable names.
+#.  **Same Semantics as Node-Rules Definitions:**
+    ``vr_any`` behaves like a regular :doc:`node-rules definition <node-rules>`.
 
-#.  **Optional Name Constraints:**
+    It requires a ``type`` field and supports constraints, documentation fields,
+    and alternatives. The only difference is that it does *not* restrict the
+    name of the matched node in the document tree.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [numbers.vr_any]
+        type: "integer"
+
+    .. code-block:: erbsland-conf
+        :class: good-example
+
+        [numbers]
+        one: 1
+        two: 2
+        three: 3
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        *[numbers.vr_any]*
+        type: "integer"
+
+        *[numbers.vr_any]*
+        type: "float"
+
+    .. code-block:: erbsland-conf
+        :class: good-example
+
+        [numbers]
+        half: 0.5
+        one: 1
+        pi: 3.14159265359
+
+#.  **Text Names Allowed:**
+    ``vr_any`` can be used to validate text-names, which are intended by
+    :term:`ELCL` to be used as keys.
+
+    This makes ``vr_any`` the only mechanism that allows validation of nodes
+    addressed by text-names.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [user.vr_any]
+        type: "section_with_texts"
+
+        [user.vr_any.name]
+        type: "text"
+
+    .. code-block:: erbsland-conf
+        :class: good-example
+
+        [users."User 1"]
+        name: "Peter"
+
+        [users."User 2"]
+        name: "Peter"
+
+#.  **No Default Value and No Optionality:**
+    A ``vr_any`` node-rules definition *must not* define a default value and
+    *must not* be marked as optional.
+
+    .. design-rationale::
+
+        ``vr_any`` definitions are inherently optional, as they allow zero or
+        more values or sections. Marking them as optional would therefore be
+        redundant and potentially confusing.
+
+        Default values are not permitted because, when no matching nodes are
+        present, there is no well-defined name to which a default value could
+        be assigned.
+
+    .. code-block:: erbsland-conf
+        :class: bad-validation-rules
+
+        [user.vr_any]
+        type: "integer"
+        default: 0   # ERROR: default value not allowed for vr_any
+
+    .. code-block:: erbsland-conf
+        :class: bad-validation-rules
+
+        [user.vr_any]
+        type: "integer"
+        is_optional: true   # ERROR: vr_any must not be optional
+
+#.  **Zero to Many Values:**
+    A ``vr_any`` node-rules definition allows zero or more values or sections,
+    unless additional cardinality constraints are defined.
+
+    .. note::
+
+        Use constraints such as ``minimum`` and ``maximum`` to restrict the
+        number of allowed values.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [numbers.vr_any]
+        type: "integer"
+
+    .. code-block:: erbsland-conf
+        :class: good-example
+
+        [numbers]
+        # Zero values are valid.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [numbers]
+        type: "section"
+        minimum: 1
+
+        [numbers.vr_any]
+        type: "integer"
+
+    .. code-block:: erbsland-conf
+        :class: bad-example
+
+        [numbers]
+        # ERROR: minimum is 1, but no values are present.
+
+#.  **Name Constraints:**
+    An optional ``vr_name`` subsection can be defined to restrict the set of
+    allowed names.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [users.vr_any]
+        type: "integer"
+
+        [.vr_name]
+        starts: "u_"
+
+    .. code-block:: erbsland-conf
+        :class: good-example
+
+        [users]
+        u_001: 1
+        u_002: 2
+
+    .. code-block:: erbsland-conf
+        :class: bad-example
+
+        [users]
+        alice: 1   # ERROR: name does not start with "u_"
+
+#.  **Unrestricted Names by Default:**
     If no ``vr_name`` subsection is defined, all valid names are accepted.
 
+    In this case, only the naming rules defined by :term:`ELCL` apply.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [users.vr_any]
+        type: "integer"
+
+    .. code-block:: erbsland-conf
+        :class: good-example
+
+        [users]
+        any_valid_name: 1
+        is_accepted: 2
+
+
+Rules for ``vr_name``
+=====================
+
+#.  **Type Is Locked to Text:**
+    The type of ``vr_name`` *must* be ``Text``.
+
+    The ``type`` field is optional, but if present, it *must* be set to ``Text``.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [users.vr_any]
+        type: "integer"
+
+        [.vr_name]   # Omitting the 'type' field is allowed for vr_name
+        starts: "u_"
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [users.vr_any]
+        type: "integer"
+
+        [.vr_name]
+        type: "text"
+        starts: "u_"
+
+    .. code-block:: erbsland-conf
+        :class: bad-validation-rules
+
+        [users.vr_any]
+        type: "integer"
+
+        [.vr_name]
+        type: "integer"  # ERROR: type must be "text"
+
 #.  **Text Semantics:**
-    Name constraints in ``vr_name`` follow the same rules as text constraints,
-    including support for ``starts``, ``ends``, ``matches``, ``chars``, and
-    ``case_sensitive``.
+    Constraints defined in ``vr_name`` follow the same semantics as text
+    constraints.
+
+    This includes support for ``starts``, ``ends``, ``matches``, ``chars``,
+    and ``case_sensitive``.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [user]
+        type: "section_with_texts"
+
+        [user.vr_any]
+        type: "integer"
+
+        [user.vr_any.vr_name]
+        case_sensitive: yes
+        starts: "u_"
+        ends: "_x"
+        chars: "(a-z)", "[_]"
 
 #.  **Scope:**
-    Constraints defined in ``vr_name`` apply only to the name itself, not to
-    the node’s value or children.
+    Constraints defined in ``vr_name`` apply *only* to the node name itself.
+
+    They do not affect the node’s value, its children, or any nested validation
+    rules.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [user]
+        type: "section_with_texts"
+
+        [user.vr_any]
+        type: "text"
+
+        [user.vr_any.vr_name]
+        case_sensitive: yes
+        starts: "u_"
+        ends: "_x"
+        chars: "(a-z)", "[_]"
+
+    .. code-block:: erbsland-conf
+        :class: good-example
+
+        [user]
+        u_alice: "unrestricted"
+        u_bob_x: "vr_name does not affect this text"
+

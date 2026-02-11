@@ -132,11 +132,13 @@ Rules for Alternatives
         The 'app.service' value is missing. It must be an Integer or Text value.
 
 #.  **Error Handling When No Alternative Matches:**
-    If no alternative fulfills all constraints, validators *must* apply the following
-    algorithm:
+    If none of the defined alternatives fulfills all of its constraints, validators
+    *must* determine the most helpful error message using the following steps:
 
-    #.  Scan all alternatives for matching ``type`` and ``version`` constraints.
-    #.  If none match, raise an error listing all valid types.
+    #.  Identify all alternatives whose ``type`` and ``version`` constraints match
+        the actual node.
+    #.  If no alternatives match by ``type`` and ``version``, raise an error that lists
+        all valid types defined by the alternatives.
 
         .. rubric:: Example
 
@@ -144,10 +146,18 @@ Rules for Alternatives
 
             The 'app.service' must be an Integer or Text value.
 
-    #.  If exactly one alternative matches, handle errors as for a regular node-rules
-        definition.
-    #.  If multiple alternatives match, use the **first matching alternative** for
-        error reporting.
+    #.  If exactly one alternative matches by ``type`` and ``version``, report validation
+        errors as if this alternative were a regular node-rules definition.
+    #.  If multiple alternatives match by ``type`` and ``version``, use the **first
+        matching alternative** for error reporting.
+
+        .. design-rationale::
+
+            Alternatives are ordered intentionally. When multiple alternatives are
+            compatible at the top level, the first matching entry is treated as the
+            most relevant candidate.
+            Using it for error reporting keeps validation predictable and allows authors
+            to influence diagnostics by ordering alternatives carefully.
 
 #.  **Defaults:**
     If a ``default`` value is defined in any alternative and the node is missing,

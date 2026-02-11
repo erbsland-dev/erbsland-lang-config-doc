@@ -1,5 +1,5 @@
 ..
-    Copyright (c) 2025 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
+    Copyright (c) 2025-2026 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
     SPDX-License-Identifier: Apache-2.0
 
 *****
@@ -58,8 +58,8 @@ Common Rules for ``vr_entry``
 #.  **Regular Node-Rules Semantics:**
     A ``vr_entry`` definition behaves like a regular :term:`Node-Rules` definition.
 
-    All rules that apply to node-rules definitions—such as constraints, defaults,
-    alternatives, and documentation fields—also apply to ``vr_entry``.
+    All rules that apply to node-rules definitions—such as constraints, alternatives,
+    and documentation fields—also apply to ``vr_entry``.
 
     The only difference is that the allowed ``type`` values depend on the parent list
     type.
@@ -93,6 +93,31 @@ Common Rules for ``vr_entry``
         *[.vr_entry]*
         type: "float"
 
+#.  **No Defaults and Optionality:**
+    A ``vr_entry`` definition *must not* define a default value and *must not* be
+    marked as optional.
+
+    A list or matrix itself may define a default value or be marked as optional,
+    but individual list entries cannot.
+
+    .. code-block:: erbsland-conf
+        :class: bad-validation-rules
+
+        [ruler.marks]
+        type: "ValueList"
+
+        [.vr_entry]
+        default: 10.0  # ERROR: "default" is not allowed for vr_entry definitions.
+
+    .. code-block:: erbsland-conf
+        :class: bad-validation-rules
+
+        [ruler.marks]
+        type: "ValueList"
+
+        [.vr_entry]
+        is_optional: true  # ERROR: "is_optional" is not allowed for vr_entry definitions.
+
 Rules for Value Lists and Matrices
 ==================================
 
@@ -116,7 +141,7 @@ value matrices are represented and interpreted.
     The ``vr_entry`` definition for a value list or value matrix is limited to
     :term:`scalar values <scalar value>`.
 
-    Nested lists or sections are not permitted as list entries.
+    Nested lists, sections, or structured values are not permitted as list entries.
 
     .. code-block:: erbsland-conf
         :class: validation-rules
@@ -129,6 +154,35 @@ value matrices are represented and interpreted.
         type: "integer"
         minimum: 1
         maximum: 65534
+
+#.  **Alternatives Are Limited to Scalar Values:**
+    If the ``vr_entry`` definition uses :doc:`alternatives <alternatives>`, all
+    alternatives *must* define scalar value types.
+
+    .. note::
+
+        Non-scalar alternatives—such as sections—would violate the configuration
+        specification and are therefore not permitted.
+
+        Nested lists are defined using ``ValueMatrix`` at the list level.
+        In this case, ``vr_entry`` validates individual matrix entries and handles
+        nested list structures implicitly through the matrix semantics.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [ruler.marks]
+        type: "ValueList"
+        maximum: 15
+
+        *[.vr_entry]*
+        type: "integer"
+
+        *[.vr_entry]*
+        type: "float"
+
+        *[.vr_entry]*
+        type: "section"  # ERROR: Alternatives may only contain scalar values.
 
 Rules for Section Lists
 =======================

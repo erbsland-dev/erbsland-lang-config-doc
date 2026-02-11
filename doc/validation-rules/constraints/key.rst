@@ -126,7 +126,7 @@ Rules for Key
 
         *[vr_key]*
         name: "filter"
-        key: "filter.identifier"
+        key: "filter.vr_entry.identifier"
 
         [filter]
         type: "SectionList"
@@ -161,7 +161,7 @@ Rules for Key
 
         *[vr_key]*
         name: "filter"
-        key: "filter.identifier"
+        key: "filter.vr_entry.identifier"
 
         [filter]
         type: "SectionList"
@@ -202,7 +202,7 @@ defined in the ``filter`` section list:
 
     *[vr_key]*
     name: "filter"
-    key: "filter.identifier"
+    key: "filter.vr_entry.identifier"
 
     [filter]
     type: "SectionList"

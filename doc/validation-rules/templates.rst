@@ -1,5 +1,5 @@
 ..
-    Copyright (c) 2025 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
+    Copyright (c) 2025-2026 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
     SPDX-License-Identifier: Apache-2.0
 
 *********
@@ -162,11 +162,21 @@ Rules for Templates
         minimum: 1024  # Overrides the "minimum" from the template.
 
 #.  **Alternatives Cannot Be Overwritten:**
-    Constraints defined as alternatives (using section lists) *must not* be
-    overwritten at the usage location.
+    Templates defined as alternatives (using section lists) *must not* be
+    overwritten or extended at the usage location.
 
-    This restriction ensures that the structure and intent of alternative-based
-    templates remain intact.
+    When a template defines multiple alternatives, the complete set of alternatives
+    is copied as-is. You cannot modify individual constraints inside an alternative
+    or add additional alternatives.
+
+    .. design-rationale::
+
+        Alternatives represent a deliberate, self-contained choice between
+        multiple valid rule structures. Allowing partial overrides would require
+        addressing individual alternatives explicitly, which would significantly
+        increase complexity and reduce readability.
+        For clarity and safety, alternative-based templates are therefore treated
+        as atomic and reusable building blocks.
 
     .. code-block:: erbsland-conf
         :class: bad-example
@@ -181,4 +191,43 @@ Rules for Templates
 
         [server.port]
         use_template: "service"
-        minimum: 1024   # ERROR: Alternatives from a template must not be overwritten.
+        minimum: 1024   # ERROR: Alternatives from a template must not be modified or extended.
+
+#.  **Order of Overrides and Additions:**
+    Constraints from a template are merged with additional constraints in a predictable and stable order:
+
+    *   Constraint overrides *replace* the corresponding constraint **at the same position**
+        where the original constraint appeared in the template.
+    *   New constraints that do not exist in the template are **appended to the end**
+        of the resulting constraint list.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [vr_template.port]
+        type: "integer"
+        minimum: 1
+        maximum: 65534
+
+        [server.port]
+        use_template: "port"
+        minimum: 10       # Overrides the template's 'minimum' and keeps its original position.
+        not_equals: 80    # New constraint, appended to the end of the constraint list.
+
+#.  **Template Validation Timing:**
+    Templates are validated **only when they are used** by a node-rules definition.
+    During validation, a template is checked together with the node-rules definition
+    that applies it.
+
+    Templates that are never referenced via ``use_template`` are ignored entirely and
+    may contain errors without affecting validation.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [vr_template.with_error]
+        type: "integer"
+        unknown_field: 10    # This error is ignored because the template is unused.
+
+        [main.port]
+        type: "integer"

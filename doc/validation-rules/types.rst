@@ -172,6 +172,9 @@ The following example defines ``ports`` as a value list:
     type: "ValueList"
     maximum: 5
 
+    [.vr_entry]
+    type: "integer"
+
 .. code-block:: erbsland-conf
     :class: good-example
 
@@ -214,6 +217,9 @@ called ``magic_numbers``:
     [main.magic_numbers]
     type: "ValueMatrix"
     maximum: 5, 5
+
+    [.vr_entry]
+    type: "integer"
 
 .. code-block:: erbsland-conf
     :class: good-example
