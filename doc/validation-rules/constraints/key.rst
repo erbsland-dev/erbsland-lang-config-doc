@@ -1,5 +1,5 @@
 ..
-    Copyright (c) 2025 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
+    Copyright (c) 2025-2026 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
     SPDX-License-Identifier: Apache-2.0
 
 .. include:: _icons.rst
@@ -113,13 +113,24 @@ Rules for Key
     .. code-block:: erbsland-conf
         :class: validation-rules
 
+        # ...
+
         [app.start_filter]
         type: "text"
         key: "filter"
 
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        # ...
+
+        [app.start_action]
+        type: "text"
+        key: "local_action_id", "remote_action_id"
+
 #.  **Index Must Exist:**
-    Each referenced index *must* be defined elsewhere in the same Validation Rules
-    document using ``vr_key``.
+    Each referenced index *must* be defined and visible within *the same
+    Validation Rules branch* using ``vr_key``.
 
     .. code-block:: erbsland-conf
         :class: validation-rules
@@ -174,10 +185,30 @@ Rules for Key
         key: "filter"   # ERROR: Referenced keys are text, not date
 
 #.  **Case Sensitivity:**
-    Key comparisons are case-insensitive by default.
+    Key comparison semantics are determined exclusively by the
+    case-sensitivity configuration of the referenced index.
 
-    If the :doc:`case-sensitive` flag is set on the referencing node, the key match
-    *must* be performed case-sensitively.
+    Any :doc:`case_sensitive <case-sensitive>` flag defined on the
+    referencing node is ignored for the purpose of key resolution.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        *[vr_key]*
+        name: "filter"
+        key: "filter.vr_entry.identifier"
+        case_sensitive: false
+
+        [filter]
+        type: "SectionList"
+
+        [filter.vr_entry.identifier]
+        type: "text"
+
+        [app.start_filter]
+        type: "text"
+        case_sensitive: true
+        key: "filter"
 
     .. code-block:: erbsland-conf
         :class: good-example
@@ -189,7 +220,71 @@ Rules for Key
         identifier: "second"
 
         [app]
-        start_filter: "First"  # VALID: matches "first" (case-insensitive)
+        start_filter: "First"
+        # VALID: matches "first"
+        # The index is case-insensitive.
+        # The referencing node's case_sensitive flag is ignored.
+
+#.  **Index Scope Is Hierarchical:**
+    Indexes defined in sibling branches are not visible to the
+    referencing node.
+
+    An index is resolved by searching upward in the Validation Rules
+    tree from the referencing node. Only indexes defined in the same
+    branch or in ancestor branches are visible.
+
+    .. code-block:: erbsland-conf
+        :class: bad-validation-rules
+
+        [server.connections]
+        type: "SectionList"
+
+        # ...
+
+        *[server.vr_key]*
+        name: "connection_id"
+        key: "connections.vr_entry.id"
+
+        [app.main_connection]
+        type: "text"
+        key: "connection_id"  # ERROR: No such index in this scope
+
+#.  **Nearest Ancestor Resolution:**
+    If multiple indexes with the same ``name`` exist in accessible
+    branches, the index defined in the nearest ancestor branch
+    is used.
+
+    Index resolution proceeds upward from the referencing node
+    until a matching index name is found. Once found, that index
+    is used and the search stops.
+
+    In the following example, two indexes named ``id`` are defined.
+    The reference resolves to the index defined at ``server.vr_key``,
+    because it is closer in the tree than the index defined at
+    the document root.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        # ...
+
+        *[vr_key]*
+        name: "id"
+        key: "log.vr_entry.id"
+
+        [server.connections]
+        type: "SectionList"
+
+        *[server.vr_key]*
+        name: "id"
+        key: "connections.vr_entry.id"
+
+        # ...
+
+        [server.filter.vr_entry.connection_id]
+        type: "text"
+        key: "id"   # Resolves to 'server.vr_key'
+
 
 Example
 =======
@@ -237,3 +332,16 @@ defined in the ``filter`` section list:
 
     [app]
     start_filter: "third"  # ERROR: "third" is not defined
+
+Version History
+===============
+
+.. version-changed:: 1.3.0
+
+    Clarified that key comparison behavior is determined exclusively
+    by the referenced index.
+
+    The ``case_sensitive`` setting of the referencing node is ignored.
+    Uniqueness checks and ``key`` constraint comparisons now consistently
+    follow the case-sensitivity defined by the index.
+

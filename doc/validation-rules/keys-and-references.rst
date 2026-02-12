@@ -1,3 +1,7 @@
+..
+    Copyright (c) 2025-2026 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
+    SPDX-License-Identifier: Apache-2.0
+
 ****************************
 Indexes, Keys and References
 ****************************
@@ -42,12 +46,6 @@ elsewhere.
 
     [app]
     start_filter: "first"
-
-.. note::
-
-    For readability, older documentation sometimes omitted ``vr_entry`` in key paths.
-    Validators may treat ``list.value`` as shorthand for ``list.vr_entry.value`` when
-    ``list`` resolves to a section list.
 
 Rules for Indexes
 =================
@@ -155,6 +153,28 @@ Rules for Indexes
         *[vr_key]*
         name: "filter"
         key: "filter.vr_entry.identifier"
+
+#.  **Case-Sensitivity:**
+    An optional ``case_sensitive`` field may be defined on a ``vr_key``
+    entry to control how indexed values are compared.
+
+    If ``case_sensitive`` is set to ``true``, both uniqueness checks and
+    ``key`` constraint comparisons are performed case-sensitively.
+    If omitted or set to ``false``, comparisons are case-insensitive.
+
+    The comparison mode defined by the index applies consistently to:
+
+    * detection of duplicate key values, and
+    * resolution of references using the ``key`` constraint.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        *[vr_key]*
+        name: "filter"
+        key: "filter.vr_entry.identifier"
+        case_sensitive: true
+
 
 Rules for Keys
 ==============
@@ -426,3 +446,21 @@ Rules for Multi-Key Indexes
         type: "text"
         key: "server[1]"  # References only the protocol component
         key_error: "No server with this protocol was configured"
+
+Version History
+===============
+
+.. version-changed:: 1.3.0
+
+    Introduced the optional ``case_sensitive`` field for ``vr_key`` entries,
+    defining explicit case-sensitivity semantics for both uniqueness checks
+    and ``key`` constraint comparisons.
+
+.. version-changed:: 1.2.10
+
+    Documented the canonical form of key paths including ``vr_entry`` when
+    referencing values inside section lists.
+
+    For compatibility, validators may treat ``list.value`` as shorthand
+    for ``list.vr_entry.value`` when ``list`` resolves to a section list.
+

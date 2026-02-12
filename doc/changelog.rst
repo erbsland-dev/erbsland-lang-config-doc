@@ -1,5 +1,5 @@
 ..
-    Copyright (c) 2025 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
+    Copyright (c) 2025-2026 Tobias Erbsland - Erbsland DEV. https://erbsland.dev
     SPDX-License-Identifier: Apache-2.0
 
 .. index::
@@ -10,7 +10,30 @@
 Changelog
 *********
 
-Version 1.2.10 — 2026-02-20
+Version 1.3.0 — 2026-02-12
+==========================
+
+Extended the semantics of ``vr_key`` by introducing the optional
+``case_sensitive`` field, allowing indexes to be explicitly marked as
+case-sensitive.
+
+The behavior of the ``key`` constraint now depends on the case-sensitivity
+of the referenced index. Uniqueness checks and key comparisons follow the
+index's defined comparison mode.
+
+.. note::
+
+    The previous specification was ambiguous regarding case-sensitivity in
+    ``vr_key`` entries. Although key comparisons were described as
+    case-insensitive by default, it was not clearly specified:
+
+    * whether index uniqueness checks were case-sensitive, and
+    * whether ``key`` constraint comparisons depended on index behavior.
+
+    This version clarifies and formalizes these rules to ensure
+    deterministic and consistent comparison semantics.
+
+Version 1.2.10 — 2026-02-11
 ===========================
 
 Extended and clarified the validation rules documentation, with a focus on edge cases and key semantics.
