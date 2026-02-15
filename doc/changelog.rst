@@ -10,6 +10,31 @@
 Changelog
 *********
 
+Version 1.3.1 — 2026-02-20
+==========================
+
+Significantly expanded and clarified multiple areas of the ELCL-VR specification.
+
+*   Enhanced the documentation of ``vr_dependency``:
+
+    *   Added the previously missing ``or`` and ``and`` modes.
+    *   Introduced a formal explanation of dependency evaluation logic, including a normative mode matrix.
+    *   Clarified ambiguous and misleading wording to ensure precise, implementation-independent semantics.
+
+*   Clarified the optionality semantics of Section Lists, showing its similarity to value lists to address
+    common misunderstandings.
+
+*   Formalized rules for ``type`` identifiers:
+
+    *   Defined case-insensitivity and normalization behavior in the validation rules chapter
+        (previously only described informally in the overview).
+    *   Added explicit rules regarding type aliases.
+
+*   Extended the documentation of ``vr_key``:
+
+    *   Added rules covering alternatives, optionality, and version constraints in composite key paths.
+    *   Removed redundant and overlapping phrasing from existing rules to improve consistency and precision.
+
 Version 1.3.0 — 2026-02-12
 ==========================
 

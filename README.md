@@ -4,7 +4,7 @@ The Erbsland Configuration Language (*ELCL*) is a human-centric configuration fo
 
 ## Current Status
 
-**ELCL version 1.2 has been officially released.** The language specification is complete, and reference implementations for c++ and python are available:
+**ELCL version 1.3 has been officially released.** The language specification is complete, and reference implementations for C++ and Python are available:
 - [C++ Reference Implementation](https://github.com/erbsland-dev/erbsland-cpp-configuration)
 - [Python Reference Implementation](https://github.com/erbsland-dev/erbsland-py-conf).
 

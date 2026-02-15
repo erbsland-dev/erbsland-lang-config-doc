@@ -237,8 +237,7 @@ Rules for Keys
     inside another section list.
 
     Keys must resolve to values within a single, directly addressed
-    section list. Referencing nested section lists would make index
-    construction ambiguous and dependent on traversal depth.
+    section list.
 
     .. code-block:: erbsland-conf
         :class: bad-validation-rules
@@ -262,18 +261,15 @@ Rules for Keys
 
     The following rules apply:
 
-    #. If the referenced section list does not exist in the configuration
-       document, the index is created as an empty index.
+    #.  If the referenced section list does not exist in the configuration
+        document, the index is created as an empty index.
 
-    #. If a referenced value inside a section list entry does not exist,
-       is not active due to version constraints, or resolves to a value
-       other than ``text`` or ``integer``, that entry is omitted from the
-       index.
+    #.  If a referenced value inside a section list entry does not exist,
+        is not active due to version constraints, or resolves to a value
+        other than ``text`` or ``integer``, that entry is omitted from the
+        index.
 
-       Omitted entries are not validated for uniqueness.
-
-    This behavior ensures that index construction is deterministic and
-    tolerant of versioned or alternative schema structures.
+        Omitted entries are not validated for uniqueness.
 
     .. code-block:: erbsland-conf
         :class: validation-rules
@@ -447,8 +443,43 @@ Rules for Multi-Key Indexes
         key: "server[1]"  # References only the protocol component
         key_error: "No server with this protocol was configured"
 
+#.  **Alternatives, Optionality and Version Constraints in Composite Keys:**
+    In addition to the rules for single-key indexes, the following applies
+    to multi-key indexes:
+
+    #.  If *at least one* key component of an entry resolves to a valid
+        ``text`` or ``integer`` value, an index entry is created.
+
+        Missing or inactive components (due to optionality or version
+        constraints) are substituted with an empty text value (``""``)
+        for the purpose of composite key construction.
+
+    #.  If *all* key components of an entry are missing, inactive, or
+        invalid, the entry is omitted from the index entirely.
+
+        Omitted entries are not validated for uniqueness.
+
+    .. design-rationale::
+
+        Multi-key indexes with partially missing components are inherently
+        ambiguous. However, silently omitting such entries would weaken
+        uniqueness guarantees and may hide configuration mistakes.
+
+        By inserting empty values for missing components, implementations
+        remain deterministic and consistent across validators.
+
+        It is the responsibility of the validation-rules author to enforce
+        stricter guarantees (for example, by requiring all key components
+        to be present) if partial keys are not acceptable.
+
+
 Version History
 ===============
+
+.. version-changed:: 1.3.1
+
+    Clarified how multi-key indexes behave when optionality or version
+    constraints affect individual key components.
 
 .. version-changed:: 1.3.0
 

@@ -52,6 +52,63 @@ easier to reason about.
     full_name: "Example User 2"
     email: "user2@example.com"
 
+About Optionality of Section Lists
+==================================
+
+At first glance, the optionality of section lists may appear less intuitive
+than for value lists. In practice, however, the rule is exactly the same.
+
+If a node-rules definition declares a list—whether ``ValueList``,
+``ValueMatrix``, or ``SectionList``—and it is **not** explicitly marked as
+optional, then **at least one entry is required**.
+
+In other words:
+
+* A list definition without ``is_optional: true`` requires at least one entry.
+* This rule applies uniformly to value lists, value matrices, and section lists.
+* The requirement applies to the *list itself*, not to individual entries.
+
+For section lists, this means that the configuration must contain at least one
+corresponding section instance.
+
+In the following minimal example, the ``app.user`` section list must contain at
+least one entry because it is not marked as optional.
+
+.. code-block:: erbsland-conf
+    :class: validation-rules
+
+    [app.user]
+    type: "SectionList"
+
+    [.vr_entry.full_name]
+    type: "text"
+
+.. code-block:: erbsland-conf
+    :class: bad-example
+
+    [app]
+    # ERROR: "app.user" is missing.
+    # At least one section entry is required.
+
+If your configuration intentionally allows zero entries, you must explicitly
+mark the list definition as optional.
+
+.. code-block:: erbsland-conf
+    :class: validation-rules
+
+    [app.user]
+    type: "SectionList"
+    is_optional: true
+
+    [.vr_entry.full_name]
+    type: "text"
+
+.. code-block:: erbsland-conf
+    :class: good-example
+
+    [app]
+    # VALID: "app.user" is optional and may contain zero entries.
+
 Common Rules for ``vr_entry``
 =============================
 
@@ -225,3 +282,10 @@ Rules for Section Lists
 
         [.vr_entry.email]
         type: "text"
+
+Version History
+===============
+
+.. version-changed:: 1.3.1
+
+    Added a section with clarifications about optionality in section lists.

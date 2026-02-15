@@ -1,0 +1,22 @@
+
+.wy-table-responsive table.dependency-matrix {
+
+    td:first-child {
+        font-family: var(--font-family-monospace), monospace;
+        vertical-align: middle;
+    }
+
+    td:not(:first-child) {
+        text-align: center;
+        vertical-align: center;
+        padding: 0.5em;
+    }
+
+    th:first-child {
+        vertical-align: bottom;
+    }
+
+    th:not(:first-child) p {
+        text-align: center;
+    }
+}

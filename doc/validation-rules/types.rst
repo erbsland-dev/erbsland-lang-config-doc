@@ -92,6 +92,33 @@ Rules for the Type Constraint
         [app]
         tags: "example"  # Treated as a list with one element.
 
+#.  **Type Case Insensitivity and Normalization:**
+    Type identifiers are **case-insensitive** and are normalized according to
+    the same rules as :term:`names<Name>` in :term:`ELCL`.
+
+    This means comparisons are performed on the normalized form of the
+    identifier. For example, ``DateTime``, ``datetime``, and ``DATETIME``
+    all refer to the same type.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [app.a]
+        type: "INTEGER"
+
+        [app.b]
+        type: "integer"
+
+        [app.c]
+        type: "Integer"
+
+#.  **Type Aliases:**
+    An implementation *may* define additional type identifiers as aliases
+    for existing types, separating words with underscores.
+
+    For example, an implementation could define ``date_time`` as an alias
+    for ``DateTime``.
+
 
 Type Identifiers
 ================
@@ -256,3 +283,13 @@ called ``magic_numbers``:
 The API of a configuration parser *should* provide uniform access to values as
 lists or matrices, regardless of how they are represented in the configuration
 document.
+
+
+Version History
+===============
+
+.. version-changed:: 1.3.1
+
+    Added an explicit rules for ``type`` comparison and aliases with underscores.
+
+
