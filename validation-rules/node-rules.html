@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Node-Rules Definition &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Types" href="types.html" />
+    <link rel="prev" title="Evaluation Order" href="evaluation-order.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Node-Rules Definition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-a-node-rules-definition">Rules for a Node-Rules Definition</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Node-Rules Definition</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/node-rules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="node-rules-definition">
+<h1>Node-Rules Definition<a class="headerlink" href="#node-rules-definition" title="Link to this heading"></a></h1>
+<p>A section in a Validation Rules document whose name ends in a regular name or in
+<code class="docutils literal notranslate"><span class="pre">vr_any</span></code> defines the rules for one or more nodes in the validated document.
+Such sections are called <a class="reference internal" href="../glossary.html#term-Node-Rules"><span class="xref std std-term">Node-Rules</span></a> definitions.</p>
+<p>Each node-rules definition specifies the expected type of a node, its constraints,
+optional default values, and additional metadata such as documentation or dependency
+information.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;The name of this server entry&quot;</span>
+<span class="nv">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">Specify a unique name for the server, used in logs and diagnostics.</span>
+<span class="w">    </span><span class="s2">Only letters, digits, underscores, and hyphens are allowed, up to 60 characters.</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">60</span>
+<span class="nv">allowed_chars</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;[-A-Za-z0-9_]&quot;</span>
+</pre></div>
+</div>
+<section id="rules-for-a-node-rules-definition">
+<h2>Rules for a Node-Rules Definition<a class="headerlink" href="#rules-for-a-node-rules-definition" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Type Requirement:</strong>
+Each node-rules definition <em>must</em> have exactly one effective type.
+The type is provided either by:</p>
+<ul class="simple">
+<li><p>a local <code class="docutils literal notranslate"><span class="pre">type</span></code> field, or</p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">use_template</span></code> reference that defines a type.</p></li>
+</ul>
+<p>A node-rules definition must not define both.
+See <a class="reference internal" href="types.html"><span class="doc">Types</span></a> for the exact rules governing <code class="docutils literal notranslate"><span class="pre">type</span></code> and <code class="docutils literal notranslate"><span class="pre">use_template</span></code>.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="w">   </span><span class="c"># Either &quot;type&quot; or &quot;use_template&quot; is required.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Defaults:</strong>
+Node-rules definitions for a <a class="reference internal" href="../glossary.html#term-Scalar-Value"><span class="xref std std-term">scalar value</span></a> or a value list <em>may</em> define a
+default value using the <code class="docutils literal notranslate"><span class="pre">default</span></code> field.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When a default is applied, only the <code class="docutils literal notranslate"><span class="pre">type</span></code> constraint is validated.
+All other constraints are skipped for the default value.</p>
+<p>See <a class="reference internal" href="defaults-and-optionality.html"><span class="doc">Defaults and Optionality</span></a> for details.</p>
+</div>
+</li>
+<li><p><strong>Optionality:</strong>
+A node-rules definition <em>may</em> explicitly mark a node as optional using
+<code class="docutils literal notranslate"><span class="pre">is_optional:</span> <span class="pre">yes</span></code>.</p>
+<p>Optional nodes are not required to exist in the configuration document.
+Optionality can also be achieved implicitly by providing a <code class="docutils literal notranslate"><span class="pre">default</span></code> value.</p>
+<p>See <a class="reference internal" href="defaults-and-optionality.html"><span class="doc">Defaults and Optionality</span></a> for details.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Documentation Fields:</strong>
+A node-rules definition <em>may</em> provide documentation metadata using the
+<code class="docutils literal notranslate"><span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">description</span></code> fields.</p>
+<p>These fields do not influence validation.
+They are intended for tooling, user interfaces, and generated documentation.
+Parsers <em>should</em> expose these values through their APIs.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Port on the server to connect to&quot;</span>
+<span class="nv">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="s2">The numeric port where the client connects to the server.</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Constraints:</strong>
+A node-rules definition can define zero or more constraints that further restrict
+valid values or structures.</p>
+<p>Constraints are evaluated according to the rules defined in
+<a class="reference internal" href="evaluation-order.html"><span class="doc">Evaluation Order</span></a>.</p>
+<p>See <a class="reference internal" href="constraints/index.html"><span class="doc">Constraints</span></a> for the complete list of available constraints,
+including negated constraints and custom error messages.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="w">         </span><span class="c"># Constraint on the value</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span><span class="w">     </span><span class="c"># Further constraint</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Custom Error:</strong>
+A node-rules definition <em>may</em> define a custom error message for the entire node
+using the <code class="docutils literal notranslate"><span class="pre">error</span></code> field.</p>
+<p>This message is used when validation of the node fails and no more specific
+constraint-level error applies.</p>
+<p>See <a class="reference internal" href="diagnostics.html"><span class="doc">Diagnostics</span></a> for details.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Please specify a valid port from 1–65534.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>List Entries:</strong>
+Node-rules definitions for value lists or section lists <em>must</em> describe their
+elements using a <code class="docutils literal notranslate"><span class="pre">vr_entry</span></code> subsection or section list.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">vr_entry</span></code> rules define the structure and constraints of each list element.</p>
+<p>See <a class="reference internal" href="lists.html"><span class="doc">Lists</span></a> for details.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">tags</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ValueList&quot;</span>
+
+<span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">tags</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Dependencies:</strong>
+A node-rules definition <em>may</em> express dependencies between child nodes using a
+<code class="docutils literal notranslate"><span class="pre">vr_dependency</span></code> section list.</p>
+<p>Dependencies are validated in a later validation stage and can express logical
+relationships such as mutual inclusion or exclusion.</p>
+<p>See <a class="reference internal" href="dependencies.html"><span class="doc">Dependencies</span></a> for details.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ...</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;xnor&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;username&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;password&quot;</span>
+
+<span class="c"># ...</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Variable Names:</strong>
+Node-rules definitions that end in <code class="docutils literal notranslate"><span class="pre">vr_any</span></code> <em>may</em> restrict the allowed variable
+names using a <code class="docutils literal notranslate"><span class="pre">vr_name</span></code> subsection.</p>
+<p>This allows rule authors to constrain the names of dynamically created child
+nodes.</p>
+<p>See <a class="reference internal" href="variable-names.html"><span class="doc">Variable Names</span></a> and <a class="reference internal" href="reserved.html"><span class="doc">Reserved Names</span></a> for details.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">.</span><span class="nt">vr_name</span><span class="o">]</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">60</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Case Sensitivity:</strong>
+A node-rules definition <em>may</em> enable case-sensitive evaluation for text-based
+constraints using the <code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code> field.</p>
+<p>If not enabled, text comparisons are case-insensitive by default.</p>
+<p>See <a class="reference internal" href="constraints/case-sensitive.html"><span class="doc">The Case Sensitive Flag</span></a> for details.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">message</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">case_sensitive</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+<span class="nv">starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message:&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Secrets:</strong>
+A node-rules definition <em>may</em> mark a node as secret using the <code class="docutils literal notranslate"><span class="pre">is_secret</span></code> field.</p>
+<p>Secret nodes should be redacted or masked in diagnostics, logs, and error
+messages.</p>
+<p>See <a class="reference internal" href="security.html"><span class="doc">Security</span></a> for details.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">secret</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_secret</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="evaluation-order.html" class="btn btn-neutral float-left" title="Evaluation Order" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="types.html" class="btn btn-neutral float-right" title="Types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

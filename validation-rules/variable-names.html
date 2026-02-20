@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Variable Names &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Indexes, Keys and References" href="keys-and-references.html" />
+    <link rel="prev" title="The Case Sensitive Flag" href="constraints/case-sensitive.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Variable Names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-use-of-vr-any">Basic Use of <code class="docutils literal notranslate"><span class="pre">vr_any</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constraining-variable-names-with-vr-name">Constraining Variable Names with <code class="docutils literal notranslate"><span class="pre">vr_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variable-names-as-values">Variable Names as Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-vr-any">Rules for <code class="docutils literal notranslate"><span class="pre">vr_any</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-vr-name">Rules for <code class="docutils literal notranslate"><span class="pre">vr_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Variable Names</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/variable-names.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="variable-names">
+<h1>Variable Names<a class="headerlink" href="#variable-names" title="Link to this heading"></a></h1>
+<p>A common configuration pattern is to use <strong>names as keys</strong>.</p>
+<p>Typical examples include:</p>
+<ul class="simple">
+<li><p>user accounts, where the <em>user name</em> identifies a section,</p></li>
+<li><p>feature flags or tags, where the <em>tag name</em> identifies a value,</p></li>
+<li><p>dynamically named resources such as queues, profiles, or environments.</p></li>
+</ul>
+<p>For these use cases, Validation Rules provide the reserved name <code class="docutils literal notranslate"><span class="pre">vr_any</span></code>.
+It acts as a <strong>placeholder for arbitrary names</strong> in the validated document.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">vr_any</span></code> allows you to define rules for nodes whose names are not known
+in advance, while still enforcing structure and constraints.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">vr_any</span></code> placeholder is also the <em>only</em> mechanism that allows validation
+of <strong>text-names</strong>, which are intended by <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> to be used as keys.</p>
+<section id="basic-use-of-vr-any">
+<h2>Basic Use of <code class="docutils literal notranslate"><span class="pre">vr_any</span></code><a class="headerlink" href="#basic-use-of-vr-any" title="Link to this heading"></a></h2>
+<p>Used on its own, <code class="docutils literal notranslate"><span class="pre">vr_any</span></code> matches any valid name (or text-name) at that
+position in the document tree.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">.</span><span class="nt">age</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<p>This definition allows an arbitrary number of user sections, each with an
+<code class="docutils literal notranslate"><span class="pre">age</span></code> value.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">alice</span><span class="o">]</span>
+<span class="nv">age</span><span class="o">:</span><span class="w"> </span><span class="mi">32</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">benjamin</span><span class="o">]</span>
+<span class="nv">age</span><span class="o">:</span><span class="w"> </span><span class="mi">48</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">charlotte</span><span class="o">]</span>
+<span class="nv">age</span><span class="o">:</span><span class="w"> </span><span class="mi">56</span>
+</pre></div>
+</div>
+</section>
+<section id="constraining-variable-names-with-vr-name">
+<h2>Constraining Variable Names with <code class="docutils literal notranslate"><span class="pre">vr_name</span></code><a class="headerlink" href="#constraining-variable-names-with-vr-name" title="Link to this heading"></a></h2>
+<p>To restrict which names are allowed, a <code class="docutils literal notranslate"><span class="pre">vr_name</span></code> subsection can be added
+under <code class="docutils literal notranslate"><span class="pre">vr_any</span></code>. The <code class="docutils literal notranslate"><span class="pre">vr_name</span></code> section behaves like a regular text
+node-rules definition and supports the same constraints.</p>
+<p>This allows you to enforce naming conventions, prefixes, formats, or lengths.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">vr_name</span><span class="o">]</span>
+<span class="nv">starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;u_&quot;</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">.</span><span class="nt">age</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<p>Only user names starting with <code class="docutils literal notranslate"><span class="pre">u_</span></code> are now allowed.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">u_alice</span><span class="o">]</span>
+<span class="nv">age</span><span class="o">:</span><span class="w"> </span><span class="mi">32</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">u_benjamin</span><span class="o">]</span>
+<span class="nv">age</span><span class="o">:</span><span class="w"> </span><span class="mi">48</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">u_charlotte</span><span class="o">]</span>
+<span class="nv">age</span><span class="o">:</span><span class="w"> </span><span class="mi">56</span>
+</pre></div>
+</div>
+</section>
+<section id="variable-names-as-values">
+<h2>Variable Names as Values<a class="headerlink" href="#variable-names-as-values" title="Link to this heading"></a></h2>
+<p>Variable names can also be constrained to <em>carry values themselves</em>.
+This is useful when the name is the primary identifier and the value
+provides metadata such as a priority, weight, or order.</p>
+<p>In this example, tag names are used as keys and their integer values
+represent priorities:</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">tags</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+
+<span class="p">[</span><span class="nt">tags</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">tags</span><span class="o">]</span>
+<span class="nv">feature</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">bugfix</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="nv">enhancement</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="nv">documentation</span><span class="o">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="nv">misc</span><span class="o">:</span><span class="w"> </span><span class="mi">5</span>
+</pre></div>
+</div>
+</section>
+<section id="rules-for-vr-any">
+<h2>Rules for <code class="docutils literal notranslate"><span class="pre">vr_any</span></code><a class="headerlink" href="#rules-for-vr-any" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Same Semantics as Node-Rules Definitions:</strong>
+<code class="docutils literal notranslate"><span class="pre">vr_any</span></code> behaves like a regular <a class="reference internal" href="node-rules.html"><span class="doc">node-rules definition</span></a>.</p>
+<p>It requires a <code class="docutils literal notranslate"><span class="pre">type</span></code> field and supports constraints, documentation fields,
+and alternatives. The only difference is that it does <em>not</em> restrict the
+name of the matched node in the document tree.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">numbers</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">numbers</span><span class="o">]</span>
+<span class="nv">one</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">two</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="nv">three</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span>
+</pre></div>
+</div>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">numbers</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">numbers</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">numbers</span><span class="o">]</span>
+<span class="nv">half</span><span class="o">:</span><span class="w"> </span><span class="mf">0.5</span>
+<span class="nv">one</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">pi</span><span class="o">:</span><span class="w"> </span><span class="mf">3.14159265359</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Text Names Allowed:</strong>
+<code class="docutils literal notranslate"><span class="pre">vr_any</span></code> can be used to validate text-names, which are intended by
+<a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> to be used as keys.</p>
+<p>This makes <code class="docutils literal notranslate"><span class="pre">vr_any</span></code> the only mechanism that allows validation of nodes
+addressed by text-names.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section_with_texts&quot;</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">users</span><span class="o">.</span><span class="s1">&quot;User 1&quot;</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Peter&quot;</span>
+
+<span class="p">[</span><span class="nt">users</span><span class="o">.</span><span class="s1">&quot;User 2&quot;</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Peter&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>No Default Value and No Optionality:</strong>
+A <code class="docutils literal notranslate"><span class="pre">vr_any</span></code> node-rules definition <em>must not</em> define a default value and
+<em>must not</em> be marked as optional.</p>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p><code class="docutils literal notranslate"><span class="pre">vr_any</span></code> definitions are inherently optional, as they allow zero or
+more values or sections. Marking them as optional would therefore be
+redundant and potentially confusing.</p>
+<p>Default values are not permitted because, when no matching nodes are
+present, there is no well-defined name to which a default value could
+be assigned.</p>
+</div>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="w">   </span><span class="c"># ERROR: default value not allowed for vr_any</span>
+</pre></div>
+</div>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w">   </span><span class="c"># ERROR: vr_any must not be optional</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Zero to Many Values:</strong>
+A <code class="docutils literal notranslate"><span class="pre">vr_any</span></code> node-rules definition allows zero or more values or sections,
+unless additional cardinality constraints are defined.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use constraints such as <code class="docutils literal notranslate"><span class="pre">minimum</span></code> and <code class="docutils literal notranslate"><span class="pre">maximum</span></code> to restrict the
+number of allowed values.</p>
+</div>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">numbers</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">numbers</span><span class="o">]</span>
+<span class="c"># Zero values are valid.</span>
+</pre></div>
+</div>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">numbers</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="p">[</span><span class="nt">numbers</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">numbers</span><span class="o">]</span>
+<span class="c"># ERROR: minimum is 1, but no values are present.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Name Constraints:</strong>
+An optional <code class="docutils literal notranslate"><span class="pre">vr_name</span></code> subsection can be defined to restrict the set of
+allowed names.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">users</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">vr_name</span><span class="o">]</span>
+<span class="nv">starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;u_&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">users</span><span class="o">]</span>
+<span class="nv">u_001</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">u_002</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">users</span><span class="o">]</span>
+<span class="nv">alice</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="c"># ERROR: name does not start with &quot;u_&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Unrestricted Names by Default:</strong>
+If no <code class="docutils literal notranslate"><span class="pre">vr_name</span></code> subsection is defined, all valid names are accepted.</p>
+<p>In this case, only the naming rules defined by <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> apply.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">users</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">users</span><span class="o">]</span>
+<span class="nv">any_valid_name</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">is_accepted</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="rules-for-vr-name">
+<h2>Rules for <code class="docutils literal notranslate"><span class="pre">vr_name</span></code><a class="headerlink" href="#rules-for-vr-name" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Type Is Locked to Text:</strong>
+The type of <code class="docutils literal notranslate"><span class="pre">vr_name</span></code> <em>must</em> be <code class="docutils literal notranslate"><span class="pre">Text</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> field is optional, but if present, it <em>must</em> be set to <code class="docutils literal notranslate"><span class="pre">Text</span></code>.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">users</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">vr_name</span><span class="o">]</span><span class="w">   </span><span class="c"># Omitting the &#39;type&#39; field is allowed for vr_name</span>
+<span class="nv">starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;u_&quot;</span>
+</pre></div>
+</div>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">users</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">vr_name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;u_&quot;</span>
+</pre></div>
+</div>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">users</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">vr_name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="w">  </span><span class="c"># ERROR: type must be &quot;text&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Text Semantics:</strong>
+Constraints defined in <code class="docutils literal notranslate"><span class="pre">vr_name</span></code> follow the same semantics as text
+constraints.</p>
+<p>This includes support for <code class="docutils literal notranslate"><span class="pre">starts</span></code>, <code class="docutils literal notranslate"><span class="pre">ends</span></code>, <code class="docutils literal notranslate"><span class="pre">matches</span></code>, <code class="docutils literal notranslate"><span class="pre">chars</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code>.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section_with_texts&quot;</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">.</span><span class="nt">vr_name</span><span class="o">]</span>
+<span class="nv">case_sensitive</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+<span class="nv">starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;u_&quot;</span>
+<span class="nv">ends</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_x&quot;</span>
+<span class="nv">chars</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(a-z)&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;[_]&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Scope:</strong>
+Constraints defined in <code class="docutils literal notranslate"><span class="pre">vr_name</span></code> apply <em>only</em> to the node name itself.</p>
+<p>They do not affect the node’s value, its children, or any nested validation
+rules.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section_with_texts&quot;</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="p">[</span><span class="nt">user</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">.</span><span class="nt">vr_name</span><span class="o">]</span>
+<span class="nv">case_sensitive</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+<span class="nv">starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;u_&quot;</span>
+<span class="nv">ends</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_x&quot;</span>
+<span class="nv">chars</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(a-z)&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;[_]&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">user</span><span class="o">]</span>
+<span class="nv">u_alice</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;unrestricted&quot;</span>
+<span class="nv">u_bob_x</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;vr_name does not affect this text&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="constraints/case-sensitive.html" class="btn btn-neutral float-left" title="The Case Sensitive Flag" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="keys-and-references.html" class="btn btn-neutral float-right" title="Indexes, Keys and References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

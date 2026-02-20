@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document Model &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Evaluation Order" href="evaluation-order.html" />
+    <link rel="prev" title="Terms" href="terms.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Document Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-validation-rules-documents">Rules for Validation Rules Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Document Model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="document-model">
+<h1>Document Model<a class="headerlink" href="#document-model" title="Link to this heading"></a></h1>
+<p>This section defines the fundamental structure and interpretation rules for
+Validation Rules (<a class="reference internal" href="../glossary.html#term-ELCL-VR"><span class="xref std std-term">ELCL-VR</span></a>) documents. These rules describe how validation
+rules map onto a parsed configuration document and how the resulting <em>value tree</em>
+is interpreted during validation.</p>
+<section id="rules-for-validation-rules-documents">
+<h2>Rules for Validation Rules Documents<a class="headerlink" href="#rules-for-validation-rules-documents" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Valid ELCL Document:</strong>
+A Validation Rules document <em>must</em> itself be a valid <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> document and
+support all features provided by the parser.</p>
+<p>Validation rules use the same syntax and structural concepts as regular
+configuration documents.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Sections Define Nodes:</strong>
+Each section in a Validation Rules document <em>defines</em> the rules for exactly one
+<a class="reference internal" href="../glossary.html#term-Node"><span class="xref std std-term">Node</span></a> in the validated document.</p>
+<p>The section name represents the <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">Name Path</span></a> of the node being validated.
+When validation is applied to only a subtree of a configuration, the name path
+is interpreted as <em>relative</em> to the validated root.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+<p>The example above defines rules for the node at <code class="docutils literal notranslate"><span class="pre">server.name</span></code>, which corresponds
+to the following configuration:</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="node-rules.html"><span class="doc">Node-Rules Definition</span></a> for details about the contents of a node-rules definition.</p>
+</li>
+<li><p><strong>Implicit Ancestors:</strong>
+Elements of a name path that are not explicitly defined are treated as
+<em>implicit</em> ancestor sections.</p>
+<p>To reduce redundancy in validation rules documents, missing path elements
+implicitly create node-rules definitions for <strong>required sections with names</strong>.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span>
+</pre></div>
+</div>
+<p>In this example, the section <code class="docutils literal notranslate"><span class="pre">server</span></code> is not explicitly defined in the rules.
+It is therefore implicitly created as a required section with names.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ERROR: The required section &quot;server&quot; is missing.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Existence Requirement:</strong>
+If a node-rules definition has no <code class="docutils literal notranslate"><span class="pre">default</span></code> value and is not explicitly marked
+as optional, the corresponding node <em>must</em> exist in the configuration document.</p>
+<p>By default, every node defined by validation rules is required to appear in the
+value tree. A node can be made optional in exactly one of the following ways:</p>
+<ul class="simple">
+<li><p>by providing a <code class="docutils literal notranslate"><span class="pre">default</span></code> value, or</p></li>
+<li><p>by setting <code class="docutils literal notranslate"><span class="pre">is_optional:</span> <span class="pre">yes</span></code>.</p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w">  </span><span class="c"># VALID: The node exists, even if the value is empty.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Closed by Default:</strong>
+A configuration document <em>must not</em> contain nodes for which no matching
+node-rules definition exists.</p>
+<p>A Validation Rules document is considered authoritative for the validated
+document or <a class="reference internal" href="../glossary.html#term-Value-Tree"><span class="xref std std-term">Value Tree</span></a>. As a result, any value, section, or list that
+is not explicitly covered by validation rules is forbidden.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Nodes are only exempt from the closed-by-default rule if they are explicitly
+covered by a node-rules definition of type <code class="docutils literal notranslate"><span class="pre">NotValidated</span></code>.</p>
+</div>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">]</span><span class="w">  </span><span class="c"># ERROR: &quot;client&quot; is not defined in the validation rules.</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="terms.html" class="btn btn-neutral float-left" title="Terms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="evaluation-order.html" class="btn btn-neutral float-right" title="Evaluation Order" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

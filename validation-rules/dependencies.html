@@ -1,0 +1,731 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dependencies &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Custom Errors" href="custom-errors.html" />
+    <link rel="prev" title="Indexes, Keys and References" href="keys-and-references.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-dependencies">Rules for Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mode-logic-explained">Mode Logic Explained</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#testing-if-sources-and-or-targets-are-present">Testing if Sources and/or Targets are Present</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#four-situations">Four Situations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-dependency-mode-logic">The Dependency Mode Logic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unsupported-logic-modes-and-why-they-are-not-supported">Unsupported Logic Modes and Why They Are Not Supported</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exclusion-xor">Exclusion (XOR)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bidirectional-dependency-xnor">Bidirectional Dependency (XNOR)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directional-dependency-if">Directional Dependency (IF)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#version-history">Version History</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Dependencies</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/dependencies.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dependencies">
+<h1>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h1>
+<p>Dependencies express <strong>conditional relationships</strong> between configuration elements.
+They allow you to define rules such as <em>“if this value exists, that one must also exist”</em>
+without duplicating logic in application code.</p>
+<p>Dependencies are declared using the <code class="docutils literal notranslate"><span class="pre">vr_dependency</span></code> section list.
+They always operate on the <strong>presence or absence</strong> of values or sections, never on
+their actual content.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Default values do <em>not</em> count as “configured” for dependency checks.
+Only nodes that explicitly exist in the configuration document are considered present.</p>
+</div>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">username</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">password</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;xnor&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;username&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;password&quot;</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Configure username *and* password, or none of these values&quot;</span>
+</pre></div>
+</div>
+<section id="rules-for-dependencies">
+<h2>Rules for Dependencies<a class="headerlink" href="#rules-for-dependencies" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Section List Required:</strong>
+Dependencies <em>must</em> be defined using a section list named <code class="docutils literal notranslate"><span class="pre">vr_dependency</span></code>.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">username</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">password</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+<span class="nv">is_secret</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;server.hostname&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;server.ip_address&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Placement and Scope:</strong>
+A <code class="docutils literal notranslate"><span class="pre">vr_dependency</span></code> may appear either:</p>
+<ul class="simple">
+<li><p>at the document root, or</p></li>
+<li><p>inside a node-rules definition for a <em>section</em>.</p></li>
+</ul>
+<p>The dependency applies only within the subtree of the section in which it is defined.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+
+<span class="c"># ...</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;xor&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;hostname&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ip_address&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Mode Required:</strong>
+Each dependency <em>must</em> define a <code class="docutils literal notranslate"><span class="pre">mode</span></code> entry with a text value.
+The <code class="docutils literal notranslate"><span class="pre">mode</span></code> determines how the configuration state of <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code>
+is interpreted.</p>
+<p>Validators <em>must</em> support the following modes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span></code> — If the <em>source</em> side is configured, the <em>target</em> side must also be configured.
+If the source is not configured, the dependency is considered satisfied.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if_not</span></code> — If the <em>source</em> side is configured, the <em>target</em> side must <strong>not</strong> be configured.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">or</span></code> — At least one side (source or target) must be configured.
+Both sides may be configured.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xor</span></code> — Exactly one side must be configured.
+Neither both nor none are allowed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xnor</span></code> — Either both sides must be configured, or neither.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">and</span></code> — Both source and target must be configured.</p></li>
+</ul>
+<p>If you are unsure how a specific mode behaves in edge cases,
+refer to <a class="reference internal" href="#dependency-modes-logic"><span class="std std-ref">Mode Logic Explained</span></a> below.
+That section defines the exact evaluation matrix and should be treated as normative.</p>
+</li>
+<li><p><strong>Source and Target Required:</strong>
+Each dependency <em>must</em> define both <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p>
+<ul class="simple">
+<li><p>Each entry may be a single text value or a list of text values.</p></li>
+<li><p>Values are <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">relative name-paths</span></a> resolved within the same section.</p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">username</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">password</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;username&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;password&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Multiple Values (OR Semantics):</strong>
+If multiple name-paths are listed in <code class="docutils literal notranslate"><span class="pre">source</span></code> or <code class="docutils literal notranslate"><span class="pre">target</span></code>,
+that side of the dependency is considered configured if <em>any</em>
+of the listed nodes exists.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ...</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;api_key&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;token&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;endpoint&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Custom Error Messages:</strong>
+A dependency <em>may</em> define an <code class="docutils literal notranslate"><span class="pre">error</span></code> entry to provide a custom validation message.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ...</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;xor&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;hostname&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ip_address&quot;</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Configure either &#39;hostname&#39; or &#39;ip_address&#39;, not both.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>What “Configured” Means:</strong>
+For dependency evaluation, a node on the <code class="docutils literal notranslate"><span class="pre">source</span></code> or <code class="docutils literal notranslate"><span class="pre">target</span></code> side
+is considered <strong>configured</strong> only if it is explicitly present in the
+configuration document.</p>
+<p>A node is <em>not</em> considered configured if it exists solely because a
+<code class="docutils literal notranslate"><span class="pre">default</span></code> value was applied during parsing.</p>
+<p>In other words, dependencies operate on what the user actually wrote —
+not on values that were implicitly added by the validator.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">a</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span>
+<span class="c"># &quot;app.a&quot; is NOT configured.</span>
+<span class="c"># The value exists only because of the default.</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span>
+<span class="nv">a</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="c"># &quot;app.a&quot; IS configured.</span>
+<span class="c"># The value is explicitly present in the document,</span>
+<span class="c"># even if it equals the default.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Valid Source and Target Paths:</strong>
+Each name-path listed in <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code> <em>must</em> resolve to a node
+that has a node-rules definition and whose presence is not already
+unconditionally required.</p>
+<p>In other words, the referenced node must be <em>conditionally present</em>.
+A node is considered conditionally present if at least one element in its
+effective path:</p>
+<ul class="simple">
+<li><p>is marked with <code class="docutils literal notranslate"><span class="pre">is_optional:</span> <span class="pre">yes</span></code>, or</p></li>
+<li><p>defines a <code class="docutils literal notranslate"><span class="pre">default</span></code> value.</p></li>
+</ul>
+<p>A path <em>must not</em>:</p>
+<ul class="simple">
+<li><p>reference nodes inside individual alternatives, or</p></li>
+<li><p>reference elements within a section list (such as <code class="docutils literal notranslate"><span class="pre">vr_entry</span></code> values).</p></li>
+</ul>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">username</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">password</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.username&quot;</span><span class="w">  </span><span class="c"># ERROR: app.username is not optional</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.password&quot;</span>
+</pre></div>
+</div>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">ports</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">ports</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">interface</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.ports.vr_entry.port&quot;</span><span class="w">  </span><span class="c"># ERROR: Cannot reference elements of a section list</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.interface&quot;</span>
+</pre></div>
+</div>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">ports</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Section&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">ports</span><span class="o">.</span><span class="nt">start</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">ports</span><span class="o">.</span><span class="nt">end</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">ports</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">80</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">interface</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.ports.start&quot;</span><span class="w">  </span><span class="c"># ERROR: app.ports is defined in alternatives</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.interface&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Mode Case Insensitivity and Normalization:</strong>
+Mode identifiers are <strong>case-insensitive</strong> and are normalized according to
+the same rules as <a class="reference internal" href="../glossary.html#term-Name"><span class="xref std std-term">names</span></a> in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>.</p>
+<p>Comparisons are performed on the normalized form of the identifier.
+For example, <code class="docutils literal notranslate"><span class="pre">if_not</span></code>, <code class="docutils literal notranslate"><span class="pre">IF_NOT</span></code>, and <code class="docutils literal notranslate"><span class="pre">If</span> <span class="pre">Not</span></code> all refer to the same mode.</p>
+<p>Validators <em>must</em> apply normalization consistently when resolving the
+<code class="docutils literal notranslate"><span class="pre">mode</span></code> value.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ...</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;If Not&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;hostname&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ip_address&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if_not&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;port&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;protocol&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="mode-logic-explained">
+<span id="dependency-modes-logic"></span><h2>Mode Logic Explained<a class="headerlink" href="#mode-logic-explained" title="Link to this heading"></a></h2>
+<p>When validating a dependency, the validator performs two steps:</p>
+<ol class="arabic simple">
+<li><p>Determine whether the <em>source</em> side is configured.</p></li>
+<li><p>Determine whether the <em>target</em> side is configured.</p></li>
+</ol>
+<p>The selected <code class="docutils literal notranslate"><span class="pre">mode</span></code> is then applied to these two boolean results.</p>
+<p>Importantly, dependencies operate purely on <strong>presence</strong>.
+They never inspect or compare actual values.</p>
+<section id="testing-if-sources-and-or-targets-are-present">
+<h3>Testing if Sources and/or Targets are Present<a class="headerlink" href="#testing-if-sources-and-or-targets-are-present" title="Link to this heading"></a></h3>
+<p>A single name-path in <code class="docutils literal notranslate"><span class="pre">source</span></code> or <code class="docutils literal notranslate"><span class="pre">target</span></code> is considered configured if:</p>
+<ul class="simple">
+<li><p>the referenced node exists in the original configuration document, and</p></li>
+<li><p>its presence is <strong>not</strong> the result of a <code class="docutils literal notranslate"><span class="pre">default</span></code> value.</p></li>
+</ul>
+<p>This distinction is essential.</p>
+<p>A node that only exists in the parsed configuration tree because a
+<code class="docutils literal notranslate"><span class="pre">default</span></code> value was applied is <em>not</em> considered configured for
+dependency evaluation.</p>
+<p>If multiple name-paths are listed in <code class="docutils literal notranslate"><span class="pre">source</span></code> or <code class="docutils literal notranslate"><span class="pre">target</span></code>,
+that side is considered configured if <strong>at least one</strong> of the listed
+nodes is configured (logical OR semantics).</p>
+<p>Consider this simplified example:</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;b&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span>
+</pre></div>
+</div>
+<p>The following configurations illustrate the four possible situations:</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span><span class="w">  </span><span class="c"># Neither source nor target are configured.</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span><span class="w">  </span><span class="c"># Source is configured, but target is not.</span>
+<span class="nv">a</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span><span class="w">  </span><span class="c"># Target is configured, but source is not.</span>
+<span class="nv">x</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span><span class="w">  </span><span class="c"># Both source and target are configured.</span>
+<span class="nv">b</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">y</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="four-situations">
+<h3>Four Situations<a class="headerlink" href="#four-situations" title="Link to this heading"></a></h3>
+<p>When evaluating a dependency, the configuration state of the source
+and target side results in exactly one of four possible situations.</p>
+<p>These situations form the logical basis for all dependency modes.</p>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Situation</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i> <i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i></p></td>
+<td><p>Neither source nor target values are configured.</p></td>
+</tr>
+<tr class="row-odd"><td><p><i class="fa-solid fa-square-s sd-text-info" style="font-size: 24px;"></i> <i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i></p></td>
+<td><p>One or more source values are configured, and no target values are configured.</p></td>
+</tr>
+<tr class="row-even"><td><p><i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i> <i class="fa-solid fa-square-t sd-text-warning" style="font-size: 24px;"></i></p></td>
+<td><p>No source values are configured, but one or more target values are configured.</p></td>
+</tr>
+<tr class="row-odd"><td><p><i class="fa-solid fa-square-s sd-text-info" style="font-size: 24px;"></i> <i class="fa-solid fa-square-t sd-text-warning" style="font-size: 24px;"></i></p></td>
+<td><p>One or more source values are configured, and one or more target values are configured.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-dependency-mode-logic">
+<h3>The Dependency Mode Logic<a class="headerlink" href="#the-dependency-mode-logic" title="Link to this heading"></a></h3>
+<p>Each dependency mode defines which of the four situations above
+are considered valid.</p>
+<p>A green checkmark indicates that the dependency is satisfied.
+A red xmark indicates that the dependency is violated and validation fails.</p>
+<p>The following table is normative and defines the exact behavior:</p>
+<table class="dependency-matrix docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Mode ↓</p></th>
+<th class="head"><p><i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i> <i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i></p></th>
+<th class="head"><p><i class="fa-solid fa-square-s sd-text-info" style="font-size: 24px;"></i> <i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i></p></th>
+<th class="head"><p><i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i> <i class="fa-solid fa-square-t sd-text-warning" style="font-size: 24px;"></i></p></th>
+<th class="head"><p><i class="fa-solid fa-square-s sd-text-info" style="font-size: 24px;"></i> <i class="fa-solid fa-square-t sd-text-warning" style="font-size: 24px;"></i></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>if</p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+</tr>
+<tr class="row-odd"><td><p>if_not</p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+</tr>
+<tr class="row-even"><td><p>or</p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+</tr>
+<tr class="row-odd"><td><p>xor</p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+</tr>
+<tr class="row-even"><td><p>xnor</p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+</tr>
+<tr class="row-odd"><td><p>and</p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="unsupported-logic-modes-and-why-they-are-not-supported">
+<h3>Unsupported Logic Modes and Why They Are Not Supported<a class="headerlink" href="#unsupported-logic-modes-and-why-they-are-not-supported" title="Link to this heading"></a></h3>
+<p>You may notice that the logical matrix above is not exhaustive.
+Several theoretically possible boolean modes are intentionally not supported.</p>
+<p>The following modes are omitted by design:</p>
+<table class="dependency-matrix docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Mode ↓</p></th>
+<th class="head"><p><i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i> <i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i></p></th>
+<th class="head"><p><i class="fa-solid fa-square-s sd-text-info" style="font-size: 24px;"></i> <i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i></p></th>
+<th class="head"><p><i class="fa-solid fa-square-dashed sd-text-muted" style="font-size: 24px;"></i> <i class="fa-solid fa-square-t sd-text-warning" style="font-size: 24px;"></i></p></th>
+<th class="head"><p><i class="fa-solid fa-square-s sd-text-info" style="font-size: 24px;"></i> <i class="fa-solid fa-square-t sd-text-warning" style="font-size: 24px;"></i></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>none</p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+</tr>
+<tr class="row-odd"><td><p>nand</p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+</tr>
+<tr class="row-even"><td><p>nor</p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+</tr>
+<tr class="row-odd"><td><p>reverse_if</p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-xmark sd-text-danger" style="font-size: 24px;"></i></p></td>
+<td><p><i class="fa-solid fa-circle-check sd-text-success" style="font-size: 24px;"></i></p></td>
+</tr>
+</tbody>
+</table>
+<p>These modes are excluded for the following reasons:</p>
+<table class="identifier-table docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>none</p></td>
+<td><p>This mode would accept all four situations and therefore impose no constraint.
+It is functionally equivalent to omitting the <code class="docutils literal notranslate"><span class="pre">vr_dependency</span></code> entry entirely.</p></td>
+</tr>
+<tr class="row-even"><td><p>nand</p></td>
+<td><p>While logically valid, it is semantically redundant: the same behavior is already
+provided by <code class="docutils literal notranslate"><span class="pre">if_not</span></code> with clearer intent in the context of dependencies.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nor</p></td>
+<td><p>This mode would only allow the situation where neither side is configured.
+In practice, this would prohibit configuring any of the referenced nodes,
+which does not express a dependency but rather a prohibition rule.</p></td>
+</tr>
+<tr class="row-even"><td><p>reverse_if</p></td>
+<td><p>This would represent the logical inverse direction of <code class="docutils literal notranslate"><span class="pre">if</span></code>.
+Instead of introducing a separate mode, the same behavior is achieved
+simply by swapping <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code> in an <code class="docutils literal notranslate"><span class="pre">if</span></code> dependency.
+Adding a dedicated mode would therefore increase surface complexity
+without adding expressive power.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="exclusion-xor">
+<h3>Exclusion (XOR)<a class="headerlink" href="#exclusion-xor" title="Link to this heading"></a></h3>
+<p>Exactly one of the two values must be configured:</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">hostname</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">ip_address</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;xor&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;hostname&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ip_address&quot;</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Configure either &#39;hostname&#39; or &#39;ip_address&#39;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="bidirectional-dependency-xnor">
+<h3>Bidirectional Dependency (XNOR)<a class="headerlink" href="#bidirectional-dependency-xnor" title="Link to this heading"></a></h3>
+<p>Either both values must be present, or neither:</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">window</span><span class="o">.</span><span class="nt">x</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="p">[</span><span class="nt">window</span><span class="o">.</span><span class="nt">y</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">window</span><span class="o">.</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;xnor&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;y&quot;</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;You must either specify both &#39;x&#39; and &#39;y&#39; or neither&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="directional-dependency-if">
+<h3>Directional Dependency (IF)<a class="headerlink" href="#directional-dependency-if" title="Link to this heading"></a></h3>
+<p>A value is required only when a related feature is configured:</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">api</span><span class="o">.</span><span class="nt">media_link</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="p">[</span><span class="nt">api</span><span class="o">.</span><span class="nt">media_link</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">id</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;media_link&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;api.media_link.vr_entry.id&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">primary_medialink</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;media_link&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_dependency</span><span class="o">]*</span>
+<span class="nv">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if&quot;</span>
+<span class="nv">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;api.media_link&quot;</span>
+<span class="nv">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.primary_medialink&quot;</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;You must configure &#39;primary_medialink&#39; when using this feature&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="version-history">
+<h2>Version History<a class="headerlink" href="#version-history" title="Link to this heading"></a></h2>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.3.1: </span></p>
+<ul class="simple">
+<li><p>Added the missing <code class="docutils literal notranslate"><span class="pre">or</span></code> and <code class="docutils literal notranslate"><span class="pre">and</span></code> modes.</p></li>
+<li><p>Clarified that <code class="docutils literal notranslate"><span class="pre">mode</span></code> identifiers are case-insensitive and must be
+compared using ELCL normalization rules.</p></li>
+<li><p>Refined the wording of all dependency modes to remove ambiguity.</p></li>
+<li><p>Added a normative section explaining dependency mode logic in detail.</p></li>
+<li><p>Defined stricter requirements for <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code> name-paths,
+including explicit restrictions on section lists and alternative branches.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="keys-and-references.html" class="btn btn-neutral float-left" title="Indexes, Keys and References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom-errors.html" class="btn btn-neutral float-right" title="Custom Errors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

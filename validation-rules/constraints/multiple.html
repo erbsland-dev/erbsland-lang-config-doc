@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiple &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Matches" href="matches.html" />
+    <link rel="prev" title="In" href="in.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lists.html">Lists</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Constraints</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common Constraint Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="minimum-maximum.html">Minimum and Maximum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equals.html">Equals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="in.html">In</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Multiple</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#type-matrix">Type Matrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-multiple">Rules for Multiple</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="matches.html">Matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starts-ends-contains.html">Starts, Ends and Contains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chars.html">Chars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="key.html">Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="case-sensitive.html">The Case Sensitive Flag</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Validation Rules</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Constraints</a></li>
+      <li class="breadcrumb-item active">Multiple</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/validation-rules/constraints/multiple.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multiple">
+<h1>Multiple<a class="headerlink" href="#multiple" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">multiple</span></code> constraint requires a node’s value—or its size—to be evenly
+divisible by a given number <code class="docutils literal notranslate"><span class="pre">n</span></code>. In mathematical terms, validation succeeds if:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="n">mod</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>This constraint applies not only to numeric values, but also to:</p>
+<ul class="simple">
+<li><p>the length of text values,</p></li>
+<li><p>the size of byte sequences,</p></li>
+<li><p>the number of elements in lists or matrices, and</p></li>
+<li><p>the number of child nodes in sections.</p></li>
+</ul>
+<p>Negative values are supported and evaluated using the same rule.</p>
+<section id="type-matrix">
+<h2>Type Matrix<a class="headerlink" href="#type-matrix" title="Link to this heading"></a></h2>
+<p>The following table summarizes how <code class="docutils literal notranslate"><span class="pre">multiple</span></code> is interpreted for each node type.</p>
+<table class="type-matrix docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Node Type</p></th>
+<th class="head"><p>S</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Integer</p></td>
+<td><p><i class="fa-solid fa-check sd-text-success"></i></p></td>
+<td><p>Integer</p></td>
+<td><p>Valid only if <code class="docutils literal notranslate"><span class="pre">value</span> <span class="pre">mod</span> <span class="pre">n</span> <span class="pre">==</span> <span class="pre">0</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Boolean</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Float</p></td>
+<td><p><i class="fa-solid fa-check sd-text-success"></i></p></td>
+<td><p>Float</p></td>
+<td><p>Valid only if <code class="docutils literal notranslate"><span class="pre">value</span> <span class="pre">mod</span> <span class="pre">n</span> <span class="pre">==</span> <span class="pre">0</span></code> within a platform-consistent
+floating-point tolerance.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Text</p></td>
+<td><p><i class="fa-solid fa-check sd-text-success"></i></p></td>
+<td><p>Integer</p></td>
+<td><p>The text length (in Unicode code points) must be a multiple of <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Date</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Time</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DateTime</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Bytes</p></td>
+<td><p><i class="fa-solid fa-check sd-text-success"></i></p></td>
+<td><p>Integer</p></td>
+<td><p>The number of bytes must be a multiple of <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeDelta</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>RegEx</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Value</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ValueList</p></td>
+<td><p><i class="fa-solid fa-check sd-text-success"></i></p></td>
+<td><p>Integer</p></td>
+<td><p>The number of list elements must be a multiple of <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>ValueMatrix</p></td>
+<td><p><i class="fa-solid fa-check sd-text-success"></i></p></td>
+<td><div class="line-block">
+<div class="line">ValueList</div>
+<div class="line">Integer</div>
+</div>
+</td>
+<td><p>Both dimensions must be multiples of <code class="docutils literal notranslate"><span class="pre">n</span></code>.
+The first integer applies to rows, the second to columns.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Section</p></td>
+<td><p><i class="fa-solid fa-check sd-text-success"></i></p></td>
+<td><p>Integer</p></td>
+<td><p>The number of child nodes (when using <code class="docutils literal notranslate"><span class="pre">vr_any</span></code>) must be a multiple of <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>SectionList</p></td>
+<td><p><i class="fa-solid fa-check sd-text-success"></i></p></td>
+<td><p>Integer</p></td>
+<td><p>The number of list entries must be a multiple of <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>SectionWithTexts</p></td>
+<td><p><i class="fa-solid fa-check sd-text-success"></i></p></td>
+<td><p>Integer</p></td>
+<td><p>The number of child nodes (when using <code class="docutils literal notranslate"><span class="pre">vr_any</span></code>) must be a multiple of <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>NotValidated</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="rules-for-multiple">
+<h2>Rules for Multiple<a class="headerlink" href="#rules-for-multiple" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Modulo Rule:</strong>
+Validation <em>must</em> test whether <code class="docutils literal notranslate"><span class="pre">value</span> <span class="pre">mod</span> <span class="pre">n</span> <span class="pre">==</span> <span class="pre">0</span></code>.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">multiple:</span> <span class="pre">8</span></code> allows the values 0, ±8, ±16, and so on.</p>
+</li>
+<li><p><strong>Negative Values:</strong>
+Negative values <em>must</em> be handled consistently.
+Validation succeeds if the absolute value is divisible by <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">-16</span></code> is valid for <code class="docutils literal notranslate"><span class="pre">multiple:</span> <span class="pre">8</span></code>.</p>
+</li>
+<li><p><strong>Floating-Point Precision:</strong>
+For floating-point values, validators <em>must</em> use a platform-consistent
+tolerance when testing for zero remainder.</p>
+<p>This ensures that values such as <code class="docutils literal notranslate"><span class="pre">0.9</span></code> validate correctly with
+<code class="docutils literal notranslate"><span class="pre">multiple:</span> <span class="pre">0.1</span></code> despite binary rounding differences.</p>
+</li>
+<li><p><strong>Length-Based Evaluation:</strong>
+For text values, byte sequences, lists, matrices, and sections, the constraint
+applies to the <em>length or size</em> of the node—not to its contents.</p></li>
+</ol>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="numeric-constraint">
+<h3>Numeric Constraint<a class="headerlink" href="#numeric-constraint" title="Link to this heading"></a></h3>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">buffer_size</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">multiple</span><span class="o">:</span><span class="w"> </span><span class="mi">1024</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span>
+<span class="nv">buffer_size</span><span class="o">:</span><span class="w"> </span><span class="mi">4096</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span>
+<span class="nv">buffer_size</span><span class="o">:</span><span class="w"> </span><span class="mi">2000</span><span class="w">  </span><span class="c"># ERROR: Not a multiple of 1024</span>
+</pre></div>
+</div>
+</section>
+<section id="length-based-constraint">
+<h3>Length-Based Constraint<a class="headerlink" href="#length-based-constraint" title="Link to this heading"></a></h3>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">key_block</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bytes&quot;</span>
+<span class="nv">multiple</span><span class="o">:</span><span class="w"> </span><span class="mi">16</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span>
+<span class="nv">key_block</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;</span><span class="mh">00</span><span class="w"> </span><span class="mh">01</span><span class="w"> </span><span class="mh">02</span><span class="w"> </span><span class="mh">03</span><span class="w"> </span><span class="mh">04</span><span class="w"> </span><span class="mh">05</span><span class="w"> </span><span class="mh">06</span><span class="w"> </span><span class="mh">07</span><span class="w"> </span><span class="mh">08</span><span class="w"> </span><span class="mh">09</span><span class="w"> </span><span class="mh">0a</span><span class="w"> </span><span class="mh">0b</span><span class="w"> </span><span class="mh">0c</span><span class="w"> </span><span class="mh">0d</span><span class="w"> </span><span class="mh">0e</span><span class="w"> </span><span class="mh">0f</span><span class="s1">&gt;</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span>
+<span class="nv">key_block</span><span class="o">:</span><span class="w"> </span><span class="s1">&lt;</span><span class="mh">00</span><span class="w"> </span><span class="mh">01</span><span class="w"> </span><span class="mh">02</span><span class="w"> </span><span class="mh">03</span><span class="w"> </span><span class="mh">04</span><span class="w"> </span><span class="mh">05</span><span class="w"> </span><span class="mh">06</span><span class="w"> </span><span class="mh">07</span><span class="w"> </span><span class="mh">08</span><span class="s1">&gt;</span><span class="w">  </span><span class="c"># ERROR: Length not a multiple of 16</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="in.html" class="btn btn-neutral float-left" title="In" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="matches.html" class="btn btn-neutral float-right" title="Matches" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

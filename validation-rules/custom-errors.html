@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Errors &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Diagnostics" href="diagnostics.html" />
+    <link rel="prev" title="Dependencies" href="dependencies.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Custom Errors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-custom-error-messages">Rules for Custom Error Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Custom Errors</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/custom-errors.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="custom-errors">
+<h1>Custom Errors<a class="headerlink" href="#custom-errors" title="Link to this heading"></a></h1>
+<p>Validation rules allow you to define custom error messages at either the rule or
+constraint level. This is useful when a technical constraint does not provide
+meaningful feedback to the user, or when you want to consolidate several
+low-level validation errors into a single, clear message.</p>
+<p>Custom errors help you keep validation logic declarative while still presenting
+user-friendly feedback.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Please specify a valid port between 1 and 65534.&quot;</span>
+</pre></div>
+</div>
+<p>The basic definition of custom error messages is described in
+<a class="reference internal" href="constraints/common.html"><span class="doc">Common Constraint Rules</span></a> and <a class="reference internal" href="node-rules.html"><span class="doc">Node-Rules Definition</span></a>. This page focuses on the specific
+rules and behaviors that apply to custom errors.</p>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Custom error messages are a powerful tool for improving user experience and
+simplifying error handling. In many cases, instead of catching and translating
+validation errors in application code, errors can be reported directly to the
+user in a clear and helpful way.</p>
+<p>While the parser tries to provide meaningful default error messages, these are
+not always sufficient. A common example is regular-expression-based constraints:
+they are precise, but difficult to understand for non-programmers and usually
+unsuitable for direct error output.</p>
+<p>In such cases, a well-written custom error message bridges the gap between strict
+validation and a good user experience.</p>
+</div>
+<section id="rules-for-custom-error-messages">
+<h2>Rules for Custom Error Messages<a class="headerlink" href="#rules-for-custom-error-messages" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Priority:</strong>
+When multiple custom error messages are defined, the most specific one takes
+precedence.</p>
+<p>This allows you to fine-tune messages for individual constraints while still
+providing a general fallback at the rule level.</p>
+<p>The priority order is:</p>
+<ul class="simple">
+<li><p>Custom error messages defined at the <strong>constraint level</strong></p></li>
+<li><p>Custom error messages defined at the <strong>node-rules level</strong></p></li>
+<li><p>The built-in default error message</p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1024</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+<span class="nv">not_equal</span><span class="o">:</span><span class="w"> </span><span class="mi">80</span>
+<span class="nv">not_equal_error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Port 80 is reserved for internal HTTP traffic&quot;</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Please specify a valid port between 1024 and 65534&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Overriding Errors:</strong>
+Custom error messages only override default errors that are caused by
+<strong>constraint validation</strong>.</p>
+<p>They do <em>not</em> affect validation errors caused by missing values or sections,
+or by invalid or mismatched types. Structural and type-related errors are
+always reported using their default messages.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">count</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Custom error message&quot;</span><span class="w">  </span><span class="c"># Never used, because no constraints are defined</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>No Inheritance or Nesting:</strong>
+Custom error messages apply only to the node in which they are defined.</p>
+<p>They are not inherited by child nodes and do not affect nested rules. This
+keeps validation behavior predictable and avoids unintended side effects in
+complex rule hierarchies.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Only up to 5 clients are allowed.&quot;</span>
+
+<span class="c"># This rule is not affected by the custom error message above</span>
+<span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">vr_any</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Empty Messages:</strong>
+Empty custom error messages are allowed, but they are ignored.</p>
+<p>They neither override default messages nor suppress validation errors.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">count</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w">  </span><span class="c"># Has no effect</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dependencies.html" class="btn btn-neutral float-left" title="Dependencies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="diagnostics.html" class="btn btn-neutral float-right" title="Diagnostics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

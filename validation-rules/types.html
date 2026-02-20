@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Types &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reserved Names" href="reserved.html" />
+    <link rel="prev" title="Node-Rules Definition" href="node-rules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-the-type-constraint">Rules for the Type Constraint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type-identifiers">Type Identifiers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#about-value-lists-and-matrices">About Value Lists and Matrices</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#version-history">Version History</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Types</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/types.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="types">
+<h1>Types<a class="headerlink" href="#types" title="Link to this heading"></a></h1>
+<p>Every <a class="reference internal" href="../glossary.html#term-Node-Rules"><span class="xref std std-term">Node-Rules</span></a> definition requires exactly one effective <code class="docutils literal notranslate"><span class="pre">type</span></code> entry.
+The type constrains the node to a specific structural or scalar form and determines
+which constraints are applicable.</p>
+<p>Instead of defining the type directly, a node-rules definition may also reference
+a template using <code class="docutils literal notranslate"><span class="pre">use_template</span></code>. In that case, the template provides the effective
+<code class="docutils literal notranslate"><span class="pre">type</span></code> value.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="w">   </span><span class="c"># Constrains &quot;server.name&quot; to a text value.</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="node-rules.html"><span class="doc">Node-Rules Definition</span></a> for additional requirements that apply to all node-rules
+definitions.</p>
+<section id="rules-for-the-type-constraint">
+<h2>Rules for the Type Constraint<a class="headerlink" href="#rules-for-the-type-constraint" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Type Requirement:</strong>
+Every node-rules definition <em>must</em> define exactly one effective type, either
+directly or indirectly.</p>
+<p>The only exception is a <code class="docutils literal notranslate"><span class="pre">vr_name</span></code> definition, which is always defined as a
+<code class="docutils literal notranslate"><span class="pre">text</span></code> node.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Indirect Definition via Template:</strong>
+The <code class="docutils literal notranslate"><span class="pre">type</span></code> entry may be provided indirectly using <code class="docutils literal notranslate"><span class="pre">use_template</span></code>, which
+references a template that defines a type.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">use_template</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;port&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Templates require a <code class="docutils literal notranslate"><span class="pre">type</span></code> entry, as they cannot inherit from another template.</p>
+</div>
+</li>
+<li><p><strong>Exclusive Requirement:</strong>
+A node-rules definition <em>must not</em> define both <code class="docutils literal notranslate"><span class="pre">type</span></code> and <code class="docutils literal notranslate"><span class="pre">use_template</span></code>.</p>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">use_template</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;port&quot;</span><span class="w">  </span><span class="c"># ERROR: Both entries are defined.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Value Lists and Matrices Accept Scalar Values:</strong>
+The type <code class="docutils literal notranslate"><span class="pre">ValueList</span></code> and <code class="docutils literal notranslate"><span class="pre">ValueMatrix</span></code> <em>must</em> accept a single <a class="reference internal" href="../glossary.html#term-Scalar-Value"><span class="xref std std-term">scalar value</span></a> and treat it
+as a list containing exactly one element. See <a class="reference internal" href="#ref-types-value-lists"><span class="std std-ref">About Value Lists and Matrices</span></a> for details.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">tags</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ValueList&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">tags</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">]</span>
+<span class="nv">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="w">  </span><span class="c"># Treated as a list with one element.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Type Case Insensitivity and Normalization:</strong>
+Type identifiers are <strong>case-insensitive</strong> and are normalized according to
+the same rules as <a class="reference internal" href="../glossary.html#term-Name"><span class="xref std std-term">names</span></a> in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>.</p>
+<p>This means comparisons are performed on the normalized form of the
+identifier. For example, <code class="docutils literal notranslate"><span class="pre">DateTime</span></code>, <code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">DATETIME</span></code>
+all refer to the same type.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">a</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;INTEGER&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">b</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">c</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Integer&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Type Aliases:</strong>
+An implementation <em>may</em> define additional type identifiers as aliases
+for existing types, separating words with underscores.</p>
+<p>For example, an implementation could define <code class="docutils literal notranslate"><span class="pre">date_time</span></code> as an alias
+for <code class="docutils literal notranslate"><span class="pre">DateTime</span></code>.</p>
+</li>
+</ol>
+</section>
+<section id="type-identifiers">
+<h2>Type Identifiers<a class="headerlink" href="#type-identifiers" title="Link to this heading"></a></h2>
+<p>The following table lists all valid type identifiers in a <em>readable form</em>.
+Unlike reserved names, which are always shown in their normalized form, type
+identifiers are written here in <strong>CamelCase</strong> for clarity.</p>
+<p>In actual documents, type identifiers are <strong>case-insensitive</strong> and follow the
+same normalization rules as <a class="reference internal" href="../glossary.html#term-Name"><span class="xref std std-term">names</span></a> in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>.
+For example, <code class="docutils literal notranslate"><span class="pre">DateTime</span></code>, <code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">DATETIME</span></code> are all equivalent.</p>
+<table class="identifier-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Identifier</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">Integer</div>
+<div class="line">Boolean</div>
+<div class="line">Float</div>
+<div class="line">Text</div>
+<div class="line">Date</div>
+<div class="line">Time</div>
+<div class="line">DateTime</div>
+<div class="line">Bytes</div>
+<div class="line">TimeDelta</div>
+<div class="line">RegEx</div>
+</div>
+</td>
+<td><p>Constrains the node to a <a class="reference internal" href="../glossary.html#term-Scalar-Value"><span class="xref std std-term">scalar value</span></a> of the given type.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Value</p></td>
+<td><p>Allows any <a class="reference internal" href="../glossary.html#term-Scalar-Value"><span class="xref std std-term">scalar value</span></a>.
+This type does <em>not</em> include value lists or sections.
+It covers all scalar types listed above.</p></td>
+</tr>
+<tr class="row-even"><td><p>ValueList</p></td>
+<td><p>Constrains the node to either a single <em>scalar value</em> or a <em>value list</em>.
+List elements can be validated using <code class="docutils literal notranslate"><span class="pre">vr_entry</span></code>.
+If omitted, the type <code class="docutils literal notranslate"><span class="pre">Value</span></code> is implicitly used for all entries.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ValueMatrix</p></td>
+<td><p>Constrains the node to either a single <em>scalar value</em>, a <em>value list</em> or a <em>nested value list</em>.
+Elements of the lists can be validated using <code class="docutils literal notranslate"><span class="pre">vr_entry</span></code>.
+If omitted, the type <code class="docutils literal notranslate"><span class="pre">Value</span></code> is implicitly used for all matrix entries.</p></td>
+</tr>
+<tr class="row-even"><td><p>Section</p></td>
+<td><p>Constrains the node to a <em>section with names</em>.
+See <a class="reference internal" href="../reference/sections.html#ref-section"><span class="std std-ref">Sections</span></a> for details.</p></td>
+</tr>
+<tr class="row-odd"><td><p>SectionList</p></td>
+<td><p>Constrains the node to a <em>section list</em>.
+A <code class="docutils literal notranslate"><span class="pre">vr_entry</span></code> rule <em>must</em> be provided to define the node-rules for each
+section in the list.</p></td>
+</tr>
+<tr class="row-even"><td><p>SectionWithTexts</p></td>
+<td><p>Constrains the node to a <em>section with texts</em>.
+See <a class="reference internal" href="../reference/text-name.html#ref-text-name"><span class="std std-ref">Text Names</span></a> for details.</p></td>
+</tr>
+<tr class="row-odd"><td><p>NotValidated</p></td>
+<td><p>Ignores this node and all child nodes.
+Nodes of this type are not validated.
+They are neither required to exist nor forbidden.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="about-value-lists-and-matrices">
+<span id="ref-types-value-lists"></span><h3>About Value Lists and Matrices<a class="headerlink" href="#about-value-lists-and-matrices" title="Link to this heading"></a></h3>
+<p>In Validation Rules, the distinction between a <em>scalar value</em>, a <em>list</em>, and a
+<em>matrix</em> describes the <strong>validation intent</strong>, not the concrete syntax used in the
+configuration document.</p>
+<p>A list or matrix with a single element is always valid, even if it is represented
+as a single scalar value in the document.</p>
+<section id="value-list-example">
+<h4>Value List Example<a class="headerlink" href="#value-list-example" title="Link to this heading"></a></h4>
+<p>The following example defines <code class="docutils literal notranslate"><span class="pre">ports</span></code> as a value list:</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">ports</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ValueList&quot;</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">5</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">ports</span><span class="o">:</span><span class="w"> </span><span class="mi">80</span><span class="o">,</span><span class="w"> </span><span class="mi">443</span><span class="w">   </span><span class="c"># A classic value list.</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">ports</span><span class="o">:</span><span class="w"> </span><span class="mi">80</span><span class="w">        </span><span class="c"># Also valid: a list with one element.</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">ports</span><span class="o">:</span><span class="w">           </span><span class="c"># A multi-line list with two elements.</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">80</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">443</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">ports</span><span class="o">:</span><span class="w">           </span><span class="c"># ERROR: A list of lists is not a valid ValueList.</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">80</span><span class="o">,</span><span class="w"> </span><span class="mi">443</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">8080</span><span class="o">,</span><span class="w"> </span><span class="mi">8443</span>
+
+<span class="c"># By default, list elements have the type &quot;Value&quot;, which only allows scalar values.</span>
+</pre></div>
+</div>
+</section>
+<section id="value-matrix-example">
+<h4>Value Matrix Example<a class="headerlink" href="#value-matrix-example" title="Link to this heading"></a></h4>
+<p>A value matrix represents a list of lists. The following example defines a matrix
+called <code class="docutils literal notranslate"><span class="pre">magic_numbers</span></code>:</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">magic_numbers</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ValueMatrix&quot;</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">magic_numbers</span><span class="o">:</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">1</span><span class="o">,</span><span class="w">   </span><span class="mi">9</span><span class="o">,</span><span class="w">  </span><span class="mi">-3</span><span class="o">,</span><span class="w">  </span><span class="mi">4</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">14</span><span class="o">,</span><span class="w"> </span><span class="mi">15</span><span class="o">,</span><span class="w">  </span><span class="mi">19</span><span class="o">,</span><span class="w"> </span><span class="mi">27</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">53</span><span class="o">,</span><span class="w"> </span><span class="mi">-6</span><span class="o">,</span><span class="w">  </span><span class="mi">14</span><span class="o">,</span><span class="w"> </span><span class="mi">34</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="nv">magic_numbers</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="c"># A valid matrix with one row and one column.</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="c"># Three rows and one column.</span>
+<span class="nv">magic_numbers</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">main</span><span class="o">]</span>
+<span class="c"># The same matrix using a different list syntax.</span>
+<span class="nv">magic_numbers</span><span class="o">:</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">1</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">2</span>
+<span class="w">    </span><span class="o">*</span><span class="w">   </span><span class="mi">3</span>
+</pre></div>
+</div>
+<p>The API of a configuration parser <em>should</em> provide uniform access to values as
+lists or matrices, regardless of how they are represented in the configuration
+document.</p>
+</section>
+</section>
+</section>
+<section id="version-history">
+<h2>Version History<a class="headerlink" href="#version-history" title="Link to this heading"></a></h2>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.3.1: </span>Added an explicit rules for <code class="docutils literal notranslate"><span class="pre">type</span></code> comparison and aliases with underscores.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="node-rules.html" class="btn btn-neutral float-left" title="Node-Rules Definition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="reserved.html" class="btn btn-neutral float-right" title="Reserved Names" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

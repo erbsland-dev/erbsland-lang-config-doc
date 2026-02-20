@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Common Constraint Rules &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Minimum and Maximum" href="minimum-maximum.html" />
+    <link rel="prev" title="Constraints" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lists.html">Lists</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Constraints</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Common Constraint Rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-negating-constraints">Rules for Negating Constraints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-custom-constraint-errors">Rules for Custom Constraint Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="minimum-maximum.html">Minimum and Maximum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equals.html">Equals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="in.html">In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiple.html">Multiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matches.html">Matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starts-ends-contains.html">Starts, Ends and Contains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chars.html">Chars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="key.html">Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="case-sensitive.html">The Case Sensitive Flag</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Validation Rules</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Constraints</a></li>
+      <li class="breadcrumb-item active">Common Constraint Rules</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/validation-rules/constraints/common.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="common-constraint-rules">
+<h1>Common Constraint Rules<a class="headerlink" href="#common-constraint-rules" title="Link to this heading"></a></h1>
+<p>To simplify constraint semantics and reduce implementation complexity,
+Validation Rules define a <strong>uniform mechanism</strong> for:</p>
+<ul class="simple">
+<li><p><strong>negating constraints</strong>, and</p></li>
+<li><p><strong>attaching custom error messages</strong> to individual constraints.</p></li>
+</ul>
+<p>These mechanisms are shared by all constraints that support them.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1024</span>
+<span class="nv">minimum_error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;System ports are not allowed&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">username</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">not_starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;@&quot;</span><span class="w">  </span><span class="c"># Negation of the &quot;starts&quot; constraint</span>
+</pre></div>
+</div>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Not all constraints support negation or custom error messages.
+However, using a consistent naming scheme across constraints keeps
+implementations simple and predictable.</p>
+<p>Instead of requiring special handling for each constraint, validators
+only need to recognize name prefixes and suffixes. This significantly
+reduces the already high implementation effort for constraint handling.</p>
+</div>
+<section id="rules-for-negating-constraints">
+<h2>Rules for Negating Constraints<a class="headerlink" href="#rules-for-negating-constraints" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Negation Prefix:</strong>
+If a constraint name is prefixed with <code class="docutils literal notranslate"><span class="pre">not_</span></code>, the result of the constraint
+evaluation is logically negated.</p>
+<p>The negated constraint uses the same value and semantics as the original
+constraint.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">not_starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;@&quot;</span><span class="w">  </span><span class="c"># The name must not start with &quot;@&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>No Combination with Positive Form:</strong>
+A negated constraint <em>must not</em> be combined with its non-negated form
+in the same node-rules definition.</p>
+<p>Validators <em>must</em> report this as an error.</p>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">chars</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;[a-z]&quot;</span>
+<span class="nv">not_chars</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="w">  </span><span class="c"># ERROR: &quot;chars&quot; is already defined</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="rules-for-custom-constraint-errors">
+<h2>Rules for Custom Constraint Errors<a class="headerlink" href="#rules-for-custom-constraint-errors" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Error Suffix:</strong>
+If a constraint name is suffixed with <code class="docutils literal notranslate"><span class="pre">_error</span></code>, the entry defines a
+custom error message for that specific constraint.</p>
+<p>The message replaces the default error message when the constraint fails.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">ends</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_server&quot;</span>
+<span class="nv">ends_error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;The server name must end with &#39;_server&#39;.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Corresponding Constraint Required:</strong>
+A custom error message <em>must</em> only be defined if the corresponding
+constraint is present.</p>
+<p>Validators <em>must</em> report an error if an <code class="docutils literal notranslate"><span class="pre">_error</span></code> entry exists without
+its associated constraint.</p>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">ends_error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Message...&quot;</span><span class="w">  </span><span class="c"># ERROR: &quot;ends&quot; constraint is missing</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Exact Name Matching:</strong>
+The custom error entry <em>must</em> use the exact name of the associated
+constraint, including any <code class="docutils literal notranslate"><span class="pre">not_</span></code> prefix.</p>
+<p>This ensures an unambiguous mapping between constraints and their
+error messages.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">not_starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;@&quot;</span>
+<span class="nv">not_starts_error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;The server name must not start with &#39;@&#39;.&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Constraints" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="minimum-maximum.html" class="btn btn-neutral float-right" title="Minimum and Maximum" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

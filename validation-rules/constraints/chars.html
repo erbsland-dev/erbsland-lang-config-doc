@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chars &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Key" href="key.html" />
+    <link rel="prev" title="Starts, Ends and Contains" href="starts-ends-contains.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lists.html">Lists</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Constraints</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common Constraint Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="minimum-maximum.html">Minimum and Maximum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equals.html">Equals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="in.html">In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiple.html">Multiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matches.html">Matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starts-ends-contains.html">Starts, Ends and Contains</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Chars</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#type-matrix">Type Matrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-chars">Rules for Chars</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="key.html">Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="case-sensitive.html">The Case Sensitive Flag</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Validation Rules</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Constraints</a></li>
+      <li class="breadcrumb-item active">Chars</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/validation-rules/constraints/chars.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="chars">
+<h1>Chars<a class="headerlink" href="#chars" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">chars</span></code> constraint restricts <strong>which characters may appear</strong> in a text value.
+When negated using <code class="docutils literal notranslate"><span class="pre">not_chars</span></code>, it instead specifies <strong>forbidden characters</strong>.</p>
+<p>This constraint applies <strong>only to text nodes</strong> and evaluates every character in the
+value individually.</p>
+<section id="type-matrix">
+<h2>Type Matrix<a class="headerlink" href="#type-matrix" title="Link to this heading"></a></h2>
+<p>The following table summarizes the applicability of the <code class="docutils literal notranslate"><span class="pre">chars</span></code> constraint.</p>
+<table class="type-matrix docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Node Type</p></th>
+<th class="head"><p>S</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Integer</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Boolean</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Float</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Text</p></td>
+<td><p><i class="fa-solid fa-check sd-text-success"></i></p></td>
+<td><div class="line-block">
+<div class="line">Text</div>
+<div class="line">ValueList[Text]</div>
+</div>
+</td>
+<td><p>Restricts the set of allowed characters (<code class="docutils literal notranslate"><span class="pre">chars</span></code>) or forbidden
+characters (<code class="docutils literal notranslate"><span class="pre">not_chars</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p>Date</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Time</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DateTime</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Bytes</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>TimeDelta</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>RegEx</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Value</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ValueList</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ValueMatrix</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Section</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>SectionList</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>SectionWithTexts</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>NotValidated</p></td>
+<td><p><i class="fa-solid fa-xmark sd-text-danger"></i></p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="rules-for-chars">
+<h2>Rules for Chars<a class="headerlink" href="#rules-for-chars" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Basic Semantics:</strong>
+The <code class="docutils literal notranslate"><span class="pre">chars</span></code> constraint defines a <em>set of allowed characters</em>.</p>
+<p>Validation succeeds only if <strong>every character</strong> in the text belongs to the
+union of all specified character sets.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">chars</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(a-z)&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;[%]&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;digits&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Multiple Definitions (Union):</strong>
+Multiple values are combined using <strong>OR semantics</strong>.</p>
+<p>A character is valid if it matches <em>any</em> of the specified ranges, lists, or
+named sets.</p>
+</li>
+<li><p><strong>Supported Forms:</strong>
+Each value assigned to <code class="docutils literal notranslate"><span class="pre">chars</span></code> may be one of the following forms:</p>
+<ul class="simple">
+<li><p><strong>Character range</strong> — enclosed in round brackets, e.g. <code class="docutils literal notranslate"><span class="pre">(a-z)</span></code></p></li>
+<li><p><strong>Character list</strong> — enclosed in square brackets, e.g. <code class="docutils literal notranslate"><span class="pre">[%*,.]</span></code></p></li>
+<li><p><strong>Named range</strong> — a predefined keyword, e.g. <code class="docutils literal notranslate"><span class="pre">digits</span></code></p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">chars</span><span class="o">:</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;(a-z)&quot;</span><span class="w">    </span><span class="c"># Character range</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;[%*,.]&quot;</span><span class="w">   </span><span class="c"># Character list</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;digits&quot;</span><span class="w">   </span><span class="c"># Named range</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Character Ranges:</strong>
+Character ranges are defined as <code class="docutils literal notranslate"><span class="pre">(start-end)</span></code> where <em>start</em> and <em>end</em> are
+single Unicode code points.</p>
+<ul class="simple">
+<li><p><em>start</em> must have a lower code point than <em>end</em></p></li>
+<li><p>The expression must contain exactly five code points</p></li>
+<li><p>Combining characters are not allowed</p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">chars</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(a-z)&quot;</span><span class="w">  </span><span class="c"># Allows lowercase ASCII letters</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Character Lists:</strong>
+Character lists are defined as <code class="docutils literal notranslate"><span class="pre">[characters]</span></code>.</p>
+<ul class="simple">
+<li><p>Each listed character must be unique</p></li>
+<li><p>The outer square brackets are structural; inner characters are literal</p></li>
+<li><p>No escaping is required inside the list</p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">chars</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;[0123456789abcdefABCDEF]&quot;</span><span class="w">  </span><span class="c"># Hexadecimal digits</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Named Ranges:</strong>
+Values not enclosed in brackets are interpreted as named ranges.</p>
+<p>The following named ranges are defined by ELCL and <em>must</em> be supported by all
+implementations:</p>
+<table class="identifier-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>letters</p></td>
+<td><p><span class="text-code">a-z</span>, <span class="text-code">A-Z</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>digits</p></td>
+<td><p><span class="text-code">0-9</span></p></td>
+</tr>
+<tr class="row-even"><td><p>control</p></td>
+<td><p><span class="text-code">U+0001</span>–<span class="text-code">U+001F</span>,
+<span class="text-code">U+007F</span>–<span class="text-code">U+00A0</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>linebreak</p></td>
+<td><p><span class="text-code">U+000D</span>, <span class="text-code">U+000A</span></p></td>
+</tr>
+<tr class="row-even"><td><p>spacing</p></td>
+<td><p><span class="text-code">U+0009</span>, <span class="text-code">U+0020</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Implementations <em>may</em> provide additional named ranges (for example, Unicode
+classes). Such extensions <em>must not</em> override built-in names.</p>
+<p>To avoid ambiguity, custom ranges <em>should</em> use descriptive prefixes such as
+<code class="docutils literal notranslate"><span class="pre">unicode_letters</span></code>.</p>
+</li>
+<li><p><strong>Case Sensitivity:</strong>
+Character matching is <strong>always case-sensitive</strong>, regardless of the
+<a class="reference internal" href="case-sensitive.html"><span class="doc">case-sensitive flag</span></a>.</p>
+<p>Both uppercase and lowercase characters must be explicitly listed if required.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">chars</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;[a-z]&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;[A-Z]&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Negation with ``not_chars``:</strong>
+When negated as <code class="docutils literal notranslate"><span class="pre">not_chars</span></code>, the constraint specifies <em>forbidden characters</em>.</p>
+<p>Validation fails if <strong>any character</strong> in the text matches one of the forbidden
+sets.</p>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Negating the entire constraint naively would allow strings that merely
+<em>contain</em> at least one allowed character, which is unintuitive.</p>
+<p>Instead, <code class="docutils literal notranslate"><span class="pre">not_chars</span></code> makes every occurrence of the forbidden characters
+invalid.</p>
+<p>Example:
+<code class="docutils literal notranslate"><span class="pre">not_chars:</span> <span class="pre">&quot;(a-z)&quot;</span></code> rejects <code class="docutils literal notranslate"><span class="pre">&quot;123abc&quot;</span></code> because it contains forbidden
+lowercase letters.</p>
+</div>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">not_chars</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;control&quot;</span><span class="w">  </span><span class="c"># Control characters are forbidden</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="starts-ends-contains.html" class="btn btn-neutral float-left" title="Starts, Ends and Contains" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="key.html" class="btn btn-neutral float-right" title="Key" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

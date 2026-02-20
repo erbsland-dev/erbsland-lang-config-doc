@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indexes, Keys and References &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dependencies" href="dependencies.html" />
+    <link rel="prev" title="Variable Names" href="variable-names.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Indexes, Keys and References</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-indexes">Rules for Indexes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-keys">Rules for Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-index-names">Rules for Index Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-multi-key-indexes">Rules for Multi-Key Indexes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-history">Version History</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Indexes, Keys and References</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/keys-and-references.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="indexes-keys-and-references">
+<h1>Indexes, Keys and References<a class="headerlink" href="#indexes-keys-and-references" title="Link to this heading"></a></h1>
+<p>Indexes allow validators to enforce <strong>uniqueness</strong> and to create <strong>references</strong>
+between different parts of a configuration document.</p>
+<p>Indexes are defined using the reserved section list <code class="docutils literal notranslate"><span class="pre">vr_key</span></code> and can appear
+either at the document root or inside a <em>section</em> definition.
+Once defined, the values collected by an index can be referenced using the
+<code class="docutils literal notranslate"><span class="pre">key</span></code> constraint (see <a class="reference internal" href="constraints/key.html"><span class="doc">Key</span></a>).</p>
+<p>This mechanism enables referential integrity within a configuration, for example
+by ensuring that a reference in one section points to an identifier defined
+elsewhere.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter.vr_entry.identifier&quot;</span>
+
+<span class="p">[</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">filter</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">identifier</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">start_filter</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">filter</span><span class="o">]*</span>
+<span class="nv">identifier</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;first&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">filter</span><span class="o">]*</span>
+<span class="nv">identifier</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;second&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">]</span>
+<span class="nv">start_filter</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;first&quot;</span>
+</pre></div>
+</div>
+<section id="rules-for-indexes">
+<h2>Rules for Indexes<a class="headerlink" href="#rules-for-indexes" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Index Creation:</strong>
+An index is created by defining a section list named <code class="docutils literal notranslate"><span class="pre">vr_key</span></code>.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter.vr_entry.identifier&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Uniqueness:</strong>
+All key values collected in an index <em>must</em> be unique.
+Validators <em>must</em> report an error if a duplicate key is encountered.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">filter</span><span class="o">]*</span>
+<span class="nv">identifier</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;one&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">filter</span><span class="o">]*</span>
+<span class="nv">identifier</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;one&quot;</span><span class="w">  </span><span class="c"># ERROR: Identifier must be unique</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Placement:</strong>
+A <code class="docutils literal notranslate"><span class="pre">vr_key</span></code> section list may appear either:</p>
+<ul class="simple">
+<li><p>at the document root, or</p></li>
+<li><p>inside a node-rules definition for a section.</p></li>
+</ul>
+<p>If defined inside a section node-rules definition, the index is scoped
+to each validated instance of that section.</p>
+<p>In the following example, the index is defined inside the
+<code class="docutils literal notranslate"><span class="pre">app.server.vr_entry</span></code> definition. As a result, <code class="docutils literal notranslate"><span class="pre">id</span></code> must
+be unique <em>within each individual</em> <code class="docutils literal notranslate"><span class="pre">server</span></code> entry.</p>
+<p>Different <code class="docutils literal notranslate"><span class="pre">server</span></code> entries may reuse the same <code class="docutils literal notranslate"><span class="pre">id</span></code> values,
+because each <code class="docutils literal notranslate"><span class="pre">server</span></code> instance has its own independent index scope.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">connection</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">connection</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">id</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;connection_id&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;connection.vr_entry.id&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Scope and Visibility:</strong>
+An index is visible only within the subtree in which it is defined.
+References outside this scope are invalid.</p>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">connection</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">connection</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">id</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;connection_id&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;connection.vr_entry.id&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">main_connection</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;connection_id&quot;</span><span class="w">  </span><span class="c"># ERROR: No such index in this scope</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Key Field:</strong>
+Each <code class="docutils literal notranslate"><span class="pre">vr_key</span></code> entry <em>must</em> contain a <code class="docutils literal notranslate"><span class="pre">key</span></code> field that specifies one or
+more values to be indexed.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ...</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter.vr_entry.identifier&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Optional Name:</strong>
+A <code class="docutils literal notranslate"><span class="pre">vr_key</span></code> entry <em>may</em> define a <code class="docutils literal notranslate"><span class="pre">name</span></code> field, which assigns an identifier
+to the index for use in <code class="docutils literal notranslate"><span class="pre">key</span></code> constraints.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ...</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter.vr_entry.identifier&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Case-Sensitivity:</strong>
+An optional <code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code> field may be defined on a <code class="docutils literal notranslate"><span class="pre">vr_key</span></code>
+entry to control how indexed values are compared.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, both uniqueness checks and
+<code class="docutils literal notranslate"><span class="pre">key</span></code> constraint comparisons are performed case-sensitively.
+If omitted or set to <code class="docutils literal notranslate"><span class="pre">false</span></code>, comparisons are case-insensitive.</p>
+<p>The comparison mode defined by the index applies consistently to:</p>
+<ul class="simple">
+<li><p>detection of duplicate key values, and</p></li>
+<li><p>resolution of references using the <code class="docutils literal notranslate"><span class="pre">key</span></code> constraint.</p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter.vr_entry.identifier&quot;</span>
+<span class="nv">case_sensitive</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="rules-for-keys">
+<h2>Rules for Keys<a class="headerlink" href="#rules-for-keys" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Text Name-Path Required:</strong>
+Each <code class="docutils literal notranslate"><span class="pre">key</span></code> value <em>must</em> be a text string containing a valid <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a>.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ...</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter.vr_entry.identifier&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Allowed Value Types:</strong>
+A referenced key <em>must</em> point to either a text or an integer value.</p>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blog.vr_entry.created&quot;</span><span class="w">  </span><span class="c"># ERROR: Must reference text or integer</span>
+
+<span class="p">[</span><span class="nt">blog</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">blog</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">created</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DateTime&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Section List + Value Requirement:</strong>
+Each name-path <em>must</em> resolve to:</p>
+<ul class="simple">
+<li><p>a section list,</p></li>
+<li><p>its <code class="docutils literal notranslate"><span class="pre">vr_entry</span></code>, and</p></li>
+<li><p>a value inside each <code class="docutils literal notranslate"><span class="pre">vr_entry</span></code> of that section list.</p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.filter.vr_entry.meta.id&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">filter</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">filter</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">meta</span><span class="o">.</span><span class="nt">id</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+<p>In this example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">app.filter</span></code> identifies the section list</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vr_entry</span></code> identifies the section list’s entries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">meta.id</span></code> identifies the value within each entry</p></li>
+</ul>
+</li>
+<li><p><strong>No Nested Section Lists:</strong>
+A <code class="docutils literal notranslate"><span class="pre">key</span></code> name-path <em>must not</em> reference a section list that is nested
+inside another section list.</p>
+<p>Keys must resolve to values within a single, directly addressed
+section list.</p>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">filters</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">filters</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">rules</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">filters</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">rules</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">id</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.filters.vr_entry.rules.vr_entry.id&quot;</span><span class="w">  </span><span class="c"># ERROR: Cannot reference nested section list</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Alternatives, Optionality and Version Constraints in Key Paths:</strong>
+If a node-rules definition that is part of a <code class="docutils literal notranslate"><span class="pre">key</span></code> name-path contains
+version constraints, optionality, or alternatives, index creation becomes
+conditional on the effective structure present in the validated document.</p>
+<p>The following rules apply:</p>
+<ol class="arabic">
+<li><p>If the referenced section list does not exist in the configuration
+document, the index is created as an empty index.</p></li>
+<li><p>If a referenced value inside a section list entry does not exist,
+is not active due to version constraints, or resolves to a value
+other than <code class="docutils literal notranslate"><span class="pre">text</span></code> or <code class="docutils literal notranslate"><span class="pre">integer</span></code>, that entry is omitted from the
+index.</p>
+<p>Omitted entries are not validated for uniqueness.</p>
+</li>
+</ol>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">filters</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+<span class="nv">minimum_version</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">filters</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">id</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.filters.vr_entry.id&quot;</span>
+<span class="c"># Index is created only if app.filters is active for the current version</span>
+</pre></div>
+</div>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">filters</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">filters</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">id</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">minimum_version</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.filters.vr_entry.id&quot;</span>
+<span class="c"># For versions &lt; 2, entries without an active &#39;id&#39; are ignored by the index</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="rules-for-index-names">
+<h2>Rules for Index Names<a class="headerlink" href="#rules-for-index-names" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Optional Name:</strong>
+An index may define a <code class="docutils literal notranslate"><span class="pre">name</span></code> entry, which is used by <code class="docutils literal notranslate"><span class="pre">key</span></code> constraints to
+reference the index.</p></li>
+<li><p><strong>Naming Rules:</strong>
+Index names <em>must</em> follow the <a class="reference internal" href="../reference/names.html#ref-name"><span class="std std-ref">ELCL name rules</span></a>.</p>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ...</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;%my-name%&quot;</span><span class="w">  </span><span class="c"># ERROR: Invalid ELCL name</span>
+<span class="c"># ...</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Normalization and Comparison:</strong>
+Index names are normalized and compared according to the
+<a class="reference internal" href="../reference/names.html"><span class="doc">ELCL name rules</span></a>.</p>
+<p>Underscores and spaces are equivalent, and comparisons are case-insensitive.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter_index&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter.vr_entry.identifier&quot;</span>
+
+<span class="p">[</span><span class="nt">app</span><span class="o">.</span><span class="nt">start_filter</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Filter Index&quot;</span><span class="w">  </span><span class="c"># VALID after normalization</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="rules-for-multi-key-indexes">
+<h2>Rules for Multi-Key Indexes<a class="headerlink" href="#rules-for-multi-key-indexes" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Combination Must Be Unique:</strong>
+If multiple <code class="docutils literal notranslate"><span class="pre">key</span></code> values are specified, the <strong>combination</strong> of their
+resolved values must be unique across all entries of the referenced
+section list.</p>
+<p>Uniqueness is evaluated on the tuple of key values, not on the individual
+components.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;server.vr_entry.service&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;server.vr_entry.protocol&quot;</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">service</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">in</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;api&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;management&quot;</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">protocol</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">in</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;json&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>All Keys Must Reference the Same Section List:</strong>
+All name-paths defined in a composite key <em>must</em> resolve to values within
+the same section list.</p>
+<p>Mixing keys from different section lists is not permitted.</p>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">key</span><span class="o">:</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;server.vr_entry.service&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;client.vr_entry.protocol&quot;</span><span class="w">  </span><span class="c"># ERROR: Different section lists</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="c"># ...</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="c"># ...</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Composite Key Representation:</strong>
+When a multi-key index is referenced as a whole, its values are combined
+into a single text value separated by commas (<code class="literal" onclick="showOverlay(',','COMMA','Po','U+002C','2C')"><span class="cp-role">,</span></code>).</p>
+<p>The order of the combined values matches the order in which the
+<code class="docutils literal notranslate"><span class="pre">key</span></code> name-paths are defined.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># ...</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">key</span><span class="o">:</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;server.vr_entry.service&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;server.vr_entry.protocol&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span><span class="w">   </span><span class="c"># Creates the composite key &quot;api,https&quot;</span>
+<span class="nv">service</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;api&quot;</span>
+<span class="nv">protocol</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https&quot;</span>
+</pre></div>
+</div>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Although commas could theoretically appear in key values, such cases
+can be avoided by disallowing commas in fields that are used as keys.
+This keeps composite key representation simple, deterministic,
+and efficient.</p>
+</div>
+</li>
+<li><p><strong>Referencing Parts of a Composite Key:</strong>
+A multi-key index may be referenced either as a whole or by addressing
+individual components using the <code class="docutils literal notranslate"><span class="pre">key[index]</span></code> syntax.</p>
+<p>The index is zero-based and refers to the position of the corresponding
+name-path in the <code class="docutils literal notranslate"><span class="pre">key</span></code> definition.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_key</span><span class="o">]*</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;server&quot;</span>
+<span class="nv">key</span><span class="o">:</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;server.vr_entry.service&quot;</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="s2">&quot;server.vr_entry.protocol&quot;</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">ports</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SectionList&quot;</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">ports</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">protocol</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;server[1]&quot;</span><span class="w">  </span><span class="c"># References only the protocol component</span>
+<span class="nv">key_error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;No server with this protocol was configured&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Alternatives, Optionality and Version Constraints in Composite Keys:</strong>
+In addition to the rules for single-key indexes, the following applies
+to multi-key indexes:</p>
+<ol class="arabic">
+<li><p>If <em>at least one</em> key component of an entry resolves to a valid
+<code class="docutils literal notranslate"><span class="pre">text</span></code> or <code class="docutils literal notranslate"><span class="pre">integer</span></code> value, an index entry is created.</p>
+<p>Missing or inactive components (due to optionality or version
+constraints) are substituted with an empty text value (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)
+for the purpose of composite key construction.</p>
+</li>
+<li><p>If <em>all</em> key components of an entry are missing, inactive, or
+invalid, the entry is omitted from the index entirely.</p>
+<p>Omitted entries are not validated for uniqueness.</p>
+</li>
+</ol>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Multi-key indexes with partially missing components are inherently
+ambiguous. However, silently omitting such entries would weaken
+uniqueness guarantees and may hide configuration mistakes.</p>
+<p>By inserting empty values for missing components, implementations
+remain deterministic and consistent across validators.</p>
+<p>It is the responsibility of the validation-rules author to enforce
+stricter guarantees (for example, by requiring all key components
+to be present) if partial keys are not acceptable.</p>
+</div>
+</li>
+</ol>
+</section>
+<section id="version-history">
+<h2>Version History<a class="headerlink" href="#version-history" title="Link to this heading"></a></h2>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.3.1: </span>Clarified how multi-key indexes behave when optionality or version
+constraints affect individual key components.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.3.0: </span>Introduced the optional <code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code> field for <code class="docutils literal notranslate"><span class="pre">vr_key</span></code> entries,
+defining explicit case-sensitivity semantics for both uniqueness checks
+and <code class="docutils literal notranslate"><span class="pre">key</span></code> constraint comparisons.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.2.10: </span>Documented the canonical form of key paths including <code class="docutils literal notranslate"><span class="pre">vr_entry</span></code> when
+referencing values inside section lists.</p>
+<p>For compatibility, validators may treat <code class="docutils literal notranslate"><span class="pre">list.value</span></code> as shorthand
+for <code class="docutils literal notranslate"><span class="pre">list.vr_entry.value</span></code> when <code class="docutils literal notranslate"><span class="pre">list</span></code> resolves to a section list.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="variable-names.html" class="btn btn-neutral float-left" title="Variable Names" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dependencies.html" class="btn btn-neutral float-right" title="Dependencies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

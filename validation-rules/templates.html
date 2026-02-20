@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Templates &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Alternatives" href="alternatives.html" />
+    <link rel="prev" title="Reserved Names" href="reserved.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-templates">Rules for Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Templates</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/templates.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="templates">
+<h1>Templates<a class="headerlink" href="#templates" title="Link to this heading"></a></h1>
+<p>Templates provide a mechanism to define <strong>reusable node-rules definitions</strong>.
+They allow you to centralize commonly used constraints and apply them consistently
+across multiple nodes.</p>
+<p>Templates are defined as subsections or section lists of the reserved section
+<code class="docutils literal notranslate"><span class="pre">vr_template</span></code> at the document root. The name of each subsection is the identifier
+used by <code class="docutils literal notranslate"><span class="pre">use_template</span></code> in node-rules definitions.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">interface</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">address</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">protocol</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">443</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">interface</span><span class="o">]</span>
+<span class="nv">use_template</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;interface&quot;</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">interface</span><span class="o">]</span>
+<span class="nv">use_template</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;interface&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+</pre></div>
+</div>
+<p>In this example, the same template is applied to both <code class="docutils literal notranslate"><span class="pre">server.interface</span></code> and
+<code class="docutils literal notranslate"><span class="pre">client.interface</span></code>, while the client overrides the default port.</p>
+<section id="rules-for-templates">
+<h2>Rules for Templates<a class="headerlink" href="#rules-for-templates" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Templates in Root:</strong>
+Templates <em>must</em> be defined as subsections or section lists under <code class="docutils literal notranslate"><span class="pre">vr_template</span></code>
+at the document root.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">interface</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">service</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">service</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">in_list</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;http&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;https&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;smtp&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Root Restriction:</strong>
+The name <code class="docutils literal notranslate"><span class="pre">vr_template</span></code> <em>must</em> only appear at the document root and <em>must</em>
+define a section with regular names.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">interface</span><span class="o">]</span><span class="w">  </span><span class="c"># ERROR: &quot;vr_template&quot; must be in the document root</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Template Identifier:</strong>
+The name of a subsection or section list under <code class="docutils literal notranslate"><span class="pre">vr_template</span></code> is the identifier
+used to reference the template via <code class="docutils literal notranslate"><span class="pre">use_template</span></code>.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span><span class="w">  </span><span class="c"># Defines the template &quot;port&quot;</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">use_template</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;port&quot;</span><span class="w">  </span><span class="c"># References the template &quot;port&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Same Structure as Node-Rules:</strong>
+A template is defined exactly like a regular node-rules definition.
+All rules that apply to node-rules definitions also apply to templates.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Direct Type Definition Only:</strong>
+A template <em>must</em> define its own <code class="docutils literal notranslate"><span class="pre">type</span></code> and <em>must not</em> reference another
+template using <code class="docutils literal notranslate"><span class="pre">use_template</span></code>.</p>
+<p>Templates cannot be composed or chained.</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+
+<span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">client_port</span><span class="o">]</span>
+<span class="nv">use_template</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;port&quot;</span><span class="w">   </span><span class="c"># ERROR: Templates must not reference other templates.</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1024</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Copy Semantics:</strong>
+When a template is applied using <code class="docutils literal notranslate"><span class="pre">use_template</span></code>, its contents are
+<strong>copied</strong> into the node-rules definition at the usage location.</p>
+<p>From that point on, the node-rules definition behaves exactly as if the copied
+rules had been written inline.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">use_template</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;port&quot;</span><span class="w">  </span><span class="c"># Contains a copy of the &quot;port&quot; template.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Overrides Allowed:</strong>
+Constraints defined at the usage location <em>overwrite</em> constraints copied from
+the template.</p>
+<p>This allows templates to define sensible defaults while still permitting
+context-specific adjustments.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">use_template</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;port&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1024</span><span class="w">  </span><span class="c"># Overrides the &quot;minimum&quot; from the template.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Alternatives Cannot Be Overwritten:</strong>
+Templates defined as alternatives (using section lists) <em>must not</em> be
+overwritten or extended at the usage location.</p>
+<p>When a template defines multiple alternatives, the complete set of alternatives
+is copied as-is. You cannot modify individual constraints inside an alternative
+or add additional alternatives.</p>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Alternatives represent a deliberate, self-contained choice between
+multiple valid rule structures. Allowing partial overrides would require
+addressing individual alternatives explicitly, which would significantly
+increase complexity and reduce readability.
+For clarity and safety, alternative-based templates are therefore treated
+as atomic and reusable building blocks.</p>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">service</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">service</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">use_template</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;service&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1024</span><span class="w">   </span><span class="c"># ERROR: Alternatives from a template must not be modified or extended.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Order of Overrides and Additions:</strong>
+Constraints from a template are merged with additional constraints in a predictable and stable order:</p>
+<ul class="simple">
+<li><p>Constraint overrides <em>replace</em> the corresponding constraint <strong>at the same position</strong>
+where the original constraint appeared in the template.</p></li>
+<li><p>New constraints that do not exist in the template are <strong>appended to the end</strong>
+of the resulting constraint list.</p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">65534</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">use_template</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;port&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="w">       </span><span class="c"># Overrides the template&#39;s &#39;minimum&#39; and keeps its original position.</span>
+<span class="nv">not_equals</span><span class="o">:</span><span class="w"> </span><span class="mi">80</span><span class="w">    </span><span class="c"># New constraint, appended to the end of the constraint list.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Template Validation Timing:</strong>
+Templates are validated <strong>only when they are used</strong> by a node-rules definition.
+During validation, a template is checked together with the node-rules definition
+that applies it.</p>
+<p>Templates that are never referenced via <code class="docutils literal notranslate"><span class="pre">use_template</span></code> are ignored entirely and
+may contain errors without affecting validation.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">vr_template</span><span class="o">.</span><span class="nt">with_error</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">unknown_field</span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="w">    </span><span class="c"># This error is ignored because the template is unused.</span>
+
+<span class="p">[</span><span class="nt">main</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="reserved.html" class="btn btn-neutral float-left" title="Reserved Names" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="alternatives.html" class="btn btn-neutral float-right" title="Alternatives" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

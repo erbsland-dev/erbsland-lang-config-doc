@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Case Sensitive Flag &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Variable Names" href="../variable-names.html" />
+    <link rel="prev" title="Version" href="version.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lists.html">Lists</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Constraints</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common Constraint Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="minimum-maximum.html">Minimum and Maximum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equals.html">Equals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="in.html">In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiple.html">Multiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matches.html">Matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starts-ends-contains.html">Starts, Ends and Contains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chars.html">Chars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="key.html">Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The Case Sensitive Flag</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-the-case-sensitive-flag">Rules for the Case Sensitive Flag</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Validation Rules</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Constraints</a></li>
+      <li class="breadcrumb-item active">The Case Sensitive Flag</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/validation-rules/constraints/case-sensitive.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-case-sensitive-flag">
+<h1>The Case Sensitive Flag<a class="headerlink" href="#the-case-sensitive-flag" title="Link to this heading"></a></h1>
+<p>By default, all constraints that perform text comparisons operate in a
+<strong>case-insensitive</strong> manner.</p>
+<p>If the flag <code class="docutils literal notranslate"><span class="pre">case_sensitive:</span> <span class="pre">yes</span></code> is specified in a node-rules definition,
+all applicable text comparisons for that node become <strong>case-sensitive</strong>.</p>
+<p class="rubric">Exceptions</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">matches</span></code> constraint is exempt from this rule, as its behavior is entirely
+defined by the regular expression engine in use.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">chars</span></code> and <code class="docutils literal notranslate"><span class="pre">not_chars</span></code> constraints are also exempt from this rule, as they are always case-sensitive.</p></li>
+</ul>
+<section id="rules-for-the-case-sensitive-flag">
+<h2>Rules for the Case Sensitive Flag<a class="headerlink" href="#rules-for-the-case-sensitive-flag" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Default Behavior:</strong>
+Text comparisons <em>must</em> be case-insensitive unless explicitly overridden.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">api</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;system&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">api</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;System&quot;</span><span class="w">  </span><span class="c"># VALID: case-insensitive match</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Extent of Case Folding:</strong>
+Implementations <em>must</em> support case folding for the ASCII range
+(<code class="docutils literal notranslate"><span class="pre">a-z</span></code> / <code class="docutils literal notranslate"><span class="pre">A-Z</span></code>).</p>
+<ul class="simple">
+<li><p>Single-character Unicode case folding is <em>recommended</em>.</p></li>
+<li><p>Full Unicode case folding is <em>optional</em>.</p></li>
+</ul>
+<p>Implementations <em>should</em> clearly document the exact extent of their
+case-handling behavior.</p>
+</li>
+<li><p><strong>Boolean Flag:</strong>
+The <code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code> field requires a boolean value.</p>
+<ul class="simple">
+<li><p>If omitted, the default value is <code class="docutils literal notranslate"><span class="pre">no</span></code>.</p></li>
+<li><p>Explicitly specifying <code class="docutils literal notranslate"><span class="pre">case_sensitive:</span> <span class="pre">no</span></code> <em>must</em> be supported.</p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">api</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;system&quot;</span>
+<span class="nv">case_sensitive</span><span class="o">:</span><span class="w"> </span><span class="kc">no</span><span class="w">  </span><span class="c"># Redundant, but valid</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Effect of Enabling Case Sensitivity:</strong>
+If <code class="docutils literal notranslate"><span class="pre">case_sensitive:</span> <span class="pre">yes</span></code> is set, all applicable text constraints in the
+node-rules definition <em>must</em> be evaluated case-sensitively.</p>
+<ul class="simple">
+<li><p>The flag does <em>not</em> affect <code class="docutils literal notranslate"><span class="pre">matches</span></code> constraints, as its behavior is entirely
+defined by the regular expression engine in use.</p></li>
+<li><p>The flag does <em>not</em> affect <code class="docutils literal notranslate"><span class="pre">chars</span></code> or <code class="docutils literal notranslate"><span class="pre">not_chars</span></code> constraints, which are
+always case-sensitive by definition.</p></li>
+</ul>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">api</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">starts</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;system&quot;</span>
+<span class="nv">case_sensitive</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">api</span><span class="o">]</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;System&quot;</span><span class="w">  </span><span class="c"># ERROR: uppercase &quot;S&quot; does not match in case-sensitive mode</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Case-insensitive comparison is the default because most configuration values
+(such as identifiers, modes, or keywords) are not intended to be case-sensitive.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code> flag provides an explicit and localized way to enforce
+strict casing rules where required, without complicating constraint semantics
+or validator implementations.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="version.html" class="btn btn-neutral float-left" title="Version" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../variable-names.html" class="btn btn-neutral float-right" title="Variable Names" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnostics &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Security" href="security.html" />
+    <link rel="prev" title="Custom Errors" href="custom-errors.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Diagnostics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scope-of-diagnostics">Scope of Diagnostics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-diagnostics">Rules for Diagnostics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#missing-type-match">Missing Type Match</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-error-override">Custom Error Override</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Diagnostics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/diagnostics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="diagnostics">
+<h1>Diagnostics<a class="headerlink" href="#diagnostics" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section is <strong>informative</strong>.</p>
+<p>Validators are expected to provide clear and useful diagnostics, but the
+exact format, structure, and delivery mechanism are implementation-specific.</p>
+</div>
+<p>Validation Rules are designed to reduce boilerplate code in applications.
+This principle also applies to diagnostics: validators should emit <strong>clear,
+actionable error messages by default</strong>, without requiring rule authors to define
+custom error texts for every constraint.</p>
+<p>While the <code class="docutils literal notranslate"><span class="pre">_error</span></code> suffix allows authors to override diagnostics for individual
+constraints or node-rules, default messages should be sufficient in most cases.</p>
+<section id="scope-of-diagnostics">
+<h2>Scope of Diagnostics<a class="headerlink" href="#scope-of-diagnostics" title="Link to this heading"></a></h2>
+<p>Each diagnostic message should ideally answer the following questions:</p>
+<ul class="simple">
+<li><p><strong>What</strong> is the problem?</p></li>
+<li><p><strong>Where</strong> did it occur?</p></li>
+<li><p><strong>How</strong> can it be fixed?</p></li>
+</ul>
+<p>Where possible, validators <em>should</em> include:</p>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">name path</span></a> of the offending node.</p></li>
+<li><p>A document location (file name, line, column) if such information is available.</p></li>
+<li><p>A short hint describing the expected value, structure, or constraint.</p></li>
+</ul>
+<p>Diagnostics should be concise, precise, and focused on helping users correct
+their configuration quickly.</p>
+</section>
+<section id="rules-for-diagnostics">
+<h2>Rules for Diagnostics<a class="headerlink" href="#rules-for-diagnostics" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Error Category:</strong>
+All validation failures <em>must</em> be reported using the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> error
+category.</p></li>
+<li><p><strong>Reporting Strategy:</strong></p>
+<ul class="simple">
+<li><p>Validators <em>must</em> report at least the first validation error encountered.</p></li>
+<li><p>Validators <em>may</em> continue validation and report additional errors if doing
+so does not significantly reduce clarity or performance.</p></li>
+</ul>
+<p>Implementations should balance completeness with usability; overwhelming
+users with cascading errors is discouraged.</p>
+</li>
+</ol>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="missing-type-match">
+<h3>Missing Type Match<a class="headerlink" href="#missing-type-match" title="Link to this heading"></a></h3>
+<p>The following rules require a text value:</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">identifier</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+<p>The configuration provides an integer instead:</p>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">]</span>
+<span class="nv">identifier</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>A validator might produce a diagnostic such as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Validation: Expected a Text value, but got Integer.
+    name-path: client.identifier
+    location: configuration.elcl:2:1
+</pre></div>
+</div>
+</section>
+<section id="custom-error-override">
+<h3>Custom Error Override<a class="headerlink" href="#custom-error-override" title="Link to this heading"></a></h3>
+<p>Here, a custom error message overrides the default diagnostic:</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1024</span>
+<span class="nv">minimum_error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;System ports are not allowed&quot;</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">80</span>
+</pre></div>
+</div>
+<p>The resulting diagnostic could look like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Validation: System ports are not allowed.
+    name-path: server.port
+    location: configuration.elcl:2:1
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="custom-errors.html" class="btn btn-neutral float-left" title="Custom Errors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

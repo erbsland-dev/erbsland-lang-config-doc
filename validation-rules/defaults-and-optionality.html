@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Defaults and Optionality &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lists" href="lists.html" />
+    <link rel="prev" title="Alternatives" href="alternatives.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Defaults and Optionality</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-defaults">Rules for Defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-optional-nodes">Rules for Optional Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Defaults and Optionality</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/defaults-and-optionality.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="defaults-and-optionality">
+<h1>Defaults and Optionality<a class="headerlink" href="#defaults-and-optionality" title="Link to this heading"></a></h1>
+<p>Validation Rules provide two distinct mechanisms for handling missing elements in a
+parsed configuration document:</p>
+<ul class="simple">
+<li><p><strong>Defaults</strong> — supply a predefined value when a <a class="reference internal" href="../glossary.html#term-Scalar-Value"><span class="xref std std-term">scalar value</span></a> or
+<a class="reference internal" href="../glossary.html#term-Value-List"><span class="xref std std-term">value list</span></a> is missing.</p></li>
+<li><p><strong>Optionality</strong> — explicitly mark a node as optional so it may be omitted entirely,
+along with all of its child nodes.</p></li>
+</ul>
+<p>While both mechanisms address missing data, they serve different purposes and have
+different semantics.</p>
+<table class="feature-table docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Defaults</p></th>
+<th class="head"><p>Optionality</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Applies to</p></td>
+<td><p><a class="reference internal" href="../glossary.html#term-Scalar-Value"><span class="xref std std-term">Scalar values</span></a>, <a class="reference internal" href="../glossary.html#term-Value-List"><span class="xref std std-term">Value lists</span></a></p></td>
+<td><p>Any node (values, lists, sections)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Purpose</p></td>
+<td><p>Supply a predefined value if the node is missing</p></td>
+<td><p>Allow the node (and its children) to be omitted entirely</p></td>
+</tr>
+<tr class="row-even"><td><p>Child Nodes</p></td>
+<td><p>Defaults affect only the node itself</p></td>
+<td><p>Optionality cascades to all child nodes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Constraints</p></td>
+<td><p>Default values bypass constraints (except <code class="docutils literal notranslate"><span class="pre">type</span></code>)</p></td>
+<td><p>Constraints apply only if the node exists</p></td>
+</tr>
+<tr class="row-even"><td><p>Interaction</p></td>
+<td><p>Must not be combined with <code class="docutils literal notranslate"><span class="pre">is_optional</span></code></p></td>
+<td><p>Must not be combined with <code class="docutils literal notranslate"><span class="pre">default</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Common Use</p></td>
+<td><p>Avoid repetitive program logic for common values</p></td>
+<td><p>Support optional features or configuration sections</p></td>
+</tr>
+</tbody>
+</table>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">api</span><span class="o">.</span><span class="nt">host</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span>
+
+<span class="p">[</span><span class="nt">api</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">api</span><span class="o">]</span><span class="w">  </span><span class="c"># The &quot;api&quot; section is required</span>
+<span class="c"># &quot;host&quot; and &quot;port&quot; use their default values</span>
+<span class="c"># The &quot;client&quot; section is optional</span>
+</pre></div>
+</div>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Defaults are intentionally limited to scalar values and value lists to keep their
+behavior simple, predictable, and easy to implement.</p>
+<p>While it might appear useful to provide defaults for entire sections or complete
+configurations, doing so would blur the boundary between <strong>validation</strong> and
+<strong>configuration derivation</strong>. Applications that require a default configuration
+should provide one explicitly (for example, by shipping a base configuration
+file or embedding defaults in code) and then validate user-provided overrides.</p>
+<p>Defaults in Validation Rules are therefore designed as a lightweight, node-level
+convenience. They eliminate repetitive application logic while also serving as
+machine-readable documentation of commonly used values.</p>
+</div>
+<section id="rules-for-defaults">
+<h2>Rules for Defaults<a class="headerlink" href="#rules-for-defaults" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Default Field:</strong>
+A node-rules definition may specify a <code class="docutils literal notranslate"><span class="pre">default</span></code> value that is used if the node
+is missing from the configuration document.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">api</span><span class="o">.</span><span class="nt">host</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Allowed Node Types:</strong>
+Defaults <em>may only</em> be defined for <a class="reference internal" href="../glossary.html#term-Scalar-Value"><span class="xref std std-term">scalar values</span></a> and
+<a class="reference internal" href="../glossary.html#term-Value-List"><span class="xref std std-term">value lists</span></a>.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">article</span><span class="o">.</span><span class="nt">tags</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ValueList&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;article&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;news&quot;</span>
+
+<span class="p">[</span><span class="nt">article</span><span class="o">.</span><span class="nt">tags</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">maximum</span><span class="o">:</span><span class="w"> </span><span class="mi">60</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Type Matching:</strong>
+A default value <em>must</em> match the declared <code class="docutils literal notranslate"><span class="pre">type</span></code> of the node-rules definition.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">api</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Constraints Ignored:</strong>
+Default values are <em>not</em> validated against local constraints, except for
+the <code class="docutils literal notranslate"><span class="pre">type</span></code> constraint.</p>
+<p>This allows placeholder or empty values to be supplied even if they would not
+be valid as explicit user input.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">minimum</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w">   </span><span class="c"># Allowed, even though the minimum length is 1</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>No Combination with Optionality:</strong>
+A node-rules definition <em>must not</em> combine <code class="docutils literal notranslate"><span class="pre">default</span></code> with <code class="docutils literal notranslate"><span class="pre">is_optional</span></code>.</p>
+<p>Validators <em>must</em> report this as an error.</p>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="w">  </span><span class="c"># ERROR: default and is_optional must not be combined</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="rules-for-optional-nodes">
+<h2>Rules for Optional Nodes<a class="headerlink" href="#rules-for-optional-nodes" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Optional Flag:</strong>
+Any node may be marked as optional by setting <code class="docutils literal notranslate"><span class="pre">is_optional:</span> <span class="pre">yes</span></code>.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Optionality Includes Child Nodes:</strong>
+If an optional node does not exist, none of its child nodes may exist either.</p>
+<p>Even if child nodes are normally required, they are only validated if the parent
+node itself exists.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># An empty document is valid because &quot;client&quot; is optional</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>No Defaults for Missing Optional Nodes:</strong>
+Defaults are <em>not</em> applied when an optional node is missing.</p>
+<p>Child nodes are neither created nor validated unless the optional parent node
+exists.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+<span class="nv">is_optional</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">.</span><span class="nt">name</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># Empty document — &quot;client&quot; does not exist,</span>
+<span class="c"># so &quot;client.name&quot; is not created.</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">client</span><span class="o">]</span>
+<span class="c"># &quot;client&quot; exists, so &quot;client.name&quot; is created</span>
+<span class="c"># with the default value &quot;unknown&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="alternatives.html" class="btn btn-neutral float-left" title="Alternatives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lists.html" class="btn btn-neutral float-right" title="Lists" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Constraint Matrix" href="constraint-matrix.html" />
+    <link rel="prev" title="Diagnostics" href="diagnostics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#marking-secrets">Marking Secrets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rules-for-secrets">Rules for Secrets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#redos-considerations">ReDoS Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resource-limits">Resource Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#caveats-with-notvalidated">Caveats with <code class="docutils literal notranslate"><span class="pre">NotValidated</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Security</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/security.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="security">
+<h1>Security<a class="headerlink" href="#security" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section is <strong>informative</strong>, except where explicitly stated as normative.</p>
+</div>
+<p><a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> is designed to be a safe and reliable configuration format.
+The same principles apply to validation rules and validators: they must avoid
+exposing sensitive information, defend against denial-of-service risks, and
+enforce reasonable resource limits.</p>
+<p>This page describes the <code class="docutils literal notranslate"><span class="pre">is_secret</span></code> flag for handling sensitive values and
+provides guidance for implementers to avoid common security pitfalls.</p>
+<section id="marking-secrets">
+<h2>Marking Secrets<a class="headerlink" href="#marking-secrets" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">is_secret</span></code> flag identifies values that must be treated as sensitive.
+It applies to all <a class="reference internal" href="../glossary.html#term-Scalar-Value"><span class="xref std std-term">scalar values</span></a>.</p>
+<section id="rules-for-secrets">
+<h3>Rules for Secrets<a class="headerlink" href="#rules-for-secrets" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">is_secret</span></code> flag <em>may</em> be set in the node-rules definition of any scalar value.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">database</span><span class="o">.</span><span class="nt">password</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">is_secret</span><span class="o">:</span><span class="w"> </span><span class="kc">yes</span>
+</pre></div>
+</div>
+</li>
+<li><p>When set to <code class="docutils literal notranslate"><span class="pre">yes</span></code>, the parsed value is marked as <em>secret</em>.</p></li>
+<li><p>The <em>secret</em> mark <em>should</em> be exposed through the validator API so that
+applications can handle such values appropriately (e.g., masking them in
+logs or excluding them from diagnostics).</p></li>
+<li><p>Validators <em>must not</em> include secret values in error messages, warnings,
+or logs. Instead, they must replace the value with a neutral placeholder,
+such as <code class="docutils literal notranslate"><span class="pre">***</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Validation: Invalid password format.
+    name-path: database.password
+    value: ***
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Secrets such as passwords, tokens, or API keys frequently appear in
+configuration files and are often logged during debugging.
+Accidental disclosure through diagnostics is one of the most common sources
+of credential leakage.</p>
+<p>By marking values as secret at the validation level, applications and tools
+can consistently protect sensitive data without relying on ad-hoc safeguards.</p>
+</div>
+</section>
+</section>
+<section id="redos-considerations">
+<h2>ReDoS Considerations<a class="headerlink" href="#redos-considerations" title="Link to this heading"></a></h2>
+<p>Regular expressions are powerful but potentially dangerous.
+Poorly designed patterns may trigger <em>catastrophic backtracking</em>, leading to
+regular-expression denial-of-service (ReDoS) attacks.</p>
+<p class="rubric">Guidelines</p>
+<ul class="simple">
+<li><p>Prefer regular-expression engines with linear-time execution guarantees.</p></li>
+<li><p>Enforce a maximum input length for values evaluated by regex constraints.</p></li>
+<li><p>Apply execution timeouts or step limits when evaluating user-defined patterns.</p></li>
+<li><p>Consider using regex libraries with built-in ReDoS protection.</p></li>
+</ul>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Validators may operate on untrusted input.
+A single pathological regular expression can block the entire validation
+process and potentially the hosting application.
+Defensive measures against ReDoS are therefore essential.</p>
+</div>
+</section>
+<section id="resource-limits">
+<h2>Resource Limits<a class="headerlink" href="#resource-limits" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a> is designed as a <strong>human-readable configuration format</strong>, not a
+high-volume data exchange format.
+Validators are not required to accept arbitrarily large or deeply nested documents.</p>
+<p class="rubric">Recommendations</p>
+<ul class="simple">
+<li><p>Enforce a maximum document size (for example, a few megabytes).</p></li>
+<li><p>Impose limits on nesting depth, recursion, and total node count.</p></li>
+<li><p>Reject documents that exceed these limits with a clear validation error.</p></li>
+</ul>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Resource limits are a simple and effective security measure.
+Without them, a malicious configuration could exhaust memory or CPU
+resources before meaningful validation begins.</p>
+</div>
+</section>
+<section id="caveats-with-notvalidated">
+<h2>Caveats with <code class="docutils literal notranslate"><span class="pre">NotValidated</span></code><a class="headerlink" href="#caveats-with-notvalidated" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">NotValidated</span></code> type provides an escape hatch for values or subtrees that
+cannot be expressed using standard validation rules.
+While useful, it weakens the guarantees provided by the validation document.</p>
+<p class="rubric">Guidelines</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">NotValidated</span></code> only as a last resort.</p></li>
+<li><p>Prefer explicit types and constraints whenever possible.</p></li>
+<li><p>Treat <code class="docutils literal notranslate"><span class="pre">NotValidated</span></code> nodes as <em>untrusted input</em>.</p></li>
+<li><p>Apply additional application-level validation where appropriate.</p></li>
+<li><p>Document clearly why <code class="docutils literal notranslate"><span class="pre">NotValidated</span></code> is required.</p></li>
+</ul>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>ELCL validation rules are intentionally strict and predictable.
+<code class="docutils literal notranslate"><span class="pre">NotValidated</span></code> exists to handle exceptional cases, but overuse undermines
+the value of validation itself.</p>
+<p>Careful, well-documented use preserves flexibility without sacrificing
+security, correctness, or maintainability.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="diagnostics.html" class="btn btn-neutral float-left" title="Diagnostics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="constraint-matrix.html" class="btn btn-neutral float-right" title="Constraint Matrix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

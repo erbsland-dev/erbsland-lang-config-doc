@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evaluation Order &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Node-Rules Definition" href="node-rules.html" />
+    <link rel="prev" title="Document Model" href="model.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Evaluation Order</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scope">Scope</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-the-evaluation-order">Rules for the Evaluation Order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Evaluation Order</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/evaluation-order.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="evaluation-order">
+<h1>Evaluation Order<a class="headerlink" href="#evaluation-order" title="Link to this heading"></a></h1>
+<p>The evaluation order for Validation Rules (<a class="reference internal" href="../glossary.html#term-ELCL-VR"><span class="xref std std-term">ELCL-VR</span></a>) ensures that all parsers
+behave consistently and produce identical observable results.
+While implementations <em>may</em> apply internal optimizations, the outcome of validation
+<em>must</em> be equivalent to executing the steps in the order described here.</p>
+<section id="scope">
+<h2>Scope<a class="headerlink" href="#scope" title="Link to this heading"></a></h2>
+<p>This specification assumes that a parser first reads the Validation Rules document,
+verifies its correctness, and converts it into an internal representation suitable
+for validation.</p>
+<p>During this preprocessing phase, templates are expanded and identifiers—including
+reserved names—are normalized. This phase occurs <em>before</em> any configuration document
+is validated and is therefore outside the scope of this specification. The internal
+order of these preprocessing steps is not relevant.</p>
+<p>The evaluation order defined below begins <em>after</em> a configuration document has been
+successfully parsed into a <a class="reference internal" href="../glossary.html#term-Value-Tree"><span class="xref std std-term">Value Tree</span></a> and validation is explicitly requested
+for the entire document or for a specific subtree.</p>
+</section>
+<section id="rules-for-the-evaluation-order">
+<h2>Rules for the Evaluation Order<a class="headerlink" href="#rules-for-the-evaluation-order" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Validation Stages:</strong>
+Each <a class="reference internal" href="../glossary.html#term-Value-Tree"><span class="xref std std-term">Value Tree</span></a> <em>must</em> be validated in the following stages:</p>
+<ol class="arabic">
+<li><p><strong>First traversal through all node-rules definitions:</strong></p>
+<ul class="simple">
+<li><p>Determine the matching alternative for each node.</p></li>
+<li><p>Validate all constraints, except <code class="docutils literal notranslate"><span class="pre">key</span></code> and <code class="docutils literal notranslate"><span class="pre">vr_dependency</span></code> (see later stages).</p></li>
+<li><p>Assign default values for missing nodes where applicable.</p></li>
+<li><p>Create or update indexes and validate uniqueness constraints.</p></li>
+<li><p>Mark nodes as partially validated or exclude them from validation if
+<code class="docutils literal notranslate"><span class="pre">NotValidated</span></code> applies.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>For default values, only the <code class="docutils literal notranslate"><span class="pre">type</span></code> constraint is validated.
+No other constraints apply to default values.
+See <a class="reference internal" href="defaults-and-optionality.html"><span class="doc">Defaults and Optionality</span></a> for details.</p>
+</div>
+</li>
+<li><p><strong>Traversal of the validated document:</strong></p>
+<ul class="simple">
+<li><p>Detect any nodes in the value tree that are not covered by validation rules
+and therefore must not exist.</p></li>
+</ul>
+</li>
+<li><p><strong>Second traversal through all node-rules definitions:</strong></p>
+<ul class="simple">
+<li><p>Validate cross-references using the <code class="docutils literal notranslate"><span class="pre">key</span></code> constraint.</p></li>
+<li><p>Validate dependencies declared via <code class="docutils literal notranslate"><span class="pre">vr_dependency</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>Order of Constraints:</strong>
+Constraints within a validation stage <em>must</em> be evaluated in the following order:</p>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> constraint is always evaluated first.</p></li>
+<li><p>All remaining constraints are evaluated in the <em>order of definition</em>.</p></li>
+<li><p>During the second traversal, <code class="docutils literal notranslate"><span class="pre">key</span></code> constraints are evaluated first.</p></li>
+<li><p>Rules declared in <code class="docutils literal notranslate"><span class="pre">vr_dependency</span></code> are evaluated last.</p></li>
+</ol>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Validation stops as soon as a constraint fails, so the evaluation order does
+not affect the final validity of the document.
+However, it does influence error reporting.
+By defining constraints in a deliberate order, rule authors can control which
+validation errors are reported first.</p>
+</div>
+</li>
+<li><p><strong>Definition Order of Child Nodes:</strong>
+Child nodes <em>must</em> be processed in the order of their definition within the
+configuration document.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span><span class="w">                </span><span class="c"># 1.</span>
+<span class="nv">z_name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="w">       </span><span class="c"># 2.</span>
+<span class="nv">a_port</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span><span class="w">            </span><span class="c"># 3.</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">]</span><span class="w">                </span><span class="c"># 4.</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">8080</span><span class="w">              </span><span class="c"># 5.</span>
+</pre></div>
+</div>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Since assignments are captured in definition order during parsing, validating
+them in the same order minimizes implementation complexity and guarantees a
+stable and predictable validation sequence.</p>
+</div>
+</li>
+<li><p><strong>Bottom-Up Structure Traversal:</strong>
+The document structure <em>must</em> be traversed bottom up, completing validation of
+each branch before moving on to unrelated branches.</p>
+<p>This ensures that subsections—which may appear later in the document—are fully
+validated before sibling sections that are defined earlier.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span><span class="w">                </span><span class="c"># 1.</span>
+<span class="nv">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="w">         </span><span class="c"># 2.</span>
+
+<span class="p">[</span><span class="nt">client</span><span class="o">]</span><span class="w">                </span><span class="c"># 5.</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">8080</span><span class="w">              </span><span class="c"># 6.</span>
+
+<span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">bind</span><span class="o">]</span><span class="w">           </span><span class="c"># 3.</span>
+<span class="nv">interface</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="w">    </span><span class="c"># 4.</span>
+</pre></div>
+</div>
+<div class="design-rationale admonition">
+<p class="admonition-title">Design Rationale</p>
+<p>Bottom-up traversal guarantees consistent behavior regardless of declaration
+order and ensures that validation errors are detected as early and reliably
+as possible.</p>
+</div>
+</li>
+<li><p><strong>Order of Alternatives:</strong>
+Alternatives <em>must</em> be evaluated in the order of their definition.
+This allows rule authors to deterministically control which alternative applies
+when multiple alternatives could match.</p>
+<p>The following example allows <code class="docutils literal notranslate"><span class="pre">server.bind</span></code> to be defined in three different
+ways: as a single text value, as a section with <code class="docutils literal notranslate"><span class="pre">address</span></code> and <code class="docutils literal notranslate"><span class="pre">port</span></code>, or as
+a section list containing multiple entries.</p>
+<div class="highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">bind</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.0.0.0:8080&quot;</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">bind</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">address</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="nv">default</span><span class="o">:</span><span class="w"> </span><span class="mi">8080</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">bind</span><span class="o">]*</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;section_list&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">address</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+
+<span class="p">[</span><span class="o">.</span><span class="nt">vr_entry</span><span class="o">.</span><span class="nt">port</span><span class="o">]</span>
+<span class="nv">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">]</span>
+<span class="nv">bind</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1:9000&quot;</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">bind</span><span class="o">]</span>
+<span class="nv">address</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+</pre></div>
+</div>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">bind</span><span class="o">]*</span>
+<span class="nv">address</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;10.50.0.1&quot;</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+
+<span class="o">*</span><span class="p">[</span><span class="nt">server</span><span class="o">.</span><span class="nt">bind</span><span class="o">]*</span>
+<span class="nv">address</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;10.62.0.1&quot;</span>
+<span class="nv">port</span><span class="o">:</span><span class="w"> </span><span class="mi">9000</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="model.html" class="btn btn-neutral float-left" title="Document Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="node-rules.html" class="btn btn-neutral float-right" title="Node-Rules Definition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
