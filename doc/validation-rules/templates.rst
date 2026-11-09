@@ -231,3 +231,22 @@ Rules for Templates
 
         [main.port]
         type: "integer"
+
+#.  **Templates and ``vr_name``:**
+    Templates can be used for ``vr_name`` definitions. The applied template *must*
+    have type ``text`` and *must* use only constraints allowed for ``vr_name``.
+    The resulting definition is subject to the same restrictions as an inline
+    definition; see :doc:`variable-names`.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [vr_template.name]
+        type: "text"
+        maximum: 10
+
+        [main.vr_any]
+        type: "integer"
+
+        [main.vr_any.vr_name]
+        use_template: "name"

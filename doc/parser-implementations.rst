@@ -20,6 +20,29 @@ propose it for inclusion here.
 
 .. card::
 
+    **Erbsland Core - C++ Foundation Library**
+    ^^^
+    Erbsland Core, a comprehensive C++ foundation library contains a full-featured implementation of the
+    Erbsland Configuration Language with support for UTF-8/16/32 and validation-rules.
+
+    * **Source Code:**
+      `GitHub – erbsland-core <https://github.com/erbsland-dev/erbsland-core>`_
+
+    * **Documentation:**
+      `core.erbsland.dev <https://core.erbsland.dev>`_
+
+    * **License:**
+      Apache License, Version 2.0
+
+    * **Author:**
+      `Erbsland DEV <https://erbsland.dev>`_
+
+    +++
+    :bdg-primary:`C++` :bdg-primary:`C++20` :bdg-info:`Full-featured` :bdg-success:`Stable`
+    :bdg-dark:`Erbsland Core` :bdg-dark:`No Dependencies` :bdg-dark:`Apache 2.0`
+
+.. card::
+
     **Erbsland Configuration Parser for C++**
     ^^^
     A full-featured, dependency-free implementation of the Erbsland Configuration Language for modern C++ (C++20 and newer).

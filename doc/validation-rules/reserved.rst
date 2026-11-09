@@ -65,6 +65,22 @@ Rules for Reserved Names
         [settings.vr_vr_headset]  # Defines rules for settings.vr_headset
         type: "text"
 
+#.  **Escaping Attribute Names:**
+    Regular names that conflict with attribute names can be escaped by prefixing
+    them with ``vr_literal_``.
+
+    During normalization, the leading ``vr_literal_`` prefix is removed, and the
+    remaining name is treated as a regular identifier.
+
+    .. code-block:: erbsland-conf
+        :class: validation-rules
+
+        [settings]
+        type: "section"
+
+        [settings.vr_literal_type]  # Defines rules for settings.type
+        type: "text"
+
 List of Reserved Names
 ======================
 
@@ -97,3 +113,6 @@ The following table lists all reserved names defined by this specification.
     *   -   vr_vr_*
         -   Escape prefix used to define regular names that would otherwise be
             interpreted as reserved.
+    *   -   vr_literal_*
+        -   Escape prefix used to define regular names that would otherwise
+            conflict with attribute names.

@@ -1,41 +1,72 @@
 name: Docs
+
 on:
   push:
     branches:
       - main
-permissions:
-  contents: write
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
+    name: Build documentation
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read # Check out the documentation sources.
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out sources
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-python@v3
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version-file: .python-version
 
-      - name: Install Python dependencies from requirements.txt
-        run: pip install -r requirements.txt
-
-      - name: Install Doxygen
-        run: sudo apt-get install doxygen -y
-        shell: bash
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
 
       - name: Build documentation
-        run: sphinx-build doc _build
+        run: python -m sphinx -W --keep-going -b html doc _build
 
-      - name: Set CNAME if in public repo
-        id: cname
-        run: |
-          if [ "${{ github.repository }}" = "erbsland-dev/erbsland-lang-config-doc" ]; then
-            echo "CNAME=config-lang.erbsland.dev" >> $GITHUB_ENV
-          fi
+      - name: Upload documentation
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: documentation
+          path: _build/
+          if-no-files-found: error
+          retention-days: 1
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+  deploy:
+    name: Publish documentation
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write # Publish the generated documentation to gh-pages.
+    steps:
+      - name: Download documentation
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: documentation
+          path: _build/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: _build/
           force_orphan: true
-          cname: ${{ env.CNAME }}
+          cname: ${{ github.repository == 'erbsland-dev/erbsland-lang-config-doc' && 'config-lang.erbsland.dev' || '' }}

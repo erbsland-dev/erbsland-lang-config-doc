@@ -10,6 +10,14 @@
 Changelog
 *********
 
+Version 1.4.0 — 2026-11-09
+==========================
+
+*   Extended the validation-rules specification with the ``vr_literal_`` escape
+    prefix for names that conflict with attribute names.
+*   Clarified that templates can be used for ``vr_name`` definitions, subject to
+    the same type and constraint restrictions as inline definitions.
+
 Version 1.3.1 — 2026-02-20
 ==========================
 
