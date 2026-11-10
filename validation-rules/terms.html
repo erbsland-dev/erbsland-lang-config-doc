@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Document Model" href="model.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Terms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vocabulary">Vocabulary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#validation-rule-documents">Validation Rule Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-examples">Configuration Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#identifier-normalization">Identifier Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reserved-names">Reserved Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conformance-language">Conformance Language</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Terms</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/validation-rules/terms.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="terms">
+<h1>Terms<a class="headerlink" href="#terms" title="Link to this heading"></a></h1>
+<p>This page defines the terminology used throughout the Validation Rules
+specification (<a class="reference internal" href="../glossary.html#term-ELCL-VR"><span class="xref std std-term">ELCL-VR</span></a>). The terms introduced here are used consistently
+in all following chapters and are essential for understanding both the rules
+themselves and the requirements placed on validators.</p>
+<section id="vocabulary">
+<h2>Vocabulary<a class="headerlink" href="#vocabulary" title="Link to this heading"></a></h2>
+<p>Validation Rules use the following core terms:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../glossary.html#term-Node"><span class="xref std std-term">Node</span></a> — a single location in the value tree that may be validated.
+A node can represent a value, a section, or a list.</p></li>
+<li><p><a class="reference internal" href="../glossary.html#term-Node-Rules"><span class="xref std std-term">Node-Rules</span></a> — the complete set of constraints and metadata that apply
+to a specific node.</p></li>
+<li><p><a class="reference internal" href="../glossary.html#term-Name-Path"><span class="xref std std-term">Name Path</span></a> — the normalized path that uniquely identifies a node
+within the value tree.</p></li>
+<li><p><a class="reference internal" href="../glossary.html#term-Section"><span class="xref std std-term">Section</span></a> — a structured node containing named child entries, usually
+with regular names unless noted otherwise.</p></li>
+<li><p><a class="reference internal" href="../glossary.html#term-Section-List"><span class="xref std std-term">Section List</span></a> — a node containing multiple sections that all share the
+same name.</p></li>
+<li><p><a class="reference internal" href="../glossary.html#term-Value-List"><span class="xref std std-term">Value List</span></a> — a node containing an ordered sequence of scalar values.</p></li>
+<li><p><a class="reference internal" href="../glossary.html#term-Reserved-Name"><span class="xref std std-term">Reserved Name</span></a> — a predefined identifier in a validation rules document
+with special meaning, always starting with the prefix <code class="docutils literal notranslate"><span class="pre">vr_</span></code>.</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<p>Throughout this specification, examples are rendered using visually distinct box
+styles. These styles help you immediately understand <em>what kind of document you
+are looking at</em> and <em>how it relates to the validation rules</em>.</p>
+<p>The following examples demonstrate all box styles used in this chapter.</p>
+<section id="validation-rule-documents">
+<h3>Validation Rule Documents<a class="headerlink" href="#validation-rule-documents" title="Link to this heading"></a></h3>
+<p>Validation rule documents define constraints and checks that are applied to
+configuration files.</p>
+<div class="validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># This is a valid validation rules document.</span>
+<span class="c"># It follows the rules defined in this specification.</span>
+</pre></div>
+</div>
+<div class="bad-validation-rules highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># This validation rules document does not conform</span>
+<span class="c"># to the requirements of this specification.</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-examples">
+<h3>Configuration Examples<a class="headerlink" href="#configuration-examples" title="Link to this heading"></a></h3>
+<p>Configuration examples show how real-world configuration documents behave when
+they are validated against a set of rules.</p>
+<div class="good-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># This configuration document conforms to</span>
+<span class="c"># the associated validation rules.</span>
+</pre></div>
+</div>
+<div class="bad-example highlight-erbsland-conf notranslate"><div class="highlight"><pre><span></span><span class="c"># This configuration document violates</span>
+<span class="c"># one or more validation rules.</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="identifier-normalization">
+<h2>Identifier Normalization<a class="headerlink" href="#identifier-normalization" title="Link to this heading"></a></h2>
+<p>Identifiers given as text in Validation Rules are <strong>case-insensitive</strong> and follow
+the same normalization rules as <a class="reference internal" href="../glossary.html#term-Name"><span class="xref std std-term">names</span></a> in <a class="reference internal" href="../glossary.html#term-ELCL"><span class="xref std std-term">ELCL</span></a>.
+For comparison purposes, underscores (<code class="docutils literal notranslate"><span class="pre">_</span></code>) and spaces are treated as equivalent.</p>
+<p>For simplicity and consistency, all examples in this specification use normalized
+identifiers. In real-world documents, however, it can be helpful to take advantage
+of normalization for readability, for example by writing <code class="docutils literal notranslate"><span class="pre">VR</span> <span class="pre">any</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">vr_any</span></code>.</p>
+<p>See <a class="reference internal" href="../reference/names.html#ref-name-normalization"><span class="std std-ref">Name Normalization</span></a> for a detailed description of name normalization
+rules.</p>
+</section>
+<section id="reserved-names">
+<h2>Reserved Names<a class="headerlink" href="#reserved-names" title="Link to this heading"></a></h2>
+<p>All reserved names begin with the prefix <code class="docutils literal notranslate"><span class="pre">vr_</span></code>.
+They have predefined semantics in Validation Rules and must not be redefined or
+used for regular configuration entries.</p>
+<p>See <a class="reference internal" href="reserved.html"><span class="doc">Reserved Names</span></a> for the complete list of reserved names and their meanings.</p>
+</section>
+<section id="conformance-language">
+<h2>Conformance Language<a class="headerlink" href="#conformance-language" title="Link to this heading"></a></h2>
+<p>This specification uses simple and consistent language to express normative
+requirements:</p>
+<ul class="simple">
+<li><p>The word <em>must</em> indicates an absolute requirement for conformance.</p></li>
+<li><p>The word <em>should</em> indicates a recommended feature that is optional but
+strongly encouraged.</p></li>
+<li><p>The word <em>may</em> indicates an optional feature.</p></li>
+</ul>
+<p>If an element is described as <em>must</em> be present or supported, a parser that omits
+it does <strong>not</strong> conform to this specification. Elements described with <em>should</em>
+are optional but recommended, while <em>may</em> marks features that can be freely
+omitted without breaking conformance.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="model.html" class="btn btn-neutral float-right" title="Document Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

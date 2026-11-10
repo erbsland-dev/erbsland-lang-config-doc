@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Constraints &mdash; Erbsland Configuration Language 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a4b6900f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/overlay.js?v=11512746"></script>
+      <script src="https://erbsland.dev/ext/fa7/js/all.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Common Constraint Rules" href="common.html" />
+    <link rel="prev" title="Lists" href="../lists.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Erbsland Configuration Language
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language-overview.html">Language Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">The Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-tiers.html">Parser Tiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Validation Rules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terms.html">Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model.html">Document Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation-order.html">Evaluation Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node-rules.html">Node-Rules Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reserved.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../alternatives.html">Alternatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../defaults-and-optionality.html">Defaults and Optionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lists.html">Lists</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common Constraint Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="minimum-maximum.html">Minimum and Maximum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equals.html">Equals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="in.html">In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiple.html">Multiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matches.html">Matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starts-ends-contains.html">Starts, Ends and Contains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chars.html">Chars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="key.html">Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="case-sensitive.html">The Case Sensitive Flag</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../variable-names.html">Variable Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keys-and-references.html">Indexes, Keys and References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dependencies.html">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-errors.html">Custom Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraint-matrix.html">Constraint Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-goals.html">Design Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../parser-implementations.html">Parser Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Erbsland Configuration Language</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Validation Rules</a></li>
+      <li class="breadcrumb-item active">Constraints</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/validation-rules/constraints/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="constraints">
+<h1>Constraints<a class="headerlink" href="#constraints" title="Link to this heading"></a></h1>
+<p>Constraints are the <strong>primary mechanism</strong> used by node-rules definitions to validate
+the contents of a parsed configuration document. They express concrete requirements
+such as value ranges, allowed formats, uniqueness, or relationships between nodes.</p>
+<p>The meaning and applicability of a constraint depend on the declared <code class="docutils literal notranslate"><span class="pre">type</span></code> of the
+node it constrains. Some constraints—such as <code class="docutils literal notranslate"><span class="pre">minimum</span></code>—have different semantics
+depending on whether they are applied to numbers, text, lists, or other structures.
+Other constraints are only valid for specific node types.</p>
+<p>This chapter documents all available constraints, explains their semantics, and
+describes which node types they apply to. Each constraint page includes examples and
+notes to help you choose the correct constraint for your use case.</p>
+<p class="sd-text-center"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-success sd-fs-5 sd-font-weight-bold sd-p-3 reference internal" href="common.html"><span class="doc">Common Constraint Rules →</span></a></span></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="common.html">Common Constraint Rules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="common.html#rules-for-negating-constraints">Rules for Negating Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#rules-for-custom-constraint-errors">Rules for Custom Constraint Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="minimum-maximum.html">Minimum and Maximum</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="minimum-maximum.html#type-matrix">Type Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minimum-maximum.html#rules-for-minimum-and-maximum">Rules for Minimum and Maximum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minimum-maximum.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="minimum-maximum.html#numeric-limits">Numeric Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="minimum-maximum.html#text-limits">Text Limits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="equals.html">Equals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="equals.html#type-matrix">Type Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="equals.html#rules">Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="equals.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="equals.html#numeric-example">Numeric Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equals.html#alternatives-example">Alternatives Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="in.html">In</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="in.html#type-matrix">Type Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="in.html#rules">Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="in.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multiple.html">Multiple</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multiple.html#type-matrix">Type Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiple.html#rules-for-multiple">Rules for Multiple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiple.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multiple.html#numeric-constraint">Numeric Constraint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiple.html#length-based-constraint">Length-Based Constraint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="matches.html">Matches</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="matches.html#type-matrix">Type Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matches.html#rules-for-matches">Rules for Matches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matches.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="starts-ends-contains.html">Starts, Ends and Contains</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="starts-ends-contains.html#type-matrix">Type Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="starts-ends-contains.html#rules-for-starts-ends-and-contains">Rules for Starts, Ends and Contains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="starts-ends-contains.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chars.html">Chars</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chars.html#type-matrix">Type Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chars.html#rules-for-chars">Rules for Chars</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="key.html">Key</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="key.html#type-matrix">Type Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="key.html#rules-for-key">Rules for Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="key.html#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="key.html#version-history">Version History</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="version.html">Version</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="version.html#type-matrix">Type Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html#rules-for-version-constraints">Rules for Version Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="version.html#schema-evolution">Schema Evolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="version.html#good-examples">Good Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="case-sensitive.html">The Case Sensitive Flag</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="case-sensitive.html#rules-for-the-case-sensitive-flag">Rules for the Case Sensitive Flag</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lists.html" class="btn btn-neutral float-left" title="Lists" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="common.html" class="btn btn-neutral float-right" title="Common Constraint Rules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
