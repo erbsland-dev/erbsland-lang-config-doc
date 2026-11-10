@@ -10,6 +10,14 @@
 Changelog
 *********
 
+Version 1.4.1 — 2026-11-10
+==========================
+
+*   Corrected the type overview to require ``vr_entry`` rules for ``ValueList``
+    and ``ValueMatrix``, matching the Lists chapter. Removed the implicit
+    ``Value`` default and clarified that accepting any scalar value requires
+    explicitly setting the entry rule's type to ``Value``.
+
 Version 1.4.0 — 2026-11-09
 ==========================
 

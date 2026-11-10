@@ -154,12 +154,12 @@ For example, ``DateTime``, ``datetime``, and ``DATETIME`` are all equivalent.
             It covers all scalar types listed above.
     *   -   ValueList
         -   Constrains the node to either a single *scalar value* or a *value list*.
-            List elements can be validated using ``vr_entry``.
-            If omitted, the type ``Value`` is implicitly used for all entries.
+            A ``vr_entry`` rule *must* be provided to define the node-rules for each
+            list element. To allow any scalar value, explicitly set its type to ``Value``.
     *   -   ValueMatrix
         -   Constrains the node to either a single *scalar value*, a *value list* or a *nested value list*.
-            Elements of the lists can be validated using ``vr_entry``.
-            If omitted, the type ``Value`` is implicitly used for all matrix entries.
+            A ``vr_entry`` rule *must* be provided to define the node-rules for each
+            scalar matrix entry. To allow any scalar value, explicitly set its type to ``Value``.
     *   -   Section
         -   Constrains the node to a *section with names*.
             See :ref:`ref-section` for details.
